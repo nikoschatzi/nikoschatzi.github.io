@@ -58,10 +58,6 @@
   color: #0077b5;
 }
 
-.schoolar {
-  color: #0077b5;
-}
-
 .angellist {
   color: grey;
 }
@@ -73,10 +69,6 @@
 
 .linkedin:hover {
   background-color: #0077b5;
-}
-
-.schoolar:hover {
-  background-color: black;
 }
 
 .angellist:hover {
@@ -421,51 +413,6 @@ h3 {
   text-transform: uppercase;
 }
 
-#education .card-action {
-  background-color: rgba(0, 0, 0, 0.02);
-  border: none;
-}
-
-#education .card .col.s12.m2 a {
-  display: block;
-}
-
-#education .card .col.s12.m2 a img {
-  max-height: 60px;
-}
-
-.card-action span {
-  font-size: 85%;
-  color: #666;
-}
-
-.card ul {
-  margin-bottom: 0;
-}
-
-.card ul li {
-  line-height: 200%;
-  list-style-type: disc;
-  margin-left: 24px;
-}
-
-.card ul li li {
-  color: #666;
-  font-size: 13px;
-}
-
-.card .card-title {
-  font-size: 24px;
-}
-
-.card .card-content .card-title {
-  line-height: 2.5rem;
-}
-
-.card i.right {
-  margin-left: 10px;
-}
-
 #experience .card-action {
   background-color: rgba(0, 0, 0, 0.02);
   border: none;
@@ -554,27 +501,6 @@ a.hoverline:hover {
   padding: 30px 0;
 }
 
-#education .card-content .row {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
-
-.card.large .card-image {
-  height: 230px;
-}
-
-.card.large .card-content {
-  height: auto;
-}
-
-.card.medium .card-image {
-  height: 400px;
-}
-
-.card-action a.btn-floating {
-  margin-bottom: 0;
-}
-
 #experience .card-content .row {
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
@@ -589,7 +515,7 @@ a.hoverline:hover {
 }
 
 .card.medium .card-image {
-  height: 400px;
+  height: 240px;
 }
 
 .card-action a.btn-floating {
@@ -600,24 +526,6 @@ a.hoverline:hover {
   bottom: 6px;
   left: 20px;
   position: relative;
-}
-
-#education .col.s12.m2 {
-  text-align: center;
-}
-
-.fa-external-link:before {
-  left: 3px;
-  position: relative;
-  top: 2px;
-}
-
-small {
-  display: none;
-}
-
-.grey-text {
-  color: #666 !important;
 }
 
 #experience .col.s12.m2 {
@@ -657,12 +565,6 @@ small {
 /* .teal {
   background-color: #00695c !important;
 } */
-
-@media (min-width: 1200px) {
-  #education .container {
-    width: 860px;
-  }
-}
 
 @media (min-width: 1200px) {
   #experience .container {
@@ -764,21 +666,6 @@ small {
     font-size: 20px;
     line-height: 24px;
   }
-
-  #education span.card-title {
-    text-align: center;
-    display: block;
-  }
-
-   #education span.card-title a {
-    margin: 0;
-  }
-
-  i.mdi-navigation-close.right {
-    position: relative;
-    bottom: 15px;
-  }
-  
   #experience span.card-title {
     text-align: center;
     display: block;
