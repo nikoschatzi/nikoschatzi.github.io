@@ -114,12 +114,13 @@
         </blockquote> -->        
         <p>
 
-        The cryogenic crate is designed to house various peripheral cards, including those that collect data from temperature sensors,
-          power cards that supply power to all components within the crate, 
-          and communication cards that enable data exchange between the peripheral cards and the WorldFIP network.
-          Currently, CERN's cryogenics group has more than 1200 communication cards up and running, most of them installed in LHC. Cryogenic communication card consists of 2 PCB's,
-          motherboard which collects data from all peripheral cards placed on the left side of the communication card, and daughter board which collects and sends data to all cards placed
-          on the right side of the communication card,.
+        The cryogenics crate is designed to house different type of cards essential for cryogenic system operations. 
+          These include peripheral cards such as cards that collect data from temperature sensors, power cards that supply power to all components within the crate, 
+          and communication cards that enable seamless data exchange between peripheral cards and the WorldFIP network. <br> <br>
+
+Currently, over 1,200 communication cards are installed, with most deployed in the Large Hadron Collider (LHC). 
+          Each cryogenics communication card comprises two PCBs: a motherboard, which collects data from all peripheral cards positioned
+          on the left side of the communication card, and a daughterboard, responsible for collecting and transmitting data to the cards on the right side.
 
           <center>
         <figure>
@@ -128,8 +129,23 @@
         </figure>
         </center>
 
-          Existing communication were designed 20 year ago, based on microFIP FMC, a PCB which receives data from crates communication card and send them to the network,
-          implementing WorldFIP communication protocol. 
+          Each communication card features an FPGA (Field-Programmable Gate Array) responsible for collecting data from various peripheral cards. 
+          These data are then transmitted to the MicroFIP module, a dedicated PCB acting as the "Agent" (or slave) interface card for the WorldFIP network. 
+          The MicroFIP module is composed of three main components:
+          •	MicroFIP ASIC: Custom-designed chip that manages WorldFIP protocol communication. <br>
+          •	Field Drive: Module which handles signal transmission to and from the WorldFIP network, ensuring compatibility with network signal transmission. <br>
+          •	Isolation Transformer: Transformer which provides electrical isolation to protect components and maintain signal integrity. <br>
+
+However, the MicroFIP ASIC was phased out by Alstom, the company responsible for its production. To address this, CERN developed an in-house solution: the NanoFIP FPGA Mezzanine Card (FMC). 
+          This new module replaces the MicroFIP ASIC with the NanoFIP, a custom implementation using an Actel ProASIC3 FPGA that reproduces a subset of the original MicroFIP's functionalities. 
+          Like its predecessor, the NanoFIP FMC contains:
+
+          •	NanoFIP: Actel ProASIC3 FPGA manages WorldFIP protocol communication. <br>
+          •	Field Drive. <br>
+          •	Isolation Transformer. <br>
+
+Given that CERN's cryogenics group must support the WorldFIP communication network until the end of the HL-LHC's operational life - at least up to 2035, 
+          additional communication cards are required in the coming years. 
           
            <center>
         <figure>
@@ -137,6 +153,8 @@
         <i><figcaption>Project motivation.</figcaption></i>
         </figure>
         </center>
+
+          To meet this demand, a new communication card based on the NanoFIP FMC was designed and developed.
 
           
         <center>
