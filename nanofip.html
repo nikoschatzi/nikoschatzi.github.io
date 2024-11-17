@@ -117,20 +117,23 @@
         The cryogenic crate is designed to house various peripheral cards, including those that collect data from temperature sensors,
           power cards that supply power to all components within the crate, 
           and communication cards that enable data exchange between the peripheral cards and the WorldFIP network.
-          Currently, CERN's cryogenics group has more than 1200 communication cards up and running, most of them installed in LHC.
+          Currently, CERN's cryogenics group has more than 1200 communication cards up and running, most of them installed in LHC. Cryogenic communication card consists of 2 PCB's,
+          motherboard which collects data from all peripheral cards placed on the left side of the communication card, and daughter board which collects and sends data to all cards placed
+          on the right side of the communication card,.
 
           <center>
         <figure>
-        <img src="/assets/img/lhc_architecture.png" style="max-width:600px;width:120%" class="center" />
+        <img src="/assets/img/lhc_architecture.png" style="max-width:800px;width:160%" class="center" />
         <i><figcaption>LHC architecture.</figcaption></i>
         </figure>
         </center>
 
-          
+          Existing communication were designed 20 year ago, based on microFIP FMC, a PCB which receives data from crates communication card and send them to the network,
+          implementing WorldFIP communication protocol. 
           
            <center>
         <figure>
-        <img src="/assets/img/motivation.png" style="max-width:600px;width:120%" class="center" />
+        <img src="/assets/img/motivation.png" style="max-width:800px;width:160%" class="center" />
         <i><figcaption>Project motivation.</figcaption></i>
         </figure>
         </center>
@@ -140,55 +143,6 @@
 
         <img src="/assets/img/nanofip.gif" alt="this slowpoke moves"  width="250" />
           
-        </center>
-
-        When the piezo actuator is ON, port 2 is connected to the input, allowing air to fill the closed volume. 
-        When the piezo actuator is OFF, air flows from port 2 to port 3, releasing the air from the volume. 
-        For testing, a pressure regulator maintains the pressure at 6 bar, with an input pressure sensor and an output pressure sensor for each piezo actuator under test. 
-        Once the input and output pressures stabilize at 6 bar, the volume is filled with air, and a steady-state condition is reached. 
-        A flowmeter is used to measure any air leakage when the steady-state condition is achieved. Each piezo actuator is tested individually.
-
-        <center>
-        <figure>
-        <img src="/assets/img/setup sketch.png" style="max-width:600px;width:120%" class="center" />
-        <i><figcaption>Testing diagram.</figcaption></i>
-        </figure>
-        </center>
-
-       The following plot presents the results of a dry run test conducted on one piezo actuator. 
-        The top plot shows the input piezo voltage; when the voltage increases, the piezo turns ON and begins to fill the closed volume with air. 
-        The second plot displays the input pressure, while the third plot shows the output pressure. 
-        After approximately 15-20 seconds, 2 liters of the closed volume have been filled. The bottom plot illustrates the air flow measurement, which, due to instrument constraints, saturates at 3 l/min. 
-        Once the steady-state condition is reached, the air leakage is measured at 0 l/min.
-
-        <center>
-        <figure>
-        <img src="/assets/img/website.png" style="max-width:1200px;width:200%" class="center" />
-        <i><figcaption>Dry run plots.</figcaption></i>
-        </figure>
-        </center>
-
-        The setup and facilities are depicted in the following images.
-
-        <center>
-        <figure>
-        <img src="/assets/img/table.jpg" style="max-width:600px;width:140%" class="center" />
-        <i><figcaption>Setup outside the radiation room.</figcaption></i>
-        </figure>
-        </center>
-
-        <center>
-        <figure>
-        <img src="/assets/img/source.jpg" style="max-width:600px;width:140%" class="center" />
-        <i><figcaption>CC60 radiation room.</figcaption></i>
-        </figure>
-        </center>
-
-        <center>
-        <figure>
-        <img src="/assets/img/plate.jpg" style="max-width:600px;width:140%" class="center" />
-        <i><figcaption>Piezo valves under test.</figcaption></i>
-        </figure>
         </center>
 
 
