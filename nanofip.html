@@ -130,19 +130,19 @@ Currently, over 1,200 communication cards are installed, with most deployed in t
         </center>
 
           Each communication card features an FPGA (Field-Programmable Gate Array) responsible for collecting data from various peripheral cards. 
-          These data are then transmitted to the MicroFIP module, a dedicated PCB acting as the "Agent" (or slave) interface card for the WorldFIP network. 
-          The MicroFIP module is composed of three main components:
+          These data are then transmitted to the MicroFIP module, a dedicated PCB acting as the "Agent" (or slave) interface card for the WorldFIP network. <br>
+          The MicroFIP module is composed of three main components: <br>
           •	MicroFIP ASIC: Custom-designed chip that manages WorldFIP protocol communication. <br>
           •	Field Drive: Module which handles signal transmission to and from the WorldFIP network, ensuring compatibility with network signal transmission. <br>
-          •	Isolation Transformer: Transformer which provides electrical isolation to protect components and maintain signal integrity. <br>
+          •	Isolation Transformer: Transformer which provides electrical isolation to protect components and maintain signal integrity. <br> <br>
 
 However, the MicroFIP ASIC was phased out by Alstom, the company responsible for its production. To address this, CERN developed an in-house solution: the NanoFIP FPGA Mezzanine Card (FMC). 
           This new module replaces the MicroFIP ASIC with the NanoFIP, a custom implementation using an Actel ProASIC3 FPGA that reproduces a subset of the original MicroFIP's functionalities. 
-          Like its predecessor, the NanoFIP FMC contains:
+       <br>   Like its predecessor, the NanoFIP FMC contains: <br>
 
           •	NanoFIP: Actel ProASIC3 FPGA manages WorldFIP protocol communication. <br>
           •	Field Drive. <br>
-          •	Isolation Transformer. <br>
+          •	Isolation Transformer. <br> <br>
 
 Given that CERN's cryogenics group must support the WorldFIP communication network until the end of the HL-LHC's operational life - at least up to 2035, 
           additional communication cards are required in the coming years. 
