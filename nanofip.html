@@ -115,7 +115,7 @@
         <p>
 
         The cryogenics crate is designed to house different type of cards essential for cryogenic system operations. 
-          These include peripheral cards such as cards that collect data from temperature sensors, power cards that supply power to all components within the crate, 
+          These include peripheral cards such as cards that collect data from temperature sensors, power cards which power all crate cards, 
           and communication cards that enable seamless data exchange between peripheral cards and the WorldFIP network. <br> <br>
 
 Currently, over 1,200 communication cards are installed, with most deployed in the Large Hadron Collider (LHC). 
@@ -136,8 +136,8 @@ Currently, over 1,200 communication cards are installed, with most deployed in t
           •	Field Drive: Module which handles signal transmission to and from the WorldFIP network, ensuring compatibility with network signal transmission. <br>
           •	Isolation Transformer: Transformer which provides electrical isolation to protect components and maintain signal integrity. <br> <br>
 
-However, the MicroFIP ASIC was phased out by Alstom, the company responsible for its production. To address this, CERN developed an in-house solution: the NanoFIP FPGA Mezzanine Card (FMC). 
-          This new module replaces the MicroFIP ASIC with the NanoFIP, a custom implementation using an Actel ProASIC3 FPGA that reproduces a subset of the original MicroFIP's functionalities. 
+MicroFIP ASIC was phased out by Alstom, the company responsible for its production. To address this, CERN developed an in-house solution: the NanoFIP FPGA Mezzanine Card (FMC). 
+          This new FMC replaces the MicroFIP ASIC with the NanoFIP, an Actel ProASIC3 FPGA that reproduces a subset of the original MicroFIP's functionalities. 
    <br>    <br>   Like its predecessor, the NanoFIP FMC contains: <br>
 
           •	NanoFIP: Actel ProASIC3 FPGA manages WorldFIP protocol communication. <br>
@@ -154,7 +154,7 @@ Given that CERN's cryogenics group must support the WorldFIP communication netwo
         </figure>
         </center>
 
-          To meet this demand, a new communication card based on the NanoFIP FMC was designed and developed.
+          To meet this demand, a new communication card based on the NanoFIP FMC was designed, developed and successfully passed latest CHARM 2024 radiation campaign. 
 
           <center>
         <figure>
@@ -174,7 +174,7 @@ Given that CERN's cryogenics group must support the WorldFIP communication netwo
 
           <body>
           
-          <img src="/assets/img/nanofip.gif" alt="Computer man" style="width:400px;height:280px;">
+          <img src="/assets/img/nanofip.gif" alt="Computer man" style="width:400px;height:300px;">
             <i><figcaption>Mother board testing.</figcaption></i>
           
           </body>
