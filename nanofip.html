@@ -136,13 +136,49 @@ Currently, over 1,200 communication cards are installed, with most deployed in t
           •	Field Drive: Module which handles signal transmission to and from the WorldFIP network, ensuring compatibility with network signal transmission. <br>
           •	Isolation Transformer: Transformer which provides electrical isolation to protect components and maintain signal integrity. <br> <br>
 
-However, the MicroFIP ASIC was phased out by Alstom, the company responsible for its production. To address this, CERN developed an in-house solution: the NanoFIP FPGA Mezzanine Card (FMC). 
-          This new module replaces the MicroFIP ASIC with the NanoFIP, a custom implementation using an Actel ProASIC3 FPGA that reproduces a subset of the original MicroFIP's functionalities. 
-   <br>    <br>   Like its predecessor, the NanoFIP FMC contains: <br>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image and Text</title>
+    <style>
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .text {
+            max-width: 70%;
+        }
+        .image {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
 
-          •	NanoFIP: Actel ProASIC3 FPGA manages WorldFIP protocol communication. <br>
-          •	Field Drive. <br>
-          •	Isolation Transformer. <br> <br>
+    <div class="content">
+        <div class="text">
+            <h2>Animated Images</h2>
+            <p>HTML allows moving images:</p>
+            <p>However, the MicroFIP ASIC was phased out by Alstom, the company responsible for its production. To address this, CERN developed an in-house solution: the NanoFIP FPGA Mezzanine Card (FMC). 
+            This new module replaces the MicroFIP ASIC with the NanoFIP, a custom implementation using an Actel ProASIC3 FPGA that reproduces a subset of the original MicroFIP's functionalities.</p>
+
+            <p>Like its predecessor, the NanoFIP FMC contains:</p>
+            <ul>
+                <li>NanoFIP: Actel ProASIC3 FPGA manages WorldFIP protocol communication.</li>
+                <li>Field Drive.</li>
+                <li>Isolation Transformer.</li>
+            </ul>
+        </div>
+
+        <div class="image">
+            <img src="/assets/img/nanofip.gif" alt="Computer man" style="width: 48px; height: 48px;">
+        </div>
+    </div>
+
+</body>
+</html>
 
 Given that CERN's cryogenics group must support the WorldFIP communication network until the end of the HL-LHC's operational life - at least up to 2035, 
           additional communication cards are required in the coming years. 
