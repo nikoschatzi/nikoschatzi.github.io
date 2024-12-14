@@ -71,13 +71,19 @@
 
 
   <style>
+    /* Default: Images are large for all devices */
+    .responsive-img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* For larger screens (e.g., PCs) */
     @media (min-width: 1024px) {
-      .small-on-pc {
-        max-width: 60%; /* Smaller size for PCs */
+      .responsive-img {
+        max-width: 60%; /* Reduce image size on larger screens */
       }
     }
   </style>
-</head>
 
 
 <body>
