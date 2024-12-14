@@ -83,6 +83,27 @@
         max-width: 60%; /* Reduce image size on larger screens */
       }
     }
+
+     /* Reset margin and padding for the title */
+    .page-title {
+      margin-top: 0; /* Removes top margin */
+      padding-top: 0; /* Removes top padding */
+    }
+
+    /* Add specific spacing for mobile devices if needed */
+    @media (max-width: 768px) {
+      .page-title {
+        margin-top: 10px; /* Add controlled space for mobile */
+        padding-top: 5px;
+      }
+    }
+
+    /* Add specific spacing for larger devices if needed */
+    @media (min-width: 768px) {
+      .page-title {
+        margin-top: 20px; /* Slightly larger space for desktop */
+      }
+    }
   </style>
 
 
