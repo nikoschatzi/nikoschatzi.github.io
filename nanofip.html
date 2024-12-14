@@ -20,17 +20,30 @@
       margin-top: 0;
     }
 
+    nav {
+      padding-top: 0;
+    }
+
     img {
-      max-width: 100%;
       height: auto;
       display: block;
       margin: 0 auto;
     }
 
+    .profile-pic {
+      display: block;
+      margin: 0 auto 20px;
+    }
+
     @media (min-width: 992px) {
       img {
-        max-width: 800px;
-        width: auto;
+        display: block;
+        margin: 0 auto;
+      }
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+        margin: 0;
       }
     }
 
@@ -41,11 +54,6 @@
     .container {
       margin: 0 auto;
       padding: 0 15px;
-    }
-
-    .profile-pic {
-      width: 100px;
-      height: 100px;
     }
   </style>
 </head>
@@ -81,7 +89,7 @@
           on the left side of the communication card, and a daughterboard, responsible for collecting and transmitting data to the cards on the right side.
         </p>
         <figure>
-          <img src="/assets/img/lhc_architecture.png" alt="LHC architecture">
+          <img src="/assets/img/lhc_architecture.png" style="max-width:800px; width: 160%;" alt="LHC architecture">
           <figcaption>LHC architecture.</figcaption>
         </figure>
         <p>
@@ -94,19 +102,19 @@
           • Isolation Transformer: Transformer which provides electrical isolation to protect components and maintain signal integrity.<br><br>
         </p>
         <figure>
-          <img src="/assets/img/motivation.png" alt="Project motivation">
+          <img src="/assets/img/motivation.png" style="max-width:800px; width: 160%;" alt="Project motivation">
           <figcaption>Project motivation.</figcaption>
         </figure>
         <figure>
-          <img src="/assets/img/Mother.png" alt="Motherboard">
+          <img src="/assets/img/Mother.png" style="max-width:480px; width: auto;" alt="Motherboard">
           <figcaption>Motherboard.</figcaption>
         </figure>
         <figure>
-          <img src="/assets/img/Daugter.png" alt="Daughterboard">
+          <img src="/assets/img/Daugter.png" style="max-width:480px; width: auto;" alt="Daughterboard">
           <figcaption>Daughterboard.</figcaption>
         </figure>
         <figure>
-          <img src="/assets/img/nanofip.gif" alt="Motherboard testing">
+          <img src="/assets/img/nanofip.gif" style="width:400px; height:300px;" alt="Motherboard testing">
           <figcaption>Motherboard testing.</figcaption>
         </figure>
       </div>
