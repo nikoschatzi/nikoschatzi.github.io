@@ -114,19 +114,19 @@
         </blockquote> -->        
         <p>
 
-        Communication cards in cryogenics crates have critical operation. They collect all data from crate's peripheral cards, and they send them through WorldFIP network. There are more than 1200 communication cards installed, most of them in LHC. These cards
-          were designed around 20 years ago, with non-reprogrammable FPGA's. The cost to replace all these cards with new designs would be more than 1 million CHF. 
-          For that reasons, any problems can be solved by "adding" extra electronics to these cards, since there is no option to reprogram these FPGA's. 
-
+          Communication cards are responsible for collecting data from peripheral cards in cryogenics crates and transmitting it through the WorldFIP network. 
+          More than 1,200 communication cards are installed, primarily within the Large Hadron Collider (LHC). These cards were designed approximately 20 years ago, utilizing non-reprogrammable FPGAs, which restricts the ability to modify or update their functionality. 
+          The cost to replace these cards with new designs exceeds 1 million CHF. Consequently, any operational issues must be addressed by adding supplementary electronics to the existing cards, as reprogramming the FPGAs is not feasible.
           <br>
           <br>
 
-          In general, cryogenics electronics are quite reliable. However, some minor non-critical problems do exist. During annual YETS AUG tests at CERN around 20% of these cards do not power on properly.
-          In order to fix that problem, manual interventions and local resets are needed. Apart from this, some very rare corruption errors happened in the past. To solve these, 
-          an add-on PCB, containing an FPGA, was designed and installed in less than 100 communication cards. Due to its high cost, it was added only in the most critical cards. If it is installed in all communication cards, the cost would reach more than 100.000 CHF.
+          While cryogenic electronics are generally reliable, some non-critical issues have been observed. During the annual Year End Technical Stops (YETS) tests at CERN, approximately 20% of the communication cards fail to power on correctly. 
+          In such instances, manual interventions and local resets are required to restore functionality.
+          Additionally, rare corruption errors have occurred in the past. A few years ago in order to address these, an FPGA based add-on PCB was designed and installed in fewer than 100 communication cards. Due to the high cost of this solution, it was implemented only in the most critical cards. The total cost of installing this add-on across all communication cards would exceed 100,000 CHF, 
+          rendering it an impractical solution for widespread deployment.
 
-          New add-on PCB was designed a few months ago, using only transistors, capacitors, diodes and resistors, achieving very low production cost. Because of it's low cost (total cost 23.000 CHF), it is feasible to be installed in all communication cards. 
-
+          A new add-on PCB was designed in December 2023, incorporating only transistors, capacitors, diodes, and resistors. This new design significantly reduces production costs, with a total expenditure of 23,000 CHF, if employed to all existing communication cards.
+          Due to its low production cost and reliable design, this add-on PCB now provides a viable solution for installation across all communication cards. 
         <center>
         <figure>
         <img src="/assets/img/addon1.png" style="max-width:800px;width:160%" class="center" />
@@ -134,9 +134,8 @@
         </figure>
         </center>
 
-          During YETS 2023, PCB prototypes were added in 19 communication cards. So far, everything works fine. Big production is planned (more than 1300 PCB's) in the next months, 
-          and the installation in all communication cards will take place during the next technical stop. Extended laboratory tests were performed, including temperature tests.
-
+         During YETS 2023, prototype PCBs were integrated into 19 communication cards, with all units operating as expected. A large-scale production run, involving over 1,300 PCBs, is scheduled for the coming months. The installation of these PCBs across all communication cards will be carried out during the next planned technical stop. Comprehensive laboratory tests, 
+         including temperature tests, have been conducted to ensure the reliability and performance of the new design.
           <center>
         <figure>
         <img src="/assets/img/addon2.png" style="max-width:800px;width:160%" class="center" />
