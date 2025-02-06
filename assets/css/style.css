@@ -15,6 +15,13 @@
   border-radius: 50% !important;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Center the image */
+}
+
 .profile-pic img {
   width: 100%;
   height: auto;
