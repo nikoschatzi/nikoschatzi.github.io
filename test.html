@@ -145,6 +145,23 @@
   }
 }
 
+    table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
   </style>
   
 </head>
@@ -224,6 +241,76 @@ For this application, a V_GS of -2.3V was chosen, as the 2N3819 provides a resis
 
 
           The following figure depicts the circuit design, and the table contains the components were selected:
+
+
+          <h2>Component List</h2>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Value/Description</th>
+            <th>Part number(s)</th>
+        </tr>
+        <tr>
+            <td>R1</td>
+            <td>127K 0.1%</td>
+            <td>603-RT0805BRD07127KL</td>
+        </tr>
+        <tr>
+            <td>R2</td>
+            <td>12K7 0.1%</td>
+            <td>RN73C2A12K7BTDF</td>
+        </tr>
+        <tr>
+            <td>R3</td>
+            <td>200K 0.1%</td>
+            <td>754-RG2012P-204-B-T5</td>
+        </tr>
+        <tr>
+            <td>R4</td>
+            <td>9K9 0.1%</td>
+            <td>603-RT0805BRD079K09L</td>
+        </tr>
+        <tr>
+            <td>R5</td>
+            <td>5K2 0.1%</td>
+            <td>RT0805BRD072K2L & ERA6ARB302V</td>
+        </tr>
+        <tr>
+            <td>C1</td>
+            <td>250 pF</td>
+            <td>581-12061A251FAT2A</td>
+        </tr>
+        <tr>
+            <td>C2</td>
+            <td>2500 pF</td>
+            <td>581-12061A152FAT2A & 581-12061A102F</td>
+        </tr>
+        <tr>
+            <td>C3</td>
+            <td>10 uF</td>
+            <td>C1206C106K3PACTU</td>
+        </tr>
+        <tr>
+            <td>D1</td>
+            <td>Fast switching diode</td>
+            <td>1N4448W</td>
+        </tr>
+        <tr>
+            <td>D2</td>
+            <td>Zener diode</td>
+            <td>MMSZ5222</td>
+        </tr>
+        <tr>
+            <td>IC1</td>
+            <td>Operational Amplifier</td>
+            <td>OPA602AU</td>
+        </tr>
+        <tr>
+            <td>T1</td>
+            <td>JFET</td>
+            <td>2N3819</td>
+        </tr>
+    </table>
 
           
 
