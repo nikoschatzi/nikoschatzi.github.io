@@ -162,6 +162,13 @@
             background-color: #f2f2f2;
         }
 
+     @media screen and (max-width: 600px) {
+            th, td {
+                padding: 8px;
+                font-size: 12px; /* Smaller font on very small screens */
+            }
+        }
+
   </style>
   
 </head>
@@ -214,6 +221,16 @@
       This design is part of a new version of the cryogenics card. Due to the addition of a new pressure sensor, a circuit was needed to generate a sinusoidal waveform at 5 kHz with a ±5V peak-to-peak output. 
       Additionally, this design is intended for use in radiated environments.
 
+          </p>
+        <center>
+        <figure>
+        <img src="/assets/img/wien1.jpg" style="max-width:600px;width:100%" class="center" />
+        <i><figcaption>Accelerated tests PCB</figcaption></i>
+        </figure>
+        </center>
+
+        </p>
+
           The Wien-bridge oscillator is a widely used configuration for generating low-frequency sine waves. It is favoured for its simplicity, stability, and minimal dependency on the specific characteristics of the operational amplifier used in the circuit. The oscillator operates based on the principle of a resistive-capacitive (RC) network, which determines the oscillation frequency.
 For sustained oscillation, the circuit must satisfy two conditions:
 1.	The total phase shift around the loop must be zero (or an integer multiple of 2π).
@@ -225,6 +242,18 @@ At a specific frequency, these phase shifts cancel out, ensuring that the net ph
 •	Component tolerances: Resistors can be manufactured with tight tolerances, but capacitors often exhibit significant variability, with tolerances as high as -20% to +80%. This affects both the oscillation frequency and gain stability.
 •	Gain stability: If the amplifier gain is insufficient, oscillations will not start; if excessive, the output waveform becomes distorted.
 •	Manual gain control: Traditional implementations require a variable resistor in the feedback path to fine-tune the gain, which increases complexity and introduces manufacturing inefficiencies.
+
+
+        </p>
+        <center>
+        <figure>
+        <img src="/assets/img/wien2.png" style="max-width:600px;width:100%" class="center" />
+        <i><figcaption>Accelerated tests PCB</figcaption></i>
+        </figure>
+        </center>
+
+        </p>
+        
 To address these issues, a Junction Field-Effect Transistor (JFET) can be introduced into the feedback loop to regulate the gain dynamically. This method eliminates the need for manual adjustments and enhances the circuit’s stability. Operating Principle of the JFET in the Wien-Bridge Oscillator:
 •	At startup, the JFET's gate voltage is zero, resulting in a low drain-source resistance. This increases the amplifier gain beyond the required threshold, ensuring that oscillations begin.
 •	As the oscillations develop, the negative half-cycles of the output signal are rectified and applied as a control voltage to the JFET gate. This increases the JFET’s resistance, reducing the amplifier gain and stabilizing the oscillation amplitude.
@@ -238,12 +267,28 @@ For small drain-to-source voltages (V_DS) around zero (e.g., ±25 mV), a JFET ex
 At the beginning of the design phase, multiple JFETs were tested to evaluate how consistently their resistance remained for both positive and negative low V_DS values. Among the tested devices, the 2N3819 exhibited the best performance, showing the most symmetrical resistance behaviour in this region. The goal was to select a steady-state operating point where R_DS would be as high as possible. This approach minimizes the impact of resistor tolerances on circuit performance. However, increasing V_GS (which results in a higher R_DS) also leads to greater asymmetry between the positive and negative R_DS values. Therefore, a compromise was necessary.
 For this application, a V_GS of -2.3V was chosen, as the 2N3819 provides a resistance of approximately 1 kOhm at this point. The operating point was set to ±25 mV with respect to V_DS. Test results for the 2N3819 are shown in the following figures.
 
+</p>
+        <center>
+        <figure>
+        <img src="/assets/img/wien3.png" style="max-width:600px;width:100%" class="center" />
+        <i><figcaption>Accelerated tests PCB</figcaption></i>
+        </figure>
+        </center>
 
+        </p>
 
           The following figure depicts the circuit design, and the table contains the components were selected:
 
+        </p>
+        <center>
+        <figure>
+        <img src="/assets/img/wien4.png" style="max-width:600px;width:100%" class="center" />
+        <i><figcaption>Accelerated tests PCB</figcaption></i>
+        </figure>
+        </center>
 
-          <h2>Component List</h2>
+        </p>
+
     <table>
         <tr>
             <th>Component</th>
@@ -329,15 +374,6 @@ For this application, a V_GS of -2.3V was chosen, as the 2N3819 provides a resis
           <p>
           To evaluate the performance of Analog-to-Digital Converters (ADCs), custom PCBs were designed with integrated IC sockets, allowing for easy swapping and testing of various components. These PCBs were placed inside an oven for a duration of one month, where they underwent accelerated life testing to simulate long-term operational conditions. The ADCs being tested successfully passed the accelerated life tests, demonstrating resilience and reliability.
             
-          </p>
-        <center>
-        <figure>
-        <img src="/assets/img/accelerated5.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption>Accelerated tests PCB</figcaption></i>
-        </figure>
-        </center>
-
-        </p>
                 
       </div>
     </section> 
