@@ -194,6 +194,37 @@
         </blockquote> -->        
         <p>
 
+      This design is part of a new version of the cryogenics card. Due to the addition of a new pressure sensor, a circuit was needed to generate a sinusoidal waveform at 5 kHz with a ±5V peak-to-peak output. 
+      Additionally, this design is intended for use in radiated environments.
+
+          The Wien-bridge oscillator is a widely used configuration for generating low-frequency sine waves. It is favoured for its simplicity, stability, and minimal dependency on the specific characteristics of the operational amplifier used in the circuit. The oscillator operates based on the principle of a resistive-capacitive (RC) network, which determines the oscillation frequency.
+For sustained oscillation, the circuit must satisfy two conditions:
+1.	The total phase shift around the loop must be zero (or an integer multiple of 2π).
+2.	The loop gain must be exactly unity.
+The Wien-bridge network consists of two RC pairs:
+•	R1 and C1 introduce a phase shift in the signal.
+•	R2 and C2 provide an opposing phase shift.
+At a specific frequency, these phase shifts cancel out, ensuring that the net phase shift is zero. Additionally, the gain of the amplifier stage must be precisely three to counteract the attenuation introduced by the Wien-bridge network. Despite its theoretical simplicity, practical implementation of the Wien-bridge oscillator presents several challenges:
+•	Component tolerances: Resistors can be manufactured with tight tolerances, but capacitors often exhibit significant variability, with tolerances as high as -20% to +80%. This affects both the oscillation frequency and gain stability.
+•	Gain stability: If the amplifier gain is insufficient, oscillations will not start; if excessive, the output waveform becomes distorted.
+•	Manual gain control: Traditional implementations require a variable resistor in the feedback path to fine-tune the gain, which increases complexity and introduces manufacturing inefficiencies.
+To address these issues, a Junction Field-Effect Transistor (JFET) can be introduced into the feedback loop to regulate the gain dynamically. This method eliminates the need for manual adjustments and enhances the circuit’s stability. Operating Principle of the JFET in the Wien-Bridge Oscillator:
+•	At startup, the JFET's gate voltage is zero, resulting in a low drain-source resistance. This increases the amplifier gain beyond the required threshold, ensuring that oscillations begin.
+•	As the oscillations develop, the negative half-cycles of the output signal are rectified and applied as a control voltage to the JFET gate. This increases the JFET’s resistance, reducing the amplifier gain and stabilizing the oscillation amplitude.
+•	The circuit self-adjusts, maintaining oscillations without excessive distortion or over-amplification.
+The integration of a JFET for automatic gain control provides several key advantages:
+•	Elimination of Manual Adjustments: The circuit can achieve and maintain stable oscillations without requiring precise tuning of resistors.
+•	Consistent Amplitude Control: The JFET dynamically regulates the gain, ensuring a stable output signal with minimal distortion.
+•	Improved Reliability: The circuit automatically compensates for component tolerances, making it more robust in practical applications.
+A JFET (Junction Field-Effect Transistor) is a voltage-controlled semiconductor device that regulates current flow between the drain and source using an electric field. It has high input impedance and is commonly used in amplifiers, oscillators, and signal processing circuits.
+For small drain-to-source voltages (V_DS) around zero (e.g., ±25 mV), a JFET exhibits nearly symmetric resistance for positive and negative V_DS. This means that whether V_DS is slightly positive or slightly negative, the drain-to-source resistance (R_DS) remains approximately the same. This behaviour occurs because, in the ohmic region, the JFET channel acts as a resistive element controlled by the gate-to-source voltage (V_GS). Since the channel remains unsaturated at low V_DS, current flow follows a nearly linear relationship, and the JFET functions similarly to a voltage-controlled resistor. While the resistance does change with V_DS, the variation is minimal for small signals, making the JFET suitable for low-distortion applications such as amplitude stabilization in Wien-bridge oscillators.
+At the beginning of the design phase, multiple JFETs were tested to evaluate how consistently their resistance remained for both positive and negative low V_DS values. Among the tested devices, the 2N3819 exhibited the best performance, showing the most symmetrical resistance behaviour in this region. The goal was to select a steady-state operating point where R_DS would be as high as possible. This approach minimizes the impact of resistor tolerances on circuit performance. However, increasing V_GS (which results in a higher R_DS) also leads to greater asymmetry between the positive and negative R_DS values. Therefore, a compromise was necessary.
+For this application, a V_GS of -2.3V was chosen, as the 2N3819 provides a resistance of approximately 1 kOhm at this point. The operating point was set to ±25 mV with respect to V_DS. Test results for the 2N3819 are shown in the following figures.
+
+
+
+          
+
        An effective method for evaluating the degradation and aging of electronics is through accelerated life testing (ALT). This testing simulates the long-term effects of environmental factors, such as temperature, on the performance and reliability of electronic components. A key principle of ALT is that for every 10 &deg;C  increase in temperature, the expected lifespan of the electronics is halved. 
        This relationship is based on the Arrhenius law, which describes how the rate of chemical reactions, and by extension the rate of material degradation, increases with temperature.
 
