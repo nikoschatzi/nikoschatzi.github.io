@@ -233,15 +233,15 @@
 
        <p>The Wien-bridge oscillator is a widely used configuration for generating low-frequency sine waves. It is favoured for its simplicity, stability, and minimal dependency on the specific characteristics of the operational amplifier used in the circuit. The oscillator operates based on the principle of a resistive-capacitive (RC) network, which determines the oscillation frequency.</p>
 
-<p>For sustained oscillation, the circuit must satisfy two conditions:</p>
+For sustained oscillation, the circuit must satisfy two conditions:
  <br>
           •	The total phase shift around the loop must be zero (or an integer multiple of 2π) <br>         
           •	The loop gain must be exactly unity. <br>
 
-<p>The Wien-bridge network consists of two RC pairs:</p>
+The Wien-bridge network consists of two RC pairs:
 <br>
-        R1 and C1 introduce a phase shift in the signal. <br>
-        R2 and C2 provide an opposing phase shift. <br>
+        •	R1 and C1 introduce a phase shift in the signal. <br>
+        •	R2 and C2 provide an opposing phase shift. <br>
 
 <p>At a specific frequency, these phase shifts cancel out, ensuring that the net phase shift is zero. Additionally, the gain of the amplifier stage must be precisely three to counteract the attenuation introduced by the Wien-bridge network.</p>
 
@@ -417,6 +417,15 @@
             <td>2N3819</td>
         </tr>
     </table>
+
+        The selected JFET operating point was: <br>
+•	RDS ≈ 1 Kohm <br>
+•	VDS ≈ ±25mV <br>
+•	IDS ≈24 μA <br>
+A gain of 21 was used in the design.
+For the feedback path, precise diode selection was critical, requiring a combination of a Zener diode and a 1N4448 diode. Since the voltage drop across a diode varies with current, laboratory testing was conducted to optimize circuit performance. These tests involved measuring the voltage drop across the 1N4448W diode under different current levels.
+Similarly, the MMSZ5222B Zener diode, which has a rated voltage drop of 2.3V at 20mA as per the datasheet, was also characterized to ensure stable circuit operation.
+
 
         </p>
         <center>
