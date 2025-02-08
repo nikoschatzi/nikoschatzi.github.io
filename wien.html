@@ -236,7 +236,7 @@
 For sustained oscillation, the circuit must satisfy two conditions:
  <br>
           •	The total phase shift around the loop must be zero (or an integer multiple of 2π) <br>         
-          •	The loop gain must be exactly unity. <br>
+          •	The loop gain must be exactly unity. <br> <br>
 
 The Wien-bridge network consists of two RC pairs:
 <br>
@@ -307,36 +307,33 @@ The Wien-bridge network consists of two RC pairs:
 
         </p>
 
-        <h1>Wien Bridge Oscillator Equations</h1>
+        Wien Bridge Oscillator Equations
     
-    <h2>1. Frequency of Oscillation:</h2>
-    <p class="equation">f = 1 / (2π R₄ C₁) = 1 / (2π R₂ C₂)</p>
+    <p><strong>1. Frequency of Oscillation:</strong></p>
+    <p class="equation">\[ f = \frac{1}{2\pi R_4 C_1} = \frac{1}{2\pi R_2 C_2} \]</p>
     <p>This equation determines the oscillation frequency based on the resistor and capacitor values in the circuit.</p>
     
-    <h2>2. Series Impedance (Z<sub>s</sub>)</h2>
-    <p class="equation">Z<sub>s</sub> = √(R₁² + 1 / (2π f C₁)²)</p>
+    <p><strong>2. Series Impedance (Z<sub>s</sub>):</strong></p>
+    <p class="equation">\[ Z_s = \sqrt{R_1^2 + \frac{1}{(2\pi f C_1)^2}} \]</p>
     <p>This represents the impedance of the series combination of the resistor and capacitor.</p>
     
-    <h2>3. Parallel Impedance (Z<sub>p</sub>)</h2>
-    <p class="equation">Z<sub>p</sub> = √((1 / R₂)² + (2π f C₂)²)</p>
+    <p><strong>3. Parallel Impedance (Z<sub>p</sub>):</strong></p>
+    <p class="equation">\[ Z_p = \sqrt{\left(\frac{1}{R_2}\right)^2 + (2\pi f C_2)^2} \]</p>
     <p>This is the impedance of the parallel resistor and capacitor network.</p>
     
-    <h2>4. Voltage Relationship</h2>
-    <p class="equation">V₂ = V<sub>out</sub> / (1 + Z<sub>p</sub> / Z<sub>s</sub>)</p>
-    <p>If R₁ = R₂ and C₁ = C₂, then:</p>
-    <p class="equation">V₂ = V<sub>out</sub> / 3</p>
+    <p><strong>4. Voltage Relationship:</strong></p>
+    <p class="equation">\[ V_2 = \frac{V_{out}}{1 + \frac{Z_p}{Z_s}} \]</p>
+    <p>If \( R_1 = R_2 \) and \( C_1 = C_2 \), then:</p>
+    <p class="equation">\[ V_2 = \frac{V_{out}}{3} \]</p>
     <p>This means the voltage at that node is one-third of the output voltage.</p>
     
-    <h2>5. Gain of the Oscillator</h2>
-    <p class="equation">Gain = (2Z<sub>p</sub> + Z<sub>s</sub>) / Z<sub>p</sub></p>
+    <p><strong>5. Gain of the Oscillator:</strong></p>
+    <p class="equation">\[ \text{Gain} = \frac{2Z_p + Z_s}{Z_p} \]</p>
     <p>This equation describes the gain required to sustain oscillations in the circuit.</p>
     
-    <h2>6. Alternative Gain Expression</h2>
-    <p class="equation">Gain = 1 + R₃ / (R₄ + R<sub>DS</sub>)</p>
+    <p><strong>6. Alternative Gain Expression:</strong></p>
+    <p class="equation">\[ \text{Gain} = 1 + \frac{R_3}{R_4 + R_{DS}} \]</p>
     <p>This is another form of the gain equation, incorporating resistors that help control the oscillation conditions.</p>
-    
-    <h2>Circuit Design</h2>
-    <p>The following figure depicts the circuit design, and the table contains the selected components:</p>
 
         The following figure depicts the circuit design, and the table contains the components were selected:
 
@@ -417,7 +414,7 @@ The Wien-bridge network consists of two RC pairs:
             <td>2N3819</td>
         </tr>
     </table>
-
+<br>
         The selected JFET operating point was: <br>
 •	RDS ≈ 1 Kohm <br>
 •	VDS ≈ ±25mV <br>
@@ -448,26 +445,44 @@ Similarly, the MMSZ5222B Zener diode, which has a rated voltage drop of 2.3V at 
 
         </p>
 
+        After radiation testing, the circuit exhibited only minor voltage drift, even after exposure to doses reaching 1 kGy. This indicates that the design maintains stability and functionality, 
+        demonstrating its robustness for the applications.
+
         </p>
         <center>
         <figure>
         <img src="/assets/img/wien7.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption>Radiation results.</figcaption></i>
+        <figcaption>Radiation results.</figcaption>
         </figure>
         </center>
 
         </p>
 
 
-        </p>
-        <center>
-        <figure>
-        <img src="/assets/img/wien8.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption>Accelerated tests PCB</figcaption></i>
-        </figure>
-        </center>
+       <table>
+    <tr>
+        <th></th>
+        <th>0 Gy</th>
+        <th>100 Gy</th>
+        <th>600 Gy</th>
+        <th>1000 Gy</th>
+    </tr>
+    <tr>
+        <td>Positive peak (V)</td>
+        <td>5.12</td>
+        <td>5.04</td>
+        <td>4.96</td>
+        <td>4.8</td>
+    </tr>
+    <tr>
+        <td>Negative peak (V)</td>
+        <td>-4.96</td>
+        <td>-5.04</td>
+        <td>-5.12</td>
+        <td>-5.18</td>
+    </tr>
+</table>
 
-        </p>
 
         
        
