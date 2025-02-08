@@ -307,6 +307,37 @@
 
         </p>
 
+        <h1>Wien Bridge Oscillator Equations</h1>
+    
+    <h2>1. Frequency of Oscillation:</h2>
+    <p class="equation">f = 1 / (2π R₄ C₁) = 1 / (2π R₂ C₂)</p>
+    <p>This equation determines the oscillation frequency based on the resistor and capacitor values in the circuit.</p>
+    
+    <h2>2. Series Impedance (Z<sub>s</sub>)</h2>
+    <p class="equation">Z<sub>s</sub> = √(R₁² + 1 / (2π f C₁)²)</p>
+    <p>This represents the impedance of the series combination of the resistor and capacitor.</p>
+    
+    <h2>3. Parallel Impedance (Z<sub>p</sub>)</h2>
+    <p class="equation">Z<sub>p</sub> = √((1 / R₂)² + (2π f C₂)²)</p>
+    <p>This is the impedance of the parallel resistor and capacitor network.</p>
+    
+    <h2>4. Voltage Relationship</h2>
+    <p class="equation">V₂ = V<sub>out</sub> / (1 + Z<sub>p</sub> / Z<sub>s</sub>)</p>
+    <p>If R₁ = R₂ and C₁ = C₂, then:</p>
+    <p class="equation">V₂ = V<sub>out</sub> / 3</p>
+    <p>This means the voltage at that node is one-third of the output voltage.</p>
+    
+    <h2>5. Gain of the Oscillator</h2>
+    <p class="equation">Gain = (2Z<sub>p</sub> + Z<sub>s</sub>) / Z<sub>p</sub></p>
+    <p>This equation describes the gain required to sustain oscillations in the circuit.</p>
+    
+    <h2>6. Alternative Gain Expression</h2>
+    <p class="equation">Gain = 1 + R₃ / (R₄ + R<sub>DS</sub>)</p>
+    <p>This is another form of the gain equation, incorporating resistors that help control the oscillation conditions.</p>
+    
+    <h2>Circuit Design</h2>
+    <p>The following figure depicts the circuit design, and the table contains the selected components:</p>
+
         The following figure depicts the circuit design, and the table contains the components were selected:
 
         </p>
