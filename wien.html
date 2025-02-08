@@ -218,8 +218,8 @@
         </blockquote> -->        
         <p>
 
-      This design is part of a new version of the cryogenics card. Due to the addition of a new pressure sensor, a circuit was needed to generate a sinusoidal waveform at 5 kHz with a ±5V peak-to-peak output. 
-      Additionally, this design is intended for use in radiated environments.
+      To support the use of AP10 valydine pressure sensor in cryogenics, design was needed to generate 5 kHz sinusoidal waveform with ±5V peak-to-peak output. 
+      The design is specified to function in radiated environments.
 
           </p>
         <center>
@@ -234,16 +234,14 @@
        <p>The Wien-bridge oscillator is a widely used configuration for generating low-frequency sine waves. It is favoured for its simplicity, stability, and minimal dependency on the specific characteristics of the operational amplifier used in the circuit. The oscillator operates based on the principle of a resistive-capacitive (RC) network, which determines the oscillation frequency.</p>
 
 <p>For sustained oscillation, the circuit must satisfy two conditions:</p>
-<ul>
-    <li>The total phase shift around the loop must be zero (or an integer multiple of 2π).</li>
-    <li>The loop gain must be exactly unity.</li>
-</ul>
+ <br>
+          •	The total phase shift around the loop must be zero (or an integer multiple of 2π) <br>         
+          •	The loop gain must be exactly unity. <br>
 
 <p>The Wien-bridge network consists of two RC pairs:</p>
-<ul>
-    <li>R1 and C1 introduce a phase shift in the signal.</li>
-    <li>R2 and C2 provide an opposing phase shift.</li>
-</ul>
+<br>
+        R1 and C1 introduce a phase shift in the signal. <br>
+        R2 and C2 provide an opposing phase shift. <br>
 
 <p>At a specific frequency, these phase shifts cancel out, ensuring that the net phase shift is zero. Additionally, the gain of the amplifier stage must be precisely three to counteract the attenuation introduced by the Wien-bridge network.</p>
 
@@ -314,8 +312,8 @@
         </p>
         <center>
         <figure>
-        <img src="/assets/img/wien1.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption>Wien oscillation circuit.</figcaption></i>
+        <img src="/assets/img/wien2.png" style="max-width:600px;width:100%" class="center" />
+        <figcaption>Wien oscillation circuit.</figcaption>
         </figure>
         </center>
 
@@ -393,7 +391,7 @@
         <center>
         <figure>
         <img src="/assets/img/wien5.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption></figcaption></i>
+        <figcaption>1N4448W voltage drop plot.</figcaption><
         </figure>
         </center>
 
@@ -404,7 +402,7 @@
         <center>
         <figure>
         <img src="/assets/img/wien6.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption>Accelerated tests PCB</figcaption></i>
+        <figcaption>MMSZ5222B voltage drop plot.</figcaption>
         </figure>
         </center>
 
@@ -414,7 +412,7 @@
         <center>
         <figure>
         <img src="/assets/img/wien7.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption>Accelerated tests PCB</figcaption></i>
+        <i><figcaption>Radiation results.</figcaption></i>
         </figure>
         </center>
 
@@ -425,27 +423,6 @@
         <center>
         <figure>
         <img src="/assets/img/wien8.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption>Accelerated tests PCB</figcaption></i>
-        </figure>
-        </center>
-
-        </p>
-
-        </p>
-        <center>
-        <figure>
-        <img src="/assets/img/wien9.png" style="max-width:600px;width:100%" class="center" />
-        <i><figcaption>Accelerated tests PCB</figcaption></i>
-        </figure>
-        </center>
-
-        </p>
-
-
-        </p>
-        <center>
-        <figure>
-        <img src="/assets/img/wien10.png" style="max-width:600px;width:100%" class="center" />
         <i><figcaption>Accelerated tests PCB</figcaption></i>
         </figure>
         </center>
