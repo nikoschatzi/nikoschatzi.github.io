@@ -540,11 +540,12 @@ a.hoverline:hover {
 }
 
 #skills .col img.responsive-img {
-  display: block;
   margin: 0 auto;
-  max-width: 80px;  /* Adjusted width for better mobile scaling */
-  max-height: 80px; /* Ensures image doesn’t get too big */
-  padding-bottom: 5px;
+  max-height: 80px;
+  padding-bottom: 10px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
 }
 
 .card.large .card-content p {
