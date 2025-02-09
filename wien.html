@@ -243,7 +243,17 @@
 
        <p>The Wien-bridge oscillator is a widely used configuration for generating low-frequency sine waves. It is favoured for its simplicity, stability, and minimal dependency on the specific characteristics of the operational amplifier used in the circuit. The oscillator operates based on the principle of a resistive-capacitive (RC) network, which determines the oscillation frequency.</p>
 
-For sustained oscillation, the circuit must satisfy two conditions:
+ </p>
+        <center>
+        <figure>
+        <img src="/assets/img/wien2.png" style="max-width:600px;width:100%" class="center" />
+        <figcaption>Wien oscillation circuit schematic.</figcaption>
+        </figure>
+        </center>
+
+        </p>
+        
+        For sustained oscillation, the circuit must satisfy two conditions:
  <br>
           •	The total phase shift around the loop must be zero (or an integer multiple of 2π) <br>         
           •	The loop gain must be exactly unity. <br> <br>
@@ -254,6 +264,33 @@ The Wien-bridge network consists of two RC pairs:
         •	R2 and C2 provide an opposing phase shift. <br>
 
 <p>At a specific frequency, these phase shifts cancel out, ensuring that the net phase shift is zero. Additionally, the gain of the amplifier stage must be precisely three to counteract the attenuation introduced by the Wien-bridge network.</p>
+Wien Bridge Oscillator equations are:
+    
+    <p><strong>1. Frequency of Oscillation:</strong></p>
+    <p class="equation">\[ f = \frac{1}{2\pi R_4 C_1} = \frac{1}{2\pi R_2 C_2} \]</p>
+    <p>This equation determines the oscillation frequency based on the resistor and capacitor values in the circuit.</p>
+    
+    <p><strong>2. Series Impedance (Z<sub>s</sub>):</strong></p>
+    <p class="equation">\[ Z_s = \sqrt{R_1^2 + \frac{1}{(2\pi f C_1)^2}} \]</p>
+    <p>This represents the impedance of the series combination of the resistor and capacitor.</p>
+    
+    <p><strong>3. Parallel Impedance (Z<sub>p</sub>):</strong></p>
+    <p class="equation">\[ Z_p = \sqrt{\left(\frac{1}{R_2}\right)^2 + (2\pi f C_2)^2} \]</p>
+    <p>This is the impedance of the parallel resistor and capacitor network.</p>
+    
+    <p><strong>4. Voltage Relationship:</strong></p>
+    <p class="equation">\[ V_2 = \frac{V_{out}}{1 + \frac{Z_p}{Z_s}} \]</p>
+    <p>If \( R_1 = R_2 \) and \( C_1 = C_2 \), then:</p>
+    <p class="equation">\[ V_2 = \frac{V_{out}}{3} \]</p>
+    <p>This means the voltage at that node is one-third of the output voltage.</p>
+    
+    <p><strong>5. Gain of the Oscillator:</strong></p>
+    <p class="equation">\[ \text{Gain} = \frac{2Z_p + Z_s}{Z_p} \]</p>
+    <p>This equation describes the gain required to sustain oscillations in the circuit.</p>
+    
+    <p><strong>6. Alternative Gain Expression:</strong></p>
+    <p class="equation">\[ \text{Gain} = 1 + \frac{R_3}{R_4 + R_{DS}} \]</p>
+    <p>This is another form of the gain equation, incorporating resistors that help control the oscillation conditions.</p>
 
 <p>Despite its theoretical simplicity, practical implementation of the Wien-bridge oscillator presents several challenges:</p>
 <ul>
@@ -261,17 +298,6 @@ The Wien-bridge network consists of two RC pairs:
     <li><strong>Gain stability:</strong> If the amplifier gain is insufficient, oscillations will not start; if excessive, the output waveform becomes distorted.</li>
     <li><strong>Manual gain control:</strong> Traditional implementations require a variable resistor in the feedback path to fine-tune the gain, which increases complexity and introduces manufacturing inefficiencies.</li>
 </ul>
-
-
-        </p>
-        <center>
-        <figure>
-        <img src="/assets/img/wien2.png" style="max-width:600px;width:100%" class="center" />
-        <figcaption>Wien oscillation circuit schematic.</figcaption>
-        </figure>
-        </center>
-
-        </p>
         
 <p>To address these issues, a Junction Field-Effect Transistor (JFET) can be introduced into the feedback loop to regulate the gain dynamically. This method eliminates the need for manual adjustments and enhances the circuit’s stability.</p>
 
@@ -316,35 +342,6 @@ The Wien-bridge network consists of two RC pairs:
         </center>
 
         </p>
-
-        Wien Bridge Oscillator Equations
-    
-    <p><strong>1. Frequency of Oscillation:</strong></p>
-    <p class="equation">\[ f = \frac{1}{2\pi R_4 C_1} = \frac{1}{2\pi R_2 C_2} \]</p>
-    <p>This equation determines the oscillation frequency based on the resistor and capacitor values in the circuit.</p>
-    
-    <p><strong>2. Series Impedance (Z<sub>s</sub>):</strong></p>
-    <p class="equation">\[ Z_s = \sqrt{R_1^2 + \frac{1}{(2\pi f C_1)^2}} \]</p>
-    <p>This represents the impedance of the series combination of the resistor and capacitor.</p>
-    
-    <p><strong>3. Parallel Impedance (Z<sub>p</sub>):</strong></p>
-    <p class="equation">\[ Z_p = \sqrt{\left(\frac{1}{R_2}\right)^2 + (2\pi f C_2)^2} \]</p>
-    <p>This is the impedance of the parallel resistor and capacitor network.</p>
-    
-    <p><strong>4. Voltage Relationship:</strong></p>
-    <p class="equation">\[ V_2 = \frac{V_{out}}{1 + \frac{Z_p}{Z_s}} \]</p>
-    <p>If \( R_1 = R_2 \) and \( C_1 = C_2 \), then:</p>
-    <p class="equation">\[ V_2 = \frac{V_{out}}{3} \]</p>
-    <p>This means the voltage at that node is one-third of the output voltage.</p>
-    
-    <p><strong>5. Gain of the Oscillator:</strong></p>
-    <p class="equation">\[ \text{Gain} = \frac{2Z_p + Z_s}{Z_p} \]</p>
-    <p>This equation describes the gain required to sustain oscillations in the circuit.</p>
-    
-    <p><strong>6. Alternative Gain Expression:</strong></p>
-    <p class="equation">\[ \text{Gain} = 1 + \frac{R_3}{R_4 + R_{DS}} \]</p>
-    <p>This is another form of the gain equation, incorporating resistors that help control the oscillation conditions.</p>
-
         The following figure depicts the circuit design, and the table contains the components were selected:
 
         </p>
