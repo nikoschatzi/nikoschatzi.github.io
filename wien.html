@@ -169,6 +169,13 @@
             }
         }
 
+    .equation {
+            display: block;
+            text-align: center;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
   </style>
   
 </head>
@@ -418,7 +425,7 @@ The Wien-bridge network consists of two RC pairs:
         The selected JFET operating point was: <br>
 •	RDS ≈ 1 Kohm <br>
 •	VDS ≈ ±25mV <br>
-•	IDS ≈24 μA <br>
+•	IDS ≈24 μA <br> <br>
 A gain of 21 was used in the design.
 For the feedback path, precise diode selection was critical, requiring a combination of a Zener diode and a 1N4448 diode. Since the voltage drop across a diode varies with current, laboratory testing was conducted to optimize circuit performance. These tests involved measuring the voltage drop across the 1N4448W diode under different current levels.
 Similarly, the MMSZ5222B Zener diode, which has a rated voltage drop of 2.3V at 20mA as per the datasheet, was also characterized to ensure stable circuit operation.
