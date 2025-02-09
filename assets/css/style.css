@@ -539,13 +539,25 @@ a.hoverline:hover {
   padding-bottom: 20px;
 }
 
+#skills .col {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-aligns content */
+  text-align: center; /* Ensures text is centered below the image */
+  margin-bottom: 15px; /* Adds spacing between rows */
+}
+
 #skills .col img.responsive-img {
-  margin: 0 auto;
-  max-height: 100px;
-  padding-bottom: 10px;
+  max-width: 80px;
+  max-height: 80px;
+  margin-bottom: 5px; /* Adds space between image and text */
+  display: block;
+}
+
+#skills .col p {
+  margin: 0; /* Removes extra margins that might cause misalignment */
+  width: 100%; /* Ensures text is full width */
   text-align: center;
-  vertical-align: middle;
-  display: table-cell;
 }
 
 .card.large .card-content p {
