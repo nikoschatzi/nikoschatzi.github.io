@@ -548,11 +548,12 @@ a.hoverline:hover {
 }
 
 #skills .col img.responsive-img {
-  width: 100%;  /* Makes the image fill its container */
-  max-width: 100px; /* Prevents it from getting too large */
-  height: auto; /* Maintains aspect ratio */
-  display: block; /* Ensures proper positioning */
-  margin: 0 auto 10px; /* Centers the image with spacing */
+  margin: 0 auto;
+  max-height: 100px;
+  padding-bottom: 10px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
 }
 
 @media (max-width: 600px) {
