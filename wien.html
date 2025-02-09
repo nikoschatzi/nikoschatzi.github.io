@@ -302,11 +302,10 @@ Wien Bridge Oscillator equations are: </p>
 <p>To address these issues, a Junction Field-Effect Transistor (JFET) can be introduced into the feedback loop to regulate the gain dynamically. This method eliminates the need for manual adjustments and enhances the circuit’s stability.</p>
 
 <p><strong>Operating Principle of the JFET in the Wien-Bridge Oscillator:</strong></p>
-<ul>
-    <li>At startup, the JFET's gate voltage is zero, resulting in a low drain-source resistance. This increases the amplifier gain beyond the required threshold, ensuring that oscillations begin.</li>
-    <li>As the oscillations develop, the negative half-cycles of the output signal are rectified and applied as a control voltage to the JFET gate. This increases the JFET’s resistance, reducing the amplifier gain and stabilizing the oscillation amplitude.</li>
-    <li>The circuit self-adjusts, maintaining oscillations without excessive distortion or over-amplification.</li>
-</ul>
+
+    •	At startup, the JFET's gate voltage is zero, resulting in a low drain-source resistance. This increases the amplifier gain beyond the required threshold, ensuring that oscillations begin. <br>  
+    •As the oscillations develop, the negative half-cycles of the output signal are rectified and applied as a control voltage to the JFET gate. This increases the JFET’s resistance, reducing the amplifier gain and stabilizing the oscillation amplitude.</li>
+<br>•The circuit self-adjusts, maintaining oscillations without excessive distortion or over-amplification.<br> <br>
 
 <p>The integration of a JFET for automatic gain control provides several key advantages:</p>
 <ul>
@@ -324,22 +323,126 @@ Wien Bridge Oscillator equations are: </p>
 <p>For this application, a V<sub>GS</sub> of -2.3V was chosen, as the 2N3819 provides a resistance of approximately 1 kOhm at this point. The operating point was set to ±25 mV with respect to V<sub>DS</sub>. Test results for the 2N3819 are shown in the following figures.</p>
 
 </p>
-        <center>
-        <figure>
-        <img src="/assets/img/wien3.png" style="max-width:800px;width:100%" class="center" />
-        <figcaption>Measuring Rds for fixed Vds=±25 mV and varing Vgs.</figcaption>
-        </figure>
-        </center>
+        <table>
+    <tr>
+        <th>Vgs (V)</th>
+        <th>Rds Positive (Ω) (Vds = ±25mV)</th>
+        <th>Rds Negative (Ω) (Vds = ±25mV)</th>
+        <th>Deviation (%) (Vds = ±25mV)</th>
+        <th>Rds Positive (Ω) (Vds = ±50mV)</th>
+        <th>Rds Negative (Ω) (Vds = ±50mV)</th>
+        <th>Deviation (%) (Vds = ±50mV)</th>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>158</td>
+        <td>156</td>
+        <td>0.64%</td>
+        <td>158</td>
+        <td>155</td>
+        <td>0.96%</td>
+    </tr>
+    <tr>
+        <td>-0.1</td>
+        <td>247</td>
+        <td>242</td>
+        <td>1.02%</td>
+        <td>248</td>
+        <td>241</td>
+        <td>1.43%</td>
+    </tr>
+    <tr>
+        <td>-0.25</td>
+        <td>276</td>
+        <td>271</td>
+        <td>0.91%</td>
+        <td>278</td>
+        <td>267</td>
+        <td>2.02%</td>
+    </tr>
+    <tr>
+        <td>-0.5</td>
+        <td>314</td>
+        <td>307</td>
+        <td>1.13%</td>
+        <td>316</td>
+        <td>305</td>
+        <td>1.77%</td>
+    </tr>
+    <tr>
+        <td>-0.75</td>
+        <td>366</td>
+        <td>357</td>
+        <td>1.24%</td>
+        <td>369</td>
+        <td>353</td>
+        <td>2.22%</td>
+    </tr>
+    <tr>
+        <td>-1.0</td>
+        <td>442</td>
+        <td>427</td>
+        <td>1.73%</td>
+        <td>446</td>
+        <td>422</td>
+        <td>2.76%</td>
+    </tr>
+    <tr>
+        <td>-1.25</td>
+        <td>565</td>
+        <td>554</td>
+        <td>2.17%</td>
+        <td>574</td>
+        <td>532</td>
+        <td>3.8%</td>
+    </tr>
+    <tr>
+        <td>-1.5</td>
+        <td>663</td>
+        <td>629</td>
+        <td>2.63%</td>
+        <td>676</td>
+        <td>618</td>
+        <td>4.48%</td>
+    </tr>
+    <tr>
+        <td>-1.75</td>
+        <td>811</td>
+        <td>759</td>
+        <td>3.31%</td>
+        <td>832</td>
+        <td>744</td>
+        <td>5.79%</td>
+    </tr>
+    <tr>
+        <td>-2.0</td>
+        <td>1058</td>
+        <td>966</td>
+        <td>4.55%</td>
+        <td>1093</td>
+        <td>935</td>
+        <td>7.79%</td>
+    </tr>
+    <tr>
+        <td>-2.25</td>
+        <td>1533</td>
+        <td>1350</td>
+        <td>6.35%</td>
+        <td>1603</td>
+        <td>1288</td>
+        <td>10.9%</td>
+    </tr>
+    <tr>
+        <td>-2.5</td>
+        <td>2618</td>
+        <td>2170</td>
+        <td>9.36%</td>
+        <td>2789</td>
+        <td>2027</td>
+        <td>15.82%</td>
+    </tr>
+</table>
 
-        </p>
-
-        </p>
-        <center>
-        <figure>
-        <img src="/assets/img/wien4.png" style="max-width:800px;width:100%" class="center" />
-        <figcaption>Measuring Rds for fixed Vds=±50 mV and varing Vgs.</figcaption>
-        </figure>
-        </center>
 
         </p>
         The following figure depicts the circuit design, and the table contains the components were selected:
