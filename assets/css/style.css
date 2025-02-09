@@ -548,6 +548,17 @@ a.hoverline:hover {
   display: table-cell;
 }
 
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Space between items */
+}
+
+.skills-container .col {
+  text-align: center;
+}
+
 .card.large .card-content p {
   color: inherit;
   margin: 0;
