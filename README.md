@@ -1,8 +1,8 @@
-### Personal Website 
+## Personal Website 
 
-> https://nikoschatzi.github.io/
+https://nikoschatzi.github.io/
 
-### Website Preview
+## Preview
 <p align="center"> 
   <kbd>
     <a href="https://nikoschatzi.github.io" target="_blank"><img src="examples/preview.gif">
