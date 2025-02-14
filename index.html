@@ -183,15 +183,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </ul>
   </nav>
 
-  <!-- Nav class 2 -->
-  <nav class="hide-on-large only trigger z-depth-1">
-    <a aria-label="Toggle visibility of the mobile navbar" href="#" data-activates="slide-out"
-      class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    <div class="name-title">
-      <a id="name" aria-label="Navigate to the beginning of the page" href="#" class="teal-text">Nikolaos 
-        Chatzipapas</a><span class="black-text">Electronics Engineer</span>
-    </div>
-  </nav>
+<!-- Nav class 2 -->
+<nav class="hide-on-large only trigger z-depth-1" id="menuButton">
+  <a aria-label="Toggle visibility of the mobile navbar" href="#" data-activates="slide-out"
+    class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+  <div class="name-title">
+    <a id="name" aria-label="Navigate to the beginning of the page" href="#" class="teal-text">Nikolaos 
+      Chatzipapas</a><span class="black-text">Electronics Engineer</span>
+  </div>
+</nav>
+
+<!-- Target Section for Scrolling -->
+<div id="scrollTarget" style="margin-top: 500px;">
+  <h2>Welcome</h2>
+  <p>This is where the page will scroll to when you click the menu.</p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const menuButton = document.getElementById("menuButton");
+      const scrollTarget = document.getElementById("scrollTarget");
+
+      if (menuButton && scrollTarget) {
+          menuButton.addEventListener("click", function (event) {
+              event.preventDefault(); // Prevent default behavior
+
+              // Smoothly scroll to the target
+              scrollTarget.scrollIntoView({ behavior: "smooth" });
+          });
+      }
+  });
+</script>
+
 
   <!-- Nav class 3 -->
   <nav class="hide-on-large only">
