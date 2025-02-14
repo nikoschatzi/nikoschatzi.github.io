@@ -184,32 +184,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </nav>
 
 <!-- Nav class 2 -->
-<nav class="hide-on-large only trigger z-depth-1" id="menuButton">
+<nav class="hide-on-large only trigger z-depth-1">
   <a aria-label="Toggle visibility of the mobile navbar" href="#" data-activates="slide-out"
     class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   <div class="name-title">
-    <a id="name" aria-label="Navigate to the beginning of the page" href="#" class="teal-text">Nikolaos 
-      Chatzipapas</a><span class="black-text">Electronics Engineer</span>
+    <a id="name" aria-label="Navigate to the beginning of the page" href="#" class="teal-text">
+      Nikolaos Chatzipapas
+    </a>
+    <span class="black-text">Electronics Engineer</span>
   </div>
 </nav>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-      const menuButton = document.querySelector(".button-collapse");
+    const menuButton = document.querySelector(".button-collapse");
+    
+    if (menuButton) {
+      menuButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default action
 
-      if (menuButton) {
-          menuButton.addEventListener("click", function (event) {
-              event.preventDefault(); // Prevent default link behavior
-
-              // Scroll down by 300 pixels (adjust as needed)
-              window.scrollBy({
-                  top: 300,
-                  behavior: "smooth"
-              });
-          });
-      }
+        // Wait a bit and then scroll inside the navigation menu
+        setTimeout(() => {
+          const sideNav = document.getElementById("slide-out"); // Your existing menu
+          if (sideNav) {
+            sideNav.scrollTo({ top: 200, behavior: "smooth" }); // Adjust as needed
+          }
+        }, 300); // Slight delay ensures menu is open before scrolling
+      });
+    }
   });
 </script>
+
 
 
   <!-- Nav class 3 -->
