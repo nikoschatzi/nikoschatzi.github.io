@@ -193,23 +193,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </nav>
 
-<!-- Target Section for Scrolling -->
-<div id="scrollTarget" style="margin-top: 500px;">
-  <h2>Welcome</h2>
-  <p>This is where the page will scroll to when you click the menu.</p>
-</div>
-
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-      const menuButton = document.getElementById("menuButton");
-      const scrollTarget = document.getElementById("scrollTarget");
+      const menuButton = document.querySelector(".button-collapse");
 
-      if (menuButton && scrollTarget) {
+      if (menuButton) {
           menuButton.addEventListener("click", function (event) {
-              event.preventDefault(); // Prevent default behavior
+              event.preventDefault(); // Prevent default link behavior
 
-              // Smoothly scroll to the target
-              scrollTarget.scrollIntoView({ behavior: "smooth" });
+              // Scroll down by 300 pixels (adjust as needed)
+              window.scrollBy({
+                  top: 300,
+                  behavior: "smooth"
+              });
           });
       }
   });
