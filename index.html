@@ -430,52 +430,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                
             <br>
 
-            <u style="text-decoration: underline;">Trainings:</u>
+           <u style="text-decoration: underline;">Trainings:</u>
 
-              <p>
-              <li>
-                Reliability analysis, demonstration and availability.
-                <span style="float: right; font-style: italic;">24 hours</span>
-              </li>
-              </p>
-              <p>
-              <li>
-                Electrical Accreditation - Electrician Low and High Voltage.
-                <span style="float: right; font-style: italic;">32 hours</span>
-              </li>
-              </p>
-              <p>
-              <li>
-                SystemVerilog Advanced Verification for FPGA Design.
-                <span style="float: right; font-style: italic;">24 hours</span>
-              </li>
-              </p>
-              <p>
-              <li>
-                Electromagnetic Compatibility (EMC): Introduction.
-                <span style="float: right; font-style: italic;">14 hours</span>
-              </li>
-              </p>
-              <p>
-              <li>
-                Basic introduction to radiation effects on electronics.
-                <span style="float: right; font-style: italic;">8 hours</span>
-              </li>
-              </p>
-              <div>
-              <li>
-                Introduction to Particle Accelerators.
-                <span style="float: right; font-style: italic;">15 hours</span>
-              </li>
-              </div>
-              <li>
-                Fast Forward, the productivity system for researchers (VILT).
-                <span style="float: right; font-style: italic;">30 hours</span>
-              </li>
-              <li>
-                Convincing Scientific Presentations.
-                <span style="float: right; font-style: italic;">20 hours</span>
-              </li>
+<ul style="list-style-type: disc; padding-left: 20px;">
+  <li>
+    Reliability analysis, demonstration and availability.
+    <span class="hours">24 hours</span>
+  </li>
+  <li>
+    Electrical Accreditation - Electrician Low and High Voltage.
+    <span class="hours">32 hours</span>
+  </li>
+  <li>
+    SystemVerilog Advanced Verification for FPGA Design.
+    <span class="hours">24 hours</span>
+  </li>
+  <li>
+    Electromagnetic Compatibility (EMC): Introduction.
+    <span class="hours">14 hours</span>
+  </li>
+  <li>
+    Basic introduction to radiation effects on electronics.
+    <span class="hours">8 hours</span>
+  </li>
+  <li>
+    Introduction to Particle Accelerators.
+    <span class="hours">15 hours</span>
+  </li>
+  <li>
+    Fast Forward, the productivity system for researchers (VILT).
+    <span class="hours">30 hours</span>
+  </li>
+  <li>
+    Convincing Scientific Presentations.
+    <span class="hours">20 hours</span>
+  </li>
+  <li>
+    Communication: Science or Art?
+    <span class="hours">8 hours</span>
+  </li>
+</ul>
+
+<style>
+  /* Keep the "hours" aligned to the right */
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hours {
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  /* Mobile Fix */
+  @media (max-width: 600px) {
+    li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .hours {
+      align-self: flex-end;
+    }
+  }
+</style>
+   </li>
               <li>
                 Communication: Science or Art? 
                 <span style="float: right; font-style: italic;">8 hours</span>
