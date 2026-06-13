@@ -6,18 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Materialize -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <link href="https://fonts.googleapis.com/css2 family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Google Fonts: Source Serif 4 for headings (editorial, engineering-magazine feel), Inter for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Custom Styles (same as your existing site) -->
   <link rel="stylesheet" href="/assets/css/style.css" />
-  
+
   <title>Space Electronics Lab | Blog</title>
 
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -26,190 +34,44 @@
     gtag('config', 'UA-126939217-2');
   </script>
 
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Space Electronics Lab | Blog" />
-  <meta property="og:description" content="Electronics Engineer Blog" />
-  <meta property="og:url" content="https://nikoschatzi.github.io/blog.html" />
-  <meta property="og:site_name" content="Space Electronics Lab | Blog" />
-  
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@nikos_chatzipapas" />
-  <meta name="author" content="Nikolaos Chatzipapas" />
-  <meta name="description" content="Electronics Engineer Blog" />
-  
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-icon-180x180.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="robots" content="index, follow" />
-  <meta name="google-site-verification" content="_qxK8tePiU2fhnwlwnJ7pkDFnj1k2EiKq_cYGy1Cb84" />
-
   <style>
-    /* ─── BASE & MODERN BLOG OVERRIDES ─── */
-    *, *::before, *::after { box-sizing: border-box; }
+    /* ── same overflow fix as your existing pages ── */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
 
+    /* ── body: clean background, no grid ── */
     body {
       background-color: #f5f6f7 !important;
       background-image: none !important;
-      font-family: 'Inter', sans-serif;
-      color: #1a1a1a;
     }
 
-    main {
-      padding-left: 240px;
-    }
-
-    /* ─── SIDEBAR STYLE MATCHING YOUR TEMPLATE ─── */
-    .side-nav.fixed {
-      background: #ffffff !important;
-      border-right: 1px solid #e8e8e8;
-      width: 240px;
-      box-shadow: 2px 0 12px rgba(0,0,0,0.04);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      margin: 0;
-      padding: 0;
-    }
-
-    .logo-container-box {
-      padding: 30px 0 20px;
-      text-align: center;
-      border-bottom: 1px solid #eeeeee;
-    }
-
-    .profile-pic.circle {
-      width: 150px;
-      height: 150px;
-      margin: 0 auto;
-      object-fit: cover;
-      border: 3px solid #009688;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
-    .side-nav li {
-      float: none;
-      line-height: inherit;
-    }
-
-    .side-nav li a {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: #555 !important;
-      padding: 14px 24px !important;
-      height: auto !important;
-      line-height: 1.5 !important;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      border-left: 4px solid transparent;
-      transition: all 0.15s ease;
-    }
-
-    .side-nav li a:hover {
-      color: #009688 !important;
-      border-left-color: #009688;
-      background: #f0faf9;
-    }
-
-    .side-nav li.active-nav a {
-      color: #009688 !important;
-      border-left-color: #009688;
-      background: #e8f5f3;
-      font-weight: 600;
-    }
-
-    .side-nav li a i {
-      font-size: 16px;
-      width: 20px;
-      text-align: center;
-      color: #bdbdbd;
-      margin: 0 !important;
-    }
-
-    .side-nav li.active-nav a i {
-      color: #009688;
-    }
-
-    /* Sidebar Footer (Socials & Buy Me A Coffee) */
-    .sidebar-footer {
-      margin-top: auto;
-      padding: 20px;
-      border-top: 1px solid #eeeeee;
-      text-align: center;
-      background: #ffffff;
-    }
-
-    .sidebar-socials {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin-bottom: 14px;
-    }
-
-    .sidebar-socials a {
-      color: #bdbdbd !important;
-      font-size: 18px;
-      transition: color 0.2s ease;
-    }
-
-    .sidebar-socials a:hover {
-      color: #009688 !important;
-    }
-
-    .coffee-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #4e342e !important;
-      background: #ffdd00;
-      padding: 8px 16px;
-      border-radius: 25px;
-      text-decoration: none;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      transition: all 0.2s ease;
-      width: 90%;
-      margin: 0 auto;
-    }
-
-    .coffee-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
-    }
-
-    /* ─── MAIN CONTENT UI ─── */
-    .blog-header {
-      background: #009688;
-      padding: 40px 48px 36px;
-    }
-
-    .blog-header h3 {
-      font-size: 26px;
+    /* ── typography for blog only ── */
+    .blog-site-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 28px;
       font-weight: 700;
       color: #ffffff;
-      margin: 0 0 6px 0;
+      margin: 0 0 4px 0;
+      line-height: 1.2;
       letter-spacing: -0.3px;
     }
 
-    .blog-header p {
-      color: rgba(255,255,255,0.75);
+    .blog-site-byline {
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
       margin: 0;
-      font-style: italic;
+      letter-spacing: 0.2px;
     }
 
-    /* Search Box */
+    /* ── search bar ── */
     .search-wrap {
-      padding: 28px 48px 0;
-      max-width: 860px;
+      margin: 28px 0 10px 0;
     }
 
     .search-box {
@@ -218,169 +80,126 @@
 
     .search-box input {
       width: 100%;
-      padding: 13px 20px 13px 46px;
-      border: 1.5px solid #e0e0e0 !important;
-      border-radius: 10px !important;
+      padding: 11px 16px 11px 42px;
+      border: 1.5px solid #d8d8d8;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
       color: #333;
-      background: #fff !important;
+      background: #fff;
       outline: none;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04) !important;
-      height: auto !important;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .search-box input:focus {
-      border-color: #009688 !important;
-      box-shadow: 0 0 0 3px rgba(0,150,136,0.1) !important;
+      border-color: #009688;
+      box-shadow: 0 0 0 3px rgba(0,150,136,0.1);
     }
 
-    .search-box .search-icon {
+    .search-box input::placeholder { color: #bdbdbd; }
+
+    .search-icon {
       position: absolute;
-      left: 16px;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
       color: #bdbdbd;
-      font-size: 15px;
+      font-size: 14px;
+      pointer-events: none;
     }
 
     #search-count {
+      font-family: 'Inter', sans-serif;
       font-size: 12px;
       color: #9e9e9e;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
-    /* Filter Chips */
-    .filter-wrap {
-      padding: 20px 48px 0;
-      max-width: 860px;
-    }
-
+    /* ── filter chips ── */
     .filter-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
+      margin-bottom: 24px;
     }
 
     .chip-btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 16px;
-      border: 1.5px solid #e0e0e0;
+      display: inline-block;
+      padding: 5px 15px;
+      border: 1.5px solid #d8d8d8;
       border-radius: 20px;
       background: #fff;
-      color: #616161;
+      color: #666;
+      font-family: 'Inter', sans-serif;
       font-size: 12.5px;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.15s ease;
+      user-select: none;
     }
 
-    .chip-btn:hover {
-      border-color: #009688;
-      color: #009688;
-    }
+    .chip-btn:hover    { border-color: #009688; color: #009688; }
+    .chip-btn.active   { background: #009688; border-color: #009688; color: #fff; }
 
-    .chip-btn.active {
-      background: #009688;
-      border-color: #009688;
-      color: #fff;
-    }
-
-    /* Article Cards */
-    .articles-wrap {
-      padding: 24px 48px 48px;
-      max-width: 860px;
-    }
-
+    /* ── article cards ── */
     .blog-card {
-      background: #ffffff;
-      border: 1px solid #ebebeb;
-      border-radius: 14px;
-      padding: 26px 28px;
-      margin-bottom: 16px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+      padding: 22px 24px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
       display: block;
       text-decoration: none;
+      color: inherit;
+      border-left: 4px solid #009688;
     }
 
     .blog-card:hover {
-      box-shadow: 0 6px 20px rgba(0,150,136,0.1);
+      box-shadow: 0 4px 16px rgba(0,150,136,0.12);
       transform: translateY(-2px);
     }
 
-    .blog-card-inner {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-    }
-
-    .card-accent {
-      width: 3px;
-      min-height: 70px;
-      background: #009688;
-      border-radius: 4px;
-      flex-shrink: 0;
-      opacity: 0.25;
-    }
-
-    .blog-card:hover .card-accent {
-      opacity: 1;
-    }
-
-    .card-body {
-      flex: 1;
-    }
-
     .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .card-date {
+      font-family: 'Inter', sans-serif;
       font-size: 11.5px;
       color: #9e9e9e;
       font-weight: 500;
-    }
-
-    .card-read-time {
-      font-size: 11.5px;
-      color: #bdbdbd;
+      letter-spacing: 0.4px;
+      margin-bottom: 6px;
     }
 
     .card-title {
-      font-size: 18px;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 19px;
       font-weight: 700;
       color: #1a1a1a;
       margin: 0 0 8px 0;
-      line-height: 1.4;
+      line-height: 1.35;
+      transition: color 0.15s;
     }
 
-    .blog-card:hover .card-title {
-      color: #009688;
-    }
+    .blog-card:hover .card-title { color: #009688; }
 
     .card-snippet {
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
-      color: #757575;
+      color: #666;
       line-height: 1.65;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .tag-pill {
+      font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
-      padding: 3px 10px;
+      padding: 3px 9px;
       border-radius: 5px;
       text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
 
     .tag-aerospace  { background: #e3f2fd; color: #1565c0; }
@@ -389,182 +208,213 @@
     .tag-simulation { background: #e8f5e9; color: #2e7d32; }
     .tag-cern       { background: #fff3e0; color: #e65100; }
     .tag-pcb        { background: #e0f7fa; color: #006064; }
+    .tag-testing    { background: #fafafa; color: #424242; border: 1px solid #e0e0e0; }
+    .tag-python     { background: #f1f8e9; color: #33691e; }
 
+    /* ── Buy Me a Coffee sidebar link ── */
+    .bmc-link {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 16px 16px 0;
+      padding: 9px 14px;
+      background: #FFDD00;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1a1a1a !important;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .bmc-link:hover { opacity: 0.85; }
+    .bmc-link img   { width: 20px; height: 20px; margin: 0; display: inline; }
+
+    /* ── no results ── */
     .no-results {
       display: none;
       text-align: center;
-      padding: 60px 20px;
+      padding: 50px 20px;
       color: #bdbdbd;
+      font-family: 'Inter', sans-serif;
     }
 
-    .no-results i {
-      font-size: 40px;
-      display: block;
-      margin-bottom: 12px;
-    }
-
+    /* ── same responsive as your site ── */
     @media (max-width: 992px) {
-      main { padding-left: 0; }
-      .blog-header, .search-wrap, .filter-wrap, .articles-wrap { padding-left: 20px; padding-right: 20px; }
+      main { padding-left: 0; padding-top: 0; }
+      ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
+      nav { background: #fff; height: 64px; position: absolute; }
+      nav a.button-collapse, nav a.button-collapse i { color: #009688; height: 56px; line-height: 56px; }
+      h3 { padding: 20px 30px; margin-bottom: 40px; }
+      .container { margin: 0 auto; }
+      nav.hide-on-large.only.trigger { display: block; position: fixed; top: 0; z-index: 2; }
     }
   </style>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
+  <!-- ── SIDEBAR — same structure as your project pages ── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
 
-      <li class="logo-container-box">
-        <a id="logo-container" class="brand-logo grey-blue-text">
-          <img src="/assets/img/ele.png" class="circle img-responsive profile-pic" alt="avatar">
+      <!-- Profile image — changed to ele.png -->
+      <li class="logo">
+        <a id="logo-container" aria-label="Navigate to the beginning of the page"
+           class="brand-logo grey-blue-text">
+          <img src="/assets/img/ele.png" class="circle img-responsive profile-pic" alt="Space Electronics Lab" />
         </a>
       </li>
 
-      <li>
-        <a href="/index.html">
-          <i class="fa fa-th-large"></i><span>Portfolio</span>
+      <!-- Blog link -->
+      <li class="bold">
+        <a style="pointer-events: none; cursor: default;" class="waves-effect waves-dark teal-text">
+          <i class="mdi-action-trending-up small"></i><span><b>Blog</b></span>
         </a>
       </li>
-      <li class="active-nav">
-        <a href="/blog.html" style="pointer-events: none; cursor: default;">
-          <i class="fa fa-rss"></i><span><b>Blog</b></span>
-        </a>
-      </li>
-
-      <div class="sidebar-footer">
-        <div class="sidebar-socials">
-          <a href="https://linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
-          <a href="https://github.com" target="_blank"><i class="fa fa-github"></i></a>
-        </div>
-        <a href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" class="coffee-btn">
-          <i class="fa fa-coffee"></i> Buy me a coffee
-        </a>
-      </div>
 
     </ul>
   </nav>
 
+  <!-- Buy Me a Coffee — below nav, still inside sidebar area -->
+  <div style="position:fixed; left:0; bottom:24px; width:240px; z-index:999;">
+    <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
+      <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" />
+      Buy me a coffee
+    </a>
+  </div>
+
+  <!-- ── MAIN CONTENT — same pattern as your project pages ── -->
   <main>
 
-    <div class="blog-header teal">
-      <h3>Space Electronics Lab</h3>
-      <p>by Nikolaos Chatzipapas</p>
-    </div>
+    <!-- Teal header — same class as all your pages -->
+    <section id="about" class="section scrollspy">
+      <h3 class="page-title white-text teal" style="padding: 30px 40px; margin-top: 0;">
+        <p class="blog-site-title">Space Electronics Lab</p>
+        <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
+      </h3>
 
-    <div class="search-wrap">
-      <div class="search-box">
-        <i class="fa fa-search search-icon"></i>
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search articles — e.g. TID, LTspice, PCB, CERN …"
-          autocomplete="off"
-        />
-      </div>
-      <div id="search-count"></div>
-    </div>
+      <div class="container flow-text">
 
-    <div class="filter-wrap">
-      <div class="filter-chips">
-        <div class="chip-btn active" data-filter="all">All</div>
-        <div class="chip-btn" data-filter="aerospace">Aerospace</div>
-        <div class="chip-btn" data-filter="radhard">Rad-Hard Design</div>
-        <div class="chip-btn" data-filter="components">Components</div>
-        <div class="chip-btn" data-filter="simulation">Simulation</div>
-        <div class="chip-btn" data-filter="cern">CERN</div>
-      </div>
-    </div>
-
-    <div class="articles-wrap">
-      <div id="article-list">
-
-        <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html"
-           data-tags="components aerospace"
-           data-text="how to read a transistor datasheet high-reliability applications parameters thermal characteristics safe operating area SOA absolute maximum ratings">
-          <div class="blog-card-inner">
-            <div class="card-accent"></div>
-            <div class="card-body">
-              <div class="card-meta">
-                <span class="card-date">12 Jun 2026</span>
-                <span class="card-read-time">· 8 min read</span>
-              </div>
-              <div class="card-title">How to Read a Transistor Datasheet for High-Reliability Applications</div>
-              <div class="card-snippet">
-                Beyond the absolute maximum ratings — a structured walkthrough of thermal characteristics, safe operating areas (SOA), and the derating rules that matter for aerospace hardware.
-              </div>
-              <div class="card-tags">
-                <span class="tag-pill tag-components">Components</span>
-                <span class="tag-pill tag-aerospace">Aerospace</span>
-              </div>
-            </div>
+        <!-- Search -->
+        <div class="search-wrap">
+          <div class="search-box">
+            <i class="fa fa-search search-icon"></i>
+            <input type="text" id="search-input"
+              placeholder="Search — e.g. TID, LTspice, cryogenic, CERN …"
+              autocomplete="off" />
           </div>
-        </a>
+          <div id="search-count"></div>
+        </div>
 
-        <a class="blog-card" href="/blog/rad-tol-design-essentials.html"
-           data-tags="radhard aerospace"
-           data-text="radiation tolerant design sub-system components single event effects SEE total ionizing dose TID schematic mitigation mission-critical">
-          <div class="blog-card-inner">
-            <div class="card-accent"></div>
-            <div class="card-body">
-              <div class="card-meta">
-                <span class="card-date">28 May 2026</span>
-                <span class="card-read-time">· 12 min read</span>
-              </div>
-              <div class="card-title">Radiation-Tolerant Design of Sub-System Electronics</div>
-              <div class="card-snippet">
-                Practical patterns for mitigating SEE and TID at schematic level — from bypass capacitor placement and redundancy to component screening strategies for mission-critical hardware.
-              </div>
-              <div class="card-tags">
-                <span class="tag-pill tag-radhard">Rad-Hard</span>
-                <span class="tag-pill tag-aerospace">Aerospace</span>
-              </div>
+        <!-- Filter chips -->
+        <div class="filter-chips">
+          <div class="chip-btn active" data-filter="all">All</div>
+          <div class="chip-btn" data-filter="aerospace">Aerospace</div>
+          <div class="chip-btn" data-filter="radhard">Rad-Hard</div>
+          <div class="chip-btn" data-filter="components">Components</div>
+          <div class="chip-btn" data-filter="simulation">Simulation</div>
+          <div class="chip-btn" data-filter="cern">CERN</div>
+          <div class="chip-btn" data-filter="testing">Testing</div>
+        </div>
+
+        <!-- Article list -->
+        <div id="article-list">
+
+          <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
+             data-tags="cern radhard testing aerospace"
+             data-text="irradiation piezo valves CERN cryogenic 3 2 way solenoid replacement TID 100 kGy radiation campaign CC60 cobalt passive PCB Ultem">
+            <div class="card-meta">02 Apr 2026 &nbsp;·&nbsp; 14 min read</div>
+            <div class="card-title">Irradiation Tests of 3/2-Way Piezo Valves at CERN</div>
+            <div class="card-snippet">
+              Results from the CC60 campaign evaluating piezo actuators as drop-in solenoid replacements in cryogenic control valves under 100 kGy TID. Covers passive PCB design, Ultem 3D-printed housings, and full test results.
             </div>
-          </div>
-        </a>
-
-        <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html"
-           data-tags="simulation pcb"
-           data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep prototype reliability simulation power supply">
-          <div class="blog-card-inner">
-            <div class="card-accent"></div>
-            <div class="card-body">
-              <div class="card-meta">
-                <span class="card-date">15 May 2026</span>
-                <span class="card-read-time">· 10 min read</span>
-              </div>
-              <div class="card-title">Worst-Case Circuit Analysis with LTspice</div>
-              <div class="card-snippet">
-                Setting up Monte Carlo runs and tolerance sweeps to validate hardware reliability before the first PCB spin. Covers corner analysis for power regulators and analog signal chains.
-              </div>
-              <div class="card-tags">
-                <span class="tag-pill tag-simulation">Simulation</span>
-                <span class="tag-pill tag-pcb">PCB</span>
-              </div>
+            <div class="card-tags">
+              <span class="tag-pill tag-cern">CERN</span>
+              <span class="tag-pill tag-radhard">Rad-Hard</span>
+              <span class="tag-pill tag-testing">Testing</span>
             </div>
-          </div>
-        </a>
+          </a>
 
-      </div>
+          <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html"
+             data-tags="components aerospace"
+             data-text="transistor datasheet high reliability parameters thermal characteristics safe operating area SOA absolute maximum ratings derating aerospace">
+            <div class="card-meta">12 Jun 2026 &nbsp;·&nbsp; 8 min read</div>
+            <div class="card-title">How to Read a Transistor Datasheet for High-Reliability Applications</div>
+            <div class="card-snippet">
+              Beyond absolute maximum ratings — thermal characteristics, safe operating areas (SOA), and derating rules that matter when selecting components for aerospace hardware.
+            </div>
+            <div class="card-tags">
+              <span class="tag-pill tag-components">Components</span>
+              <span class="tag-pill tag-aerospace">Aerospace</span>
+            </div>
+          </a>
 
-      <div class="no-results" id="no-results">
-        <i class="fa fa-search"></i>
-        <p>No articles match your search. Try different keywords.</p>
-      </div>
+          <a class="blog-card" href="/blog/rad-tol-design-essentials.html"
+             data-tags="radhard aerospace"
+             data-text="radiation tolerant design sub-system components single event effects SEE total ionizing dose TID schematic mitigation mission-critical screening">
+            <div class="card-meta">28 May 2026 &nbsp;·&nbsp; 12 min read</div>
+            <div class="card-title">Radiation-Tolerant Design of Sub-System Electronics</div>
+            <div class="card-snippet">
+              Practical patterns for mitigating SEE and TID at schematic level — redundancy, bypass capacitor placement, and component screening strategies for mission-critical hardware.
+            </div>
+            <div class="card-tags">
+              <span class="tag-pill tag-radhard">Rad-Hard</span>
+              <span class="tag-pill tag-aerospace">Aerospace</span>
+            </div>
+          </a>
 
-    </div>
+          <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html"
+             data-tags="simulation pcb"
+             data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep prototype reliability simulation power supply analog">
+            <div class="card-meta">15 May 2026 &nbsp;·&nbsp; 10 min read</div>
+            <div class="card-title">Worst-Case Circuit Analysis with LTspice</div>
+            <div class="card-snippet">
+              Setting up Monte Carlo runs and tolerance sweeps to validate hardware reliability before the first PCB spin. Covers corner analysis for power regulators and analog signal chains.
+            </div>
+            <div class="card-tags">
+              <span class="tag-pill tag-simulation">Simulation</span>
+              <span class="tag-pill tag-pcb">PCB</span>
+            </div>
+          </a>
+
+          <a class="blog-card" href="/blog/python-hardware-test-automation.html"
+             data-tags="testing python"
+             data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench firmware lab script VISA">
+            <div class="card-meta">18 Mar 2026 &nbsp;·&nbsp; 9 min read</div>
+            <div class="card-title">Automating Hardware Tests with Python and SCPI</div>
+            <div class="card-snippet">
+              How to script your bench — controlling oscilloscopes, power supplies, and DMMs over VISA/SCPI to run reproducible, logged measurements without clicking through menus.
+            </div>
+            <div class="card-tags">
+              <span class="tag-pill tag-testing">Testing</span>
+              <span class="tag-pill tag-python">Python</span>
+            </div>
+          </a>
+
+        </div><!-- /#article-list -->
+
+        <div class="no-results" id="no-results">
+          <i class="fa fa-search" style="font-size:36px; display:block; margin-bottom:10px;"></i>
+          <p>No articles found. Try different keywords.</p>
+        </div>
+
+      </div><!-- /.container -->
+    </section>
   </main>
 
+  <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
+  <!-- Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-  
+
   <script>
     $(document).ready(function () {
-      $(".scrollspy").scrollSpy();
-      
+
       var activeFilter = 'all';
 
       function filterCards() {
@@ -572,21 +422,17 @@
         var count = 0;
 
         $('.blog-card').each(function () {
-          var tags   = $(this).data('tags') || '';
-          var text   = $(this).data('text') || '';
-          var title  = $(this).find('.card-title').text().toLowerCase();
+          var tags    = $(this).data('tags') || '';
+          var text    = $(this).data('text') || '';
+          var title   = $(this).find('.card-title').text().toLowerCase();
           var snippet = $(this).find('.card-snippet').text().toLowerCase();
-          var combined = (tags + ' ' + text + ' ' + title + ' ' + snippet).toLowerCase();
+          var all     = tags + ' ' + text + ' ' + title + ' ' + snippet;
 
-          var matchesFilter = (activeFilter === 'all') || tags.indexOf(activeFilter) !== -1;
-          var matchesSearch = (query === '') || combined.indexOf(query) !== -1;
+          var matchFilter = (activeFilter === 'all') || all.indexOf(activeFilter) !== -1;
+          var matchSearch = (query === '') || all.indexOf(query) !== -1;
 
-          if (matchesFilter && matchesSearch) {
-            $(this).show();
-            count++;
-          } else {
-            $(this).hide();
-          }
+          if (matchFilter && matchSearch) { $(this).show(); count++; }
+          else                            { $(this).hide(); }
         });
 
         if (count === 0) {
@@ -594,28 +440,22 @@
           $('#search-count').text('');
         } else {
           $('#no-results').hide();
-          if (query !== '') {
-            $('#search-count').text(count + ' article' + (count === 1 ? '' : 's') + ' found');
-          } else {
-            $('#search-count').text('');
-          }
+          $('#search-count').text(query ? count + ' article' + (count === 1 ? '' : 's') + ' found' : '');
         }
       }
 
-      // Live keyboard listener
-      $('#search-input').on('input', function () {
-        filterCards();
-      });
+      $('#search-input').on('input', filterCards);
 
-      // Filter chips trigger hooks
       $('.chip-btn').on('click', function () {
         $('.chip-btn').removeClass('active');
         $(this).addClass('active');
         activeFilter = $(this).data('filter');
         filterCards();
       });
+
+      $(".scrollspy").scrollSpy();
+      $(".button-collapse").sideNav({ menuWidth: 190, edge: "left", closeOnClick: true });
     });
   </script>
 </body>
-
 </html>
