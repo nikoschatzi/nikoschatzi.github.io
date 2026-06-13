@@ -6,13 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- Materialize CSS -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
-  <!-- Your existing CSS -->
   <link rel="stylesheet" href="/assets/css/style.css" />
 
   <title>Space Electronics Lab | Blog</title>
@@ -38,40 +34,33 @@
       border-right: 1px solid #e8e8e8;
       width: 240px;
       box-shadow: 2px 0 12px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
     }
 
-    .sidebar-brand {
-      padding: 28px 20px 20px;
+    .sidebar-header {
+      padding: 30px 20px 15px;
+      text-align: center;
       border-bottom: 1px solid #eeeeee;
     }
 
-    .sidebar-brand .brand-label {
-      font-family: 'JetBrains Mono', 'Courier New', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      color: #009688;
-      text-transform: uppercase;
+    /* Κυκλικό πλαίσιο για το ele.png */
+    .sidebar-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 10px;
       display: block;
-      line-height: 1.5;
+      border: 2px solid #e0e0e0;
     }
 
-    .sidebar-brand .brand-sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      color: #bdbdbd;
-      letter-spacing: 1px;
-      margin-top: 4px;
-      display: block;
-    }
-
-    /* Nav items — keep your teal style */
     .side-nav li a {
       font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 500;
       color: #555 !important;
-      padding: 10px 20px !important;
+      padding: 12px 20px !important;
       line-height: 1.5 !important;
       display: flex;
       align-items: center;
@@ -104,24 +93,56 @@
       color: #009688;
     }
 
+    /* Social & Coffee Links Sidebar Footer */
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 20px;
+      border-top: 1px solid #eeeeee;
+      text-align: center;
+    }
+
+    .sidebar-socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .sidebar-socials a {
+      color: #9e9e9e !important;
+      font-size: 16px;
+      transition: color 0.2s ease;
+    }
+
+    .sidebar-socials a:hover {
+      color: #009688 !important;
+    }
+
+    .coffee-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #4e342e !important;
+      background: #ffdd00;
+      padding: 6px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .coffee-btn:hover {
+      transform: scale(1.03);
+    }
+
     /* ─── PAGE HEADER ─── */
     .blog-header {
       background: #009688;
       padding: 40px 48px 36px;
       position: relative;
       overflow: hidden;
-    }
-
-    .blog-header::after {
-      content: '';
-      position: absolute;
-      right: -60px;
-      top: -60px;
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-      pointer-events: none;
     }
 
     .blog-header h3 {
@@ -135,8 +156,9 @@
 
     .blog-header p {
       color: rgba(255,255,255,0.72);
-      font-size: 14px;
+      font-size: 13px;
       margin: 0;
+      font-style: italic;
       font-weight: 400;
     }
 
@@ -259,7 +281,6 @@
       gap: 20px;
     }
 
-    /* Left accent line */
     .card-accent {
       width: 3px;
       min-height: 70px;
@@ -344,9 +365,7 @@
     .tag-cern       { background: #fff3e0; color: #e65100; }
     .tag-pcb        { background: #e0f7fa; color: #006064; }
     .tag-testing    { background: #fafafa; color: #424242; border: 1px solid #e0e0e0; }
-    .tag-firmware   { background: #f1f8e9; color: #33691e; }
 
-    /* ─── NO RESULTS ─── */
     .no-results {
       display: none;
       text-align: center;
@@ -360,34 +379,20 @@
       margin-bottom: 12px;
     }
 
-    .no-results p {
-      font-size: 15px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 992px) {
       main { padding-left: 0; }
-      .blog-header,
-      .search-wrap,
-      .filter-wrap,
-      .articles-wrap { padding-left: 20px; padding-right: 20px; }
+      .blog-header, .search-wrap, .filter-wrap, .articles-wrap { padding-left: 20px; padding-right: 20px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ─── SIDEBAR ─── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
 
-      <!-- Brand / Lab name -->
-      <li style="list-style:none; padding:0;">
-        <div class="sidebar-brand">
-          <span class="brand-label">Space Electronics Lab</span>
-          <span class="brand-sub">// hardware &amp; aerospace</span>
-        </div>
+      <li class="sidebar-header" style="list-style:none; padding:0;">
+        <img src="/assets/img/ele.png" class="sidebar-avatar" alt="Lab Icon">
       </li>
 
       <li>
@@ -395,50 +400,32 @@
           <i class="fa fa-th-large"></i> Portfolio
         </a>
       </li>
-      <li>
-        <a href="/index.html#about">
-          <i class="fa fa-user"></i> About
-        </a>
-      </li>
-      <li>
-        <a href="/index.html#education">
-          <i class="fa fa-graduation-cap"></i> Education
-        </a>
-      </li>
-      <li>
-        <a href="/index.html#experience">
-          <i class="fa fa-briefcase"></i> Experience
-        </a>
-      </li>
-      <li>
-        <a href="/index.html#projects">
-          <i class="fa fa-microchip"></i> Projects
-        </a>
-      </li>
       <li class="active-nav">
         <a href="/blog.html" style="pointer-events:none; cursor:default;">
           <i class="fa fa-rss"></i> Blog
         </a>
       </li>
-      <li>
-        <a href="/index.html#contact">
-          <i class="fa fa-envelope"></i> Contact
+
+      <div class="sidebar-footer">
+        <div class="sidebar-socials">
+          <a href="https://linkedin.com" target="_blank"><i class="fa fa-linkedin"></i></a>
+          <a href="https://github.com" target="_blank"><i class="fa fa-github"></i></a>
+        </div>
+        <a href="https://buymeacoffee.com" target="_blank" class="coffee-btn">
+          <i class="fa fa-coffee"></i> Buy me a coffee
         </a>
-      </li>
+      </div>
 
     </ul>
   </nav>
 
-  <!-- ─── MAIN CONTENT ─── -->
   <main>
 
-    <!-- Header -->
     <div class="blog-header">
-      <h3>Hardware Insights</h3>
-      <p>Technical articles on rad-hard design, aerospace electronics, and hardware engineering.</p>
+      <h3>Space Electronics Lab</h3>
+      <p>by Nikolaos Chatzipapas</p>
     </div>
 
-    <!-- Search -->
     <div class="search-wrap">
       <div class="search-box">
         <i class="fa fa-search search-icon"></i>
@@ -452,7 +439,6 @@
       <div id="search-count"></div>
     </div>
 
-    <!-- Filter chips -->
     <div class="filter-wrap">
       <div class="filter-chips">
         <div class="chip-btn active" data-filter="all">All</div>
@@ -465,13 +451,11 @@
       </div>
     </div>
 
-    <!-- Articles -->
     <div class="articles-wrap">
       <div id="article-list">
 
-        <!-- ARTICLE 1 -->
         <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html"
-           data-tags="components hardware"
+           data-tags="components hardware aerospace"
            data-text="how to read a transistor datasheet high-reliability applications parameters thermal characteristics safe operating area SOA absolute maximum ratings">
           <div class="blog-card-inner">
             <div class="card-accent"></div>
@@ -492,7 +476,6 @@
           </div>
         </a>
 
-        <!-- ARTICLE 2 -->
         <a class="blog-card" href="/blog/rad-tol-design-essentials.html"
            data-tags="radhard aerospace"
            data-text="radiation tolerant design sub-system components single event effects SEE total ionizing dose TID schematic mitigation mission-critical">
@@ -515,9 +498,8 @@
           </div>
         </a>
 
-        <!-- ARTICLE 3 -->
         <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html"
-           data-tags="simulation"
+           data-tags="simulation pcb"
            data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep prototype reliability simulation power supply">
           <div class="blog-card-inner">
             <div class="card-accent"></div>
@@ -538,73 +520,21 @@
           </div>
         </a>
 
-        <!-- ARTICLE 4 -->
-        <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
-           data-tags="cern radhard testing aerospace"
-           data-text="irradiation tests piezo valves CERN cryogenic 3 2 way solenoid replacement TID 100 kGy radiation campaign CC60">
-          <div class="blog-card-inner">
-            <div class="card-accent"></div>
-            <div class="card-body">
-              <div class="card-meta">
-                <span class="card-date">02 Apr 2026</span>
-                <span class="card-read-time">· 14 min read</span>
-              </div>
-              <div class="card-title">Irradiation Tests of 3/2-Way Piezo Valves at CERN</div>
-              <div class="card-snippet">
-                Summary of the CC60 campaign evaluating piezo actuators as drop-in solenoid replacements in cryogenic control valves under 100 kGy TID. Covers passive PCB design, Ultem 3D-printed housings, and test results.
-              </div>
-              <div class="card-tags">
-                <span class="tag-pill tag-cern">CERN</span>
-                <span class="tag-pill tag-radhard">Rad-Hard</span>
-                <span class="tag-pill tag-testing">Testing</span>
-              </div>
-            </div>
-          </div>
-        </a>
+      </div>
 
-        <!-- ARTICLE 5 -->
-        <a class="blog-card" href="/blog/python-hardware-test-automation.html"
-           data-tags="testing"
-           data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench firmware lab script">
-          <div class="blog-card-inner">
-            <div class="card-accent"></div>
-            <div class="card-body">
-              <div class="card-meta">
-                <span class="card-date">18 Mar 2026</span>
-                <span class="card-read-time">· 9 min read</span>
-              </div>
-              <div class="card-title">Automating Hardware Tests with Python and SCPI</div>
-              <div class="card-snippet">
-                How to script your bench — controlling oscilloscopes, power supplies, and DMMs over VISA/SCPI to run reproducible, logged measurements without clicking through menus.
-              </div>
-              <div class="card-tags">
-                <span class="tag-pill tag-testing">Testing</span>
-                <span class="tag-pill tag-firmware">Python</span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-      </div><!-- /#article-list -->
-
-      <!-- No results fallback -->
       <div class="no-results" id="no-results">
         <i class="fa fa-search"></i>
         <p>No articles match your search. Try different keywords.</p>
       </div>
 
-    </div><!-- /.articles-wrap -->
-
+    </div>
   </main>
 
-  <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 
   <script>
     $(document).ready(function () {
-
       var activeFilter = 'all';
 
       function filterCards() {
@@ -642,29 +572,17 @@
         }
       }
 
-      // Search input
       $('#search-input').on('input', function () {
         filterCards();
       });
 
-      // Filter chips
       $('.chip-btn').on('click', function () {
         $('.chip-btn').removeClass('active');
         $(this).addClass('active');
         activeFilter = $(this).data('filter');
         filterCards();
       });
-
-      // Materialize init
-      $(".scrollspy").scrollSpy();
-      $(".button-collapse").sideNav({
-        menuWidth: 240,
-        edge: "left",
-        closeOnClick: true
-      });
-
     });
   </script>
-
 </body>
 </html>
