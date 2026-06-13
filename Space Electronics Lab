@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Materialize - Compiled and minified CSS-->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
+  <!-- Font Awesome Icon - CSS-->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <!-- Custom Styles-->
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <title>Space Electronics Lab | Blog</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-126939217-2');
+  </script>
+
+  <style>
+    /* Αλλαγή φόντου - Κατάργηση καρέ, καθαρό off-white */
+    body {
+      background-color: #f8f9fa !important;
+      background-image: none !important;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    main {
+      padding-left: 240px;
+    }
+
+    /* Στυλ για το Tech Logo στο Sidebar */
+    .sidebar-logo {
+      padding: 30px 15px;
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #009688;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* Μοντέρνες Ενότητες (Filter Chips) */
+    .categories-container {
+      margin: 30px 0 20px 0;
+    }
+    .category-chip {
+      display: inline-block;
+      padding: 6px 18px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      background-color: #fff;
+      color: #555;
+      border: 1px solid #e0e0e0;
+      border-radius: 20px; /* Κυκλικές γωνίες */
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .category-chip:hover, .category-chip.active {
+      background-color: #009688;
+      color: #fff;
+      border-color: #009688;
+    }
+
+    /* Μοντέρνες Κάρτες Άρθρων με Στρογγυλεμένες Γωνίες */
+    .blog-card {
+      background: #ffffff;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 12px; /* Στρογγυλεμένες άκρες */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid #ebebeb;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .blog-meta {
+      font-size: 12px;
+      color: #9e9e9e;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .blog-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 5px 0 10px 0;
+    }
+    .blog-title a {
+      color: #212121;
+    }
+    .blog-title a:hover {
+      color: #009688;
+    }
+    .blog-snippet {
+      color: #616161;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .blog-tags .tag {
+      font-size: 11px;
+      background: #efebe9;
+      color: #4e342e;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-right: 5px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 992px) {
+      main { padding-left: 0px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  
+  <!-- Navigation Menu-->
+  <nav class="hide-on-small-only">
+    <ul class="side-nav fixed section table-of-contents">
+      
+      <!-- Αντί για φωτό: Clean Tech Title -->
+      <li class="sidebar-logo">
+        SPACE ELECTRONICS LAB
+      </li>
+
+      <li class="bold">
+        <a href="/index.html" class="waves-effect waves-dark grey-text text-darken-3">
+          <i class="mdi-action-dashboard small"></i><span>Portfolio / Projects</span>
+        </a>
+      </li>
+
+      <!-- Active Blog Menu Item -->
+      <li class="bold">
+        <a style="cursor: default;" class="waves-effect waves-dark teal-text">
+          <i class="mdi-action-trending-up small"></i><span><b>Blog</b></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content-->
+  <main>
+    <!-- Header Banner -->
+    <section class="section scrollspy" style="padding: 0;">
+      <h3 class="page-title white-text teal" style="margin-top: 0; padding: 30px;">Hardware Insights</h3>
+    </section>
+
+    <div class="container" style="width: 90%; max-width: 800px;">
+      
+      <!-- 2) Ενότητες (Filter Chips) -->
+      <div class="categories-container">
+        <div class="category-chip active">All</div>
+        <div class="category-chip">Aerospace</div>
+        <div class="category-chip">Rad-Hard Design</div>
+        <div class="category-chip">Components</div>
+        <div class="category-chip">Simulation</div>
+      </div>
+
+      <!-- 3) Λίστα Άρθρων (3 Παραδείγματα) -->
+      <div class="blog-list">
+        
+        <!-- Άρθρο 1 -->
+        <div class="blog-card">
+          <div class="blog-meta">June 12, 2026</div>
+          <div class="blog-title">
+            <a href="/blog/how-to-read-transistor-datasheet.html">How to Read a Transistor Datasheet for High-Reliability Applications</a>
+          </div>
+          <div class="blog-snippet">
+            A deep dive into parameters that recruiters and senior engineers look for. Beyond the absolute maximum ratings, we analyze thermal characteristics and safe operating areas (SOA).
+          </div>
+          <div class="blog-tags">
+            <span class="tag">#components</span>
+            <span class="tag">#hardware</span>
+          </div>
+        </div>
+
+        <!-- Άρθρο 2 -->
+        <div class="blog-card">
+          <div class="blog-meta">May 28, 2026</div>
+          <div class="blog-title">
+            <a href="/blog/rad-tol-design-essentials.html">Radiation-Tolerant Design of Sub-System Components</a>
+          </div>
+          <div class="blog-snippet">
+            Mitigating Single Event Effects (SEE) and Total Ionizing Dose (TID) at the schematic level. Essential design patterns for mission-critical aerospace electronics.
+          </div>
+          <div class="blog-tags">
+            <span class="tag">#rad-hard-design</span>
+            <span class="tag">#aerospace</span>
+          </div>
+        </div>
+
+        <!-- Άρθρο 3 -->
+        <div class="blog-card">
+          <div class="blog-meta">May 15, 2026</div>
+          <div class="blog-title">
+            <a href="/blog/ltspice-worst-case-analysis.html">Worst-Case Circuit Analysis Using LTspice Simulations</a>
+          </div>
+          <div class="blog-snippet">
+            How to set up Monte Carlo simulations and component tolerance sweeps to guarantee hardware reliability before manufacturing the first prototype.
+          </div>
+          <div class="blog-tags">
+            <span class="tag">#simulation</span>
+            <span class="tag">#ltspice</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- Materialize JavaScript-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+  
+  <script>
+    $(document).ready(function () {
+      // Απλό click handling για τα φίλτρα
+      $('.category-chip').click(function() {
+        $('.category-chip').removeClass('active');
+        $(this).addClass('active');
+      });
+    });
+  </script>
+</body>
+</html>
