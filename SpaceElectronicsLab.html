@@ -3,248 +3,668 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
-  <!-- End Google Tag Manager -->
-
-  <!-- Materialize - Compiled and minified CSS-->
+  <!-- Materialize CSS -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
-  <!-- Font Awesome Icon - CSS-->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <!-- Custom Styles-->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <!-- Your existing CSS -->
   <link rel="stylesheet" href="/assets/css/style.css" />
+
   <title>Space Electronics Lab | Blog</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-126939217-2');
-  </script>
-
   <style>
-    /* Αλλαγή φόντου - Κατάργηση καρέ, καθαρό off-white */
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; }
+
     body {
-      background-color: #f8f9fa !important;
+      background-color: #f5f6f7 !important;
       background-image: none !important;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      color: #1a1a1a;
     }
 
     main {
       padding-left: 240px;
     }
 
-    /* Στυλ για το Tech Logo στο Sidebar */
-    .sidebar-logo {
-      padding: 30px 15px;
-      text-align: center;
-      font-family: 'Courier New', Courier, monospace;
-      font-weight: bold;
-      font-size: 14px;
-      letter-spacing: 1px;
-      color: #009688;
-      border-bottom: 1px solid #e0e0e0;
+    /* ─── SIDEBAR ─── */
+    .side-nav {
+      background: #ffffff !important;
+      border-right: 1px solid #e8e8e8;
+      width: 240px;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.04);
     }
 
-    /* Μοντέρνες Ενότητες (Filter Chips) */
-    .categories-container {
-      margin: 30px 0 20px 0;
+    .sidebar-brand {
+      padding: 28px 20px 20px;
+      border-bottom: 1px solid #eeeeee;
     }
-    .category-chip {
-      display: inline-block;
-      padding: 6px 18px;
-      margin-right: 10px;
-      margin-bottom: 10px;
-      background-color: #fff;
-      color: #555;
-      border: 1px solid #e0e0e0;
-      border-radius: 20px; /* Κυκλικές γωνίες */
+
+    .sidebar-brand .brand-label {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: #009688;
+      text-transform: uppercase;
+      display: block;
+      line-height: 1.5;
+    }
+
+    .sidebar-brand .brand-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: #bdbdbd;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Nav items — keep your teal style */
+    .side-nav li a {
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
       font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .category-chip:hover, .category-chip.active {
-      background-color: #009688;
-      color: #fff;
-      border-color: #009688;
+      color: #555 !important;
+      padding: 10px 20px !important;
+      line-height: 1.5 !important;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 3px solid transparent;
+      transition: all 0.15s ease;
     }
 
-    /* Μοντέρνες Κάρτες Άρθρων με Στρογγυλεμένες Γωνίες */
-    .blog-card {
-      background: #ffffff;
-      padding: 25px;
-      margin-bottom: 20px;
-      border-radius: 12px; /* Στρογγυλεμένες άκρες */
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      border: 1px solid #ebebeb;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .side-nav li a:hover {
+      color: #009688 !important;
+      border-left-color: #009688;
+      background: #f0faf9;
     }
-    .blog-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+    .side-nav li.active-nav a {
+      color: #009688 !important;
+      border-left-color: #009688;
+      background: #e8f5f3;
+      font-weight: 600;
     }
-    .blog-meta {
-      font-size: 12px;
-      color: #9e9e9e;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+
+    .side-nav li a i {
+      font-size: 15px;
+      width: 18px;
+      text-align: center;
+      color: #bdbdbd;
     }
-    .blog-title {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 5px 0 10px 0;
-    }
-    .blog-title a {
-      color: #212121;
-    }
-    .blog-title a:hover {
+
+    .side-nav li.active-nav a i {
       color: #009688;
     }
-    .blog-snippet {
-      color: #616161;
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
-    .blog-tags .tag {
-      font-size: 11px;
-      background: #efebe9;
-      color: #4e342e;
-      padding: 3px 8px;
-      border-radius: 4px;
-      margin-right: 5px;
-      font-weight: bold;
+
+    /* ─── PAGE HEADER ─── */
+    .blog-header {
+      background: #009688;
+      padding: 40px 48px 36px;
+      position: relative;
+      overflow: hidden;
     }
 
+    .blog-header::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+
+    .blog-header h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 6px 0;
+      letter-spacing: -0.3px;
+    }
+
+    .blog-header p {
+      color: rgba(255,255,255,0.72);
+      font-size: 14px;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    /* ─── SEARCH BAR ─── */
+    .search-wrap {
+      padding: 28px 48px 0;
+      max-width: 860px;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 13px 20px 13px 46px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #333;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .search-box input:focus {
+      border-color: #009688;
+      box-shadow: 0 0 0 3px rgba(0,150,136,0.1);
+    }
+
+    .search-box input::placeholder {
+      color: #bdbdbd;
+    }
+
+    .search-box .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #bdbdbd;
+      font-size: 15px;
+      pointer-events: none;
+    }
+
+    #search-count {
+      font-size: 12px;
+      color: #9e9e9e;
+      margin-top: 10px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ─── FILTER CHIPS ─── */
+    .filter-wrap {
+      padding: 20px 48px 0;
+      max-width: 860px;
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 20px;
+      background: #fff;
+      color: #616161;
+      font-size: 12.5px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .chip-btn:hover {
+      border-color: #009688;
+      color: #009688;
+    }
+
+    .chip-btn.active {
+      background: #009688;
+      border-color: #009688;
+      color: #fff;
+    }
+
+    /* ─── ARTICLE CARDS ─── */
+    .articles-wrap {
+      padding: 24px 48px 48px;
+      max-width: 860px;
+    }
+
+    .blog-card {
+      background: #ffffff;
+      border: 1px solid #ebebeb;
+      border-radius: 14px;
+      padding: 26px 28px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      display: block;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .blog-card:hover {
+      box-shadow: 0 6px 20px rgba(0,150,136,0.1);
+      transform: translateY(-2px);
+    }
+
+    .blog-card-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    /* Left accent line */
+    .card-accent {
+      width: 3px;
+      min-height: 70px;
+      background: #009688;
+      border-radius: 4px;
+      flex-shrink: 0;
+      opacity: 0.25;
+      transition: opacity 0.2s ease;
+    }
+
+    .blog-card:hover .card-accent {
+      opacity: 1;
+    }
+
+    .card-body {
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-date {
+      font-size: 11.5px;
+      color: #9e9e9e;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card-read-time {
+      font-size: 11.5px;
+      color: #bdbdbd;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 8px 0;
+      line-height: 1.4;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.15s ease;
+    }
+
+    .blog-card:hover .card-title {
+      color: #009688;
+    }
+
+    .card-snippet {
+      font-size: 14px;
+      color: #757575;
+      line-height: 1.65;
+      margin-bottom: 14px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .tag-aerospace  { background: #e3f2fd; color: #1565c0; }
+    .tag-radhard    { background: #fce4ec; color: #ad1457; }
+    .tag-components { background: #f3e5f5; color: #6a1b9a; }
+    .tag-simulation { background: #e8f5e9; color: #2e7d32; }
+    .tag-cern       { background: #fff3e0; color: #e65100; }
+    .tag-pcb        { background: #e0f7fa; color: #006064; }
+    .tag-testing    { background: #fafafa; color: #424242; border: 1px solid #e0e0e0; }
+    .tag-firmware   { background: #f1f8e9; color: #33691e; }
+
+    /* ─── NO RESULTS ─── */
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      color: #bdbdbd;
+    }
+
+    .no-results i {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .no-results p {
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 992px) {
-      main { padding-left: 0px; }
+      main { padding-left: 0; }
+      .blog-header,
+      .search-wrap,
+      .filter-wrap,
+      .articles-wrap { padding-left: 20px; padding-right: 20px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  
-  <!-- Navigation Menu-->
+
+  <!-- ─── SIDEBAR ─── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
-      
-      <!-- Αντί για φωτό: Clean Tech Title -->
-      <li class="sidebar-logo">
-        SPACE ELECTRONICS LAB
+
+      <!-- Brand / Lab name -->
+      <li style="list-style:none; padding:0;">
+        <div class="sidebar-brand">
+          <span class="brand-label">Space Electronics Lab</span>
+          <span class="brand-sub">// hardware &amp; aerospace</span>
+        </div>
       </li>
 
-      <li class="bold">
-        <a href="/index.html" class="waves-effect waves-dark grey-text text-darken-3">
-          <i class="mdi-action-dashboard small"></i><span>Portfolio / Projects</span>
+      <li>
+        <a href="/index.html">
+          <i class="fa fa-th-large"></i> Portfolio
+        </a>
+      </li>
+      <li>
+        <a href="/index.html#about">
+          <i class="fa fa-user"></i> About
+        </a>
+      </li>
+      <li>
+        <a href="/index.html#education">
+          <i class="fa fa-graduation-cap"></i> Education
+        </a>
+      </li>
+      <li>
+        <a href="/index.html#experience">
+          <i class="fa fa-briefcase"></i> Experience
+        </a>
+      </li>
+      <li>
+        <a href="/index.html#projects">
+          <i class="fa fa-microchip"></i> Projects
+        </a>
+      </li>
+      <li class="active-nav">
+        <a href="/blog.html" style="pointer-events:none; cursor:default;">
+          <i class="fa fa-rss"></i> Blog
+        </a>
+      </li>
+      <li>
+        <a href="/index.html#contact">
+          <i class="fa fa-envelope"></i> Contact
         </a>
       </li>
 
-      <!-- Active Blog Menu Item -->
-      <li class="bold">
-        <a style="cursor: default;" class="waves-effect waves-dark teal-text">
-          <i class="mdi-action-trending-up small"></i><span><b>Blog</b></span>
-        </a>
-      </li>
     </ul>
   </nav>
 
-  <!-- Main Content-->
+  <!-- ─── MAIN CONTENT ─── -->
   <main>
-    <!-- Header Banner -->
-    <section class="section scrollspy" style="padding: 0;">
-      <h3 class="page-title white-text teal" style="margin-top: 0; padding: 30px;">Hardware Insights</h3>
-    </section>
 
-    <div class="container" style="width: 90%; max-width: 800px;">
-      
-      <!-- 2) Ενότητες (Filter Chips) -->
-      <div class="categories-container">
-        <div class="category-chip active">All</div>
-        <div class="category-chip">Aerospace</div>
-        <div class="category-chip">Rad-Hard Design</div>
-        <div class="category-chip">Components</div>
-        <div class="category-chip">Simulation</div>
+    <!-- Header -->
+    <div class="blog-header">
+      <h3>Hardware Insights</h3>
+      <p>Technical articles on rad-hard design, aerospace electronics, and hardware engineering.</p>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <div class="search-box">
+        <i class="fa fa-search search-icon"></i>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search articles — e.g. TID, LTspice, PCB, CERN …"
+          autocomplete="off"
+        />
       </div>
+      <div id="search-count"></div>
+    </div>
 
-      <!-- 3) Λίστα Άρθρων (3 Παραδείγματα) -->
-      <div class="blog-list">
-        
-        <!-- Άρθρο 1 -->
-        <div class="blog-card">
-          <div class="blog-meta">June 12, 2026</div>
-          <div class="blog-title">
-            <a href="/blog/how-to-read-transistor-datasheet.html">How to Read a Transistor Datasheet for High-Reliability Applications</a>
-          </div>
-          <div class="blog-snippet">
-            A deep dive into parameters that recruiters and senior engineers look for. Beyond the absolute maximum ratings, we analyze thermal characteristics and safe operating areas (SOA).
-          </div>
-          <div class="blog-tags">
-            <span class="tag">#components</span>
-            <span class="tag">#hardware</span>
-          </div>
-        </div>
-
-        <!-- Άρθρο 2 -->
-        <div class="blog-card">
-          <div class="blog-meta">May 28, 2026</div>
-          <div class="blog-title">
-            <a href="/blog/rad-tol-design-essentials.html">Radiation-Tolerant Design of Sub-System Components</a>
-          </div>
-          <div class="blog-snippet">
-            Mitigating Single Event Effects (SEE) and Total Ionizing Dose (TID) at the schematic level. Essential design patterns for mission-critical aerospace electronics.
-          </div>
-          <div class="blog-tags">
-            <span class="tag">#rad-hard-design</span>
-            <span class="tag">#aerospace</span>
-          </div>
-        </div>
-
-        <!-- Άρθρο 3 -->
-        <div class="blog-card">
-          <div class="blog-meta">May 15, 2026</div>
-          <div class="blog-title">
-            <a href="/blog/ltspice-worst-case-analysis.html">Worst-Case Circuit Analysis Using LTspice Simulations</a>
-          </div>
-          <div class="blog-snippet">
-            How to set up Monte Carlo simulations and component tolerance sweeps to guarantee hardware reliability before manufacturing the first prototype.
-          </div>
-          <div class="blog-tags">
-            <span class="tag">#simulation</span>
-            <span class="tag">#ltspice</span>
-          </div>
-        </div>
-
+    <!-- Filter chips -->
+    <div class="filter-wrap">
+      <div class="filter-chips">
+        <div class="chip-btn active" data-filter="all">All</div>
+        <div class="chip-btn" data-filter="aerospace">Aerospace</div>
+        <div class="chip-btn" data-filter="radhard">Rad-Hard Design</div>
+        <div class="chip-btn" data-filter="components">Components</div>
+        <div class="chip-btn" data-filter="simulation">Simulation</div>
+        <div class="chip-btn" data-filter="cern">CERN</div>
+        <div class="chip-btn" data-filter="testing">Testing</div>
       </div>
     </div>
+
+    <!-- Articles -->
+    <div class="articles-wrap">
+      <div id="article-list">
+
+        <!-- ARTICLE 1 -->
+        <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html"
+           data-tags="components hardware"
+           data-text="how to read a transistor datasheet high-reliability applications parameters thermal characteristics safe operating area SOA absolute maximum ratings">
+          <div class="blog-card-inner">
+            <div class="card-accent"></div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-date">12 Jun 2026</span>
+                <span class="card-read-time">· 8 min read</span>
+              </div>
+              <div class="card-title">How to Read a Transistor Datasheet for High-Reliability Applications</div>
+              <div class="card-snippet">
+                Beyond the absolute maximum ratings — a structured walkthrough of thermal characteristics, safe operating areas (SOA), and the derating rules that matter for aerospace hardware.
+              </div>
+              <div class="card-tags">
+                <span class="tag-pill tag-components">Components</span>
+                <span class="tag-pill tag-aerospace">Aerospace</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- ARTICLE 2 -->
+        <a class="blog-card" href="/blog/rad-tol-design-essentials.html"
+           data-tags="radhard aerospace"
+           data-text="radiation tolerant design sub-system components single event effects SEE total ionizing dose TID schematic mitigation mission-critical">
+          <div class="blog-card-inner">
+            <div class="card-accent"></div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-date">28 May 2026</span>
+                <span class="card-read-time">· 12 min read</span>
+              </div>
+              <div class="card-title">Radiation-Tolerant Design of Sub-System Electronics</div>
+              <div class="card-snippet">
+                Practical patterns for mitigating SEE and TID at schematic level — from bypass capacitor placement and redundancy to component screening strategies for mission-critical hardware.
+              </div>
+              <div class="card-tags">
+                <span class="tag-pill tag-radhard">Rad-Hard</span>
+                <span class="tag-pill tag-aerospace">Aerospace</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- ARTICLE 3 -->
+        <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html"
+           data-tags="simulation"
+           data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep prototype reliability simulation power supply">
+          <div class="blog-card-inner">
+            <div class="card-accent"></div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-date">15 May 2026</span>
+                <span class="card-read-time">· 10 min read</span>
+              </div>
+              <div class="card-title">Worst-Case Circuit Analysis with LTspice</div>
+              <div class="card-snippet">
+                Setting up Monte Carlo runs and tolerance sweeps to validate hardware reliability before the first PCB spin. Covers corner analysis for power regulators and analog signal chains.
+              </div>
+              <div class="card-tags">
+                <span class="tag-pill tag-simulation">Simulation</span>
+                <span class="tag-pill tag-pcb">PCB</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- ARTICLE 4 -->
+        <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
+           data-tags="cern radhard testing aerospace"
+           data-text="irradiation tests piezo valves CERN cryogenic 3 2 way solenoid replacement TID 100 kGy radiation campaign CC60">
+          <div class="blog-card-inner">
+            <div class="card-accent"></div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-date">02 Apr 2026</span>
+                <span class="card-read-time">· 14 min read</span>
+              </div>
+              <div class="card-title">Irradiation Tests of 3/2-Way Piezo Valves at CERN</div>
+              <div class="card-snippet">
+                Summary of the CC60 campaign evaluating piezo actuators as drop-in solenoid replacements in cryogenic control valves under 100 kGy TID. Covers passive PCB design, Ultem 3D-printed housings, and test results.
+              </div>
+              <div class="card-tags">
+                <span class="tag-pill tag-cern">CERN</span>
+                <span class="tag-pill tag-radhard">Rad-Hard</span>
+                <span class="tag-pill tag-testing">Testing</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- ARTICLE 5 -->
+        <a class="blog-card" href="/blog/python-hardware-test-automation.html"
+           data-tags="testing"
+           data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench firmware lab script">
+          <div class="blog-card-inner">
+            <div class="card-accent"></div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span class="card-date">18 Mar 2026</span>
+                <span class="card-read-time">· 9 min read</span>
+              </div>
+              <div class="card-title">Automating Hardware Tests with Python and SCPI</div>
+              <div class="card-snippet">
+                How to script your bench — controlling oscilloscopes, power supplies, and DMMs over VISA/SCPI to run reproducible, logged measurements without clicking through menus.
+              </div>
+              <div class="card-tags">
+                <span class="tag-pill tag-testing">Testing</span>
+                <span class="tag-pill tag-firmware">Python</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div><!-- /#article-list -->
+
+      <!-- No results fallback -->
+      <div class="no-results" id="no-results">
+        <i class="fa fa-search"></i>
+        <p>No articles match your search. Try different keywords.</p>
+      </div>
+
+    </div><!-- /.articles-wrap -->
+
   </main>
 
-  <!-- jQuery-->
+  <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- Materialize JavaScript-->
+  <!-- Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-  
+
   <script>
     $(document).ready(function () {
-      // Απλό click handling για τα φίλτρα
-      $('.category-chip').click(function() {
-        $('.category-chip').removeClass('active');
-        $(this).addClass('active');
+
+      var activeFilter = 'all';
+
+      function filterCards() {
+        var query = $('#search-input').val().toLowerCase().trim();
+        var count = 0;
+
+        $('.blog-card').each(function () {
+          var tags   = $(this).data('tags') || '';
+          var text   = $(this).data('text') || '';
+          var title  = $(this).find('.card-title').text().toLowerCase();
+          var snippet = $(this).find('.card-snippet').text().toLowerCase();
+          var combined = (tags + ' ' + text + ' ' + title + ' ' + snippet).toLowerCase();
+
+          var matchesFilter = (activeFilter === 'all') || tags.indexOf(activeFilter) !== -1;
+          var matchesSearch = (query === '') || combined.indexOf(query) !== -1;
+
+          if (matchesFilter && matchesSearch) {
+            $(this).show();
+            count++;
+          } else {
+            $(this).hide();
+          }
+        });
+
+        if (count === 0) {
+          $('#no-results').show();
+          $('#search-count').text('');
+        } else {
+          $('#no-results').hide();
+          if (query !== '') {
+            $('#search-count').text(count + ' article' + (count === 1 ? '' : 's') + ' found');
+          } else {
+            $('#search-count').text('');
+          }
+        }
+      }
+
+      // Search input
+      $('#search-input').on('input', function () {
+        filterCards();
       });
+
+      // Filter chips
+      $('.chip-btn').on('click', function () {
+        $('.chip-btn').removeClass('active');
+        $(this).addClass('active');
+        activeFilter = $(this).data('filter');
+        filterCards();
+      });
+
+      // Materialize init
+      $(".scrollspy").scrollSpy();
+      $(".button-collapse").sideNav({
+        menuWidth: 240,
+        edge: "left",
+        closeOnClick: true
+      });
+
     });
   </script>
+
 </body>
 </html>
