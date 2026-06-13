@@ -13,18 +13,13 @@
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
 
-  <!-- Materialize -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- Your existing CSS -->
   <link rel="stylesheet" href="/assets/css/style.css" />
 
   <title>Space Electronics Lab | Personal Blog</title>
 
-  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -34,6 +29,20 @@
   </script>
 
   <style>
+    /* ── Kill grid/card background from style.css ── */
+    body {
+      background-color: #f5f6f7 !important;
+      background-image: none !important;
+    }
+
+    /* Kill any inherited card/section backgrounds */
+    .section, .container, .flow-text,
+    section#about, main {
+      background: transparent !important;
+      background-image: none !important;
+      box-shadow: none !important;
+    }
+
     img {
       max-width: 100%;
       height: auto;
@@ -41,34 +50,99 @@
       margin: 0 auto;
     }
 
-    body {
-      background-color: #f5f6f7 !important;
-      background-image: none !important;
+    /* ── Sidebar profile pic — smaller, full visible ── */
+    .profile-pic {
+      width: 80px !important;
+      height: 80px !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      margin: 0 auto !important;
     }
 
-    /* ── Header titles ── */
+    .side-nav li.logo {
+      padding: 18px 0 10px !important;
+      text-align: center;
+    }
+
+    /* ── Buy Me a Coffee — no border, clean ── */
+    .bmc-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      margin: 6px 10px 0;
+      background: #fff9e6;
+      border-radius: 8px;
+      border: none !important;
+      outline: none !important;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333 !important;
+      text-decoration: none !important;
+      transition: background 0.15s;
+    }
+
+    .bmc-link:hover { background: #fff3cc; }
+
+    .bmc-link i {
+      font-size: 17px;
+      color: #e6a817;
+    }
+
+    /* ── Teal header ── */
+    h3.page-title {
+      margin-top: 0 !important;
+      padding: 26px 36px 22px !important;
+    }
+
     .blog-site-title {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       color: #ffffff;
-      margin: 0 0 4px 0;
+      margin: 0 0 3px 0;
       line-height: 1.2;
-      letter-spacing: -0.3px;
+    }
+
+    .blog-site-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      margin: 0 0 2px 0;
+      letter-spacing: 0.1px;
     }
 
     .blog-site-byline {
       font-family: 'Inter', sans-serif;
-      font-size: 12.5px;
+      font-size: 11.5px;
       font-weight: 400;
-      color: rgba(255,255,255,0.70);
+      color: rgba(255,255,255,0.55);
       margin: 0;
     }
 
-    /* ── Search bar — below header, max 500px ── */
+    /* ── Intro blurb ── */
+    .blog-intro {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+      margin: 22px 0 16px 0;
+      max-width: 600px;
+      background: transparent !important;
+    }
+
+    .blog-intro strong {
+      color: #009688;
+      font-weight: 600;
+    }
+
+    /* ── Search bar — compact, max 480px ── */
     .search-wrap {
-      max-width: 500px;
-      margin: 26px 0 18px 0;
+      max-width: 480px;
+      margin: 0 0 16px 0;
     }
 
     .search-box {
@@ -77,15 +151,16 @@
 
     .search-box input {
       width: 100%;
-      padding: 10px 16px 10px 40px;
+      padding: 8px 14px 8px 36px;
       border: 1.5px solid #d8d8d8;
-      border-radius: 8px;
+      border-radius: 7px;
       font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
+      font-size: 13px;
       color: #333;
       background: #fff;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
+      height: 36px;
     }
 
     .search-box input:focus {
@@ -97,40 +172,41 @@
 
     .search-icon {
       position: absolute;
-      left: 13px;
+      left: 12px;
       top: 50%;
       transform: translateY(-50%);
       color: #bdbdbd;
-      font-size: 13px;
+      font-size: 12px;
       pointer-events: none;
     }
 
     #search-count {
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       color: #9e9e9e;
-      margin-top: 7px;
+      margin-top: 5px;
     }
 
-    /* ── Filter chips ── */
+    /* ── Filter chips — shorter height ── */
     .filter-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 22px;
+      gap: 6px;
+      margin-bottom: 20px;
     }
 
     .chip-btn {
       display: inline-block;
-      padding: 5px 15px;
+      padding: 3px 13px;
       border: 1.5px solid #d8d8d8;
       border-radius: 20px;
       background: #fff;
       color: #666;
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
       cursor: pointer;
+      line-height: 1.6;
       transition: all 0.15s ease;
       user-select: none;
     }
@@ -138,24 +214,24 @@
     .chip-btn:hover  { border-color: #009688; color: #009688; }
     .chip-btn.active { background: #009688; border-color: #009688; color: #fff; }
 
-    /* ── Article cards ── */
+    /* ── Article cards — clean, no inherited box ── */
     .blog-card {
-      background: #fff;
-      border: 1px solid #e8e8e8;
-      border-left: 4px solid #009688;
-      border-radius: 10px;
-      padding: 20px 22px;
-      margin-bottom: 13px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      transition: box-shadow 0.2s, transform 0.18s;
-      display: block;
-      text-decoration: none;
-      color: inherit;
+      background: #fff !important;
+      border: 1px solid #e8e8e8 !important;
+      border-left: 4px solid #009688 !important;
+      border-radius: 10px !important;
+      padding: 18px 22px !important;
+      margin-bottom: 12px !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+      transition: box-shadow 0.2s, transform 0.18s !important;
+      display: block !important;
+      text-decoration: none !important;
+      color: inherit !important;
     }
 
     .blog-card:hover {
-      box-shadow: 0 4px 16px rgba(0,150,136,0.11);
-      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,150,136,0.11) !important;
+      transform: translateY(-2px) !important;
     }
 
     .card-meta {
@@ -163,16 +239,16 @@
       font-size: 11px;
       color: #9e9e9e;
       font-weight: 500;
-      letter-spacing: 0.4px;
-      margin-bottom: 5px;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
     }
 
     .card-title {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 18px;
+      font-size: 17.5px;
       font-weight: 700;
       color: #1a1a1a;
-      margin: 0 0 7px 0;
+      margin: 0 0 6px 0;
       line-height: 1.35;
       transition: color 0.15s;
     }
@@ -181,20 +257,20 @@
 
     .card-snippet {
       font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
+      font-size: 13px;
       color: #666;
       line-height: 1.65;
-      margin-bottom: 12px;
+      margin-bottom: 11px;
     }
 
-    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 
     .tag-pill {
       font-family: 'Inter', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 5px;
+      padding: 2px 8px;
+      border-radius: 4px;
       text-transform: uppercase;
       letter-spacing: 0.3px;
     }
@@ -208,44 +284,18 @@
     .tag-testing    { background: #fafafa; color: #424242; border: 1px solid #e0e0e0; }
     .tag-python     { background: #f1f8e9; color: #33691e; }
 
-    /* ── Buy Me a Coffee — sidebar link ── */
-    .bmc-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      margin: 8px 10px 0;
-      background: #fff;
-      border: 1.5px solid #e0e0e0;
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      color: #333 !important;
-      text-decoration: none;
-      transition: border-color 0.15s, background 0.15s;
-    }
-
-    .bmc-link:hover {
-      border-color: #009688;
-      background: #f0faf9;
-    }
-
-    .bmc-link i {
-      font-size: 18px;
-      color: #009688;
-    }
-
     /* ── No results ── */
     .no-results {
       display: none;
       text-align: center;
-      padding: 50px 20px;
+      padding: 40px 20px;
       color: #bdbdbd;
       font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      background: transparent !important;
     }
 
-    /* ── Responsive (same as your site) ── */
+    /* ── Responsive ── */
     @media (max-width: 992px) {
       main { padding-left: 0; padding-top: 0; }
       ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
@@ -253,8 +303,6 @@
       nav a.button-collapse, nav a.button-collapse i { color: #009688; height: 56px; line-height: 56px; }
       h3 { padding: 20px 30px; margin-bottom: 40px; }
       .container { margin: 0 auto; }
-      nav.hide-on-large.only.trigger { display: block; position: fixed; top: 0; z-index: 2; }
-      .bmc-link { margin: 8px 6px 0; }
     }
   </style>
 </head>
@@ -263,25 +311,22 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- ── SIDEBAR — exact same structure as your project pages ── -->
+  <!-- ── SIDEBAR ── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
 
       <li class="logo">
-        <a id="logo-container" aria-label="Navigate to the beginning of the page"
-           class="brand-logo grey-blue-text">
+        <a id="logo-container" class="brand-logo grey-blue-text">
           <img src="/assets/img/ele.png" class="circle img-responsive profile-pic" alt="Space Electronics Lab" />
         </a>
       </li>
 
-      <!-- Personal Blog link → back to main site -->
       <li class="bold">
         <a href="https://nikoschatzi.github.io/" class="waves-effect waves-dark teal-text">
           <i class="mdi-action-home small"></i><span>Personal Blog</span>
         </a>
       </li>
 
-      <!-- Buy Me a Coffee -->
       <li style="list-style:none; padding:0;">
         <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
           <i class="fa fa-coffee"></i>
@@ -292,24 +337,33 @@
     </ul>
   </nav>
 
-  <!-- ── MAIN — same pattern as CC60 / NanoFIP pages ── -->
+  <!-- ── MAIN ── -->
   <main>
     <section id="about" class="section scrollspy">
 
-      <!-- Teal header — same class as all your pages -->
-      <h3 class="page-title white-text teal" style="padding: 28px 40px; margin-top: 0;">
+      <!-- Teal header -->
+      <h3 class="page-title white-text teal">
         <p class="blog-site-title">Space Electronics Lab</p>
+        <p class="blog-site-sub">Precision hardware, from cryogenics to orbit.</p>
         <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
       </h3>
 
       <div class="container flow-text">
 
-        <!-- Search — max 500px, left-aligned -->
+        <!-- Intro blurb -->
+        <p class="blog-intro">
+          I'm a <strong>hardware engineer</strong> specialising in aerospace and radiation-tolerant electronics,
+          with over 5 years of experience across <strong>CERN</strong> and <strong>Safran</strong>.
+          This blog is where I share deep-dive technical articles on hardware design — the kind of detail
+          that doesn't fit in a datasheet.
+        </p>
+
+        <!-- Search -->
         <div class="search-wrap">
           <div class="search-box">
             <i class="fa fa-search search-icon"></i>
             <input type="text" id="search-input"
-              placeholder="Search — e.g. TID, LTspice, cryogenic …"
+              placeholder="Search — e.g. transistor, Matlab, radiation"
               autocomplete="off" />
           </div>
           <div id="search-count"></div>
@@ -326,7 +380,7 @@
           <div class="chip-btn" data-filter="testing">Testing</div>
         </div>
 
-        <!-- ── Articles ── -->
+        <!-- Articles -->
         <div id="article-list">
 
           <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
@@ -400,20 +454,18 @@
             </div>
           </a>
 
-        </div><!-- /#article-list -->
-
-        <div class="no-results" id="no-results">
-          <i class="fa fa-search" style="font-size:32px; display:block; margin-bottom:10px;"></i>
-          <p>No articles found. Try different keywords.</p>
         </div>
 
-      </div><!-- /.container -->
+        <div class="no-results" id="no-results">
+          <i class="fa fa-search" style="font-size:28px; display:block; margin-bottom:8px;"></i>
+          No articles found. Try different keywords.
+        </div>
+
+      </div>
     </section>
   </main>
 
-  <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <!-- Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
 
   <script>
@@ -425,11 +477,12 @@
         var count = 0;
 
         $('.blog-card').each(function () {
-          var tags    = $(this).data('tags') || '';
-          var text    = $(this).data('text') || '';
-          var title   = $(this).find('.card-title').text().toLowerCase();
-          var snippet = $(this).find('.card-snippet').text().toLowerCase();
-          var all     = tags + ' ' + text + ' ' + title + ' ' + snippet;
+          var all = [
+            $(this).data('tags') || '',
+            $(this).data('text') || '',
+            $(this).find('.card-title').text().toLowerCase(),
+            $(this).find('.card-snippet').text().toLowerCase()
+          ].join(' ');
 
           var matchFilter = (activeFilter === 'all') || all.indexOf(activeFilter) !== -1;
           var matchSearch = (query === '') || all.indexOf(query) !== -1;
