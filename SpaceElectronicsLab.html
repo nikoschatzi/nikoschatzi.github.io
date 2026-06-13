@@ -28,7 +28,7 @@
       padding-left: 240px;
     }
 
-    /* ─── SIDEBAR (PRESERVED FROM ORIGINAL PORTFOLIO) ─── */
+    /* ─── SIDEBAR (PRESERVED ORIGINAL STYLE) ─── */
     .side-nav.fixed {
       background: #ffffff !important;
       border-right: 1px solid #e8e8e8;
@@ -142,7 +142,7 @@
       color: #009688 !important;
     }
 
-    /* Buy Me A Coffee Styled cleanly to match modern UI */
+    /* Buy Me A Coffee Button styled natively */
     .coffee-btn {
       display: inline-flex;
       align-items: center;
@@ -422,7 +422,7 @@
 
       <li class="sidebar-header-box">
         <div class="avatar-container">
-          <img src="/assets/img/ele.png" alt="Lab Logo Thumbnail">
+          <img src="/assets/img/ele.png" alt="Lab Logo">
         </div>
       </li>
 
@@ -431,34 +431,9 @@
           <i class="fa fa-th-large"></i> Portfolio
         </a>
       </li>
-      <li>
-        <a href="/index.html#about">
-          <i class="fa fa-user"></i> About
-        </a>
-      </li>
-      <li>
-        <a href="/index.html#education">
-          <i class="fa fa-graduation-cap"></i> Education
-        </a>
-      </li>
-      <li>
-        <a href="/index.html#experience">
-          <i class="fa fa-briefcase"></i> Experience
-        </a>
-      </li>
-      <li>
-        <a href="/index.html#projects">
-          <i class="fa fa-microchip"></i> Projects
-        </a>
-      </li>
       <li class="active-nav">
         <a href="/blog.html" style="pointer-events:none; cursor:default;">
           <i class="fa fa-rss"></i> Blog
-        </a>
-      </li>
-      <li>
-        <a href="/index.html#contact">
-          <i class="fa fa-envelope"></i> Contact
         </a>
       </li>
 
@@ -628,12 +603,12 @@
         }
       }
 
-      // Live keyboard listener
+      // Live search trigger
       $('#search-input').on('input', function () {
         filterCards();
       });
 
-      // Filter chips trigger hooks
+      // Filter chips
       $('.chip-btn').on('click', function () {
         $('.chip-btn').removeClass('active');
         $(this).addClass('active');
