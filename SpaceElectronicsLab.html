@@ -12,18 +12,17 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
-  <!-- End Google Tag Manager -->
 
   <!-- Materialize -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <!-- Google Fonts: Source Serif 4 for headings (editorial, engineering-magazine feel), Inter for body -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- Custom Styles (same as your existing site) -->
+  <!-- Your existing CSS -->
   <link rel="stylesheet" href="/assets/css/style.css" />
 
-  <title>Space Electronics Lab | Blog</title>
+  <title>Space Electronics Lab | Personal Blog</title>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
@@ -35,7 +34,6 @@
   </script>
 
   <style>
-    /* ── same overflow fix as your existing pages ── */
     img {
       max-width: 100%;
       height: auto;
@@ -43,16 +41,15 @@
       margin: 0 auto;
     }
 
-    /* ── body: clean background, no grid ── */
     body {
       background-color: #f5f6f7 !important;
       background-image: none !important;
     }
 
-    /* ── typography for blog only ── */
+    /* ── Header titles ── */
     .blog-site-title {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 700;
       color: #ffffff;
       margin: 0 0 4px 0;
@@ -62,16 +59,16 @@
 
     .blog-site-byline {
       font-family: 'Inter', sans-serif;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 400;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.70);
       margin: 0;
-      letter-spacing: 0.2px;
     }
 
-    /* ── search bar ── */
+    /* ── Search bar — below header, max 500px ── */
     .search-wrap {
-      margin: 28px 0 10px 0;
+      max-width: 500px;
+      margin: 26px 0 18px 0;
     }
 
     .search-box {
@@ -80,11 +77,11 @@
 
     .search-box input {
       width: 100%;
-      padding: 11px 16px 11px 42px;
+      padding: 10px 16px 10px 40px;
       border: 1.5px solid #d8d8d8;
       border-radius: 8px;
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #333;
       background: #fff;
       outline: none;
@@ -100,11 +97,11 @@
 
     .search-icon {
       position: absolute;
-      left: 14px;
+      left: 13px;
       top: 50%;
       transform: translateY(-50%);
       color: #bdbdbd;
-      font-size: 14px;
+      font-size: 13px;
       pointer-events: none;
     }
 
@@ -112,15 +109,15 @@
       font-family: 'Inter', sans-serif;
       font-size: 12px;
       color: #9e9e9e;
-      margin-top: 8px;
+      margin-top: 7px;
     }
 
-    /* ── filter chips ── */
+    /* ── Filter chips ── */
     .filter-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .chip-btn {
@@ -131,51 +128,51 @@
       background: #fff;
       color: #666;
       font-family: 'Inter', sans-serif;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 500;
       cursor: pointer;
       transition: all 0.15s ease;
       user-select: none;
     }
 
-    .chip-btn:hover    { border-color: #009688; color: #009688; }
-    .chip-btn.active   { background: #009688; border-color: #009688; color: #fff; }
+    .chip-btn:hover  { border-color: #009688; color: #009688; }
+    .chip-btn.active { background: #009688; border-color: #009688; color: #fff; }
 
-    /* ── article cards ── */
+    /* ── Article cards ── */
     .blog-card {
       background: #fff;
       border: 1px solid #e8e8e8;
-      border-radius: 12px;
-      padding: 22px 24px;
-      margin-bottom: 14px;
+      border-left: 4px solid #009688;
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin-bottom: 13px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-      transition: box-shadow 0.2s, transform 0.2s;
+      transition: box-shadow 0.2s, transform 0.18s;
       display: block;
       text-decoration: none;
       color: inherit;
-      border-left: 4px solid #009688;
     }
 
     .blog-card:hover {
-      box-shadow: 0 4px 16px rgba(0,150,136,0.12);
+      box-shadow: 0 4px 16px rgba(0,150,136,0.11);
       transform: translateY(-2px);
     }
 
     .card-meta {
       font-family: 'Inter', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       color: #9e9e9e;
       font-weight: 500;
       letter-spacing: 0.4px;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .card-title {
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 700;
       color: #1a1a1a;
-      margin: 0 0 8px 0;
+      margin: 0 0 7px 0;
       line-height: 1.35;
       transition: color 0.15s;
     }
@@ -184,7 +181,7 @@
 
     .card-snippet {
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #666;
       line-height: 1.65;
       margin-bottom: 12px;
@@ -211,27 +208,35 @@
     .tag-testing    { background: #fafafa; color: #424242; border: 1px solid #e0e0e0; }
     .tag-python     { background: #f1f8e9; color: #33691e; }
 
-    /* ── Buy Me a Coffee sidebar link ── */
+    /* ── Buy Me a Coffee — sidebar link ── */
     .bmc-link {
       display: flex;
       align-items: center;
-      gap: 9px;
-      margin: 16px 16px 0;
-      padding: 9px 14px;
-      background: #FFDD00;
+      gap: 8px;
+      padding: 10px 16px;
+      margin: 8px 10px 0;
+      background: #fff;
+      border: 1.5px solid #e0e0e0;
       border-radius: 8px;
       font-family: 'Inter', sans-serif;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: #1a1a1a !important;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333 !important;
       text-decoration: none;
-      transition: opacity 0.15s;
+      transition: border-color 0.15s, background 0.15s;
     }
 
-    .bmc-link:hover { opacity: 0.85; }
-    .bmc-link img   { width: 20px; height: 20px; margin: 0; display: inline; }
+    .bmc-link:hover {
+      border-color: #009688;
+      background: #f0faf9;
+    }
 
-    /* ── no results ── */
+    .bmc-link i {
+      font-size: 18px;
+      color: #009688;
+    }
+
+    /* ── No results ── */
     .no-results {
       display: none;
       text-align: center;
@@ -240,7 +245,7 @@
       font-family: 'Inter', sans-serif;
     }
 
-    /* ── same responsive as your site ── */
+    /* ── Responsive (same as your site) ── */
     @media (max-width: 992px) {
       main { padding-left: 0; padding-top: 0; }
       ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
@@ -249,20 +254,19 @@
       h3 { padding: 20px 30px; margin-bottom: 40px; }
       .container { margin: 0 auto; }
       nav.hide-on-large.only.trigger { display: block; position: fixed; top: 0; z-index: 2; }
+      .bmc-link { margin: 8px 6px 0; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- ── SIDEBAR — same structure as your project pages ── -->
+  <!-- ── SIDEBAR — exact same structure as your project pages ── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
 
-      <!-- Profile image — changed to ele.png -->
       <li class="logo">
         <a id="logo-container" aria-label="Navigate to the beginning of the page"
            class="brand-logo grey-blue-text">
@@ -270,42 +274,42 @@
         </a>
       </li>
 
-      <!-- Blog link -->
+      <!-- Personal Blog link → back to main site -->
       <li class="bold">
-        <a style="pointer-events: none; cursor: default;" class="waves-effect waves-dark teal-text">
-          <i class="mdi-action-trending-up small"></i><span><b>Blog</b></span>
+        <a href="https://nikoschatzi.github.io/" class="waves-effect waves-dark teal-text">
+          <i class="mdi-action-home small"></i><span>Personal Blog</span>
+        </a>
+      </li>
+
+      <!-- Buy Me a Coffee -->
+      <li style="list-style:none; padding:0;">
+        <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
+          <i class="fa fa-coffee"></i>
+          Buy me a coffee
         </a>
       </li>
 
     </ul>
   </nav>
 
-  <!-- Buy Me a Coffee — below nav, still inside sidebar area -->
-  <div style="position:fixed; left:0; bottom:24px; width:240px; z-index:999;">
-    <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
-      <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" />
-      Buy me a coffee
-    </a>
-  </div>
-
-  <!-- ── MAIN CONTENT — same pattern as your project pages ── -->
+  <!-- ── MAIN — same pattern as CC60 / NanoFIP pages ── -->
   <main>
-
-    <!-- Teal header — same class as all your pages -->
     <section id="about" class="section scrollspy">
-      <h3 class="page-title white-text teal" style="padding: 30px 40px; margin-top: 0;">
+
+      <!-- Teal header — same class as all your pages -->
+      <h3 class="page-title white-text teal" style="padding: 28px 40px; margin-top: 0;">
         <p class="blog-site-title">Space Electronics Lab</p>
         <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
       </h3>
 
       <div class="container flow-text">
 
-        <!-- Search -->
+        <!-- Search — max 500px, left-aligned -->
         <div class="search-wrap">
           <div class="search-box">
             <i class="fa fa-search search-icon"></i>
             <input type="text" id="search-input"
-              placeholder="Search — e.g. TID, LTspice, cryogenic, CERN …"
+              placeholder="Search — e.g. TID, LTspice, cryogenic …"
               autocomplete="off" />
           </div>
           <div id="search-count"></div>
@@ -322,7 +326,7 @@
           <div class="chip-btn" data-filter="testing">Testing</div>
         </div>
 
-        <!-- Article list -->
+        <!-- ── Articles ── -->
         <div id="article-list">
 
           <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
@@ -399,7 +403,7 @@
         </div><!-- /#article-list -->
 
         <div class="no-results" id="no-results">
-          <i class="fa fa-search" style="font-size:36px; display:block; margin-bottom:10px;"></i>
+          <i class="fa fa-search" style="font-size:32px; display:block; margin-bottom:10px;"></i>
           <p>No articles found. Try different keywords.</p>
         </div>
 
@@ -414,7 +418,6 @@
 
   <script>
     $(document).ready(function () {
-
       var activeFilter = 'all';
 
       function filterCards() {
