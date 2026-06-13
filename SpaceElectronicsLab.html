@@ -29,18 +29,10 @@
   </script>
 
   <style>
-    /* ── Kill grid/card background from style.css ── */
+    /* ── Kill grid background from style.css ── */
     body {
       background-color: #f5f6f7 !important;
       background-image: none !important;
-    }
-
-    /* Kill any inherited card/section backgrounds */
-    .section, .container, .flow-text,
-    section#about, main {
-      background: transparent !important;
-      background-image: none !important;
-      box-shadow: none !important;
     }
 
     img {
@@ -50,22 +42,7 @@
       margin: 0 auto;
     }
 
-    /* ── Sidebar profile pic — smaller, full visible ── */
-    .profile-pic {
-      width: 80px !important;
-      height: 80px !important;
-      object-fit: cover !important;
-      object-position: center !important;
-      display: block !important;
-      margin: 0 auto !important;
-    }
-
-    .side-nav li.logo {
-      padding: 18px 0 10px !important;
-      text-align: center;
-    }
-
-    /* ── Buy Me a Coffee — no border, clean ── */
+    /* ── Buy Me a Coffee — no border ── */
     .bmc-link {
       display: flex;
       align-items: center;
@@ -83,20 +60,14 @@
       text-decoration: none !important;
       transition: background 0.15s;
     }
-
     .bmc-link:hover { background: #fff3cc; }
-
-    .bmc-link i {
-      font-size: 17px;
-      color: #e6a817;
-    }
+    .bmc-link i { font-size: 17px; color: #e6a817; }
 
     /* ── Teal header ── */
     h3.page-title {
       margin-top: 0 !important;
       padding: 26px 36px 22px !important;
     }
-
     .blog-site-title {
       font-family: 'Source Serif 4', Georgia, serif;
       font-size: 24px;
@@ -105,20 +76,15 @@
       margin: 0 0 3px 0;
       line-height: 1.2;
     }
-
     .blog-site-sub {
       font-family: 'Inter', sans-serif;
       font-size: 12px;
-      font-weight: 400;
       color: rgba(255,255,255,0.65);
       margin: 0 0 2px 0;
-      letter-spacing: 0.1px;
     }
-
     .blog-site-byline {
       font-family: 'Inter', sans-serif;
       font-size: 11.5px;
-      font-weight: 400;
       color: rgba(255,255,255,0.55);
       margin: 0;
     }
@@ -131,24 +97,15 @@
       line-height: 1.7;
       margin: 22px 0 16px 0;
       max-width: 600px;
-      background: transparent !important;
     }
+    .blog-intro strong { color: #009688; font-weight: 600; }
 
-    .blog-intro strong {
-      color: #009688;
-      font-weight: 600;
-    }
-
-    /* ── Search bar — compact, max 480px ── */
+    /* ── Search bar ── */
     .search-wrap {
       max-width: 480px;
       margin: 0 0 16px 0;
     }
-
-    .search-box {
-      position: relative;
-    }
-
+    .search-box { position: relative; }
     .search-box input {
       width: 100%;
       padding: 8px 14px 8px 36px;
@@ -159,17 +116,14 @@
       color: #333;
       background: #fff;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
       height: 36px;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-
     .search-box input:focus {
       border-color: #009688;
       box-shadow: 0 0 0 3px rgba(0,150,136,0.1);
     }
-
     .search-box input::placeholder { color: #bdbdbd; }
-
     .search-icon {
       position: absolute;
       left: 12px;
@@ -179,7 +133,6 @@
       font-size: 12px;
       pointer-events: none;
     }
-
     #search-count {
       font-family: 'Inter', sans-serif;
       font-size: 11.5px;
@@ -187,14 +140,13 @@
       margin-top: 5px;
     }
 
-    /* ── Filter chips — shorter height ── */
+    /* ── Filter chips ── */
     .filter-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       margin-bottom: 20px;
     }
-
     .chip-btn {
       display: inline-block;
       padding: 3px 13px;
@@ -210,30 +162,27 @@
       transition: all 0.15s ease;
       user-select: none;
     }
-
     .chip-btn:hover  { border-color: #009688; color: #009688; }
     .chip-btn.active { background: #009688; border-color: #009688; color: #fff; }
 
-    /* ── Article cards — clean, no inherited box ── */
+    /* ── Article cards ── */
     .blog-card {
-      background: #fff !important;
-      border: 1px solid #e8e8e8 !important;
-      border-left: 4px solid #009688 !important;
-      border-radius: 10px !important;
-      padding: 18px 22px !important;
-      margin-bottom: 12px !important;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
-      transition: box-shadow 0.2s, transform 0.18s !important;
-      display: block !important;
-      text-decoration: none !important;
-      color: inherit !important;
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-left: 4px solid #009688;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.18s;
+      display: block;
+      text-decoration: none;
+      color: inherit;
     }
-
     .blog-card:hover {
-      box-shadow: 0 4px 14px rgba(0,150,136,0.11) !important;
-      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 14px rgba(0,150,136,0.11);
+      transform: translateY(-2px);
     }
-
     .card-meta {
       font-family: 'Inter', sans-serif;
       font-size: 11px;
@@ -242,7 +191,6 @@
       letter-spacing: 0.3px;
       margin-bottom: 4px;
     }
-
     .card-title {
       font-family: 'Source Serif 4', Georgia, serif;
       font-size: 17.5px;
@@ -252,9 +200,7 @@
       line-height: 1.35;
       transition: color 0.15s;
     }
-
     .blog-card:hover .card-title { color: #009688; }
-
     .card-snippet {
       font-family: 'Inter', sans-serif;
       font-size: 13px;
@@ -262,9 +208,7 @@
       line-height: 1.65;
       margin-bottom: 11px;
     }
-
     .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-
     .tag-pill {
       font-family: 'Inter', sans-serif;
       font-size: 10.5px;
@@ -274,7 +218,6 @@
       text-transform: uppercase;
       letter-spacing: 0.3px;
     }
-
     .tag-aerospace  { background: #e3f2fd; color: #1565c0; }
     .tag-radhard    { background: #fce4ec; color: #ad1457; }
     .tag-components { background: #f3e5f5; color: #6a1b9a; }
@@ -292,17 +235,24 @@
       color: #bdbdbd;
       font-family: 'Inter', sans-serif;
       font-size: 14px;
-      background: transparent !important;
     }
 
-    /* ── Responsive ── */
+    /* ── Responsive (same as your site) ── */
     @media (max-width: 992px) {
-      main { padding-left: 0; padding-top: 0; }
+      main { padding-left: 0px; padding-top: 0px; }
       ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
       nav { background: #fff; height: 64px; position: absolute; }
       nav a.button-collapse, nav a.button-collapse i { color: #009688; height: 56px; line-height: 56px; }
       h3 { padding: 20px 30px; margin-bottom: 40px; }
       .container { margin: 0 auto; }
+      nav.hide-on-large.only.trigger { display: block; position: fixed; top: 0; z-index: 2; }
+      .name-title { display: block; height: 100%; padding-top: 0px; text-align: center; width: 100%; position: absolute; }
+      .name-title>span, .name-title>a { position: relative; line-height: 20px; }
+      .name-title a { font-size: 22px; display: block; }
+      .name-title span { display: block; font-size: 14px; }
+      h3, .container { position: relative; top: 0px; }
+      section#intro { margin-bottom: -64px; }
+      .card .role { position: relative; right: initial; top: initial; }
     }
   </style>
 </head>
@@ -311,13 +261,14 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- ── SIDEBAR ── -->
+  <!-- ── SIDEBAR — exact copy of your working project pages ── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
 
       <li class="logo">
-        <a id="logo-container" class="brand-logo grey-blue-text">
-          <img src="/assets/img/ele.png" class="circle img-responsive profile-pic" alt="Space Electronics Lab" />
+        <a id="logo-container" aria-label="Navigate to the beginning of the page"
+          class="brand-logo grey-blue-text">
+          <img src="/assets/img/ele.png" class="circle img-responsive profile-pic" alt="avatar">
         </a>
       </li>
 
@@ -341,7 +292,6 @@
   <main>
     <section id="about" class="section scrollspy">
 
-      <!-- Teal header -->
       <h3 class="page-title white-text teal">
         <p class="blog-site-title">Space Electronics Lab</p>
         <p class="blog-site-sub">Precision hardware, from cryogenics to orbit.</p>
@@ -350,7 +300,6 @@
 
       <div class="container flow-text">
 
-        <!-- Intro blurb -->
         <p class="blog-intro">
           I'm a <strong>hardware engineer</strong> specialising in aerospace and radiation-tolerant electronics,
           with over 5 years of experience across <strong>CERN</strong> and <strong>Safran</strong>.
@@ -358,7 +307,6 @@
           that doesn't fit in a datasheet.
         </p>
 
-        <!-- Search -->
         <div class="search-wrap">
           <div class="search-box">
             <i class="fa fa-search search-icon"></i>
@@ -369,7 +317,6 @@
           <div id="search-count"></div>
         </div>
 
-        <!-- Filter chips -->
         <div class="filter-chips">
           <div class="chip-btn active" data-filter="all">All</div>
           <div class="chip-btn" data-filter="aerospace">Aerospace</div>
@@ -380,7 +327,6 @@
           <div class="chip-btn" data-filter="testing">Testing</div>
         </div>
 
-        <!-- Articles -->
         <div id="article-list">
 
           <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
@@ -388,9 +334,7 @@
              data-text="irradiation piezo valves CERN cryogenic 3 2 way solenoid replacement TID 100 kGy radiation campaign CC60 cobalt passive PCB Ultem">
             <div class="card-meta">02 Apr 2026 &nbsp;·&nbsp; 14 min read</div>
             <div class="card-title">Irradiation Tests of 3/2-Way Piezo Valves at CERN</div>
-            <div class="card-snippet">
-              Results from the CC60 campaign evaluating piezo actuators as drop-in solenoid replacements in cryogenic control valves under 100 kGy TID. Covers passive PCB design, Ultem 3D-printed housings, and full test results.
-            </div>
+            <div class="card-snippet">Results from the CC60 campaign evaluating piezo actuators as drop-in solenoid replacements in cryogenic control valves under 100 kGy TID. Covers passive PCB design, Ultem 3D-printed housings, and full test results.</div>
             <div class="card-tags">
               <span class="tag-pill tag-cern">CERN</span>
               <span class="tag-pill tag-radhard">Rad-Hard</span>
@@ -403,9 +347,7 @@
              data-text="transistor datasheet high reliability parameters thermal characteristics safe operating area SOA absolute maximum ratings derating aerospace">
             <div class="card-meta">12 Jun 2026 &nbsp;·&nbsp; 8 min read</div>
             <div class="card-title">How to Read a Transistor Datasheet for High-Reliability Applications</div>
-            <div class="card-snippet">
-              Beyond absolute maximum ratings — thermal characteristics, safe operating areas (SOA), and derating rules that matter when selecting components for aerospace hardware.
-            </div>
+            <div class="card-snippet">Beyond absolute maximum ratings — thermal characteristics, safe operating areas (SOA), and derating rules that matter when selecting components for aerospace hardware.</div>
             <div class="card-tags">
               <span class="tag-pill tag-components">Components</span>
               <span class="tag-pill tag-aerospace">Aerospace</span>
@@ -417,9 +359,7 @@
              data-text="radiation tolerant design sub-system components single event effects SEE total ionizing dose TID schematic mitigation mission-critical screening">
             <div class="card-meta">28 May 2026 &nbsp;·&nbsp; 12 min read</div>
             <div class="card-title">Radiation-Tolerant Design of Sub-System Electronics</div>
-            <div class="card-snippet">
-              Practical patterns for mitigating SEE and TID at schematic level — redundancy, bypass capacitor placement, and component screening strategies for mission-critical hardware.
-            </div>
+            <div class="card-snippet">Practical patterns for mitigating SEE and TID at schematic level — redundancy, bypass capacitor placement, and component screening strategies for mission-critical hardware.</div>
             <div class="card-tags">
               <span class="tag-pill tag-radhard">Rad-Hard</span>
               <span class="tag-pill tag-aerospace">Aerospace</span>
@@ -431,9 +371,7 @@
              data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep prototype reliability simulation power supply analog">
             <div class="card-meta">15 May 2026 &nbsp;·&nbsp; 10 min read</div>
             <div class="card-title">Worst-Case Circuit Analysis with LTspice</div>
-            <div class="card-snippet">
-              Setting up Monte Carlo runs and tolerance sweeps to validate hardware reliability before the first PCB spin. Covers corner analysis for power regulators and analog signal chains.
-            </div>
+            <div class="card-snippet">Setting up Monte Carlo runs and tolerance sweeps to validate hardware reliability before the first PCB spin. Covers corner analysis for power regulators and analog signal chains.</div>
             <div class="card-tags">
               <span class="tag-pill tag-simulation">Simulation</span>
               <span class="tag-pill tag-pcb">PCB</span>
@@ -445,9 +383,7 @@
              data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench firmware lab script VISA">
             <div class="card-meta">18 Mar 2026 &nbsp;·&nbsp; 9 min read</div>
             <div class="card-title">Automating Hardware Tests with Python and SCPI</div>
-            <div class="card-snippet">
-              How to script your bench — controlling oscilloscopes, power supplies, and DMMs over VISA/SCPI to run reproducible, logged measurements without clicking through menus.
-            </div>
+            <div class="card-snippet">How to script your bench — controlling oscilloscopes, power supplies, and DMMs over VISA/SCPI to run reproducible, logged measurements without clicking through menus.</div>
             <div class="card-tags">
               <span class="tag-pill tag-testing">Testing</span>
               <span class="tag-pill tag-python">Python</span>
@@ -467,7 +403,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-
   <script>
     $(document).ready(function () {
       var activeFilter = 'all';
@@ -475,7 +410,6 @@
       function filterCards() {
         var query = $('#search-input').val().toLowerCase().trim();
         var count = 0;
-
         $('.blog-card').each(function () {
           var all = [
             $(this).data('tags') || '',
@@ -483,25 +417,19 @@
             $(this).find('.card-title').text().toLowerCase(),
             $(this).find('.card-snippet').text().toLowerCase()
           ].join(' ');
-
-          var matchFilter = (activeFilter === 'all') || all.indexOf(activeFilter) !== -1;
-          var matchSearch = (query === '') || all.indexOf(query) !== -1;
-
-          if (matchFilter && matchSearch) { $(this).show(); count++; }
-          else                            { $(this).hide(); }
+          var ok = ((activeFilter === 'all') || all.indexOf(activeFilter) !== -1) &&
+                   ((query === '') || all.indexOf(query) !== -1);
+          if (ok) { $(this).show(); count++; }
+          else    { $(this).hide(); }
         });
-
-        if (count === 0) {
-          $('#no-results').show();
-          $('#search-count').text('');
-        } else {
+        if (count === 0) { $('#no-results').show(); $('#search-count').text(''); }
+        else {
           $('#no-results').hide();
           $('#search-count').text(query ? count + ' article' + (count === 1 ? '' : 's') + ' found' : '');
         }
       }
 
       $('#search-input').on('input', filterCards);
-
       $('.chip-btn').on('click', function () {
         $('.chip-btn').removeClass('active');
         $(this).addClass('active');
