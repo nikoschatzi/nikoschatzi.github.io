@@ -1,4 +1,5 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,11 +27,9 @@
   </script>
 
   <style>
-    /* ── Kill grid background ── */
     body { background-color: #f8f9fa !important; background-image: none !important; }
     main, section, .container, .flow-text { background: transparent !important; background-image: none !important; }
     h3.page-title, .teal { background-color: #009688 !important; background-image: none !important; }
-
     img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
 
     /* ── Buy Me a Coffee ── */
@@ -46,6 +45,13 @@
     .bmc-link:hover { background: #fff3cc; }
     .bmc-link i { font-size: 17px; color: #e6a817; }
 
+    /* ── Sidebar icon fix ── */
+    .side-nav li a i[class^="mdi-"],
+    .side-nav li a i[class*=" mdi-"] {
+      border: none !important; outline: none !important;
+      box-shadow: none !important; background: transparent !important;
+    }
+
     /* ── Teal header ── */
     h3.page-title { margin-top: 0 !important; padding: 26px 36px 22px !important; }
     .blog-site-title {
@@ -53,16 +59,13 @@
       font-size: 24px; font-weight: 700; color: #fff;
       margin: 0 0 3px 0; line-height: 1.2;
     }
-    /* FIX 3: "Blog for hardware engineers." small, "by Nikolaos Chatzipapas" even smaller */
     .blog-site-sub {
       font-family: 'Inter', sans-serif; font-size: 11px;
       color: rgba(255,255,255,0.65); margin: 0 0 2px 0;
-      text-transform: none; letter-spacing: 0;
     }
     .blog-site-byline {
       font-family: 'Inter', sans-serif; font-size: 10px;
       color: rgba(255,255,255,0.50); margin: 0;
-      text-transform: none; letter-spacing: 0;
     }
 
     /* ── Intro ── */
@@ -74,7 +77,7 @@
     }
     .blog-intro strong { color: #009688; font-weight: 600; }
 
-    /* ── Search ── */
+    /* ── Search: icon stays put, text nudged down ── */
     .search-wrap { max-width: 480px; margin: 0 0 16px 0; }
     .search-box {
       display: flex;
@@ -95,16 +98,16 @@
       display: flex;
       align-items: center;
       align-self: stretch;
+      /* icon stays centred — no vertical shift */
     }
     .search-box input {
       flex: 1;
       height: 36px;
-      padding: 4px 14px 0 0;
-      border: none;
-      outline: none;
+      /* push text down a bit without moving the icon */
+      padding: 6px 14px 0 0;
+      border: none; outline: none;
       font-family: 'Inter', sans-serif; font-size: 13px; color: #333;
-      background: transparent;
-      line-height: normal;
+      background: transparent; line-height: normal;
       box-sizing: border-box;
     }
     .search-box input::placeholder { color: #bdbdbd; }
@@ -150,9 +153,9 @@
     .no-results { display: none; text-align: center; padding: 40px 20px; color: #bdbdbd; font-family: 'Inter', sans-serif; font-size: 14px; }
 
     /* ═══════════════════════════════════
-       VOLTAGE DIVIDER CALCULATOR
+       SHARED CALCULATOR STYLES
     ═══════════════════════════════════ */
-    #calc-panel { display: none; }
+    #calc-panel, #rc-panel { display: none; }
 
     .calc-header {
       font-family: 'Source Serif 4', Georgia, serif;
@@ -164,78 +167,65 @@
       color: #666; line-height: 1.6; margin-bottom: 24px;
     }
 
-    /* FIX 1: Two-column layout — LEFT: diagram+formula, RIGHT: fields */
+    /* Two-column: LEFT diagram+formula, RIGHT fields */
     .calc-layout {
-      display: flex;
-      gap: 36px;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      display: flex; gap: 36px; align-items: flex-start; flex-wrap: wrap;
     }
-
-    /* LEFT column: diagram + formula stacked */
     .calc-left {
-      flex: 0 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+      flex: 0 0 auto; display: flex; flex-direction: column; gap: 16px;
     }
+    .calc-right { flex: 1; min-width: 240px; max-width: 340px; }
 
-    /* RIGHT column: the input fields */
-    .calc-right {
-      flex: 1;
-      min-width: 280px;
-    }
-
-    /* Formula */
+    /* Formula box */
     .calc-formula {
       background: #fff; border: 1px solid #e8e8e8;
       border-left: 4px solid #009688; border-radius: 10px;
       padding: 12px 18px; display: inline-block;
     }
     .calc-formula .f-label { font-size: 11px; color: #9e9e9e; font-family: 'Inter', sans-serif; margin-bottom: 5px; }
-    .calc-formula .f-eq { font-size: 16px; font-weight: 600; color: #1a1a1a; font-family: 'Source Serif 4', serif; }
-    .calc-formula .f-eq sub { font-size: 11px; }
+    .calc-formula .f-eq { font-size: 15px; font-weight: 600; color: #1a1a1a; font-family: 'Source Serif 4', serif; }
+    .calc-formula .f-eq sub { font-size: 10px; }
 
-    /* FIX 1: Smaller fields grid — 3 columns: label | input | unit-select */
+    /* Grid: label | narrow input | unit */
     .calc-grid {
       display: grid;
-      grid-template-columns: 130px 1fr 90px;
+      grid-template-columns: 130px 110px 80px;   /* narrower input column */
       align-items: center;
-      gap: 7px 10px;
+      gap: 8px 10px;
     }
-    .calc-label { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #333; }
-    .calc-label sub { font-size: 9px; }
+    .calc-label {
+      font-family: 'Inter', sans-serif; font-size: 14px; /* slightly larger */
+      font-weight: 600; color: #333;
+    }
+    .calc-label sub { font-size: 10px; }
+
     .calc-input {
-      width: 100%; padding: 6px 8px;
+      width: 100%; padding: 7px 9px;
       border: 1.5px solid #d8d8d8; border-radius: 7px;
-      font-family: 'Inter', sans-serif; font-size: 12px; color: #333;
+      font-family: 'Inter', sans-serif; font-size: 14px; color: #333;
       background: #fff; outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
       box-sizing: border-box;
     }
     .calc-input:focus { border-color: #009688; box-shadow: 0 0 0 3px rgba(0,150,136,0.1); }
-    .calc-input::placeholder { color: #bdbdbd; }
     .calc-input.result-field { border-color: #ff9800; background: #fffdf5; color: #e65100; font-weight: 600; }
 
-    /* FIX 1: Unit — always a <select> dropdown for Ω / kΩ / MΩ */
+    /* Native select — force browser to show it, override Materialize */
     .calc-unit {
       -webkit-appearance: auto !important;
       -moz-appearance: auto !important;
       appearance: auto !important;
-      padding: 6px 4px;
-      border: 1.5px solid #d8d8d8 !important; border-radius: 7px;
-      font-family: 'Inter', sans-serif; font-size: 11px; color: #555;
-      background: #fff !important; cursor: pointer; outline: none; width: 100%;
-      box-sizing: border-box;
       display: block !important;
-      height: auto !important;
+      width: 100%; padding: 7px 4px;
+      border: 1.5px solid #d8d8d8 !important; border-radius: 7px;
+      font-family: 'Inter', sans-serif; font-size: 13px; color: #555;
+      background: #fff !important; cursor: pointer; outline: none;
+      box-sizing: border-box; height: auto !important;
     }
-    .calc-unit:focus { border-color: #009688; }
+    .calc-unit:focus { border-color: #009688 !important; }
 
-    /* Static unit label (for Vs and Vout) */
     .unit-text {
-      font-family: 'Inter', sans-serif; font-size: 11.5px;
-      color: #888; padding: 6px 0;
+      font-family: 'Inter', sans-serif; font-size: 13px; color: #888; padding: 7px 0;
     }
     .calc-divider { grid-column: 1/-1; height: 1px; background: #f0f0f0; margin: 1px 0; }
 
@@ -256,17 +246,7 @@
     .calc-error {
       display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #c62828;
       margin-top: 10px; background: #ffebee; border-radius: 6px;
-      padding: 8px 14px; max-width: 380px;
-    }
-
-    /* ── FIX 2: nav icon — remove any border/outline on mdi icons ── */
-    .side-nav li a i[class^="mdi-"],
-    .side-nav li a i[class*=" mdi-"] {
-      border: none !important;
-      outline: none !important;
-      box-shadow: none !important;
-      background: transparent !important;
-      text-shadow: none !important;
+      padding: 8px 14px;
     }
 
     /* ── Responsive ── */
@@ -279,7 +259,7 @@
       .container { margin: 0 auto; }
       nav.hide-on-large.only.trigger { display: block; position: fixed; top: 0; z-index: 2; }
       .calc-layout { flex-direction: column; }
-      .calc-grid { grid-template-columns: 120px 1fr 85px; }
+      .calc-right { max-width: 100%; }
     }
   </style>
 </head>
@@ -298,32 +278,34 @@
         </a>
       </li>
 
-      <!-- Articles -->
       <li class="bold" id="nav-articles">
-        <a href="#" class="waves-effect waves-dark teal-text" onclick="showBlog(event)">
+        <a href="#" class="waves-effect waves-dark teal-text" onclick="showPanel('blog-panel',event)">
           <i class="mdi-action-home small"></i><span>Articles</span>
         </a>
       </li>
 
-      <!-- Voltage Divider Calculator -->
       <li class="bold" id="nav-calc">
-        <a href="#" class="waves-effect waves-dark teal-text" onclick="showCalc(event)">
+        <a href="#" class="waves-effect waves-dark teal-text" onclick="showPanel('calc-panel',event)">
           <i class="mdi-image-flash-on small"></i><span>Voltage Divider</span>
         </a>
       </li>
 
-      <!-- FIX 2: My Portfolio — replaced mdi-action-work (briefcase with border) with fa icon -->
-      <li class="bold">
-        <a href="https://nikoschatzi.github.io/" target="_blank" rel="noopener" class="waves-effect waves-dark teal-text">
-          <i class="fa fa-user small" style="font-size:1.4rem; width:2rem; display:inline-block; text-align:center;"></i><span>My Portfolio</span>
+      <!-- NEW: RC Calculator nav item -->
+      <li class="bold" id="nav-rc">
+        <a href="#" class="waves-effect waves-dark teal-text" onclick="showPanel('rc-panel',event)">
+          <i class="fa fa-circle-o small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>RC Calculator</span>
         </a>
       </li>
 
-      <!-- Buy Me a Coffee -->
-      <li style="list-style:none; padding:0;">
+      <li class="bold">
+        <a href="https://nikoschatzi.github.io/" target="_blank" rel="noopener" class="waves-effect waves-dark teal-text">
+          <i class="fa fa-user small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>My Portfolio</span>
+        </a>
+      </li>
+
+      <li style="list-style:none;padding:0;">
         <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
-          <i class="fa fa-coffee"></i>
-          Buy me a coffee
+          <i class="fa fa-coffee"></i>Buy me a coffee
         </a>
       </li>
 
@@ -336,7 +318,6 @@
 
       <h3 class="page-title white-text teal">
         <p class="blog-site-title">Space Electronics Lab</p>
-        <!-- FIX 3: exact capitalisation as user wrote -->
         <p class="blog-site-sub">Blog for hardware engineers.</p>
         <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
       </h3>
@@ -345,14 +326,12 @@
 
         <!-- ══ BLOG PANEL ══ -->
         <div id="blog-panel">
-
           <p class="blog-intro">
             I'm a <strong>hardware engineer</strong> specialising in aerospace and radiation-tolerant electronics,
             with over 5 years of experience (<strong>CERN</strong> and <strong>Safran</strong>).
             This blog is where I share deep-dive technical articles on hardware design.
           </p>
 
-          <!-- FIX 4: search icon perfectly centred via flexbox -->
           <div class="search-wrap">
             <div class="search-box">
               <i class="fa fa-search search-icon"></i>
@@ -374,7 +353,6 @@
           </div>
 
           <div id="article-list">
-
             <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
                data-tags="cern radhard testing aerospace"
                data-text="irradiation piezo valves CERN cryogenic solenoid replacement TID 100 kGy radiation campaign CC60 passive PCB Ultem">
@@ -387,7 +365,6 @@
                 <span class="tag-pill tag-testing">Testing</span>
               </div>
             </a>
-
             <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html"
                data-tags="components aerospace"
                data-text="transistor datasheet high reliability parameters thermal characteristics safe operating area SOA derating aerospace">
@@ -399,7 +376,6 @@
                 <span class="tag-pill tag-aerospace">Aerospace</span>
               </div>
             </a>
-
             <a class="blog-card" href="/blog/rad-tol-design-essentials.html"
                data-tags="radhard aerospace"
                data-text="radiation tolerant design single event effects SEE total ionizing dose TID mitigation mission-critical screening">
@@ -411,7 +387,6 @@
                 <span class="tag-pill tag-aerospace">Aerospace</span>
               </div>
             </a>
-
             <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html"
                data-tags="simulation pcb"
                data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep reliability power supply analog">
@@ -423,7 +398,6 @@
                 <span class="tag-pill tag-pcb">PCB</span>
               </div>
             </a>
-
             <a class="blog-card" href="/blog/python-hardware-test-automation.html"
                data-tags="testing python"
                data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench VISA">
@@ -435,120 +409,77 @@
                 <span class="tag-pill tag-python">Python</span>
               </div>
             </a>
-
           </div>
 
           <div class="no-results" id="no-results">
             <i class="fa fa-search" style="font-size:28px;display:block;margin-bottom:8px;"></i>
             No articles found. Try different keywords.
           </div>
-
         </div><!-- /#blog-panel -->
 
-        <!-- ══ CALCULATOR PANEL ══ -->
+        <!-- ══ VOLTAGE DIVIDER PANEL ══ -->
         <div id="calc-panel">
-
           <div class="calc-header">Voltage Divider Calculator</div>
           <p class="calc-desc">
             Leave exactly <strong>one</strong> field empty and press <strong>Calculate</strong> — it will be solved and highlighted in orange.
           </p>
 
-          <!-- FIX 1: LEFT = diagram + formula  |  RIGHT = input fields -->
           <div class="calc-layout">
-
-            <!-- LEFT column: SVG diagram on top, formula below -->
+            <!-- LEFT: diagram + formula -->
             <div class="calc-left">
-
-              <svg width="210" height="250" viewBox="0 0 210 250" xmlns="http://www.w3.org/2000/svg"
-                   style="font-family:'Inter',sans-serif; background:#fff; border:1px solid #e8e8e8; border-radius:12px;">
-
-                <!-- Left vertical wire -->
+              <!-- SVG — wider viewBox so Vout label is not clipped -->
+              <svg width="230" height="255" viewBox="0 0 245 255" xmlns="http://www.w3.org/2000/svg"
+                   style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
                 <line x1="40" y1="28" x2="40" y2="222" stroke="#333" stroke-width="2"/>
-
-                <!-- + terminal -->
                 <line x1="32" y1="40" x2="48" y2="40" stroke="#009688" stroke-width="2"/>
                 <text x="20" y="44" font-size="13" fill="#009688" font-weight="700">+</text>
-
-                <!-- − terminal -->
                 <line x1="32" y1="210" x2="48" y2="210" stroke="#e53935" stroke-width="2"/>
                 <text x="20" y="214" font-size="13" fill="#e53935" font-weight="700">−</text>
-
-                <!-- Vs label -->
                 <text x="6" y="128" font-size="11" fill="#555">V</text>
                 <text x="15" y="131" font-size="8" fill="#555">s</text>
-
-                <!-- Top horizontal wire -->
-                <line x1="40" y1="28" x2="140" y2="28" stroke="#333" stroke-width="2"/>
-                <!-- Bottom horizontal wire -->
-                <line x1="40" y1="222" x2="140" y2="222" stroke="#333" stroke-width="2"/>
-
-                <!-- Right wire top (to R1) -->
-                <line x1="140" y1="28" x2="140" y2="65" stroke="#333" stroke-width="2"/>
-
-                <!-- R1 zigzag -->
-                <polyline points="140,65 132,72 148,80 132,88 148,96 132,104 148,112 140,119"
+                <line x1="40" y1="28" x2="145" y2="28" stroke="#333" stroke-width="2"/>
+                <line x1="40" y1="222" x2="145" y2="222" stroke="#333" stroke-width="2"/>
+                <line x1="145" y1="28" x2="145" y2="65" stroke="#333" stroke-width="2"/>
+                <polyline points="145,65 137,72 153,80 137,88 153,96 137,104 153,112 145,119"
                           fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                <!-- R1 label -->
-                <text x="154" y="95" font-size="11" fill="#009688" font-weight="600">R</text>
-                <text x="163" y="98" font-size="8" fill="#009688">1</text>
-
-                <!-- Midpoint dot -->
-                <circle cx="140" cy="127" r="4" fill="#ff9800"/>
-
-                <!-- Wire between R1 bottom and midpoint -->
-                <line x1="140" y1="119" x2="140" y2="127" stroke="#333" stroke-width="2"/>
-
-                <!-- Wire from midpoint to R2 top -->
-                <line x1="140" y1="127" x2="140" y2="135" stroke="#333" stroke-width="2"/>
-
-                <!-- R2 zigzag -->
-                <polyline points="140,135 132,142 148,150 132,158 148,166 132,174 148,182 140,189"
+                <text x="158" y="95" font-size="11" fill="#009688" font-weight="600">R</text>
+                <text x="167" y="98" font-size="8" fill="#009688">1</text>
+                <circle cx="145" cy="127" r="4" fill="#ff9800"/>
+                <line x1="145" y1="119" x2="145" y2="127" stroke="#333" stroke-width="2"/>
+                <line x1="145" y1="127" x2="145" y2="135" stroke="#333" stroke-width="2"/>
+                <polyline points="145,135 137,142 153,150 137,158 153,166 137,174 153,182 145,189"
                           fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                <!-- R2 label -->
-                <text x="154" y="165" font-size="11" fill="#009688" font-weight="600">R</text>
-                <text x="163" y="168" font-size="8" fill="#009688">2</text>
-
-                <!-- Wire from R2 bottom to bottom rail -->
-                <line x1="140" y1="189" x2="140" y2="222" stroke="#333" stroke-width="2"/>
-
-                <!-- Vout tap: horizontal dashed line from midpoint -->
-                <line x1="140" y1="127" x2="192" y2="127" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
-                <!-- Vout vertical down to bottom rail (dashed) -->
-                <line x1="192" y1="127" x2="192" y2="222" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
-                <!-- Vout label -->
-                <text x="194" y="123" font-size="10" fill="#ff9800" font-weight="600">V</text>
-                <text x="203" y="126" font-size="7" fill="#ff9800">out</text>
-
-                <!-- Ground symbol at bottom right -->
-                <line x1="183" y1="222" x2="201" y2="222" stroke="#333" stroke-width="2"/>
-                <line x1="186" y1="227" x2="198" y2="227" stroke="#333" stroke-width="1.5"/>
-                <line x1="190" y1="232" x2="194" y2="232" stroke="#333" stroke-width="1"/>
-
+                <text x="158" y="165" font-size="11" fill="#009688" font-weight="600">R</text>
+                <text x="167" y="168" font-size="8" fill="#009688">2</text>
+                <line x1="145" y1="189" x2="145" y2="222" stroke="#333" stroke-width="2"/>
+                <!-- Vout tap — extra room on the right -->
+                <line x1="145" y1="127" x2="205" y2="127" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <line x1="205" y1="127" x2="205" y2="222" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <!-- Vout label — fits inside 245px wide viewBox -->
+                <text x="208" y="122" font-size="11" fill="#ff9800" font-weight="600">V<tspan font-size="8" dy="2">out</tspan></text>
+                <line x1="196" y1="222" x2="214" y2="222" stroke="#333" stroke-width="2"/>
+                <line x1="199" y1="227" x2="211" y2="227" stroke="#333" stroke-width="1.5"/>
+                <line x1="203" y1="232" x2="207" y2="232" stroke="#333" stroke-width="1"/>
               </svg>
 
-              <!-- Formula under the diagram -->
               <div class="calc-formula">
                 <div class="f-label">Formula</div>
                 <div class="f-eq">V<sub>out</sub> = V<sub>s</sub> × R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</div>
               </div>
+            </div>
 
-            </div><!-- /.calc-left -->
-
-            <!-- RIGHT column: input fields -->
+            <!-- RIGHT: fields -->
             <div class="calc-right">
-
               <div class="calc-grid">
-
                 <div class="calc-label">Source (V<sub>s</sub>)</div>
-                <input class="calc-input" id="f-vs" type="number" min="0" step="any" placeholder="" />
+                <input class="calc-input" id="f-vs" type="number" step="any" placeholder="" />
                 <div class="unit-text">V</div>
 
                 <div class="calc-divider"></div>
 
                 <div class="calc-label">R<sub>1</sub></div>
-                <input class="calc-input" id="f-r1" type="number" min="0" step="any" placeholder="" />
-                <!-- dropdown Ω / kΩ / MΩ -->
-                <select class="calc-unit" id="u-r1" style="-webkit-appearance:auto;appearance:auto;display:block;">
+                <input class="calc-input" id="f-r1" type="number" step="any" placeholder="" />
+                <select class="calc-unit" id="u-r1">
                   <option value="1">Ω</option>
                   <option value="1000" selected>kΩ</option>
                   <option value="1000000">MΩ</option>
@@ -557,9 +488,8 @@
                 <div class="calc-divider"></div>
 
                 <div class="calc-label">R<sub>2</sub></div>
-                <input class="calc-input" id="f-r2" type="number" min="0" step="any" placeholder="" />
-                <!-- dropdown Ω / kΩ / MΩ -->
-                <select class="calc-unit" id="u-r2" style="-webkit-appearance:auto;appearance:auto;display:block;">
+                <input class="calc-input" id="f-r2" type="number" step="any" placeholder="" />
+                <select class="calc-unit" id="u-r2">
                   <option value="1">Ω</option>
                   <option value="1000" selected>kΩ</option>
                   <option value="1000000">MΩ</option>
@@ -568,23 +498,142 @@
                 <div class="calc-divider"></div>
 
                 <div class="calc-label">Output (V<sub>out</sub>)</div>
-                <input class="calc-input" id="f-vout" type="number" min="0" step="any" placeholder="" />
+                <input class="calc-input" id="f-vout" type="number" step="any" placeholder="" />
                 <div class="unit-text">V</div>
-
               </div>
 
               <div>
-                <button class="calc-btn" onclick="calculate()">Calculate</button>
-                <button class="calc-btn reset" onclick="resetCalc()">Reset</button>
+                <button class="calc-btn" onclick="calcVD()">Calculate</button>
+                <button class="calc-btn reset" onclick="resetVD()">Reset</button>
               </div>
               <p class="calc-hint">The solved field is highlighted in <span>orange</span>.</p>
               <div class="calc-error" id="calc-error"></div>
-
-            </div><!-- /.calc-right -->
-
-          </div><!-- /.calc-layout -->
-
+            </div>
+          </div>
         </div><!-- /#calc-panel -->
+
+        <!-- ══ RC CALCULATOR PANEL ══ -->
+        <div id="rc-panel">
+          <div class="calc-header">RC Circuit Calculator</div>
+          <p class="calc-desc">
+            Leave exactly <strong>one</strong> field empty and press <strong>Calculate</strong> — it will be solved and highlighted in orange.<br>
+            Formulas: <strong>τ = R × C</strong> &nbsp;|&nbsp; <strong>f<sub>c</sub> = 1 / (2π · R · C)</strong>
+          </p>
+
+          <div class="calc-layout">
+            <!-- LEFT: diagram + formulas -->
+            <div class="calc-left">
+              <!-- RC circuit SVG diagram -->
+              <svg width="230" height="220" viewBox="0 0 245 220" xmlns="http://www.w3.org/2000/svg"
+                   style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
+                <!-- Vs source on left -->
+                <line x1="40" y1="30" x2="40" y2="190" stroke="#333" stroke-width="2"/>
+                <line x1="32" y1="44" x2="48" y2="44" stroke="#009688" stroke-width="2"/>
+                <text x="20" y="48" font-size="13" fill="#009688" font-weight="700">+</text>
+                <line x1="32" y1="176" x2="48" y2="176" stroke="#e53935" stroke-width="2"/>
+                <text x="20" y="180" font-size="13" fill="#e53935" font-weight="700">−</text>
+                <text x="6" y="115" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
+
+                <!-- Top rail -->
+                <line x1="40" y1="30" x2="200" y2="30" stroke="#333" stroke-width="2"/>
+                <!-- Bottom rail -->
+                <line x1="40" y1="190" x2="200" y2="190" stroke="#333" stroke-width="2"/>
+
+                <!-- R zigzag along top between x=60 and x=130 -->
+                <line x1="60" y1="30" x2="60" y2="30" stroke="#333" stroke-width="2"/>
+                <polyline points="65,30 70,22 80,38 90,22 100,38 110,22 120,38 125,30"
+                          fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                <text x="88" y="16" font-size="11" fill="#009688" font-weight="600">R</text>
+
+                <!-- C capacitor symbol centred at x=170 -->
+                <line x1="145" y1="30" x2="145" y2="30" stroke="#333" stroke-width="2"/>
+                <line x1="145" y1="30" x2="157" y2="30" stroke="#333" stroke-width="2"/>
+                <line x1="157" y1="16" x2="157" y2="44" stroke="#009688" stroke-width="3"/>
+                <line x1="163" y1="16" x2="163" y2="44" stroke="#009688" stroke-width="3"/>
+                <line x1="163" y1="30" x2="175" y2="30" stroke="#333" stroke-width="2"/>
+                <text x="153" y="58" font-size="11" fill="#009688" font-weight="600">C</text>
+
+                <!-- Right vertical wire down to output tap -->
+                <line x1="175" y1="30" x2="200" y2="30" stroke="#333" stroke-width="2"/>
+                <line x1="200" y1="30" x2="200" y2="190" stroke="#333" stroke-width="2"/>
+
+                <!-- Vout tap at right -->
+                <circle cx="200" cy="110" r="4" fill="#ff9800"/>
+                <line x1="200" y1="110" x2="232" y2="110" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <text x="215" y="105" font-size="11" fill="#ff9800" font-weight="600">V<tspan font-size="8" dy="2">c</tspan></text>
+
+                <!-- Ground -->
+                <line x1="188" y1="190" x2="212" y2="190" stroke="#333" stroke-width="2"/>
+                <line x1="191" y1="195" x2="209" y2="195" stroke="#333" stroke-width="1.5"/>
+                <line x1="195" y1="200" x2="205" y2="200" stroke="#333" stroke-width="1"/>
+
+                <!-- τ annotation -->
+                <text x="58" y="120" font-size="10" fill="#777">τ = R·C</text>
+                <text x="50" y="135" font-size="10" fill="#777">f = 1/(2π·R·C)</text>
+              </svg>
+
+              <div class="calc-formula">
+                <div class="f-label">Formulas</div>
+                <div class="f-eq" style="font-size:13px;line-height:1.8;">
+                  τ = R × C<br>
+                  f<sub>c</sub> = 1 / (2π · R · C)<br>
+                  C = τ / R &nbsp;|&nbsp; R = τ / C
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: fields -->
+            <div class="calc-right">
+              <div class="calc-grid">
+                <div class="calc-label">R</div>
+                <input class="calc-input" id="rc-r" type="number" step="any" placeholder="" />
+                <select class="calc-unit" id="rc-ur">
+                  <option value="1">Ω</option>
+                  <option value="1000" selected>kΩ</option>
+                  <option value="1000000">MΩ</option>
+                </select>
+
+                <div class="calc-divider"></div>
+
+                <div class="calc-label">C</div>
+                <input class="calc-input" id="rc-c" type="number" step="any" placeholder="" />
+                <select class="calc-unit" id="rc-uc">
+                  <option value="0.000000000001">pF</option>
+                  <option value="0.000000001">nF</option>
+                  <option value="0.000001" selected>µF</option>
+                  <option value="0.001">mF</option>
+                </select>
+
+                <div class="calc-divider"></div>
+
+                <div class="calc-label">τ (time constant)</div>
+                <input class="calc-input" id="rc-tau" type="number" step="any" placeholder="" />
+                <select class="calc-unit" id="rc-utau">
+                  <option value="0.000001">µs</option>
+                  <option value="0.001">ms</option>
+                  <option value="1" selected>s</option>
+                </select>
+
+                <div class="calc-divider"></div>
+
+                <div class="calc-label">f<sub>c</sub> (cutoff)</div>
+                <input class="calc-input" id="rc-fc" type="number" step="any" placeholder="" />
+                <select class="calc-unit" id="rc-ufc">
+                  <option value="1" selected>Hz</option>
+                  <option value="1000">kHz</option>
+                  <option value="1000000">MHz</option>
+                </select>
+              </div>
+
+              <div>
+                <button class="calc-btn" onclick="calcRC()">Calculate</button>
+                <button class="calc-btn reset" onclick="resetRC()">Reset</button>
+              </div>
+              <p class="calc-hint">The solved field is highlighted in <span>orange</span>.</p>
+              <div class="calc-error" id="rc-error"></div>
+            </div>
+          </div>
+        </div><!-- /#rc-panel -->
 
       </div><!-- /.container -->
     </section>
@@ -595,130 +644,136 @@
 
   <script>
     /* ── Panel toggle ── */
-    function showCalc(e) {
-      e.preventDefault();
-      document.getElementById('blog-panel').style.display = 'none';
-      document.getElementById('calc-panel').style.display = 'block';
-    }
-    function showBlog(e) {
-      e.preventDefault();
-      document.getElementById('calc-panel').style.display = 'none';
-      document.getElementById('blog-panel').style.display = 'block';
+    var panels = ['blog-panel','calc-panel','rc-panel'];
+    function showPanel(id, e) {
+      if (e) e.preventDefault();
+      panels.forEach(function(p){ document.getElementById(p).style.display = 'none'; });
+      document.getElementById(id).style.display = 'block';
     }
 
     /* ── Search & filter ── */
     $(document).ready(function () {
       var activeFilter = 'all';
-
       function filterCards() {
         var query = $('#search-input').val().toLowerCase().trim();
         var count = 0;
         $('.blog-card').each(function () {
-          var all = [
-            $(this).data('tags') || '',
-            $(this).data('text') || '',
+          var all = [$(this).data('tags')||'',$(this).data('text')||'',
             $(this).find('.card-title').text().toLowerCase(),
-            $(this).find('.card-snippet').text().toLowerCase()
-          ].join(' ');
-          var ok = ((activeFilter === 'all') || all.indexOf(activeFilter) !== -1) &&
-                   ((query === '') || all.indexOf(query) !== -1);
-          if (ok) { $(this).show(); count++; }
-          else    { $(this).hide(); }
+            $(this).find('.card-snippet').text().toLowerCase()].join(' ');
+          var ok = ((activeFilter==='all')||all.indexOf(activeFilter)!==-1)&&
+                   ((query==='')||all.indexOf(query)!==-1);
+          $(this)[ok?'show':'hide'](); if(ok) count++;
         });
-        if (count === 0) { $('#no-results').show(); $('#search-count').text(''); }
-        else {
-          $('#no-results').hide();
-          $('#search-count').text(query ? count + ' article' + (count === 1 ? '' : 's') + ' found' : '');
-        }
+        if(count===0){ $('#no-results').show(); $('#search-count').text(''); }
+        else { $('#no-results').hide();
+          $('#search-count').text(query?count+' article'+(count===1?'':'s')+' found':''); }
       }
-
       $('#search-input').on('input', filterCards);
-      $('.chip-btn').on('click', function () {
-        $('.chip-btn').removeClass('active');
-        $(this).addClass('active');
-        activeFilter = $(this).data('filter');
-        filterCards();
+      $('.chip-btn').on('click', function(){
+        $('.chip-btn').removeClass('active'); $(this).addClass('active');
+        activeFilter=$(this).data('filter'); filterCards();
       });
-
       $(".scrollspy").scrollSpy();
-      $(".button-collapse").sideNav({ menuWidth: 190, edge: "left", closeOnClick: true });
+      $(".button-collapse").sideNav({menuWidth:190,edge:"left",closeOnClick:true});
 
-      // Prevent Materialize from replacing native <select> in the calculator
-      $('#u-r1, #u-r2').each(function() {
-        $(this).attr('data-skip', 'true');
-      });
+      // Prevent Materialize from hijacking native selects in calculators
+      $('.calc-unit').each(function(){ $(this).attr('data-skip','true'); });
     });
 
-    /* ── Calculator ── */
-    function getVal(id) {
-      var v = document.getElementById(id).value.trim();
-      return v === '' ? null : parseFloat(v);
+    /* ════ VOLTAGE DIVIDER ════ */
+    function getVal(id){
+      var v=document.getElementById(id).value.trim();
+      return v===''?null:parseFloat(v);
     }
-    function getR(inputId, unitId) {
-      var v = getVal(inputId);
-      if (v === null) return null;
-      return v * parseFloat(document.getElementById(unitId).value);
+    function getScaled(inputId,unitId){
+      var v=getVal(inputId); if(v===null)return null;
+      return v*parseFloat(document.getElementById(unitId).value);
     }
-    function setResult(id, value) {
-      var el = document.getElementById(id);
-      el.value = parseFloat(value.toPrecision(6));
+    function setResult(id,value){
+      var el=document.getElementById(id);
+      el.value=parseFloat(value.toPrecision(6));
       el.classList.add('result-field');
     }
-    function setRResult(inputId, unitId, valueOhms) {
-      var mult = parseFloat(document.getElementById(unitId).value);
-      var el = document.getElementById(inputId);
-      el.value = parseFloat((valueOhms / mult).toPrecision(6));
+    function setScaledResult(inputId,unitId,valueBase){
+      var mult=parseFloat(document.getElementById(unitId).value);
+      var el=document.getElementById(inputId);
+      el.value=parseFloat((valueBase/mult).toPrecision(6));
       el.classList.add('result-field');
     }
-    function showError(msg) {
-      var el = document.getElementById('calc-error');
-      el.textContent = msg;
-      el.style.display = 'block';
+    function showErr(errId,msg){
+      var el=document.getElementById(errId); el.textContent=msg; el.style.display='block';
     }
-    function hideError() { document.getElementById('calc-error').style.display = 'none'; }
+    function hideErr(errId){ document.getElementById(errId).style.display='none'; }
 
-    function calculate() {
-      hideError();
+    function calcVD(){
+      hideErr('calc-error');
       ['f-vs','f-r1','f-r2','f-vout'].forEach(function(id){
         document.getElementById(id).classList.remove('result-field');
       });
-
-      var Vs   = getVal('f-vs');
-      var R1   = getR('f-r1','u-r1');
-      var R2   = getR('f-r2','u-r2');
-      var Vout = getVal('f-vout');
-
-      var empties = [Vs, R1, R2, Vout].filter(function(v){ return v === null; }).length;
-      if (empties === 0) { showError('All fields are filled. Leave exactly one empty.'); return; }
-      if (empties > 1)  { showError('Leave exactly one field empty (' + empties + ' are empty now).'); return; }
-      if (Vs   !== null && Vs   <= 0) { showError('Source voltage must be positive.'); return; }
-      if (R1   !== null && R1   <= 0) { showError('R₁ must be positive.'); return; }
-      if (R2   !== null && R2   <= 0) { showError('R₂ must be positive.'); return; }
-      if (Vout !== null && Vout < 0)  { showError('Output voltage cannot be negative.'); return; }
-
-      if (Vs === null) {
-        if (R2 === 0) { showError('R₂ cannot be zero.'); return; }
-        setResult('f-vs', Vout * (R1 + R2) / R2);
-      } else if (R1 === null) {
-        if (Vout === 0) { showError('Vout cannot be zero when solving for R₁.'); return; }
-        if (Vs <= Vout) { showError('Vs must be greater than Vout.'); return; }
-        setRResult('f-r1','u-r1', R2 * (Vs - Vout) / Vout);
-      } else if (R2 === null) {
-        if (Vs <= Vout) { showError('Vs must be greater than Vout.'); return; }
-        setRResult('f-r2','u-r2', R1 * Vout / (Vs - Vout));
-      } else {
-        if ((R1 + R2) === 0) { showError('R₁ + R₂ cannot be zero.'); return; }
-        setResult('f-vout', Vs * R2 / (R1 + R2));
+      var Vs=getVal('f-vs'), R1=getScaled('f-r1','u-r1'),
+          R2=getScaled('f-r2','u-r2'), Vout=getVal('f-vout');
+      var empties=[Vs,R1,R2,Vout].filter(function(v){return v===null;}).length;
+      if(empties===0){showErr('calc-error','All fields filled. Leave exactly one empty.');return;}
+      if(empties>1){showErr('calc-error','Leave exactly one field empty ('+empties+' are empty).');return;}
+      if(Vs!==null&&Vs<=0){showErr('calc-error','Source voltage must be positive.');return;}
+      if(R1!==null&&R1<=0){showErr('calc-error','R₁ must be positive.');return;}
+      if(R2!==null&&R2<=0){showErr('calc-error','R₂ must be positive.');return;}
+      if(Vout!==null&&Vout<0){showErr('calc-error','Output voltage cannot be negative.');return;}
+      if(Vs===null){ if(R2===0){showErr('calc-error','R₂ cannot be zero.');return;}
+        setResult('f-vs',Vout*(R1+R2)/R2);
+      }else if(R1===null){ if(Vout===0){showErr('calc-error','Vout cannot be zero when solving R₁.');return;}
+        if(Vs<=Vout){showErr('calc-error','Vs must be greater than Vout.');return;}
+        setScaledResult('f-r1','u-r1',R2*(Vs-Vout)/Vout);
+      }else if(R2===null){ if(Vs<=Vout){showErr('calc-error','Vs must be greater than Vout.');return;}
+        setScaledResult('f-r2','u-r2',R1*Vout/(Vs-Vout));
+      }else{ if((R1+R2)===0){showErr('calc-error','R₁+R₂ cannot be zero.');return;}
+        setResult('f-vout',Vs*R2/(R1+R2));
       }
     }
-
-    function resetCalc() {
+    function resetVD(){
       ['f-vs','f-r1','f-r2','f-vout'].forEach(function(id){
-        var el = document.getElementById(id);
-        el.value = '';
-        el.classList.remove('result-field');
+        var el=document.getElementById(id); el.value=''; el.classList.remove('result-field');
+      }); hideErr('calc-error');
+    }
+
+    /* ════ RC CALCULATOR ════ */
+    function calcRC(){
+      hideErr('rc-error');
+      ['rc-r','rc-c','rc-tau','rc-fc'].forEach(function(id){
+        document.getElementById(id).classList.remove('result-field');
       });
-      hideError();
+      var R  =getScaled('rc-r','rc-ur');
+      var C  =getScaled('rc-c','rc-uc');
+      var tau=getScaled('rc-tau','rc-utau');
+      var fc =getScaled('rc-fc','rc-ufc');
+
+      var empties=[R,C,tau,fc].filter(function(v){return v===null;}).length;
+      if(empties===0){showErr('rc-error','All fields filled. Leave exactly one empty.');return;}
+      if(empties>1){showErr('rc-error','Leave exactly one field empty ('+empties+' are empty).');return;}
+      if(R!==null&&R<=0){showErr('rc-error','R must be positive.');return;}
+      if(C!==null&&C<=0){showErr('rc-error','C must be positive.');return;}
+      if(tau!==null&&tau<=0){showErr('rc-error','τ must be positive.');return;}
+      if(fc!==null&&fc<=0){showErr('rc-error','f_c must be positive.');return;}
+
+      if(R===null){
+        // solve R: from tau → R=tau/C; from fc → R=1/(2π·fc·C)
+        var Rval = (tau!==null) ? tau/C : 1/(2*Math.PI*fc*C);
+        setScaledResult('rc-r','rc-ur',Rval);
+      }else if(C===null){
+        var Cval = (tau!==null) ? tau/R : 1/(2*Math.PI*fc*R);
+        setScaledResult('rc-c','rc-uc',Cval);
+      }else if(tau===null){
+        setScaledResult('rc-tau','rc-utau',R*C);
+      }else{
+        // solve fc
+        setScaledResult('rc-fc','rc-ufc',1/(2*Math.PI*R*C));
+      }
+    }
+    function resetRC(){
+      ['rc-r','rc-c','rc-tau','rc-fc'].forEach(function(id){
+        var el=document.getElementById(id); el.value=''; el.classList.remove('result-field');
+      }); hideErr('rc-error');
     }
   </script>
 </body>
