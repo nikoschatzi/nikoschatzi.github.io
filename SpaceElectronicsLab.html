@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -29,9 +28,30 @@
   </script>
 
   <style>
-    /* ── Kill grid background from style.css ── */
-    body {
-      background-color: #f5f6f7 !important;
+    /* ── Kill grid, clean background ── */
+    body,
+    body > *,
+    main,
+    section,
+    .container,
+    .flow-text {
+      background-color: #f8f9fa !important;
+      background-image: none !important;
+    }
+
+    /* Cards and white panels still white */
+    .blog-card,
+    .calc-card,
+    .search-box input,
+    .chip-btn,
+    .bmc-link {
+      background-color: #ffffff !important;
+    }
+
+    /* Teal header keeps its colour */
+    h3.page-title,
+    .teal {
+      background-color: #009688 !important;
       background-image: none !important;
     }
 
@@ -42,14 +62,14 @@
       margin: 0 auto;
     }
 
-    /* ── Buy Me a Coffee — no border ── */
+    /* ── Buy Me a Coffee ── */
     .bmc-link {
       display: flex;
       align-items: center;
       gap: 8px;
       padding: 9px 16px;
       margin: 6px 10px 0;
-      background: #fff9e6;
+      background: #fff9e6 !important;
       border-radius: 8px;
       border: none !important;
       outline: none !important;
@@ -60,7 +80,7 @@
       text-decoration: none !important;
       transition: background 0.15s;
     }
-    .bmc-link:hover { background: #fff3cc; }
+    .bmc-link:hover { background: #fff3cc !important; }
     .bmc-link i { font-size: 17px; color: #e6a817; }
 
     /* ── Teal header ── */
@@ -97,14 +117,12 @@
       line-height: 1.7;
       margin: 22px 0 16px 0;
       max-width: 600px;
+      background: transparent !important;
     }
     .blog-intro strong { color: #009688; font-weight: 600; }
 
-    /* ── Search bar ── */
-    .search-wrap {
-      max-width: 480px;
-      margin: 0 0 16px 0;
-    }
+    /* ── Search ── */
+    .search-wrap { max-width: 480px; margin: 0 0 16px 0; }
     .search-box { position: relative; }
     .search-box input {
       width: 100%;
@@ -114,7 +132,6 @@
       font-family: 'Inter', sans-serif;
       font-size: 13px;
       color: #333;
-      background: #fff;
       outline: none;
       height: 36px;
       transition: border-color 0.2s, box-shadow 0.2s;
@@ -125,51 +142,35 @@
     }
     .search-box input::placeholder { color: #bdbdbd; }
     .search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
+      position: absolute; left: 12px; top: 50%;
       transform: translateY(-50%);
-      color: #bdbdbd;
-      font-size: 12px;
-      pointer-events: none;
+      color: #bdbdbd; font-size: 12px; pointer-events: none;
     }
     #search-count {
       font-family: 'Inter', sans-serif;
-      font-size: 11.5px;
-      color: #9e9e9e;
-      margin-top: 5px;
+      font-size: 11.5px; color: #9e9e9e; margin-top: 5px;
     }
 
     /* ── Filter chips ── */
-    .filter-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
+    .filter-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
     .chip-btn {
       display: inline-block;
       padding: 3px 13px;
       border: 1.5px solid #d8d8d8;
       border-radius: 20px;
-      background: #fff;
       color: #666;
       font-family: 'Inter', sans-serif;
-      font-size: 11.5px;
-      font-weight: 500;
-      cursor: pointer;
-      line-height: 1.6;
-      transition: all 0.15s ease;
-      user-select: none;
+      font-size: 11.5px; font-weight: 500;
+      cursor: pointer; line-height: 1.6;
+      transition: all 0.15s ease; user-select: none;
     }
-    .chip-btn:hover  { border-color: #009688; color: #009688; }
-    .chip-btn.active { background: #009688; border-color: #009688; color: #fff; }
+    .chip-btn:hover  { border-color: #009688; color: #009688; background: #fff !important; }
+    .chip-btn.active { background: #009688 !important; border-color: #009688; color: #fff; }
 
     /* ── Article cards ── */
     .blog-card {
-      background: #fff;
-      border: 1px solid #e8e8e8;
-      border-left: 4px solid #009688;
+      border: 1px solid #e8e8e8 !important;
+      border-left: 4px solid #009688 !important;
       border-radius: 10px;
       padding: 18px 22px;
       margin-bottom: 12px;
@@ -183,41 +184,12 @@
       box-shadow: 0 4px 14px rgba(0,150,136,0.11);
       transform: translateY(-2px);
     }
-    .card-meta {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      color: #9e9e9e;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      margin-bottom: 4px;
-    }
-    .card-title {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 17.5px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin: 0 0 6px 0;
-      line-height: 1.35;
-      transition: color 0.15s;
-    }
+    .card-meta { font-family: 'Inter', sans-serif; font-size: 11px; color: #9e9e9e; font-weight: 500; letter-spacing: 0.3px; margin-bottom: 4px; }
+    .card-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 17.5px; font-weight: 700; color: #1a1a1a; margin: 0 0 6px 0; line-height: 1.35; transition: color 0.15s; }
     .blog-card:hover .card-title { color: #009688; }
-    .card-snippet {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      color: #666;
-      line-height: 1.65;
-      margin-bottom: 11px;
-    }
+    .card-snippet { font-family: 'Inter', sans-serif; font-size: 13px; color: #666; line-height: 1.65; margin-bottom: 11px; }
     .card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .tag-pill {
-      font-family: 'Inter', sans-serif;
-      font-size: 10.5px;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
+    .tag-pill { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
     .tag-aerospace  { background: #e3f2fd; color: #1565c0; }
     .tag-radhard    { background: #fce4ec; color: #ad1457; }
     .tag-components { background: #f3e5f5; color: #6a1b9a; }
@@ -228,16 +200,142 @@
     .tag-python     { background: #f1f8e9; color: #33691e; }
 
     /* ── No results ── */
-    .no-results {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-      color: #bdbdbd;
+    .no-results { display: none; text-align: center; padding: 40px 20px; color: #bdbdbd; font-family: 'Inter', sans-serif; font-size: 14px; background: transparent !important; }
+
+    /* ══════════════════════════════════════
+       VOLTAGE DIVIDER CALCULATOR
+    ══════════════════════════════════════ */
+    #calc-panel { display: none; }
+
+    .calc-header {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 22px; font-weight: 700;
+      color: #1a1a1a; margin: 22px 0 6px 0;
+    }
+    .calc-desc {
       font-family: 'Inter', sans-serif;
-      font-size: 14px;
+      font-size: 13.5px; color: #666;
+      line-height: 1.6; margin-bottom: 24px; max-width: 560px;
     }
 
-    /* ── Responsive (same as your site) ── */
+    /* Formula display */
+    .calc-formula {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-left: 4px solid #009688;
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin-bottom: 24px;
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+    }
+    .calc-formula .f-label { font-size: 12px; color: #9e9e9e; margin-bottom: 6px; }
+    .calc-formula .f-eq {
+      font-size: 20px; font-weight: 600; color: #1a1a1a;
+      font-family: 'Source Serif 4', serif;
+    }
+    .calc-formula .f-eq sub { font-size: 13px; }
+
+    /* Fields */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 180px 1fr 140px;
+      align-items: center;
+      gap: 10px 14px;
+      max-width: 560px;
+      margin-bottom: 6px;
+    }
+    .calc-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px; font-weight: 600; color: #333;
+    }
+    .calc-label sub { font-size: 11px; }
+    .calc-input-wrap { position: relative; }
+    .calc-input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid #d8d8d8;
+      border-radius: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px; color: #333;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff !important;
+    }
+    .calc-input:focus {
+      border-color: #009688;
+      box-shadow: 0 0 0 3px rgba(0,150,136,0.1);
+    }
+    .calc-input.result-field {
+      border-color: #ff9800;
+      background: #fffdf5 !important;
+      color: #e65100;
+      font-weight: 600;
+    }
+    .calc-input::placeholder { color: #bdbdbd; }
+    .calc-unit {
+      padding: 9px 10px;
+      border: 1.5px solid #d8d8d8;
+      border-radius: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; color: #555;
+      background: #fff !important;
+      cursor: pointer; outline: none;
+      transition: border-color 0.2s;
+    }
+    .calc-unit:focus { border-color: #009688; }
+    .unit-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; color: #888;
+      padding: 9px 0;
+    }
+
+    /* Divider line between rows */
+    .calc-divider {
+      grid-column: 1 / -1;
+      height: 1px; background: #f0f0f0; margin: 2px 0;
+    }
+
+    /* Calculate button */
+    .calc-btn {
+      margin-top: 20px;
+      padding: 11px 32px;
+      background: #009688;
+      color: #fff;
+      border: none; border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      display: inline-block;
+    }
+    .calc-btn:hover  { background: #00796b; }
+    .calc-btn:active { transform: scale(0.98); }
+
+    .calc-hint {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; color: #9e9e9e;
+      margin-top: 10px;
+    }
+    .calc-hint span { color: #ff9800; font-weight: 600; }
+
+    .calc-error {
+      display: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; color: #c62828;
+      margin-top: 10px;
+      background: #ffebee;
+      border-radius: 6px;
+      padding: 8px 14px;
+      max-width: 400px;
+    }
+
+    /* SVG circuit diagram */
+    .calc-diagram {
+      margin: 0 0 28px 0;
+    }
+
+    /* ── Responsive ── */
     @media (max-width: 992px) {
       main { padding-left: 0px; padding-top: 0px; }
       ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
@@ -246,13 +344,7 @@
       h3 { padding: 20px 30px; margin-bottom: 40px; }
       .container { margin: 0 auto; }
       nav.hide-on-large.only.trigger { display: block; position: fixed; top: 0; z-index: 2; }
-      .name-title { display: block; height: 100%; padding-top: 0px; text-align: center; width: 100%; position: absolute; }
-      .name-title>span, .name-title>a { position: relative; line-height: 20px; }
-      .name-title a { font-size: 22px; display: block; }
-      .name-title span { display: block; font-size: 14px; }
-      h3, .container { position: relative; top: 0px; }
-      section#intro { margin-bottom: -64px; }
-      .card .role { position: relative; right: initial; top: initial; }
+      .calc-grid { grid-template-columns: 150px 1fr 120px; }
     }
   </style>
 </head>
@@ -261,20 +353,27 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- ── SIDEBAR — exact copy of your working project pages ── -->
+  <!-- ── SIDEBAR — identical to previous working version ── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
 
       <li class="logo">
         <a id="logo-container" aria-label="Navigate to the beginning of the page"
           class="brand-logo grey-blue-text">
-          <img src="/assets/img/ele.png" class="circle img-responsive profile-pic" alt="avatar">
+          <img src="/assets/img/ele2.png" class="circle img-responsive profile-pic" alt="avatar">
         </a>
       </li>
 
       <li class="bold">
         <a href="https://nikoschatzi.github.io/" class="waves-effect waves-dark teal-text">
           <i class="mdi-action-home small"></i><span>Personal Blog</span>
+        </a>
+      </li>
+
+      <!-- Voltage Divider Calculator tab -->
+      <li class="bold" id="calc-tab">
+        <a href="#" class="waves-effect waves-dark teal-text" onclick="showCalc(event)">
+          <i class="mdi-image-flash-on small"></i><span>Voltage Divider</span>
         </a>
       </li>
 
@@ -294,115 +393,259 @@
 
       <h3 class="page-title white-text teal">
         <p class="blog-site-title">Space Electronics Lab</p>
-        <p class="blog-site-sub">Blog for hardware engineers.</p>
+        <p class="blog-site-sub">Precision hardware, from cryogenics to orbit.</p>
         <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
       </h3>
 
       <div class="container flow-text">
 
-        <p class="blog-intro">
-          I'm a <strong>hardware engineer</strong> specialising in aerospace and radiation-tolerant electronics,
-          with over 5 years of experience (<strong>CERN</strong> and <strong>Safran</strong>).
-          This blog is where I share deep-dive technical articles on hardware design.
-        </p>
+        <!-- ══ BLOG PANEL ══ -->
+        <div id="blog-panel">
 
-        <div class="search-wrap">
-          <div class="search-box">
-            <i class="fa fa-search search-icon"></i>
-            <input type="text" id="search-input"
-              placeholder="Search — e.g. transistor, Matlab, radiation"
-              autocomplete="off" />
+          <p class="blog-intro">
+            I'm a <strong>hardware engineer</strong> specialising in aerospace and radiation-tolerant electronics,
+            with over 5 years of experience (<strong>CERN</strong> and <strong>Safran</strong>).
+            This blog is where I share deep-dive technical articles on hardware design — the kind of detail
+            that doesn't fit in a datasheet.
+          </p>
+
+          <div class="search-wrap">
+            <div class="search-box">
+              <i class="fa fa-search search-icon"></i>
+              <input type="text" id="search-input"
+                placeholder="Search — e.g. transistor, Matlab, radiation"
+                autocomplete="off" />
+            </div>
+            <div id="search-count"></div>
           </div>
-          <div id="search-count"></div>
-        </div>
 
-        <div class="filter-chips">
-          <div class="chip-btn active" data-filter="all">All</div>
-          <div class="chip-btn" data-filter="aerospace">Aerospace</div>
-          <div class="chip-btn" data-filter="radhard">Rad-Hard</div>
-          <div class="chip-btn" data-filter="components">Components</div>
-          <div class="chip-btn" data-filter="simulation">Simulation</div>
-          <div class="chip-btn" data-filter="cern">CERN</div>
-          <div class="chip-btn" data-filter="testing">Testing</div>
-        </div>
+          <div class="filter-chips">
+            <div class="chip-btn active" data-filter="all">All</div>
+            <div class="chip-btn" data-filter="aerospace">Aerospace</div>
+            <div class="chip-btn" data-filter="radhard">Rad-Hard</div>
+            <div class="chip-btn" data-filter="components">Components</div>
+            <div class="chip-btn" data-filter="simulation">Simulation</div>
+            <div class="chip-btn" data-filter="cern">CERN</div>
+            <div class="chip-btn" data-filter="testing">Testing</div>
+          </div>
 
-        <div id="article-list">
+          <div id="article-list">
 
-          <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
-             data-tags="cern radhard testing aerospace"
-             data-text="irradiation piezo valves CERN cryogenic 3 2 way solenoid replacement TID 100 kGy radiation campaign CC60 cobalt passive PCB Ultem">
-            <div class="card-meta">02 Apr 2026 &nbsp;·&nbsp; 14 min read</div>
-            <div class="card-title">Irradiation Tests of 3/2-Way Piezo Valves at CERN</div>
-            <div class="card-snippet">Results from the CC60 campaign evaluating piezo actuators as drop-in solenoid replacements in cryogenic control valves under 100 kGy TID. Covers passive PCB design, Ultem 3D-printed housings, and full test results.</div>
-            <div class="card-tags">
-              <span class="tag-pill tag-cern">CERN</span>
-              <span class="tag-pill tag-radhard">Rad-Hard</span>
-              <span class="tag-pill tag-testing">Testing</span>
+            <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
+               data-tags="cern radhard testing aerospace"
+               data-text="irradiation piezo valves CERN cryogenic solenoid replacement TID 100 kGy radiation campaign CC60 passive PCB Ultem">
+              <div class="card-meta">02 Apr 2026 &nbsp;·&nbsp; 14 min read</div>
+              <div class="card-title">Irradiation Tests of 3/2-Way Piezo Valves at CERN</div>
+              <div class="card-snippet">Results from the CC60 campaign evaluating piezo actuators as drop-in solenoid replacements in cryogenic control valves under 100 kGy TID. Covers passive PCB design, Ultem 3D-printed housings, and full test results.</div>
+              <div class="card-tags">
+                <span class="tag-pill tag-cern">CERN</span>
+                <span class="tag-pill tag-radhard">Rad-Hard</span>
+                <span class="tag-pill tag-testing">Testing</span>
+              </div>
+            </a>
+
+            <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html"
+               data-tags="components aerospace"
+               data-text="transistor datasheet high reliability parameters thermal characteristics safe operating area SOA derating aerospace">
+              <div class="card-meta">12 Jun 2026 &nbsp;·&nbsp; 8 min read</div>
+              <div class="card-title">How to Read a Transistor Datasheet for High-Reliability Applications</div>
+              <div class="card-snippet">Beyond absolute maximum ratings — thermal characteristics, safe operating areas (SOA), and derating rules that matter when selecting components for aerospace hardware.</div>
+              <div class="card-tags">
+                <span class="tag-pill tag-components">Components</span>
+                <span class="tag-pill tag-aerospace">Aerospace</span>
+              </div>
+            </a>
+
+            <a class="blog-card" href="/blog/rad-tol-design-essentials.html"
+               data-tags="radhard aerospace"
+               data-text="radiation tolerant design single event effects SEE total ionizing dose TID mitigation mission-critical screening">
+              <div class="card-meta">28 May 2026 &nbsp;·&nbsp; 12 min read</div>
+              <div class="card-title">Radiation-Tolerant Design of Sub-System Electronics</div>
+              <div class="card-snippet">Practical patterns for mitigating SEE and TID at schematic level — redundancy, bypass capacitor placement, and component screening strategies for mission-critical hardware.</div>
+              <div class="card-tags">
+                <span class="tag-pill tag-radhard">Rad-Hard</span>
+                <span class="tag-pill tag-aerospace">Aerospace</span>
+              </div>
+            </a>
+
+            <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html"
+               data-tags="simulation pcb"
+               data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep reliability power supply analog">
+              <div class="card-meta">15 May 2026 &nbsp;·&nbsp; 10 min read</div>
+              <div class="card-title">Worst-Case Circuit Analysis with LTspice</div>
+              <div class="card-snippet">Setting up Monte Carlo runs and tolerance sweeps to validate hardware reliability before the first PCB spin. Covers corner analysis for power regulators and analog signal chains.</div>
+              <div class="card-tags">
+                <span class="tag-pill tag-simulation">Simulation</span>
+                <span class="tag-pill tag-pcb">PCB</span>
+              </div>
+            </a>
+
+            <a class="blog-card" href="/blog/python-hardware-test-automation.html"
+               data-tags="testing python"
+               data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench firmware VISA">
+              <div class="card-meta">18 Mar 2026 &nbsp;·&nbsp; 9 min read</div>
+              <div class="card-title">Automating Hardware Tests with Python and SCPI</div>
+              <div class="card-snippet">How to script your bench — controlling oscilloscopes, power supplies, and DMMs over VISA/SCPI to run reproducible, logged measurements without clicking through menus.</div>
+              <div class="card-tags">
+                <span class="tag-pill tag-testing">Testing</span>
+                <span class="tag-pill tag-python">Python</span>
+              </div>
+            </a>
+
+          </div><!-- /#article-list -->
+
+          <div class="no-results" id="no-results">
+            <i class="fa fa-search" style="font-size:28px; display:block; margin-bottom:8px;"></i>
+            No articles found. Try different keywords.
+          </div>
+
+        </div><!-- /#blog-panel -->
+
+        <!-- ══ VOLTAGE DIVIDER CALCULATOR PANEL ══ -->
+        <div id="calc-panel">
+
+          <div class="calc-header">Voltage Divider Calculator</div>
+          <p class="calc-desc">
+            Enter any <strong>three</strong> known values and press <strong>Calculate</strong> — the missing field is solved automatically.
+            Leave exactly one field empty.
+          </p>
+
+          <!-- Circuit diagram (SVG) -->
+          <div class="calc-diagram">
+            <svg width="260" height="200" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg"
+                 style="font-family:'Inter',sans-serif; background:#fff; border:1px solid #e8e8e8; border-radius:10px; padding:8px;">
+              <!-- Source voltage -->
+              <line x1="40" y1="20" x2="40" y2="180" stroke="#333" stroke-width="2"/>
+              <!-- + terminal -->
+              <line x1="30" y1="30" x2="50" y2="30" stroke="#009688" stroke-width="2"/>
+              <text x="18" y="34" font-size="11" fill="#009688" font-weight="700">+</text>
+              <!-- - terminal -->
+              <line x1="30" y1="170" x2="50" y2="170" stroke="#e53935" stroke-width="2"/>
+              <text x="18" y="174" font-size="11" fill="#e53935" font-weight="700">−</text>
+              <!-- Vs label -->
+              <text x="8" y="105" font-size="10" fill="#555">V</text>
+              <text x="15" y="108" font-size="7" fill="#555">s</text>
+
+              <!-- Top wire -->
+              <line x1="40" y1="20" x2="140" y2="20" stroke="#333" stroke-width="2"/>
+              <!-- Bottom wire -->
+              <line x1="40" y1="180" x2="140" y2="180" stroke="#333" stroke-width="2"/>
+              <!-- Right wire top -->
+              <line x1="140" y1="20" x2="140" y2="55" stroke="#333" stroke-width="2"/>
+              <!-- Right wire mid (midpoint) -->
+              <line x1="140" y1="105" x2="140" y2="120" stroke="#333" stroke-width="2"/>
+              <!-- Right wire bottom -->
+              <line x1="140" y1="145" x2="140" y2="180" stroke="#333" stroke-width="2"/>
+
+              <!-- R1 resistor (zigzag, top) -->
+              <polyline points="140,55 133,62 147,69 133,76 147,83 133,90 147,97 140,104"
+                        fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+              <text x="152" y="82" font-size="10" fill="#009688" font-weight="600">R</text>
+              <text x="160" y="85" font-size="7" fill="#009688">1</text>
+
+              <!-- R2 resistor (zigzag, bottom) -->
+              <polyline points="140,120 133,127 147,134 133,141 147,148 133,155 147,162 140,169"
+                        fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+              <text x="152" y="147" font-size="10" fill="#009688" font-weight="600">R</text>
+              <text x="160" y="150" font-size="7" fill="#009688">2</text>
+
+              <!-- Midpoint tap -->
+              <circle cx="140" cy="112" r="3.5" fill="#ff9800"/>
+              <line x1="140" y1="112" x2="210" y2="112" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <text x="213" y="109" font-size="9" fill="#ff9800" font-weight="600">V</text>
+              <text x="221" y="112" font-size="6" fill="#ff9800">out</text>
+
+              <!-- Ground bottom right -->
+              <line x1="210" y1="112" x2="210" y2="180" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <line x1="200" y1="180" x2="220" y2="180" stroke="#333" stroke-width="2"/>
+            </svg>
+          </div>
+
+          <!-- Formula -->
+          <div class="calc-formula">
+            <div class="f-label">Formula</div>
+            <div class="f-eq">
+              V<sub>out</sub> = V<sub>s</sub> × R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)
             </div>
-          </a>
+          </div>
 
-          <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html"
-             data-tags="components aerospace"
-             data-text="transistor datasheet high reliability parameters thermal characteristics safe operating area SOA absolute maximum ratings derating aerospace">
-            <div class="card-meta">12 Jun 2026 &nbsp;·&nbsp; 8 min read</div>
-            <div class="card-title">How to Read a Transistor Datasheet for High-Reliability Applications</div>
-            <div class="card-snippet">Beyond absolute maximum ratings — thermal characteristics, safe operating areas (SOA), and derating rules that matter when selecting components for aerospace hardware.</div>
-            <div class="card-tags">
-              <span class="tag-pill tag-components">Components</span>
-              <span class="tag-pill tag-aerospace">Aerospace</span>
+          <!-- Input grid -->
+          <div class="calc-grid" style="margin-top:24px;">
+
+            <!-- Vs -->
+            <div class="calc-label">Voltage Source (V<sub>s</sub>)</div>
+            <div class="calc-input-wrap">
+              <input class="calc-input" id="f-vs" type="number" min="0" step="any" placeholder="e.g. 12" />
             </div>
-          </a>
+            <div class="unit-label">Volts (V)</div>
 
-          <a class="blog-card" href="/blog/rad-tol-design-essentials.html"
-             data-tags="radhard aerospace"
-             data-text="radiation tolerant design sub-system components single event effects SEE total ionizing dose TID schematic mitigation mission-critical screening">
-            <div class="card-meta">28 May 2026 &nbsp;·&nbsp; 12 min read</div>
-            <div class="card-title">Radiation-Tolerant Design of Sub-System Electronics</div>
-            <div class="card-snippet">Practical patterns for mitigating SEE and TID at schematic level — redundancy, bypass capacitor placement, and component screening strategies for mission-critical hardware.</div>
-            <div class="card-tags">
-              <span class="tag-pill tag-radhard">Rad-Hard</span>
-              <span class="tag-pill tag-aerospace">Aerospace</span>
+            <div class="calc-divider"></div>
+
+            <!-- R1 -->
+            <div class="calc-label">Resistance R<sub>1</sub></div>
+            <div class="calc-input-wrap">
+              <input class="calc-input" id="f-r1" type="number" min="0" step="any" placeholder="e.g. 10" />
             </div>
-          </a>
+            <select class="calc-unit" id="u-r1">
+              <option value="1">Ω</option>
+              <option value="1000" selected>kΩ</option>
+              <option value="1000000">MΩ</option>
+            </select>
 
-          <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html"
-             data-tags="simulation pcb"
-             data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep prototype reliability simulation power supply analog">
-            <div class="card-meta">15 May 2026 &nbsp;·&nbsp; 10 min read</div>
-            <div class="card-title">Worst-Case Circuit Analysis with LTspice</div>
-            <div class="card-snippet">Setting up Monte Carlo runs and tolerance sweeps to validate hardware reliability before the first PCB spin. Covers corner analysis for power regulators and analog signal chains.</div>
-            <div class="card-tags">
-              <span class="tag-pill tag-simulation">Simulation</span>
-              <span class="tag-pill tag-pcb">PCB</span>
+            <div class="calc-divider"></div>
+
+            <!-- R2 -->
+            <div class="calc-label">Resistance R<sub>2</sub></div>
+            <div class="calc-input-wrap">
+              <input class="calc-input" id="f-r2" type="number" min="0" step="any" placeholder="e.g. 10" />
             </div>
-          </a>
+            <select class="calc-unit" id="u-r2">
+              <option value="1">Ω</option>
+              <option value="1000" selected>kΩ</option>
+              <option value="1000000">MΩ</option>
+            </select>
 
-          <a class="blog-card" href="/blog/python-hardware-test-automation.html"
-             data-tags="testing python"
-             data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench firmware lab script VISA">
-            <div class="card-meta">18 Mar 2026 &nbsp;·&nbsp; 9 min read</div>
-            <div class="card-title">Automating Hardware Tests with Python and SCPI</div>
-            <div class="card-snippet">How to script your bench — controlling oscilloscopes, power supplies, and DMMs over VISA/SCPI to run reproducible, logged measurements without clicking through menus.</div>
-            <div class="card-tags">
-              <span class="tag-pill tag-testing">Testing</span>
-              <span class="tag-pill tag-python">Python</span>
+            <div class="calc-divider"></div>
+
+            <!-- Vout -->
+            <div class="calc-label">Output Voltage (V<sub>out</sub>)</div>
+            <div class="calc-input-wrap">
+              <input class="calc-input" id="f-vout" type="number" min="0" step="any" placeholder="e.g. 6" />
             </div>
-          </a>
+            <div class="unit-label">Volts (V)</div>
 
-        </div>
+          </div>
 
-        <div class="no-results" id="no-results">
-          <i class="fa fa-search" style="font-size:28px; display:block; margin-bottom:8px;"></i>
-          No articles found. Try different keywords.
-        </div>
+          <button class="calc-btn" onclick="calculate()">Calculate</button>
+          <button class="calc-btn" style="background:#e0e0e0; color:#555; margin-left:10px;" onclick="resetCalc()">Reset</button>
 
-      </div>
+          <p class="calc-hint">Leave exactly one field empty — it will be highlighted in <span>orange</span> when solved.</p>
+          <div class="calc-error" id="calc-error"></div>
+
+        </div><!-- /#calc-panel -->
+
+      </div><!-- /.container -->
     </section>
   </main>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+
   <script>
+    /* ══ PANEL TOGGLE ══ */
+    function showCalc(e) {
+      e.preventDefault();
+      document.getElementById('blog-panel').style.display = 'none';
+      document.getElementById('calc-panel').style.display = 'block';
+    }
+
+    /* clicking Personal Blog link restores blog */
+    document.querySelector('a[href="https://nikoschatzi.github.io/"]')
+      .addEventListener('click', function(e) {
+        // let href navigate normally — this is the portfolio link, not a toggle
+      });
+
+    /* ══ SEARCH & FILTER ══ */
     $(document).ready(function () {
       var activeFilter = 'all';
 
@@ -439,6 +682,103 @@
       $(".scrollspy").scrollSpy();
       $(".button-collapse").sideNav({ menuWidth: 190, edge: "left", closeOnClick: true });
     });
+
+    /* ══ VOLTAGE DIVIDER CALCULATOR ══ */
+    function getVal(id) {
+      var v = document.getElementById(id).value.trim();
+      return v === '' ? null : parseFloat(v);
+    }
+
+    function getR(inputId, unitId) {
+      var v = getVal(inputId);
+      if (v === null) return null;
+      var mult = parseFloat(document.getElementById(unitId).value);
+      return v * mult; // returns value in Ohms
+    }
+
+    function setResult(id, value) {
+      var el = document.getElementById(id);
+      el.value = parseFloat(value.toPrecision(6));
+      el.classList.add('result-field');
+    }
+
+    function clearResult(id) {
+      document.getElementById(id).classList.remove('result-field');
+    }
+
+    function showError(msg) {
+      var el = document.getElementById('calc-error');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    function hideError() {
+      document.getElementById('calc-error').style.display = 'none';
+    }
+
+    function calculate() {
+      hideError();
+      ['f-vs','f-r1','f-r2','f-vout'].forEach(clearResult);
+
+      var Vs   = getVal('f-vs');
+      var R1   = getR('f-r1', 'u-r1');
+      var R2   = getR('f-r2', 'u-r2');
+      var Vout = getVal('f-vout');
+
+      var nullCount = [Vs, R1, R2, Vout].filter(function(v){ return v === null; }).length;
+
+      if (nullCount === 0) {
+        showError('All fields are filled. Leave exactly one empty to solve for it.');
+        return;
+      }
+      if (nullCount > 1) {
+        showError('Leave exactly one field empty. Currently ' + nullCount + ' fields are empty.');
+        return;
+      }
+
+      // Validate positives
+      if (Vs !== null && Vs <= 0)   { showError('Source voltage must be positive.'); return; }
+      if (R1 !== null && R1 <= 0)   { showError('R₁ must be positive.'); return; }
+      if (R2 !== null && R2 <= 0)   { showError('R₂ must be positive.'); return; }
+      if (Vout !== null && Vout < 0) { showError('Output voltage cannot be negative.'); return; }
+
+      if (Vs === null) {
+        // Vs = Vout * (R1 + R2) / R2
+        if (R2 === 0) { showError('R₂ cannot be zero.'); return; }
+        setResult('f-vs', Vout * (R1 + R2) / R2);
+
+      } else if (R1 === null) {
+        // R1 = R2 * (Vs - Vout) / Vout
+        if (Vout === 0) { showError('Vout cannot be zero when solving for R₁.'); return; }
+        if (Vs <= Vout) { showError('Vs must be greater than Vout.'); return; }
+        var r1val = R2 * (Vs - Vout) / Vout;
+        var mult1 = parseFloat(document.getElementById('u-r1').value);
+        document.getElementById('f-r1').value = parseFloat((r1val / mult1).toPrecision(6));
+        document.getElementById('f-r1').classList.add('result-field');
+
+      } else if (R2 === null) {
+        // R2 = R1 * Vout / (Vs - Vout)
+        if (Vs <= Vout) { showError('Vs must be greater than Vout.'); return; }
+        var r2val = R1 * Vout / (Vs - Vout);
+        var mult2 = parseFloat(document.getElementById('u-r2').value);
+        document.getElementById('f-r2').value = parseFloat((r2val / mult2).toPrecision(6));
+        document.getElementById('f-r2').classList.add('result-field');
+
+      } else {
+        // Vout = Vs * R2 / (R1 + R2)
+        if ((R1 + R2) === 0) { showError('R₁ + R₂ cannot be zero.'); return; }
+        setResult('f-vout', Vs * R2 / (R1 + R2));
+      }
+    }
+
+    function resetCalc() {
+      ['f-vs','f-r1','f-r2','f-vout'].forEach(function(id){
+        var el = document.getElementById(id);
+        el.value = '';
+        el.classList.remove('result-field');
+      });
+      hideError();
+    }
   </script>
 </body>
 </html>
