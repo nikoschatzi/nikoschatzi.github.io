@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -54,13 +52,16 @@
       font-size: 24px; font-weight: 700; color: #fff;
       margin: 0 0 3px 0; line-height: 1.2;
     }
+    /* FIX 3: "Blog for hardware engineers." small, "by Nikolaos Chatzipapas" even smaller */
     .blog-site-sub {
-      font-family: 'Inter', sans-serif; font-size: 12px;
+      font-family: 'Inter', sans-serif; font-size: 11px;
       color: rgba(255,255,255,0.65); margin: 0 0 2px 0;
+      text-transform: none; letter-spacing: 0;
     }
     .blog-site-byline {
-      font-family: 'Inter', sans-serif; font-size: 11.5px;
-      color: rgba(255,255,255,0.55); margin: 0;
+      font-family: 'Inter', sans-serif; font-size: 10px;
+      color: rgba(255,255,255,0.50); margin: 0;
+      text-transform: none; letter-spacing: 0;
     }
 
     /* ── Intro ── */
@@ -72,23 +73,31 @@
     }
     .blog-intro strong { color: #009688; font-weight: 600; }
 
-    /* ── Search ── */
+    /* ── Search ── FIX 4: icon perfectly vertically centred */
     .search-wrap { max-width: 480px; margin: 0 0 16px 0; }
     .search-box { position: relative; display: flex; align-items: center; }
     .search-icon {
-      position: absolute; left: 12px;
-      font-size: 13px; color: #bdbdbd;
-      pointer-events: none; line-height: 1;
-      top: 50%; transform: translateY(-50%);
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: #bdbdbd;
+      pointer-events: none;
+      line-height: 1;
+      display: flex;
+      align-items: center;
     }
     .search-box input {
-      width: 100%; height: 36px;
+      width: 100%;
+      height: 36px;
       padding: 0 14px 0 36px;
       border: 1.5px solid #d8d8d8; border-radius: 7px;
       font-family: 'Inter', sans-serif; font-size: 13px; color: #333;
       background: #fff; outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
-      line-height: 36px;
+      line-height: normal;
+      box-sizing: border-box;
     }
     .search-box input:focus { border-color: #009688; box-shadow: 0 0 0 3px rgba(0,150,136,0.1); }
     .search-box input::placeholder { color: #bdbdbd; }
@@ -148,62 +157,86 @@
       color: #666; line-height: 1.6; margin-bottom: 24px;
     }
 
-    /* Two-column layout: fields left, diagram right */
+    /* FIX 1: Two-column layout — LEFT: diagram+formula, RIGHT: fields */
     .calc-layout {
-      display: flex; gap: 40px; align-items: flex-start;
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
       flex-wrap: wrap;
     }
-    .calc-left { flex: 1; min-width: 280px; }
-    .calc-right { flex: 0 0 auto; }
+
+    /* LEFT column: diagram + formula stacked */
+    .calc-left {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* RIGHT column: the input fields */
+    .calc-right {
+      flex: 1;
+      min-width: 280px;
+    }
 
     /* Formula */
     .calc-formula {
       background: #fff; border: 1px solid #e8e8e8;
       border-left: 4px solid #009688; border-radius: 10px;
-      padding: 14px 20px; margin-bottom: 20px; display: inline-block;
+      padding: 12px 18px; display: inline-block;
     }
     .calc-formula .f-label { font-size: 11px; color: #9e9e9e; font-family: 'Inter', sans-serif; margin-bottom: 5px; }
-    .calc-formula .f-eq { font-size: 18px; font-weight: 600; color: #1a1a1a; font-family: 'Source Serif 4', serif; }
-    .calc-formula .f-eq sub { font-size: 12px; }
+    .calc-formula .f-eq { font-size: 16px; font-weight: 600; color: #1a1a1a; font-family: 'Source Serif 4', serif; }
+    .calc-formula .f-eq sub { font-size: 11px; }
 
-    /* Fields grid */
+    /* FIX 1: Smaller fields grid — 3 columns: label | input | unit-select */
     .calc-grid {
       display: grid;
-      grid-template-columns: 160px 1fr 110px;
+      grid-template-columns: 130px 1fr 90px;
       align-items: center;
-      gap: 9px 12px;
+      gap: 7px 10px;
     }
-    .calc-label { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #333; }
-    .calc-label sub { font-size: 10px; }
+    .calc-label { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #333; }
+    .calc-label sub { font-size: 9px; }
     .calc-input {
-      width: 100%; padding: 8px 10px;
+      width: 100%; padding: 6px 8px;
       border: 1.5px solid #d8d8d8; border-radius: 7px;
-      font-family: 'Inter', sans-serif; font-size: 13px; color: #333;
+      font-family: 'Inter', sans-serif; font-size: 12px; color: #333;
       background: #fff; outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
     }
     .calc-input:focus { border-color: #009688; box-shadow: 0 0 0 3px rgba(0,150,136,0.1); }
     .calc-input::placeholder { color: #bdbdbd; }
     .calc-input.result-field { border-color: #ff9800; background: #fffdf5; color: #e65100; font-weight: 600; }
+
+    /* FIX 1: Unit — always a <select> dropdown for Ω / kΩ / MΩ */
     .calc-unit {
-      padding: 8px 6px; border: 1.5px solid #d8d8d8; border-radius: 7px;
-      font-family: 'Inter', sans-serif; font-size: 12px; color: #555;
+      padding: 6px 4px;
+      border: 1.5px solid #d8d8d8; border-radius: 7px;
+      font-family: 'Inter', sans-serif; font-size: 11px; color: #555;
       background: #fff; cursor: pointer; outline: none; width: 100%;
+      box-sizing: border-box;
     }
     .calc-unit:focus { border-color: #009688; }
-    .unit-text { font-family: 'Inter', sans-serif; font-size: 12.5px; color: #888; padding: 8px 0; }
+
+    /* Static unit label (for Vs and Vout) */
+    .unit-text {
+      font-family: 'Inter', sans-serif; font-size: 11.5px;
+      color: #888; padding: 6px 0;
+    }
     .calc-divider { grid-column: 1/-1; height: 1px; background: #f0f0f0; margin: 1px 0; }
 
     .calc-btn {
-      margin-top: 18px; padding: 10px 28px;
+      margin-top: 14px; padding: 9px 24px;
       background: #009688; color: #fff;
       border: none; border-radius: 8px;
-      font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
       cursor: pointer; transition: background 0.15s, transform 0.1s;
     }
     .calc-btn:hover { background: #00796b; }
     .calc-btn:active { transform: scale(0.98); }
-    .calc-btn.reset { background: #e0e0e0; color: #555; margin-left: 10px; }
+    .calc-btn.reset { background: #e0e0e0; color: #555; margin-left: 8px; }
     .calc-btn.reset:hover { background: #d0d0d0; }
 
     .calc-hint { font-family: 'Inter', sans-serif; font-size: 12px; color: #9e9e9e; margin-top: 9px; }
@@ -211,7 +244,17 @@
     .calc-error {
       display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #c62828;
       margin-top: 10px; background: #ffebee; border-radius: 6px;
-      padding: 8px 14px; max-width: 420px;
+      padding: 8px 14px; max-width: 380px;
+    }
+
+    /* ── FIX 2: nav icon — remove any border/outline on mdi icons ── */
+    .side-nav li a i[class^="mdi-"],
+    .side-nav li a i[class*=" mdi-"] {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      text-shadow: none !important;
     }
 
     /* ── Responsive ── */
@@ -224,7 +267,7 @@
       .container { margin: 0 auto; }
       nav.hide-on-large.only.trigger { display: block; position: fixed; top: 0; z-index: 2; }
       .calc-layout { flex-direction: column; }
-      .calc-grid { grid-template-columns: 140px 1fr 100px; }
+      .calc-grid { grid-template-columns: 120px 1fr 85px; }
     }
   </style>
 </head>
@@ -243,7 +286,7 @@
         </a>
       </li>
 
-      <!-- Articles (back to blog) -->
+      <!-- Articles -->
       <li class="bold" id="nav-articles">
         <a href="#" class="waves-effect waves-dark teal-text" onclick="showBlog(event)">
           <i class="mdi-action-home small"></i><span>Articles</span>
@@ -257,10 +300,10 @@
         </a>
       </li>
 
-      <!-- My Portfolio — opens in new tab -->
+      <!-- FIX 2: My Portfolio — replaced mdi-action-work (briefcase with border) with fa icon -->
       <li class="bold">
         <a href="https://nikoschatzi.github.io/" target="_blank" rel="noopener" class="waves-effect waves-dark teal-text">
-          <i class="mdi-action-work small"></i><span>My Portfolio</span>
+          <i class="fa fa-user small" style="font-size:1.4rem; width:2rem; display:inline-block; text-align:center;"></i><span>My Portfolio</span>
         </a>
       </li>
 
@@ -281,6 +324,7 @@
 
       <h3 class="page-title white-text teal">
         <p class="blog-site-title">Space Electronics Lab</p>
+        <!-- FIX 3: exact capitalisation as user wrote -->
         <p class="blog-site-sub">Blog for hardware engineers.</p>
         <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
       </h3>
@@ -296,6 +340,7 @@
             This blog is where I share deep-dive technical articles on hardware design.
           </p>
 
+          <!-- FIX 4: search icon perfectly centred via flexbox -->
           <div class="search-wrap">
             <div class="search-box">
               <i class="fa fa-search search-icon"></i>
@@ -396,26 +441,101 @@
             Leave exactly <strong>one</strong> field empty and press <strong>Calculate</strong> — it will be solved and highlighted in orange.
           </p>
 
+          <!-- FIX 1: LEFT = diagram + formula  |  RIGHT = input fields -->
           <div class="calc-layout">
 
-            <!-- LEFT: formula + fields -->
+            <!-- LEFT column: SVG diagram on top, formula below -->
             <div class="calc-left">
 
+              <svg width="210" height="250" viewBox="0 0 210 250" xmlns="http://www.w3.org/2000/svg"
+                   style="font-family:'Inter',sans-serif; background:#fff; border:1px solid #e8e8e8; border-radius:12px;">
+
+                <!-- Left vertical wire -->
+                <line x1="40" y1="28" x2="40" y2="222" stroke="#333" stroke-width="2"/>
+
+                <!-- + terminal -->
+                <line x1="32" y1="40" x2="48" y2="40" stroke="#009688" stroke-width="2"/>
+                <text x="20" y="44" font-size="13" fill="#009688" font-weight="700">+</text>
+
+                <!-- − terminal -->
+                <line x1="32" y1="210" x2="48" y2="210" stroke="#e53935" stroke-width="2"/>
+                <text x="20" y="214" font-size="13" fill="#e53935" font-weight="700">−</text>
+
+                <!-- Vs label -->
+                <text x="6" y="128" font-size="11" fill="#555">V</text>
+                <text x="15" y="131" font-size="8" fill="#555">s</text>
+
+                <!-- Top horizontal wire -->
+                <line x1="40" y1="28" x2="140" y2="28" stroke="#333" stroke-width="2"/>
+                <!-- Bottom horizontal wire -->
+                <line x1="40" y1="222" x2="140" y2="222" stroke="#333" stroke-width="2"/>
+
+                <!-- Right wire top (to R1) -->
+                <line x1="140" y1="28" x2="140" y2="65" stroke="#333" stroke-width="2"/>
+
+                <!-- R1 zigzag -->
+                <polyline points="140,65 132,72 148,80 132,88 148,96 132,104 148,112 140,119"
+                          fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                <!-- R1 label -->
+                <text x="154" y="95" font-size="11" fill="#009688" font-weight="600">R</text>
+                <text x="163" y="98" font-size="8" fill="#009688">1</text>
+
+                <!-- Midpoint dot -->
+                <circle cx="140" cy="127" r="4" fill="#ff9800"/>
+
+                <!-- Wire between R1 bottom and midpoint -->
+                <line x1="140" y1="119" x2="140" y2="127" stroke="#333" stroke-width="2"/>
+
+                <!-- Wire from midpoint to R2 top -->
+                <line x1="140" y1="127" x2="140" y2="135" stroke="#333" stroke-width="2"/>
+
+                <!-- R2 zigzag -->
+                <polyline points="140,135 132,142 148,150 132,158 148,166 132,174 148,182 140,189"
+                          fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                <!-- R2 label -->
+                <text x="154" y="165" font-size="11" fill="#009688" font-weight="600">R</text>
+                <text x="163" y="168" font-size="8" fill="#009688">2</text>
+
+                <!-- Wire from R2 bottom to bottom rail -->
+                <line x1="140" y1="189" x2="140" y2="222" stroke="#333" stroke-width="2"/>
+
+                <!-- Vout tap: horizontal dashed line from midpoint -->
+                <line x1="140" y1="127" x2="192" y2="127" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <!-- Vout vertical down to bottom rail (dashed) -->
+                <line x1="192" y1="127" x2="192" y2="222" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <!-- Vout label -->
+                <text x="194" y="123" font-size="10" fill="#ff9800" font-weight="600">V</text>
+                <text x="203" y="126" font-size="7" fill="#ff9800">out</text>
+
+                <!-- Ground symbol at bottom right -->
+                <line x1="183" y1="222" x2="201" y2="222" stroke="#333" stroke-width="2"/>
+                <line x1="186" y1="227" x2="198" y2="227" stroke="#333" stroke-width="1.5"/>
+                <line x1="190" y1="232" x2="194" y2="232" stroke="#333" stroke-width="1"/>
+
+              </svg>
+
+              <!-- Formula under the diagram -->
               <div class="calc-formula">
                 <div class="f-label">Formula</div>
                 <div class="f-eq">V<sub>out</sub> = V<sub>s</sub> × R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</div>
               </div>
 
+            </div><!-- /.calc-left -->
+
+            <!-- RIGHT column: input fields -->
+            <div class="calc-right">
+
               <div class="calc-grid">
 
                 <div class="calc-label">Source (V<sub>s</sub>)</div>
                 <input class="calc-input" id="f-vs" type="number" min="0" step="any" placeholder="e.g. 12" />
-                <div class="unit-text">Volts (V)</div>
+                <div class="unit-text">V</div>
 
                 <div class="calc-divider"></div>
 
                 <div class="calc-label">R<sub>1</sub></div>
                 <input class="calc-input" id="f-r1" type="number" min="0" step="any" placeholder="e.g. 10" />
+                <!-- FIX 1: dropdown Ω / kΩ / MΩ -->
                 <select class="calc-unit" id="u-r1">
                   <option value="1">Ω</option>
                   <option value="1000" selected>kΩ</option>
@@ -426,6 +546,7 @@
 
                 <div class="calc-label">R<sub>2</sub></div>
                 <input class="calc-input" id="f-r2" type="number" min="0" step="any" placeholder="e.g. 10" />
+                <!-- FIX 1: dropdown Ω / kΩ / MΩ -->
                 <select class="calc-unit" id="u-r2">
                   <option value="1">Ω</option>
                   <option value="1000" selected>kΩ</option>
@@ -436,7 +557,7 @@
 
                 <div class="calc-label">Output (V<sub>out</sub>)</div>
                 <input class="calc-input" id="f-vout" type="number" min="0" step="any" placeholder="e.g. 6" />
-                <div class="unit-text">Volts (V)</div>
+                <div class="unit-text">V</div>
 
               </div>
 
@@ -447,76 +568,6 @@
               <p class="calc-hint">The solved field is highlighted in <span>orange</span>.</p>
               <div class="calc-error" id="calc-error"></div>
 
-            </div><!-- /.calc-left -->
-
-            <!-- RIGHT: SVG circuit diagram -->
-            <div class="calc-right">
-              <svg width="230" height="260" viewBox="0 0 230 260" xmlns="http://www.w3.org/2000/svg"
-                   style="font-family:'Inter',sans-serif; background:#fff; border:1px solid #e8e8e8; border-radius:12px;">
-
-                <!-- Left vertical wire -->
-                <line x1="45" y1="30" x2="45" y2="230" stroke="#333" stroke-width="2"/>
-
-                <!-- + terminal -->
-                <line x1="36" y1="42" x2="54" y2="42" stroke="#009688" stroke-width="2"/>
-                <text x="24" y="46" font-size="13" fill="#009688" font-weight="700">+</text>
-
-                <!-- − terminal -->
-                <line x1="36" y1="218" x2="54" y2="218" stroke="#e53935" stroke-width="2"/>
-                <text x="24" y="222" font-size="13" fill="#e53935" font-weight="700">−</text>
-
-                <!-- Vs label -->
-                <text x="10" y="135" font-size="11" fill="#555">V</text>
-                <text x="19" y="138" font-size="8" fill="#555">s</text>
-
-                <!-- Top horizontal wire -->
-                <line x1="45" y1="30" x2="150" y2="30" stroke="#333" stroke-width="2"/>
-                <!-- Bottom horizontal wire -->
-                <line x1="45" y1="230" x2="150" y2="230" stroke="#333" stroke-width="2"/>
-
-                <!-- Right wire top (to R1) -->
-                <line x1="150" y1="30" x2="150" y2="68" stroke="#333" stroke-width="2"/>
-
-                <!-- R1 zigzag -->
-                <polyline points="150,68 142,75 158,83 142,91 158,99 142,107 158,115 150,122"
-                          fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                <!-- R1 label -->
-                <text x="164" y="98" font-size="11" fill="#009688" font-weight="600">R</text>
-                <text x="173" y="101" font-size="8" fill="#009688">1</text>
-
-                <!-- Midpoint dot -->
-                <circle cx="150" cy="130" r="4" fill="#ff9800"/>
-
-                <!-- Wire between R1 bottom and midpoint -->
-                <line x1="150" y1="122" x2="150" y2="130" stroke="#333" stroke-width="2"/>
-
-                <!-- Wire from midpoint to R2 top -->
-                <line x1="150" y1="130" x2="150" y2="138" stroke="#333" stroke-width="2"/>
-
-                <!-- R2 zigzag -->
-                <polyline points="150,138 142,145 158,153 142,161 158,169 142,177 158,185 150,192"
-                          fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                <!-- R2 label -->
-                <text x="164" y="168" font-size="11" fill="#009688" font-weight="600">R</text>
-                <text x="173" y="171" font-size="8" fill="#009688">2</text>
-
-                <!-- Wire from R2 bottom to bottom rail -->
-                <line x1="150" y1="192" x2="150" y2="230" stroke="#333" stroke-width="2"/>
-
-                <!-- Vout tap: horizontal dashed line from midpoint -->
-                <line x1="150" y1="130" x2="205" y2="130" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
-                <!-- Vout vertical down to bottom rail (dashed) -->
-                <line x1="205" y1="130" x2="205" y2="230" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
-                <!-- Vout label -->
-                <text x="208" y="126" font-size="10" fill="#ff9800" font-weight="600">V</text>
-                <text x="217" y="129" font-size="7" fill="#ff9800">out</text>
-
-                <!-- Ground symbol at bottom right -->
-                <line x1="195" y1="230" x2="215" y2="230" stroke="#333" stroke-width="2"/>
-                <line x1="198" y1="235" x2="212" y2="235" stroke="#333" stroke-width="1.5"/>
-                <line x1="202" y1="240" x2="208" y2="240" stroke="#333" stroke-width="1"/>
-
-              </svg>
             </div><!-- /.calc-right -->
 
           </div><!-- /.calc-layout -->
