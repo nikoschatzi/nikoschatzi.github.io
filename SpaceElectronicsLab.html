@@ -32,6 +32,11 @@
     h3.page-title, .teal { background-color: #009688 !important; background-image: none !important; }
     img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
 
+    /* ── Remove number input spinners ── */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; }
+
     /* ── Buy Me a Coffee ── */
     .bmc-link {
       display: flex; align-items: center; gap: 8px;
@@ -45,13 +50,6 @@
     .bmc-link:hover { background: #fff3cc; }
     .bmc-link i { font-size: 17px; color: #e6a817; }
 
-    /* ── Sidebar icon fix ── */
-    .side-nav li a i[class^="mdi-"],
-    .side-nav li a i[class*=" mdi-"] {
-      border: none !important; outline: none !important;
-      box-shadow: none !important; background: transparent !important;
-    }
-
     /* ── Teal header ── */
     h3.page-title { margin-top: 0 !important; padding: 26px 36px 22px !important; }
     .blog-site-title {
@@ -62,12 +60,10 @@
     .blog-site-sub {
       font-family: 'Inter', sans-serif; font-size: 11px;
       color: rgba(255,255,255,0.65); margin: 0 0 2px 0;
-      text-transform: lowercase;
     }
     .blog-site-byline {
       font-family: 'Inter', sans-serif; font-size: 10px;
       color: rgba(255,255,255,0.50); margin: 0;
-      text-transform: lowercase;
     }
 
     /* ── Intro ── */
@@ -79,7 +75,7 @@
     }
     .blog-intro strong { color: #009688; font-weight: 600; }
 
-    /* ── Search ── */
+    /* ── Search — icon perfectly centered, no bottom border on input ── */
     .search-wrap { max-width: 480px; margin: 24px 0 10px 0; }
     .search-box {
       display: flex; align-items: center;
@@ -88,15 +84,21 @@
     }
     .search-box:focus-within { border-color: #009688; box-shadow: 0 0 0 3px rgba(0,150,136,0.1); }
     .search-icon {
-      flex: 0 0 auto; padding: 0 10px 0 12px; font-size: 13px; color: #bdbdbd;
-      pointer-events: none; display: flex; align-items: center; align-self: stretch;
+      flex: 0 0 auto; width: 36px; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; color: #bdbdbd; pointer-events: none; align-self: stretch;
     }
     .search-box input {
-      flex: 1; height: 36px; padding: 3px 14px 0 0; border: none; outline: none;
+      flex: 1; height: 36px; padding: 0 14px 0 0;
+      border: none !important; outline: none !important; box-shadow: none !important;
       font-family: 'Inter', sans-serif; font-size: 13px; color: #333;
-      background: transparent; line-height: normal; box-sizing: border-box;
+      background: transparent; box-sizing: border-box;
+      /* kill any materialize bottom border */
+      border-bottom: none !important;
+      margin: 0 !important;
     }
     .search-box input::placeholder { color: #bdbdbd; }
+    /* override materialize input styles */
+    .search-box input:focus { border-bottom: none !important; box-shadow: none !important; }
     #search-count { font-family: 'Inter', sans-serif; font-size: 11.5px; color: #9e9e9e; margin-top: 5px; }
 
     /* ── Filter chips ── */
@@ -143,25 +145,13 @@
     ═══════════════════════════════════ */
     #calc-panel, #rc-panel { display: none; }
 
-    .calc-header {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 22px; font-weight: 700; color: #1a1a1a;
-      margin: 22px 0 6px 0;
-    }
-    .calc-desc {
-      font-family: 'Inter', sans-serif; font-size: 13.5px;
-      color: #666; line-height: 1.6; margin-bottom: 24px;
-    }
+    .calc-header { font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-weight: 700; color: #1a1a1a; margin: 22px 0 6px 0; }
+    .calc-desc { font-family: 'Inter', sans-serif; font-size: 13.5px; color: #666; line-height: 1.6; margin-bottom: 24px; }
 
-    .calc-layout {
-      display: flex; gap: 36px; align-items: flex-start; flex-wrap: wrap;
-    }
-    .calc-left {
-      flex: 0 0 auto; display: flex; flex-direction: column; gap: 16px;
-    }
+    .calc-layout { display: flex; gap: 36px; align-items: flex-start; flex-wrap: wrap; }
+    .calc-left { flex: 0 0 auto; display: flex; flex-direction: column; gap: 16px; }
     .calc-right { flex: 1; min-width: 240px; max-width: 380px; }
 
-    /* Formula box */
     .calc-formula {
       background: #fff; border: 1px solid #e8e8e8;
       border-left: 4px solid #009688; border-radius: 10px;
@@ -169,19 +159,17 @@
     }
     .calc-formula .f-label { font-size: 11px; color: #9e9e9e; font-family: 'Inter', sans-serif; margin-bottom: 5px; }
     .calc-formula .f-eq { font-size: 14px; font-weight: 600; color: #1a1a1a; font-family: 'Source Serif 4', serif; line-height: 1.8; }
-    .calc-formula .f-eq sub { font-size: 10px; }
+    .calc-formula .f-eq sub, .calc-formula .f-eq sup { font-size: 10px; }
 
-    /* Row: dot | label | input | unit */
     .calc-row {
       display: grid;
       grid-template-columns: 22px 140px 110px 80px;
       align-items: center;
-      gap: 8px 8px;
+      gap: 8px;
       margin-bottom: 10px;
     }
     .calc-divider { grid-column: 1/-1; height: 1px; background: #f0f0f0; margin: 2px 0; }
 
-    /* Dot selector */
     .dot-radio {
       width: 14px; height: 14px; border-radius: 50%;
       border: 2px solid #d8d8d8; background: #fff; cursor: pointer;
@@ -189,19 +177,11 @@
       transition: border-color 0.15s; flex-shrink: 0;
     }
     .dot-radio:hover { border-color: #009688; }
-    .dot-radio.selected {
-      border-color: #009688; background: #009688;
-      box-shadow: 0 0 0 2px rgba(0,150,136,0.2);
-    }
-    .dot-radio.selected::after {
-      content: ''; width: 5px; height: 5px; border-radius: 50%; background: #fff;
-    }
+    .dot-radio.selected { border-color: #009688; background: #009688; box-shadow: 0 0 0 2px rgba(0,150,136,0.2); }
+    .dot-radio.selected::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #fff; }
 
-    .calc-label {
-      font-family: 'Inter', sans-serif; font-size: 13.5px;
-      font-weight: 600; color: #333;
-    }
-    .calc-label sub { font-size: 10px; }
+    .calc-label { font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; color: #333; }
+    .calc-label sub, .calc-label sup { font-size: 10px; }
 
     .calc-input {
       width: 100%; padding: 7px 9px;
@@ -216,21 +196,15 @@
     .calc-input.target-field { border-color: #009688; background: #f0faf8; }
 
     .calc-unit {
-      -webkit-appearance: auto !important;
-      -moz-appearance: auto !important;
-      appearance: auto !important;
-      display: block !important;
-      width: 100%; padding: 7px 4px;
+      -webkit-appearance: auto !important; -moz-appearance: auto !important; appearance: auto !important;
+      display: block !important; width: 100%; padding: 7px 4px;
       border: 1.5px solid #d8d8d8 !important; border-radius: 7px;
       font-family: 'Inter', sans-serif; font-size: 13px; color: #555;
       background: #fff !important; cursor: pointer; outline: none;
       box-sizing: border-box; height: auto !important;
     }
     .calc-unit:focus { border-color: #009688 !important; }
-
-    .unit-text {
-      font-family: 'Inter', sans-serif; font-size: 13px; color: #888; padding: 7px 0;
-    }
+    .unit-text { font-family: 'Inter', sans-serif; font-size: 13px; color: #888; padding: 7px 0; }
 
     .calc-btn {
       margin-top: 14px; padding: 9px 24px;
@@ -246,39 +220,16 @@
 
     .calc-hint { font-family: 'Inter', sans-serif; font-size: 12px; color: #9e9e9e; margin-top: 9px; }
     .calc-hint span { color: #009688; font-weight: 600; }
-    .calc-error {
-      display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #c62828;
-      margin-top: 10px; background: #ffebee; border-radius: 6px; padding: 8px 14px;
-    }
-    .calc-success {
-      display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #2e7d32;
-      margin-top: 10px; background: #e8f5e9; border-radius: 6px; padding: 8px 14px;
-    }
+    .calc-error { display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #c62828; margin-top: 10px; background: #ffebee; border-radius: 6px; padding: 8px 14px; }
+    .calc-success { display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #2e7d32; margin-top: 10px; background: #e8f5e9; border-radius: 6px; padding: 8px 14px; }
 
-    /* ── RC Charging curve plot ── */
-    .rc-plot-wrap {
-      background: #fff; border: 1px solid #e8e8e8; border-radius: 12px;
-      padding: 14px 16px; margin-top: 4px;
-    }
+    .rc-plot-wrap { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 14px 16px; margin-top: 4px; }
     .rc-plot-wrap canvas { display: block; width: 100%; height: auto; }
 
-    /* ── Sub-tool sections inside RC panel ── */
-    .rc-subtool {
-      margin-top: 36px;
-      padding-top: 28px;
-      border-top: 2px solid #e8e8e8;
-    }
-    .rc-subtool-title {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 18px; font-weight: 700; color: #1a1a1a;
-      margin: 0 0 6px 0;
-    }
-    .rc-subtool-desc {
-      font-family: 'Inter', sans-serif; font-size: 13px;
-      color: #666; line-height: 1.6; margin-bottom: 20px;
-    }
+    .rc-subtool { margin-top: 36px; padding-top: 28px; border-top: 2px solid #e8e8e8; }
+    .rc-subtool-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0 0 6px 0; }
+    .rc-subtool-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 20px; }
 
-    /* ── Responsive ── */
     @media (max-width: 992px) {
       main { padding-left: 0; padding-top: 0; }
       ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
@@ -295,59 +246,50 @@
 </head>
 
 <body>
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- ── SIDEBAR ── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
-
       <li class="logo">
         <a id="logo-container" aria-label="Navigate to the beginning of the page" class="brand-logo grey-blue-text">
           <img src="/assets/img/ele2.png" class="circle img-responsive profile-pic" alt="avatar">
         </a>
       </li>
-
-      <li class="bold" id="nav-articles">
+      <li class="bold">
         <a href="#" class="waves-effect waves-dark teal-text" onclick="showPanel('blog-panel',event)">
           <i class="mdi-action-home small"></i><span>Articles</span>
         </a>
       </li>
-
-      <li class="bold" id="nav-calc">
+      <li class="bold">
         <a href="#" class="waves-effect waves-dark teal-text" onclick="showPanel('calc-panel',event)">
           <i class="mdi-image-flash-on small"></i><span>Voltage Divider</span>
         </a>
       </li>
-
-      <li class="bold" id="nav-rc">
+      <li class="bold">
         <a href="#" class="waves-effect waves-dark teal-text" onclick="showPanel('rc-panel',event)">
           <i class="fa fa-circle-o small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>RC Calculator</span>
         </a>
       </li>
-
       <li class="bold">
         <a href="https://nikoschatzi.github.io/" target="_blank" rel="noopener" class="waves-effect waves-dark teal-text">
-          <i class="fa fa-user small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>My Portfolio</span>
+          <i class="fa fa-suitcase small" style="font-size:1.1rem;width:2rem;display:inline-block;text-align:center;border:none!important;box-shadow:none!important;outline:none!important;"></i><span>My Portfolio</span>
         </a>
       </li>
-
       <li style="list-style:none;padding:0;">
         <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
           <i class="fa fa-coffee"></i>Buy me a coffee
         </a>
       </li>
-
     </ul>
   </nav>
 
   <!-- ── MAIN ── -->
   <main>
     <section id="about" class="section scrollspy">
-
       <h3 class="page-title white-text teal">
         <p class="blog-site-title">Space Electronics Lab</p>
-        <p class="blog-site-sub">blog for hardware engineers.</p>
+        <p class="blog-site-sub">Blog for hardware engineers</p>
         <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
       </h3>
 
@@ -360,17 +302,13 @@
             with over 5 years of experience (<strong>CERN</strong> and <strong>Safran</strong>).
             This blog is where I share deep-dive technical articles on hardware design.
           </p>
-
           <div class="search-wrap">
             <div class="search-box">
-              <i class="fa fa-search search-icon"></i>
-              <input type="text" id="search-input"
-                placeholder="Search — e.g. transistors, Matlab, radiation"
-                autocomplete="off" />
+              <span class="search-icon"><i class="fa fa-search"></i></span>
+              <input type="text" id="search-input" placeholder="Search — e.g. transistors, Matlab, radiation" autocomplete="off" />
             </div>
             <div id="search-count"></div>
           </div>
-
           <div class="filter-chips">
             <div class="chip-btn active" data-filter="all">All</div>
             <div class="chip-btn" data-filter="aerospace">Aerospace</div>
@@ -380,132 +318,96 @@
             <div class="chip-btn" data-filter="cern">CERN</div>
             <div class="chip-btn" data-filter="testing">Testing</div>
           </div>
-
           <div id="article-list">
-            <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html"
-               data-tags="cern radhard testing aerospace"
-               data-text="irradiation piezo valves CERN cryogenic solenoid replacement TID 100 kGy radiation campaign CC60 passive PCB Ultem">
+            <a class="blog-card" href="/blog/irradiation-piezo-valves-cern.html" data-tags="cern radhard testing aerospace" data-text="irradiation piezo valves CERN cryogenic solenoid replacement TID 100 kGy radiation campaign CC60 passive PCB Ultem">
               <div class="card-meta">02 Apr 2026 &nbsp;·&nbsp; 14 min read</div>
               <div class="card-title">Irradiation Tests of 3/2-Way Piezo Valves at CERN</div>
               <div class="card-snippet">Results from the CC60 campaign evaluating piezo actuators as drop-in solenoid replacements in cryogenic control valves under 100 kGy TID. Covers passive PCB design, Ultem 3D-printed housings, and full test results.</div>
-              <div class="card-tags">
-                <span class="tag-pill tag-cern">CERN</span>
-                <span class="tag-pill tag-radhard">Rad-Hard</span>
-                <span class="tag-pill tag-testing">Testing</span>
-              </div>
+              <div class="card-tags"><span class="tag-pill tag-cern">CERN</span><span class="tag-pill tag-radhard">Rad-Hard</span><span class="tag-pill tag-testing">Testing</span></div>
             </a>
-            <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html"
-               data-tags="components aerospace"
-               data-text="transistor datasheet high reliability parameters thermal characteristics safe operating area SOA derating aerospace">
+            <a class="blog-card" href="/blog/how-to-read-transistor-datasheet.html" data-tags="components aerospace" data-text="transistor datasheet high reliability parameters thermal characteristics safe operating area SOA derating aerospace">
               <div class="card-meta">12 Jun 2026 &nbsp;·&nbsp; 8 min read</div>
               <div class="card-title">How to Read a Transistor Datasheet for High-Reliability Applications</div>
               <div class="card-snippet">Beyond absolute maximum ratings — thermal characteristics, safe operating areas (SOA), and derating rules that matter when selecting components for aerospace hardware.</div>
-              <div class="card-tags">
-                <span class="tag-pill tag-components">Components</span>
-                <span class="tag-pill tag-aerospace">Aerospace</span>
-              </div>
+              <div class="card-tags"><span class="tag-pill tag-components">Components</span><span class="tag-pill tag-aerospace">Aerospace</span></div>
             </a>
-            <a class="blog-card" href="/blog/rad-tol-design-essentials.html"
-               data-tags="radhard aerospace"
-               data-text="radiation tolerant design single event effects SEE total ionizing dose TID mitigation mission-critical screening">
+            <a class="blog-card" href="/blog/rad-tol-design-essentials.html" data-tags="radhard aerospace" data-text="radiation tolerant design single event effects SEE total ionizing dose TID mitigation mission-critical screening">
               <div class="card-meta">28 May 2026 &nbsp;·&nbsp; 12 min read</div>
               <div class="card-title">Radiation-Tolerant Design of Sub-System Electronics</div>
               <div class="card-snippet">Practical patterns for mitigating SEE and TID at schematic level — redundancy, bypass capacitor placement, and component screening strategies for mission-critical hardware.</div>
-              <div class="card-tags">
-                <span class="tag-pill tag-radhard">Rad-Hard</span>
-                <span class="tag-pill tag-aerospace">Aerospace</span>
-              </div>
+              <div class="card-tags"><span class="tag-pill tag-radhard">Rad-Hard</span><span class="tag-pill tag-aerospace">Aerospace</span></div>
             </a>
-            <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html"
-               data-tags="simulation pcb"
-               data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep reliability power supply analog">
+            <a class="blog-card" href="/blog/ltspice-worst-case-analysis.html" data-tags="simulation pcb" data-text="worst-case circuit analysis LTspice Monte Carlo component tolerance sweep reliability power supply analog">
               <div class="card-meta">15 May 2026 &nbsp;·&nbsp; 10 min read</div>
               <div class="card-title">Worst-Case Circuit Analysis with LTspice</div>
               <div class="card-snippet">Setting up Monte Carlo runs and tolerance sweeps to validate hardware reliability before the first PCB spin. Covers corner analysis for power regulators and analog signal chains.</div>
-              <div class="card-tags">
-                <span class="tag-pill tag-simulation">Simulation</span>
-                <span class="tag-pill tag-pcb">PCB</span>
-              </div>
+              <div class="card-tags"><span class="tag-pill tag-simulation">Simulation</span><span class="tag-pill tag-pcb">PCB</span></div>
             </a>
-            <a class="blog-card" href="/blog/python-hardware-test-automation.html"
-               data-tags="testing python"
-               data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench VISA">
+            <a class="blog-card" href="/blog/python-hardware-test-automation.html" data-tags="testing python" data-text="Python test automation hardware oscilloscope power supply SCPI instrument control bench VISA">
               <div class="card-meta">18 Mar 2026 &nbsp;·&nbsp; 9 min read</div>
               <div class="card-title">Automating Hardware Tests with Python and SCPI</div>
               <div class="card-snippet">How to script your bench — controlling oscilloscopes, power supplies, and DMMs over VISA/SCPI to run reproducible, logged measurements without clicking through menus.</div>
-              <div class="card-tags">
-                <span class="tag-pill tag-testing">Testing</span>
-                <span class="tag-pill tag-python">Python</span>
-              </div>
+              <div class="card-tags"><span class="tag-pill tag-testing">Testing</span><span class="tag-pill tag-python">Python</span></div>
             </a>
           </div>
-
-          <div class="no-results" id="no-results">
-            <i class="fa fa-search" style="font-size:28px;display:block;margin-bottom:8px;"></i>
-            No articles found. Try different keywords.
-          </div>
+          <div class="no-results" id="no-results"><i class="fa fa-search" style="font-size:28px;display:block;margin-bottom:8px;"></i>No articles found. Try different keywords.</div>
         </div><!-- /#blog-panel -->
 
 
         <!-- ══ VOLTAGE DIVIDER PANEL ══ -->
         <div id="calc-panel">
           <div class="calc-header">Voltage Divider Calculator</div>
-          <p class="calc-desc">
-            Fill in three values and leave one empty — or click the <strong>dot</strong> next to the variable
-            you want to solve for — then press <strong>Calculate</strong>.
-          </p>
-
+          <p class="calc-desc">Fill in three values and leave one empty, then press <strong>Calculate</strong>. The empty field is solved automatically — or click a dot to choose explicitly.</p>
           <div class="calc-layout">
             <!-- LEFT: diagram + formula -->
             <div class="calc-left">
-              <!-- Voltage divider SVG: standard 2-line source, Vout horizontal only -->
-              <svg width="220" height="260" viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg"
+              <svg width="200" height="255" viewBox="0 0 200 255" xmlns="http://www.w3.org/2000/svg"
                    style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
-                <!-- Left vertical wire (above and below source) -->
-                <line x1="40" y1="30" x2="40" y2="108" stroke="#333" stroke-width="2"/>
-                <line x1="40" y1="140" x2="40" y2="225" stroke="#333" stroke-width="2"/>
-                <!-- Voltage source: 2 lines only (long = +, short = -) -->
-                <line x1="40" y1="108" x2="40" y2="108" stroke="#333" stroke-width="2"/>
-                <line x1="26" y1="108" x2="54" y2="108" stroke="#333" stroke-width="2.5"/>
-                <line x1="30" y1="124" x2="50" y2="124" stroke="#333" stroke-width="1.5"/>
-                <line x1="40" y1="124" x2="40" y2="140" stroke="#333" stroke-width="2"/>
-                <text x="8" y="120" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
-                <!-- Top and bottom rails -->
-                <line x1="40" y1="30" x2="140" y2="30" stroke="#333" stroke-width="2"/>
-                <line x1="40" y1="225" x2="140" y2="225" stroke="#333" stroke-width="2"/>
-                <!-- Wire top to R1 -->
-                <line x1="140" y1="30" x2="140" y2="65" stroke="#333" stroke-width="2"/>
-                <!-- R1 zigzag -->
-                <polyline points="140,65 132,73 148,82 132,91 148,100 132,109 148,118 140,126"
+                <!-- Left vertical wire segments (gap for source) -->
+                <line x1="38" y1="28" x2="38" y2="105" stroke="#333" stroke-width="2"/>
+                <line x1="38" y1="131" x2="38" y2="228" stroke="#333" stroke-width="2"/>
+                <!-- Voltage source: 2 horizontal lines only, NO circle -->
+                <line x1="22" y1="105" x2="54" y2="105" stroke="#333" stroke-width="2.5"/>
+                <line x1="27" y1="131" x2="49" y2="131" stroke="#333" stroke-width="1.5"/>
+                <!-- Vs label -->
+                <text x="6" y="122" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
+                <!-- Top rail -->
+                <line x1="38" y1="28" x2="138" y2="28" stroke="#333" stroke-width="2"/>
+                <!-- Bottom rail -->
+                <line x1="38" y1="228" x2="138" y2="228" stroke="#333" stroke-width="2"/>
+                <!-- Right wire top to R1 start -->
+                <line x1="138" y1="28" x2="138" y2="65" stroke="#333" stroke-width="2"/>
+                <!-- R1 zigzag (no extra line behind it) -->
+                <polyline points="138,65 130,73 146,82 130,91 146,100 130,109 146,118 138,126"
                           fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                <text x="154" y="98" font-size="11" fill="#009688" font-weight="600">R<tspan font-size="8" dy="2">1</tspan></text>
+                <text x="151" y="98" font-size="11" fill="#009688" font-weight="600">R<tspan font-size="8" dy="2">1</tspan></text>
+                <!-- Wire R1 bottom to midpoint -->
+                <line x1="138" y1="126" x2="138" y2="134" stroke="#333" stroke-width="2"/>
                 <!-- Midpoint dot -->
-                <circle cx="140" cy="130" r="4" fill="#ff9800"/>
-                <line x1="140" y1="126" x2="140" y2="134" stroke="#333" stroke-width="2"/>
-                <!-- R2 zigzag -->
-                <polyline points="140,134 132,143 148,152 132,161 148,170 132,179 148,188 140,196"
+                <circle cx="138" cy="134" r="4" fill="#ff9800"/>
+                <!-- Vout: ONLY horizontal dashed line, no vertical drop -->
+                <line x1="138" y1="134" x2="192" y2="134" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <text x="148" y="126" font-size="10" fill="#ff9800" font-weight="600">V<tspan font-size="7" dy="2">out</tspan></text>
+                <!-- Wire midpoint to R2 start -->
+                <line x1="138" y1="134" x2="138" y2="142" stroke="#333" stroke-width="2"/>
+                <!-- R2 zigzag (no extra line behind it) -->
+                <polyline points="138,142 130,150 146,159 130,168 146,177 130,186 146,195 138,202"
                           fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                <text x="154" y="168" font-size="11" fill="#009688" font-weight="600">R<tspan font-size="8" dy="2">2</tspan></text>
-                <!-- Wire R2 to bottom -->
-                <line x1="140" y1="196" x2="140" y2="225" stroke="#333" stroke-width="2"/>
-                <!-- Vout: horizontal dashed line only, no vertical drop -->
-                <line x1="140" y1="130" x2="200" y2="130" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
-                <text x="168" y="122" font-size="11" fill="#ff9800" font-weight="600">V<tspan font-size="8" dy="2">out</tspan></text>
+                <text x="151" y="174" font-size="11" fill="#009688" font-weight="600">R<tspan font-size="8" dy="2">2</tspan></text>
+                <!-- Wire R2 bottom to bottom rail -->
+                <line x1="138" y1="202" x2="138" y2="228" stroke="#333" stroke-width="2"/>
                 <!-- Ground -->
-                <line x1="128" y1="225" x2="152" y2="225" stroke="#333" stroke-width="2"/>
-                <line x1="131" y1="231" x2="149" y2="231" stroke="#333" stroke-width="1.5"/>
-                <line x1="135" y1="237" x2="145" y2="237" stroke="#333" stroke-width="1"/>
+                <line x1="124" y1="228" x2="152" y2="228" stroke="#333" stroke-width="2"/>
+                <line x1="127" y1="234" x2="149" y2="234" stroke="#333" stroke-width="1.5"/>
+                <line x1="131" y1="240" x2="145" y2="240" stroke="#333" stroke-width="1"/>
               </svg>
-
               <div class="calc-formula">
                 <div class="f-label">Formula</div>
                 <div class="f-eq">V<sub>out</sub> = V<sub>s</sub> × R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</div>
               </div>
             </div>
-
             <!-- RIGHT: fields -->
             <div class="calc-right">
-              <!-- Vs -->
               <div class="calc-row">
                 <div class="dot-radio" id="vd-dot-vs" onclick="vdSelectTarget('vs')" title="Solve for Vs"></div>
                 <div class="calc-label">Source (V<sub>s</sub>)</div>
@@ -513,7 +415,6 @@
                 <div class="unit-text">V</div>
               </div>
               <div class="calc-divider"></div>
-              <!-- R1 -->
               <div class="calc-row">
                 <div class="dot-radio" id="vd-dot-r1" onclick="vdSelectTarget('r1')" title="Solve for R1"></div>
                 <div class="calc-label">R<sub>1</sub></div>
@@ -525,7 +426,6 @@
                 </select>
               </div>
               <div class="calc-divider"></div>
-              <!-- R2 -->
               <div class="calc-row">
                 <div class="dot-radio" id="vd-dot-r2" onclick="vdSelectTarget('r2')" title="Solve for R2"></div>
                 <div class="calc-label">R<sub>2</sub></div>
@@ -537,19 +437,17 @@
                 </select>
               </div>
               <div class="calc-divider"></div>
-              <!-- Vout -->
               <div class="calc-row">
                 <div class="dot-radio" id="vd-dot-vout" onclick="vdSelectTarget('vout')" title="Solve for Vout"></div>
                 <div class="calc-label">Output (V<sub>out</sub>)</div>
                 <input class="calc-input" id="vd-vout" type="number" step="any" placeholder="" />
                 <div class="unit-text">V</div>
               </div>
-
               <div>
                 <button class="calc-btn" onclick="calcVD()">Calculate</button>
                 <button class="calc-btn reset" onclick="resetVD()">Reset</button>
               </div>
-              <p class="calc-hint">Leave one field empty — or click a <span>dot</span> — to select what to solve. Result shown in orange.</p>
+              <p class="calc-hint">Leave one field empty — the <span>dot</span> lights up automatically when solved.</p>
               <div class="calc-error" id="vd-error"></div>
               <div class="calc-success" id="vd-success"></div>
             </div>
@@ -560,351 +458,209 @@
         <!-- ══ RC CALCULATOR PANEL ══ -->
         <div id="rc-panel">
           <div class="calc-header">RC Circuit Calculator</div>
-          <p class="calc-desc">
-            Leave one variable empty (or click the <strong>dot</strong>) and press <strong>Calculate</strong>.
-            Fill only R and C to compute τ directly.
-          </p>
-
+          <p class="calc-desc">Leave one variable empty and press <strong>Calculate</strong>. Fill only R and C to compute τ directly.</p>
           <div class="calc-layout">
             <!-- LEFT: diagram + formula + plot -->
             <div class="calc-left">
-              <!-- RC SVG: 2-line voltage source, no Vc, no black line behind resistor -->
-              <svg width="230" height="200" viewBox="0 0 230 200" xmlns="http://www.w3.org/2000/svg"
+              <!-- RC circuit SVG: 2-line source, NO circle, R on top rail (no black line behind zigzag) -->
+              <svg width="230" height="195" viewBox="0 0 230 195" xmlns="http://www.w3.org/2000/svg"
                    style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
-                <!-- Left wire above/below source -->
-                <line x1="35" y1="25"  x2="35" y2="88"  stroke="#333" stroke-width="2"/>
-                <line x1="35" y1="112" x2="35" y2="175" stroke="#333" stroke-width="2"/>
-                <!-- Voltage source: 2 horizontal lines only (no circle) -->
-                <line x1="20" y1="88"  x2="50" y2="88"  stroke="#333" stroke-width="2.5"/>
-                <line x1="25" y1="112" x2="45" y2="112" stroke="#333" stroke-width="1.5"/>
-                <text x="3" y="104" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
-                <!-- Top rail -->
-                <line x1="35" y1="25"  x2="190" y2="25"  stroke="#333" stroke-width="2"/>
-                <!-- Bottom rail -->
-                <line x1="35" y1="175" x2="190" y2="175" stroke="#333" stroke-width="2"/>
-                <!-- R zigzag along top rail (sits ON top wire, no separate line behind it) -->
-                <polyline points="70,25 76,16 86,34 96,16 106,34 116,16 126,34 132,25"
+                <!-- Left wire above/below source (gap for source symbol) -->
+                <line x1="35" y1="22" x2="35" y2="83" stroke="#333" stroke-width="2"/>
+                <line x1="35" y1="107" x2="35" y2="170" stroke="#333" stroke-width="2"/>
+                <!-- Voltage source: 2 lines ONLY, no circle -->
+                <line x1="20" y1="83" x2="50" y2="83" stroke="#333" stroke-width="2.5"/>
+                <line x1="25" y1="107" x2="45" y2="107" stroke="#333" stroke-width="1.5"/>
+                <text x="3" y="99" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
+                <!-- Top rail: drawn in TWO segments so R zigzag covers the gap, no straight line behind it -->
+                <line x1="35" y1="22" x2="68" y2="22" stroke="#333" stroke-width="2"/>
+                <line x1="132" y1="22" x2="190" y2="22" stroke="#333" stroke-width="2"/>
+                <!-- R zigzag sits ON the top rail gap (68→132) — no line behind it -->
+                <polyline points="68,22 74,13 84,31 94,13 104,31 114,13 124,31 132,22"
                           fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                <text x="101" y="12" font-size="11" fill="#009688" font-weight="600" text-anchor="middle">R</text>
-                <!-- Right vertical wire -->
-                <line x1="190" y1="25"  x2="190" y2="68"  stroke="#333" stroke-width="2"/>
-                <line x1="190" y1="108" x2="190" y2="175" stroke="#333" stroke-width="2"/>
-                <!-- C capacitor plates (right side) -->
-                <line x1="172" y1="68"  x2="208" y2="68"  stroke="#009688" stroke-width="3"/>
-                <line x1="172" y1="108" x2="208" y2="108" stroke="#009688" stroke-width="3"/>
-                <text x="212" y="92" font-size="11" fill="#009688" font-weight="600">C</text>
+                <text x="101" y="10" font-size="11" fill="#009688" font-weight="600" text-anchor="middle">R</text>
+                <!-- Bottom rail -->
+                <line x1="35" y1="170" x2="190" y2="170" stroke="#333" stroke-width="2"/>
+                <!-- Right vertical wire (two segments for capacitor gap) -->
+                <line x1="190" y1="22" x2="190" y2="66" stroke="#333" stroke-width="2"/>
+                <line x1="190" y1="106" x2="190" y2="170" stroke="#333" stroke-width="2"/>
+                <!-- C capacitor plates -->
+                <line x1="172" y1="66" x2="208" y2="66" stroke="#009688" stroke-width="3"/>
+                <line x1="172" y1="106" x2="208" y2="106" stroke="#009688" stroke-width="3"/>
+                <text x="212" y="90" font-size="11" fill="#009688" font-weight="600">C</text>
                 <!-- Ground -->
-                <line x1="176" y1="175" x2="204" y2="175" stroke="#333" stroke-width="2"/>
-                <line x1="179" y1="181" x2="201" y2="181" stroke="#333" stroke-width="1.5"/>
-                <line x1="183" y1="187" x2="197" y2="187" stroke="#333" stroke-width="1"/>
-                <!-- Annotations -->
+                <line x1="176" y1="170" x2="204" y2="170" stroke="#333" stroke-width="2"/>
+                <line x1="179" y1="176" x2="201" y2="176" stroke="#333" stroke-width="1.5"/>
+                <line x1="183" y1="182" x2="197" y2="182" stroke="#333" stroke-width="1"/>
                 <text x="44" y="148" font-size="9.5" fill="#888">τ = R·C</text>
               </svg>
-
               <div class="calc-formula">
                 <div class="f-label">Formulas</div>
-                <div class="f-eq" style="font-size:13px;">
-                  τ = R × C<br>
-                  C = τ / R &nbsp;|&nbsp; R = τ / C
-                </div>
+                <div class="f-eq" style="font-size:13px;">τ = R × C<br>C = τ / R &nbsp;|&nbsp; R = τ / C</div>
               </div>
-
-              <!-- Charging curve plot -->
+              <!-- RC charging curve with axes -->
               <div class="rc-plot-wrap">
-                <canvas id="rc-curve-canvas" width="220" height="130"></canvas>
+                <canvas id="rc-curve-canvas" width="220" height="150"></canvas>
               </div>
             </div>
-
             <!-- RIGHT: fields -->
             <div class="calc-right">
-              <!-- R -->
               <div class="calc-row">
                 <div class="dot-radio" id="rc-dot-r" onclick="rcSelectTarget('r')" title="Solve for R"></div>
                 <div class="calc-label">R</div>
                 <input class="calc-input" id="rc-r" type="number" step="any" placeholder="" />
-                <select class="calc-unit" id="rc-ur">
-                  <option value="1">Ω</option>
-                  <option value="1000" selected>kΩ</option>
-                  <option value="1000000">MΩ</option>
-                </select>
+                <select class="calc-unit" id="rc-ur"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select>
               </div>
               <div class="calc-divider"></div>
-              <!-- C -->
               <div class="calc-row">
                 <div class="dot-radio" id="rc-dot-c" onclick="rcSelectTarget('c')" title="Solve for C"></div>
                 <div class="calc-label">C</div>
                 <input class="calc-input" id="rc-c" type="number" step="any" placeholder="" />
-                <select class="calc-unit" id="rc-uc">
-                  <option value="0.000000000001">pF</option>
-                  <option value="0.000000001">nF</option>
-                  <option value="0.000001" selected>µF</option>
-                  <option value="0.001">mF</option>
-                </select>
+                <select class="calc-unit" id="rc-uc"><option value="0.000000000001">pF</option><option value="0.000000001">nF</option><option value="0.000001" selected>µF</option><option value="0.001">mF</option></select>
               </div>
               <div class="calc-divider"></div>
-              <!-- τ -->
               <div class="calc-row">
                 <div class="dot-radio" id="rc-dot-tau" onclick="rcSelectTarget('tau')" title="Solve for τ"></div>
                 <div class="calc-label">τ (time const.)</div>
                 <input class="calc-input" id="rc-tau" type="number" step="any" placeholder="" />
-                <select class="calc-unit" id="rc-utau">
-                  <option value="0.000001">µs</option>
-                  <option value="0.001">ms</option>
-                  <option value="1" selected>s</option>
-                </select>
+                <select class="calc-unit" id="rc-utau"><option value="0.000001">µs</option><option value="0.001">ms</option><option value="1" selected>s</option></select>
               </div>
-
               <div>
                 <button class="calc-btn" onclick="calcRC()">Calculate</button>
                 <button class="calc-btn reset" onclick="resetRC()">Reset</button>
               </div>
-              <p class="calc-hint">Leave one field empty or click a <span>dot</span> to choose what to solve. Fill only R and C to get τ directly.</p>
+              <p class="calc-hint">Leave one field empty or click a <span>dot</span> to choose what to solve.</p>
               <div class="calc-error" id="rc-error"></div>
               <div class="calc-success" id="rc-success"></div>
             </div>
           </div>
 
-          <!-- ══════════════════════════════════════
-               SUB-TOOL 1: Charging Calculation
-          ══════════════════════════════════════ -->
+          <!-- SUB-TOOL 1: Charging -->
           <div class="rc-subtool">
             <div class="calc-layout">
               <div class="calc-left">
-                <!-- Charging circuit: Vs in series with R and C -->
-                <svg width="230" height="200" viewBox="0 0 230 200" xmlns="http://www.w3.org/2000/svg"
+                <svg width="230" height="195" viewBox="0 0 230 195" xmlns="http://www.w3.org/2000/svg"
                      style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
-                  <line x1="35" y1="25"  x2="35" y2="88"  stroke="#333" stroke-width="2"/>
-                  <line x1="35" y1="112" x2="35" y2="175" stroke="#333" stroke-width="2"/>
-                  <line x1="20" y1="88"  x2="50" y2="88"  stroke="#333" stroke-width="2.5"/>
-                  <line x1="25" y1="112" x2="45" y2="112" stroke="#333" stroke-width="1.5"/>
-                  <text x="3" y="104" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
-                  <line x1="35" y1="25"  x2="190" y2="25"  stroke="#333" stroke-width="2"/>
-                  <line x1="35" y1="175" x2="190" y2="175" stroke="#333" stroke-width="2"/>
-                  <polyline points="70,25 76,16 86,34 96,16 106,34 116,16 126,34 132,25"
-                            fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                  <text x="101" y="12" font-size="11" fill="#009688" font-weight="600" text-anchor="middle">R</text>
-                  <line x1="190" y1="25"  x2="190" y2="68"  stroke="#333" stroke-width="2"/>
-                  <line x1="190" y1="108" x2="190" y2="175" stroke="#333" stroke-width="2"/>
-                  <line x1="172" y1="68"  x2="208" y2="68"  stroke="#009688" stroke-width="3"/>
-                  <line x1="172" y1="108" x2="208" y2="108" stroke="#009688" stroke-width="3"/>
-                  <text x="212" y="92" font-size="11" fill="#009688" font-weight="600">C</text>
-                  <line x1="176" y1="175" x2="204" y2="175" stroke="#333" stroke-width="2"/>
-                  <line x1="179" y1="181" x2="201" y2="181" stroke="#333" stroke-width="1.5"/>
-                  <line x1="183" y1="187" x2="197" y2="187" stroke="#333" stroke-width="1"/>
+                  <line x1="35" y1="22" x2="35" y2="83" stroke="#333" stroke-width="2"/>
+                  <line x1="35" y1="107" x2="35" y2="170" stroke="#333" stroke-width="2"/>
+                  <line x1="20" y1="83" x2="50" y2="83" stroke="#333" stroke-width="2.5"/>
+                  <line x1="25" y1="107" x2="45" y2="107" stroke="#333" stroke-width="1.5"/>
+                  <text x="3" y="99" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
+                  <line x1="35" y1="22" x2="68" y2="22" stroke="#333" stroke-width="2"/>
+                  <line x1="132" y1="22" x2="190" y2="22" stroke="#333" stroke-width="2"/>
+                  <polyline points="68,22 74,13 84,31 94,13 104,31 114,13 124,31 132,22" fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                  <text x="101" y="10" font-size="11" fill="#009688" font-weight="600" text-anchor="middle">R</text>
+                  <line x1="35" y1="170" x2="190" y2="170" stroke="#333" stroke-width="2"/>
+                  <line x1="190" y1="22" x2="190" y2="66" stroke="#333" stroke-width="2"/>
+                  <line x1="190" y1="106" x2="190" y2="170" stroke="#333" stroke-width="2"/>
+                  <line x1="172" y1="66" x2="208" y2="66" stroke="#009688" stroke-width="3"/>
+                  <line x1="172" y1="106" x2="208" y2="106" stroke="#009688" stroke-width="3"/>
+                  <text x="212" y="90" font-size="11" fill="#009688" font-weight="600">C</text>
+                  <line x1="176" y1="170" x2="204" y2="170" stroke="#333" stroke-width="2"/>
+                  <line x1="179" y1="176" x2="201" y2="176" stroke="#333" stroke-width="1.5"/>
+                  <line x1="183" y1="182" x2="197" y2="182" stroke="#333" stroke-width="1"/>
                 </svg>
                 <div class="calc-formula">
                   <div class="f-label">Formula</div>
-                  <div class="f-eq" style="font-size:13px;">
-                    V(t) = V<sub>s</sub> · (1 − e<sup>−t/RC</sup>)
-                  </div>
+                  <div class="f-eq" style="font-size:13px;">V(t) = V<sub>s</sub> · (1 − e<sup>−t/RC</sup>)</div>
                 </div>
               </div>
-
               <div class="calc-right">
                 <div class="rc-subtool-title">Charging Calculation</div>
-                <p class="rc-subtool-desc">Capacitor charging from 0 V toward V<sub>s</sub> through resistor R.</p>
-
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">V<sub>s</sub></div>
-                  <input class="calc-input" id="ch-vs" type="number" step="any" placeholder="" />
-                  <div class="unit-text">V</div>
-                </div>
+                <p class="rc-subtool-desc">Capacitor charging from 0 V toward V<sub>s</sub> through R.</p>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>s</sub></div><input class="calc-input" id="ch-vs" type="number" step="any" placeholder="" /><div class="unit-text">V</div></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">R</div>
-                  <input class="calc-input" id="ch-r" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="ch-ur">
-                    <option value="1">Ω</option>
-                    <option value="1000" selected>kΩ</option>
-                    <option value="1000000">MΩ</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">R</div><input class="calc-input" id="ch-r" type="number" step="any" placeholder="" /><select class="calc-unit" id="ch-ur"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">C</div>
-                  <input class="calc-input" id="ch-c" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="ch-uc">
-                    <option value="0.000000000001">pF</option>
-                    <option value="0.000000001">nF</option>
-                    <option value="0.000001" selected>µF</option>
-                    <option value="0.001">mF</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">C</div><input class="calc-input" id="ch-c" type="number" step="any" placeholder="" /><select class="calc-unit" id="ch-uc"><option value="0.000000000001">pF</option><option value="0.000000001">nF</option><option value="0.000001" selected>µF</option><option value="0.001">mF</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">Time (t)</div>
-                  <input class="calc-input" id="ch-t" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="ch-ut">
-                    <option value="0.000001">µs</option>
-                    <option value="0.001">ms</option>
-                    <option value="1" selected>s</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">Time (t)</div><input class="calc-input" id="ch-t" type="number" step="any" placeholder="" /><select class="calc-unit" id="ch-ut"><option value="0.000001">µs</option><option value="0.001">ms</option><option value="1" selected>s</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">V<sub>C</sub>(t)</div>
-                  <input class="calc-input result-display" id="ch-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" />
-                  <div class="unit-text">V</div>
-                </div>
-
-                <div>
-                  <button class="calc-btn" onclick="calcCharging()">Calculate</button>
-                  <button class="calc-btn reset" onclick="resetTool('ch')">Reset</button>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>C</sub>(t)</div><input class="calc-input" id="ch-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" /><div class="unit-text">V</div></div>
+                <div><button class="calc-btn" onclick="calcCharging()">Calculate</button><button class="calc-btn reset" onclick="resetTool('ch')">Reset</button></div>
                 <div class="calc-error" id="ch-error"></div>
                 <div class="calc-success" id="ch-success"></div>
               </div>
             </div>
           </div>
 
-          <!-- ══════════════════════════════════════
-               SUB-TOOL 2: Discharging Calculation
-          ══════════════════════════════════════ -->
+          <!-- SUB-TOOL 2: Discharging -->
           <div class="rc-subtool">
             <div class="calc-layout">
               <div class="calc-left">
-                <!-- Discharging circuit: C in parallel with R, no source -->
                 <svg width="230" height="180" viewBox="0 0 230 180" xmlns="http://www.w3.org/2000/svg"
                      style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
-                  <!-- Top rail -->
                   <line x1="30" y1="30" x2="195" y2="30" stroke="#333" stroke-width="2"/>
-                  <!-- Bottom rail -->
                   <line x1="30" y1="150" x2="195" y2="150" stroke="#333" stroke-width="2"/>
-                  <!-- Capacitor (left vertical branch) -->
                   <line x1="30" y1="30" x2="30" y2="72" stroke="#333" stroke-width="2"/>
                   <line x1="12" y1="72" x2="48" y2="72" stroke="#009688" stroke-width="3"/>
                   <line x1="12" y1="108" x2="48" y2="108" stroke="#009688" stroke-width="3"/>
                   <line x1="30" y1="108" x2="30" y2="150" stroke="#333" stroke-width="2"/>
                   <text x="52" y="94" font-size="11" fill="#009688" font-weight="600">C</text>
-                  <!-- Resistor (right vertical branch) -->
                   <line x1="195" y1="30" x2="195" y2="58" stroke="#333" stroke-width="2"/>
-                  <polyline points="195,58 186,65 204,74 186,83 204,92 186,101 204,110 195,117"
-                            fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                  <polyline points="195,58 186,65 204,74 186,83 204,92 186,101 204,110 195,117" fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
                   <line x1="195" y1="117" x2="195" y2="150" stroke="#333" stroke-width="2"/>
                   <text x="208" y="90" font-size="11" fill="#009688" font-weight="600">R</text>
-                  <!-- V0 label on cap top plate -->
                   <text x="52" y="68" font-size="10" fill="#888">V<tspan font-size="8" dy="2">0</tspan></text>
-                  <!-- Ground -->
                   <line x1="100" y1="150" x2="125" y2="150" stroke="#333" stroke-width="2"/>
                   <line x1="103" y1="156" x2="122" y2="156" stroke="#333" stroke-width="1.5"/>
                   <line x1="107" y1="162" x2="118" y2="162" stroke="#333" stroke-width="1"/>
                 </svg>
                 <div class="calc-formula">
                   <div class="f-label">Formula</div>
-                  <div class="f-eq" style="font-size:13px;">
-                    V(t) = V<sub>0</sub> · e<sup>−t/RC</sup>
-                  </div>
+                  <div class="f-eq" style="font-size:13px;">V(t) = V<sub>0</sub> · e<sup>−t/RC</sup></div>
                 </div>
               </div>
-
               <div class="calc-right">
                 <div class="rc-subtool-title">Discharging Calculation</div>
                 <p class="rc-subtool-desc">Capacitor discharging through R from initial voltage V<sub>0</sub>.</p>
-
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">V<sub>0</sub> (initial)</div>
-                  <input class="calc-input" id="dc-v0" type="number" step="any" placeholder="" />
-                  <div class="unit-text">V</div>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>0</sub> (initial)</div><input class="calc-input" id="dc-v0" type="number" step="any" placeholder="" /><div class="unit-text">V</div></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">R</div>
-                  <input class="calc-input" id="dc-r" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="dc-ur">
-                    <option value="1">Ω</option>
-                    <option value="1000" selected>kΩ</option>
-                    <option value="1000000">MΩ</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">R</div><input class="calc-input" id="dc-r" type="number" step="any" placeholder="" /><select class="calc-unit" id="dc-ur"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">C</div>
-                  <input class="calc-input" id="dc-c" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="dc-uc">
-                    <option value="0.000000000001">pF</option>
-                    <option value="0.000000001">nF</option>
-                    <option value="0.000001" selected>µF</option>
-                    <option value="0.001">mF</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">C</div><input class="calc-input" id="dc-c" type="number" step="any" placeholder="" /><select class="calc-unit" id="dc-uc"><option value="0.000000000001">pF</option><option value="0.000000001">nF</option><option value="0.000001" selected>µF</option><option value="0.001">mF</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">Time (t)</div>
-                  <input class="calc-input" id="dc-t" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="dc-ut">
-                    <option value="0.000001">µs</option>
-                    <option value="0.001">ms</option>
-                    <option value="1" selected>s</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">Time (t)</div><input class="calc-input" id="dc-t" type="number" step="any" placeholder="" /><select class="calc-unit" id="dc-ut"><option value="0.000001">µs</option><option value="0.001">ms</option><option value="1" selected>s</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">V<sub>C</sub>(t)</div>
-                  <input class="calc-input" id="dc-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" />
-                  <div class="unit-text">V</div>
-                </div>
-
-                <div>
-                  <button class="calc-btn" onclick="calcDischarging()">Calculate</button>
-                  <button class="calc-btn reset" onclick="resetTool('dc')">Reset</button>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>C</sub>(t)</div><input class="calc-input" id="dc-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" /><div class="unit-text">V</div></div>
+                <div><button class="calc-btn" onclick="calcDischarging()">Calculate</button><button class="calc-btn reset" onclick="resetTool('dc')">Reset</button></div>
                 <div class="calc-error" id="dc-error"></div>
                 <div class="calc-success" id="dc-success"></div>
               </div>
             </div>
           </div>
 
-          <!-- ══════════════════════════════════════
-               SUB-TOOL 3: Thévenin RC Calculation
-          ══════════════════════════════════════ -->
+          <!-- SUB-TOOL 3: Thévenin RC -->
           <div class="rc-subtool">
             <div class="calc-layout">
               <div class="calc-left">
-                <!-- Thevenin circuit: Vs, R1 in series, then R2 || C -->
                 <svg width="250" height="210" viewBox="0 0 250 210" xmlns="http://www.w3.org/2000/svg"
                      style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
-                  <!-- Left wire (source) -->
-                  <line x1="30" y1="20"  x2="30" y2="83"  stroke="#333" stroke-width="2"/>
+                  <line x1="30" y1="20" x2="30" y2="83" stroke="#333" stroke-width="2"/>
                   <line x1="30" y1="107" x2="30" y2="190" stroke="#333" stroke-width="2"/>
-                  <!-- Vs 2-line symbol -->
-                  <line x1="15" y1="83"  x2="45" y2="83"  stroke="#333" stroke-width="2.5"/>
+                  <line x1="15" y1="83" x2="45" y2="83" stroke="#333" stroke-width="2.5"/>
                   <line x1="20" y1="107" x2="40" y2="107" stroke="#333" stroke-width="1.5"/>
                   <text x="2" y="99" font-size="10" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
-                  <!-- Top rail -->
-                  <line x1="30" y1="20" x2="220" y2="20" stroke="#333" stroke-width="2"/>
-                  <!-- Bottom rail -->
-                  <line x1="30" y1="190" x2="220" y2="190" stroke="#333" stroke-width="2"/>
-                  <!-- R1 zigzag on top rail -->
-                  <polyline points="60,20 66,11 76,29 86,11 96,29 106,11 116,29 122,20"
-                            fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                  <!-- Top rail in segments around R1 -->
+                  <line x1="30" y1="20" x2="58" y2="20" stroke="#333" stroke-width="2"/>
+                  <line x1="122" y1="20" x2="220" y2="20" stroke="#333" stroke-width="2"/>
+                  <!-- R1 zigzag on top rail (no line behind) -->
+                  <polyline points="58,20 64,11 74,29 84,11 94,29 104,11 114,29 122,20" fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
                   <text x="91" y="8" font-size="10" fill="#009688" font-weight="600" text-anchor="middle">R<tspan font-size="7" dy="1">1</tspan></text>
-                  <!-- Node at x=220 top to R2 (vertical) -->
-                  <line x1="220" y1="20" x2="220" y2="58" stroke="#333" stroke-width="2"/>
-                  <!-- R2 vertical zigzag -->
-                  <polyline points="220,58 211,65 229,74 211,83 229,92 211,101 229,110 220,117"
-                            fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
-                  <text x="233" y="90" font-size="10" fill="#009688" font-weight="600">R<tspan font-size="7" dy="1">2</tspan></text>
-                  <line x1="220" y1="117" x2="220" y2="190" stroke="#333" stroke-width="2"/>
-                  <!-- C: capacitor in parallel with R2, at x=160 -->
+                  <line x1="30" y1="190" x2="220" y2="190" stroke="#333" stroke-width="2"/>
+                  <!-- Node at x=160 top -->
+                  <circle cx="160" cy="20" r="3.5" fill="#333"/>
+                  <!-- C branch at x=160 -->
                   <line x1="160" y1="20" x2="160" y2="68" stroke="#333" stroke-width="2"/>
                   <line x1="144" y1="68" x2="176" y2="68" stroke="#009688" stroke-width="3"/>
                   <line x1="144" y1="102" x2="176" y2="102" stroke="#009688" stroke-width="3"/>
                   <line x1="160" y1="102" x2="160" y2="190" stroke="#333" stroke-width="2"/>
                   <text x="180" y="90" font-size="10" fill="#009688" font-weight="600">C</text>
-                  <!-- Connect top node (x=160) to R1 output (x=122) and R2 (x=220) -->
-                  <!-- Node dot at x=160 top -->
-                  <circle cx="160" cy="20" r="3.5" fill="#333"/>
-                  <!-- Ground -->
+                  <!-- R2 branch at x=220 -->
+                  <line x1="220" y1="20" x2="220" y2="58" stroke="#333" stroke-width="2"/>
+                  <polyline points="220,58 211,65 229,74 211,83 229,92 211,101 229,110 220,117" fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                  <text x="233" y="90" font-size="10" fill="#009688" font-weight="600">R<tspan font-size="7" dy="1">2</tspan></text>
+                  <line x1="220" y1="117" x2="220" y2="190" stroke="#333" stroke-width="2"/>
                   <line x1="105" y1="190" x2="130" y2="190" stroke="#333" stroke-width="2"/>
                   <line x1="108" y1="196" x2="127" y2="196" stroke="#333" stroke-width="1.5"/>
                   <line x1="112" y1="202" x2="123" y2="202" stroke="#333" stroke-width="1"/>
@@ -918,87 +674,23 @@
                   </div>
                 </div>
               </div>
-
               <div class="calc-right">
                 <div class="rc-subtool-title">Thévenin RC Calculation</div>
                 <p class="rc-subtool-desc">V<sub>s</sub> with R<sub>1</sub> in series, R<sub>2</sub> and C in parallel. Thévenin equivalent is computed automatically.</p>
-
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">V<sub>s</sub></div>
-                  <input class="calc-input" id="th-vs" type="number" step="any" placeholder="" />
-                  <div class="unit-text">V</div>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>s</sub></div><input class="calc-input" id="th-vs" type="number" step="any" placeholder="" /><div class="unit-text">V</div></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">R<sub>1</sub></div>
-                  <input class="calc-input" id="th-r1" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="th-ur1">
-                    <option value="1">Ω</option>
-                    <option value="1000" selected>kΩ</option>
-                    <option value="1000000">MΩ</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">R<sub>1</sub></div><input class="calc-input" id="th-r1" type="number" step="any" placeholder="" /><select class="calc-unit" id="th-ur1"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">R<sub>2</sub></div>
-                  <input class="calc-input" id="th-r2" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="th-ur2">
-                    <option value="1">Ω</option>
-                    <option value="1000" selected>kΩ</option>
-                    <option value="1000000">MΩ</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">R<sub>2</sub></div><input class="calc-input" id="th-r2" type="number" step="any" placeholder="" /><select class="calc-unit" id="th-ur2"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">C</div>
-                  <input class="calc-input" id="th-c" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="th-uc">
-                    <option value="0.000000000001">pF</option>
-                    <option value="0.000000001">nF</option>
-                    <option value="0.000001" selected>µF</option>
-                    <option value="0.001">mF</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">C</div><input class="calc-input" id="th-c" type="number" step="any" placeholder="" /><select class="calc-unit" id="th-uc"><option value="0.000000000001">pF</option><option value="0.000000001">nF</option><option value="0.000001" selected>µF</option><option value="0.001">mF</option></select></div>
                 <div class="calc-divider"></div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">Time (t)</div>
-                  <input class="calc-input" id="th-t" type="number" step="any" placeholder="" />
-                  <select class="calc-unit" id="th-ut">
-                    <option value="0.000001">µs</option>
-                    <option value="0.001">ms</option>
-                    <option value="1" selected>s</option>
-                  </select>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">Time (t)</div><input class="calc-input" id="th-t" type="number" step="any" placeholder="" /><select class="calc-unit" id="th-ut"><option value="0.000001">µs</option><option value="0.001">ms</option><option value="1" selected>s</option></select></div>
                 <div class="calc-divider"></div>
-                <!-- Intermediary results -->
-                <div class="calc-row" style="margin-top:4px;">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label" style="font-size:12px;color:#888;">V<sub>th</sub></div>
-                  <input class="calc-input" id="th-vth" type="text" readonly placeholder="—" style="background:#f8f8f8;font-size:12px;" />
-                  <div class="unit-text">V</div>
-                </div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label" style="font-size:12px;color:#888;">R<sub>th</sub></div>
-                  <input class="calc-input" id="th-rth" type="text" readonly placeholder="—" style="background:#f8f8f8;font-size:12px;" />
-                  <div class="unit-text">Ω</div>
-                </div>
-                <div class="calc-row">
-                  <div style="width:14px;"></div>
-                  <div class="calc-label">V<sub>C</sub>(t)</div>
-                  <input class="calc-input" id="th-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" />
-                  <div class="unit-text">V</div>
-                </div>
-
-                <div>
-                  <button class="calc-btn" onclick="calcThevenin()">Calculate</button>
-                  <button class="calc-btn reset" onclick="resetTool('th')">Reset</button>
-                </div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label" style="font-size:12px;color:#888;">V<sub>th</sub></div><input class="calc-input" id="th-vth" type="text" readonly placeholder="—" style="background:#f8f8f8;font-size:12px;" /><div class="unit-text">V</div></div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label" style="font-size:12px;color:#888;">R<sub>th</sub></div><input class="calc-input" id="th-rth" type="text" readonly placeholder="—" style="background:#f8f8f8;font-size:12px;" /><div class="unit-text">Ω</div></div>
+                <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>C</sub>(t)</div><input class="calc-input" id="th-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" /><div class="unit-text">V</div></div>
+                <div><button class="calc-btn" onclick="calcThevenin()">Calculate</button><button class="calc-btn reset" onclick="resetTool('th')">Reset</button></div>
                 <div class="calc-error" id="th-error"></div>
                 <div class="calc-success" id="th-success"></div>
               </div>
@@ -1021,7 +713,7 @@
       if (e) e.preventDefault();
       panels.forEach(function(p){ document.getElementById(p).style.display = 'none'; });
       document.getElementById(id).style.display = 'block';
-      if (id === 'rc-panel') drawRCCurve();
+      if (id === 'rc-panel') setTimeout(drawRCCurve, 50);
     }
 
     /* ── Search & filter ── */
@@ -1049,34 +741,75 @@
       });
       $(".scrollspy").scrollSpy();
       $(".button-collapse").sideNav({menuWidth:190, edge:"left", closeOnClick:true});
-      $('.calc-unit').each(function(){ $(this).attr('data-skip','true'); });
     });
 
-    /* ══════════════════════════════════════
-       RC CHARGING CURVE PLOT
-    ══════════════════════════════════════ */
+    /* ── RC Charging Curve WITH axes ── */
     function drawRCCurve() {
       var canvas = document.getElementById('rc-curve-canvas');
       if (!canvas) return;
       var ctx = canvas.getContext('2d');
       var W = canvas.width, H = canvas.height;
-      var pad = { top: 10, right: 14, bottom: 10, left: 14 };
+      var pad = { top: 18, right: 14, bottom: 34, left: 40 };
       var w = W - pad.left - pad.right;
       var h = H - pad.top - pad.bottom;
 
       ctx.clearRect(0, 0, W, H);
-
-      /* Background */
       ctx.fillStyle = '#fff';
       ctx.fillRect(0, 0, W, H);
 
-      /* Draw curve: V(t)/Vs = 1 - e^(-t/tau), x from 0 to 5tau */
+      /* Axes */
+      ctx.beginPath();
+      ctx.strokeStyle = '#ccc';
+      ctx.lineWidth = 1;
+      /* Y axis */
+      ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, pad.top + h);
+      /* X axis */
+      ctx.moveTo(pad.left, pad.top + h); ctx.lineTo(pad.left + w, pad.top + h);
+      ctx.stroke();
+
+      /* X axis ticks & labels (0,1,2,3,4,5 τ) */
+      ctx.fillStyle = '#888';
+      ctx.font = '9px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      for (var i = 0; i <= 5; i++) {
+        var tx = pad.left + (i / 5) * w;
+        ctx.beginPath(); ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 0.8;
+        if (i > 0) { ctx.moveTo(tx, pad.top); ctx.lineTo(tx, pad.top + h); ctx.stroke(); }
+        ctx.fillStyle = '#888';
+        ctx.fillText(i + 'τ', tx, pad.top + h + 12);
+      }
+      /* X axis title */
+      ctx.fillStyle = '#aaa';
+      ctx.font = '9px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Time constants', pad.left + w / 2, pad.top + h + 26);
+
+      /* Y axis ticks & labels (0%, 63%, 100%) */
+      ctx.textAlign = 'right';
+      var yTicks = [[0, '0%'], [0.6321, '63%'], [1, '100%']];
+      yTicks.forEach(function(tk) {
+        var ty = pad.top + (1 - tk[0]) * h;
+        ctx.beginPath(); ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 0.8;
+        ctx.moveTo(pad.left, ty); ctx.lineTo(pad.left + w, ty); ctx.stroke();
+        ctx.fillStyle = '#888'; ctx.font = '9px Inter, sans-serif';
+        ctx.fillText(tk[1], pad.left - 3, ty + 3);
+      });
+      /* Y axis title */
+      ctx.save();
+      ctx.translate(10, pad.top + h / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#aaa';
+      ctx.font = '9px Inter, sans-serif';
+      ctx.fillText('Voltage %', 0, 0);
+      ctx.restore();
+
+      /* Charging curve */
       ctx.beginPath();
       ctx.strokeStyle = '#009688';
       ctx.lineWidth = 2.2;
-      var pts = 200;
-      for (var i = 0; i <= pts; i++) {
-        var t = (i / pts) * 5; /* 0 to 5 (in units of tau) */
+      for (var i = 0; i <= 200; i++) {
+        var t = (i / 200) * 5;
         var v = 1 - Math.exp(-t);
         var px = pad.left + (t / 5) * w;
         var py = pad.top + (1 - v) * h;
@@ -1084,113 +817,60 @@
       }
       ctx.stroke();
 
-      /* 63% marker at tau=1 */
-      var x63 = pad.left + (1/5) * w;
+      /* 63% marker */
+      var x63 = pad.left + (1 / 5) * w;
       var y63 = pad.top + (1 - 0.6321) * h;
-      ctx.beginPath();
-      ctx.strokeStyle = '#ff9800';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([3,3]);
+      ctx.beginPath(); ctx.strokeStyle = '#ff9800'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
       ctx.moveTo(x63, pad.top + h); ctx.lineTo(x63, y63);
-      ctx.moveTo(pad.left, y63);    ctx.lineTo(x63, y63);
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      /* 99% marker at tau=5 */
-      var x99 = pad.left + w;
-      var y99 = pad.top + (1 - 0.9933) * h;
-      ctx.beginPath();
-      ctx.strokeStyle = '#aaa';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([3,3]);
-      ctx.moveTo(pad.left, y99); ctx.lineTo(x99, y99);
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      /* Dot at 63% */
-      ctx.beginPath();
-      ctx.arc(x63, y63, 3.5, 0, 2*Math.PI);
-      ctx.fillStyle = '#ff9800';
-      ctx.fill();
-
-      /* Dot at 99% */
-      var x99d = pad.left + (4.605/5) * w;
-      var y99d = pad.top + (1 - 0.99) * h;
-      ctx.beginPath();
-      ctx.arc(x99d, y99d, 3, 0, 2*Math.PI);
-      ctx.fillStyle = '#aaa';
-      ctx.fill();
+      ctx.moveTo(pad.left, y63); ctx.lineTo(x63, y63);
+      ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(x63, y63, 3.5, 0, 2*Math.PI);
+      ctx.fillStyle = '#ff9800'; ctx.fill();
     }
 
-    /* ══════════════════════════════════════
-       HELPERS
-    ══════════════════════════════════════ */
-    function getVal(id) {
-      var v = document.getElementById(id).value.trim();
-      return v === '' ? null : parseFloat(v);
-    }
-    function getScaled(inputId, unitId) {
-      var v = getVal(inputId); if (v === null) return null;
-      return v * parseFloat(document.getElementById(unitId).value);
-    }
+    /* ── Helpers ── */
+    function getVal(id) { var v = document.getElementById(id).value.trim(); return v==='' ? null : parseFloat(v); }
+    function getScaled(inputId, unitId) { var v = getVal(inputId); if (v===null) return null; return v * parseFloat(document.getElementById(unitId).value); }
     function fmtNum(v) {
-      if (Math.abs(v) >= 0.001 && Math.abs(v) < 1e7)
-        return parseFloat(v.toPrecision(5)).toString();
+      if (Math.abs(v) >= 0.001 && Math.abs(v) < 1e7) return parseFloat(v.toPrecision(5)).toString();
       return parseFloat(v.toPrecision(5)).toExponential();
     }
-    function setResult(id, value) {
-      var el = document.getElementById(id);
-      el.value = fmtNum(value);
-      el.classList.remove('target-field');
-      el.classList.add('result-field');
-    }
-    function setScaledResult(inputId, unitId, valBase) {
-      var mult = parseFloat(document.getElementById(unitId).value);
-      setResult(inputId, valBase / mult);
-    }
-    function showErr(errId, msg) {
-      var el = document.getElementById(errId); el.textContent = msg; el.style.display = 'block';
-      document.getElementById(errId.replace('error','success')).style.display = 'none';
-    }
-    function showOk(okId, msg) {
-      var el = document.getElementById(okId); el.textContent = msg; el.style.display = 'block';
-      document.getElementById(okId.replace('success','error')).style.display = 'none';
-    }
-    function hideMsg(id) { document.getElementById(id).style.display = 'none'; }
+    function setResult(id, value) { var el = document.getElementById(id); el.value = fmtNum(value); el.classList.remove('target-field'); el.classList.add('result-field'); }
+    function setScaledResult(inputId, unitId, valBase) { var mult = parseFloat(document.getElementById(unitId).value); setResult(inputId, valBase / mult); }
+    function showErr(errId, msg) { var el=document.getElementById(errId); el.textContent=msg; el.style.display='block'; document.getElementById(errId.replace('error','success')).style.display='none'; }
+    function showOk(okId, msg) { var el=document.getElementById(okId); el.textContent=msg; el.style.display='block'; document.getElementById(okId.replace('success','error')).style.display='none'; }
+    function hideMsg(id) { document.getElementById(id).style.display='none'; }
 
-    /* ══════════════════════════════════════
-       VOLTAGE DIVIDER — dot OR auto-detect empty
-    ══════════════════════════════════════ */
+    /* ── Voltage Divider ── */
     var vdTarget = null;
     var VD_FIELDS = ['vs','r1','r2','vout'];
 
     function vdSelectTarget(name) {
       vdTarget = name;
       VD_FIELDS.forEach(function(f) {
-        var dot = document.getElementById('vd-dot-' + f);
-        var inp = document.getElementById('vd-' + f);
-        dot.classList.toggle('selected', f === name);
-        inp.classList.remove('result-field', 'target-field');
-        if (f === name) inp.classList.add('target-field');
+        document.getElementById('vd-dot-'+f).classList.toggle('selected', f===name);
+        var inp = document.getElementById('vd-'+f);
+        inp.classList.remove('result-field','target-field');
+        if (f===name) inp.classList.add('target-field');
       });
       hideMsg('vd-error'); hideMsg('vd-success');
     }
 
     function calcVD() {
       hideMsg('vd-error'); hideMsg('vd-success');
-      VD_FIELDS.forEach(function(f) {
-        var el = document.getElementById('vd-' + f);
-        el.classList.remove('result-field');
-        if (f !== vdTarget) el.classList.remove('target-field');
-      });
+      VD_FIELDS.forEach(function(f){ document.getElementById('vd-'+f).classList.remove('result-field','target-field'); });
 
-      /* Auto-detect empty field if no dot selected */
       var target = vdTarget;
+      /* Auto-detect empty field if no dot selected */
       if (!target) {
-        var emptyFields = VD_FIELDS.filter(function(f){ return document.getElementById('vd-'+f).value.trim() === ''; });
-        if (emptyFields.length === 1) { target = emptyFields[0]; }
-        else if (emptyFields.length === 0) { showErr('vd-error','All fields are filled. Clear one field or click a dot to choose what to recalculate.'); return; }
-        else { showErr('vd-error','Leave exactly one field empty, or click a dot to choose what to solve.'); return; }
+        var empties = VD_FIELDS.filter(function(f){ return document.getElementById('vd-'+f).value.trim()===''; });
+        if (empties.length===1) {
+          target = empties[0];
+          /* Light up the dot automatically */
+          vdSelectTarget(target);
+          document.getElementById('vd-'+target).classList.remove('target-field');
+        } else if (empties.length===0) { showErr('vd-error','All fields are filled. Clear one or click a dot.'); return; }
+        else { showErr('vd-error','Leave exactly one field empty.'); return; }
       }
 
       var Vs   = (target==='vs')   ? null : getVal('vd-vs');
@@ -1198,182 +878,130 @@
       var R2   = (target==='r2')   ? null : getScaled('vd-r2','vd-ur2');
       var Vout = (target==='vout') ? null : getVal('vd-vout');
 
-      var filled = [Vs,R1,R2,Vout].filter(function(v){ return v !== null; });
-      if (filled.length < 3) { showErr('vd-error','Please fill in all fields except the one to solve.'); return; }
+      if ([Vs,R1,R2,Vout].filter(function(v){return v===null;}).length>1){ showErr('vd-error','Please fill in all fields except the one to solve.'); return; }
 
-      if (target === 'vs') {
-        if (R2 <= 0) { showErr('vd-error','R2 must be > 0.'); return; }
-        setResult('vd-vs', Vout * (R1 + R2) / R2);
-      } else if (target === 'r1') {
-        if (Vs <= Vout) { showErr('vd-error','Vs must be greater than Vout.'); return; }
-        if (Vout === 0) { showErr('vd-error','Vout cannot be 0 when solving R1.'); return; }
-        setScaledResult('vd-r1','vd-ur1', R2 * (Vs - Vout) / Vout);
-      } else if (target === 'r2') {
-        if (Vs <= Vout) { showErr('vd-error','Vs must be greater than Vout.'); return; }
-        setScaledResult('vd-r2','vd-ur2', R1 * Vout / (Vs - Vout));
+      if (target==='vs') {
+        if (R2<=0){showErr('vd-error','R2 must be > 0.');return;}
+        setResult('vd-vs', Vout*(R1+R2)/R2);
+      } else if (target==='r1') {
+        if (Vs<=Vout){showErr('vd-error','Vs must be greater than Vout.');return;}
+        if (Vout===0){showErr('vd-error','Vout cannot be 0 when solving R1.');return;}
+        setScaledResult('vd-r1','vd-ur1', R2*(Vs-Vout)/Vout);
+      } else if (target==='r2') {
+        if (Vs<=Vout){showErr('vd-error','Vs must be greater than Vout.');return;}
+        setScaledResult('vd-r2','vd-ur2', R1*Vout/(Vs-Vout));
       } else {
-        if ((R1 + R2) === 0) { showErr('vd-error','R1+R2 cannot be zero.'); return; }
-        setResult('vd-vout', Vs * R2 / (R1 + R2));
+        if ((R1+R2)===0){showErr('vd-error','R1+R2 cannot be zero.');return;}
+        setResult('vd-vout', Vs*R2/(R1+R2));
       }
-      showOk('vd-success', '✓ Calculated successfully.');
+      showOk('vd-success','✓ Calculated successfully.');
     }
 
     function resetVD() {
       vdTarget = null;
-      VD_FIELDS.forEach(function(f) {
-        var el = document.getElementById('vd-' + f);
-        el.value = ''; el.classList.remove('result-field','target-field');
-        document.getElementById('vd-dot-' + f).classList.remove('selected');
+      VD_FIELDS.forEach(function(f){
+        var el=document.getElementById('vd-'+f); el.value=''; el.classList.remove('result-field','target-field');
+        document.getElementById('vd-dot-'+f).classList.remove('selected');
       });
       hideMsg('vd-error'); hideMsg('vd-success');
     }
 
-    /* ══════════════════════════════════════
-       RC CALCULATOR — dot OR auto-detect empty
-    ══════════════════════════════════════ */
+    /* ── RC Calculator ── */
     var rcTarget = null;
     var RC_FIELDS = ['r','c','tau'];
 
     function rcSelectTarget(name) {
       rcTarget = name;
-      RC_FIELDS.forEach(function(f) {
-        var dot = document.getElementById('rc-dot-' + f);
-        var inp = document.getElementById('rc-' + f);
-        dot.classList.toggle('selected', f === name);
-        inp.classList.remove('result-field','target-field');
-        if (f === name) inp.classList.add('target-field');
+      RC_FIELDS.forEach(function(f){
+        document.getElementById('rc-dot-'+f).classList.toggle('selected', f===name);
+        var inp=document.getElementById('rc-'+f); inp.classList.remove('result-field','target-field');
+        if(f===name) inp.classList.add('target-field');
       });
       hideMsg('rc-error'); hideMsg('rc-success');
     }
 
     function calcRC() {
       hideMsg('rc-error'); hideMsg('rc-success');
-      RC_FIELDS.forEach(function(f) {
-        var el = document.getElementById('rc-' + f);
-        el.classList.remove('result-field');
-        if (f !== rcTarget) el.classList.remove('target-field');
-      });
-
-      var R   = getScaled('rc-r',   'rc-ur');
-      var C   = getScaled('rc-c',   'rc-uc');
-      var tau = getScaled('rc-tau', 'rc-utau');
-
-      /* Auto-detect empty if no dot */
+      RC_FIELDS.forEach(function(f){ document.getElementById('rc-'+f).classList.remove('result-field','target-field'); });
+      var R=getScaled('rc-r','rc-ur'), C=getScaled('rc-c','rc-uc'), tau=getScaled('rc-tau','rc-utau');
       var target = rcTarget;
       if (!target) {
-        /* Special: R+C only → compute τ */
-        if (R !== null && C !== null && tau === null) {
-          setScaledResult('rc-tau', 'rc-utau', R * C);
-          showOk('rc-success', '✓ Computed τ from R and C.');
-          return;
-        }
-        var emptyFields = RC_FIELDS.filter(function(f){ return document.getElementById('rc-'+f).value.trim() === ''; });
-        if (emptyFields.length === 1) { target = emptyFields[0]; }
-        else if (emptyFields.length === 0) { showErr('rc-error','All fields are filled. Clear one or click a dot to recalculate.'); return; }
-        else { showErr('rc-error','Leave exactly one field empty, or click a dot to choose what to solve.'); return; }
+        if (R!==null && C!==null && tau===null) { setScaledResult('rc-tau','rc-utau',R*C); showOk('rc-success','✓ Computed τ from R and C.'); return; }
+        var empties=RC_FIELDS.filter(function(f){return document.getElementById('rc-'+f).value.trim()==='';});
+        if (empties.length===1){ target=empties[0]; }
+        else if (empties.length===0){showErr('rc-error','All fields filled. Clear one or click a dot.');return;}
+        else{showErr('rc-error','Leave exactly one field empty.');return;}
       }
-
-      /* Refresh values after target resolved */
-      R   = (target==='r')   ? null : getScaled('rc-r',   'rc-ur');
-      C   = (target==='c')   ? null : getScaled('rc-c',   'rc-uc');
-      tau = (target==='tau') ? null : getScaled('rc-tau', 'rc-utau');
-
-      if (R   !== null && R   <= 0) { showErr('rc-error','R must be > 0.');  return; }
-      if (C   !== null && C   <= 0) { showErr('rc-error','C must be > 0.');  return; }
-      if (tau !== null && tau <= 0) { showErr('rc-error','τ must be > 0.');  return; }
-
-      if (target === 'r') {
-        if (C === null || tau === null) { showErr('rc-error','Fill C and τ to solve R.'); return; }
-        setScaledResult('rc-r','rc-ur', tau / C);
-      } else if (target === 'c') {
-        if (R === null || tau === null) { showErr('rc-error','Fill R and τ to solve C.'); return; }
-        setScaledResult('rc-c','rc-uc', tau / R);
-      } else {
-        if (R === null || C === null) { showErr('rc-error','Fill R and C to solve τ.'); return; }
-        setScaledResult('rc-tau','rc-utau', R * C);
-      }
-      showOk('rc-success', '✓ Calculated successfully.');
+      R=(target==='r')?null:getScaled('rc-r','rc-ur');
+      C=(target==='c')?null:getScaled('rc-c','rc-uc');
+      tau=(target==='tau')?null:getScaled('rc-tau','rc-utau');
+      if(R!==null&&R<=0){showErr('rc-error','R must be > 0.');return;}
+      if(C!==null&&C<=0){showErr('rc-error','C must be > 0.');return;}
+      if(tau!==null&&tau<=0){showErr('rc-error','τ must be > 0.');return;}
+      if(target==='r'){if(!C||!tau){showErr('rc-error','Fill C and τ to solve R.');return;} setScaledResult('rc-r','rc-ur',tau/C);}
+      else if(target==='c'){if(!R||!tau){showErr('rc-error','Fill R and τ to solve C.');return;} setScaledResult('rc-c','rc-uc',tau/R);}
+      else{if(!R||!C){showErr('rc-error','Fill R and C to solve τ.');return;} setScaledResult('rc-tau','rc-utau',R*C);}
+      showOk('rc-success','✓ Calculated successfully.');
     }
 
     function resetRC() {
-      rcTarget = null;
-      RC_FIELDS.forEach(function(f) {
-        var el = document.getElementById('rc-' + f);
-        el.value = ''; el.classList.remove('result-field','target-field');
-        document.getElementById('rc-dot-' + f).classList.remove('selected');
+      rcTarget=null;
+      RC_FIELDS.forEach(function(f){
+        var el=document.getElementById('rc-'+f); el.value=''; el.classList.remove('result-field','target-field');
+        document.getElementById('rc-dot-'+f).classList.remove('selected');
       });
       hideMsg('rc-error'); hideMsg('rc-success');
     }
 
-    /* ══════════════════════════════════════
-       SUB-TOOL 1: Charging
-    ══════════════════════════════════════ */
-    function calcCharging() {
+    /* ── Charging ── */
+    function calcCharging(){
       hideMsg('ch-error'); hideMsg('ch-success');
-      var Vs = getVal('ch-vs');
-      var R  = getScaled('ch-r', 'ch-ur');
-      var C  = getScaled('ch-c', 'ch-uc');
-      var t  = getScaled('ch-t', 'ch-ut');
-      if (Vs === null || R === null || C === null || t === null) { showErr('ch-error','Please fill all four inputs.'); return; }
-      if (R <= 0) { showErr('ch-error','R must be > 0.'); return; }
-      if (C <= 0) { showErr('ch-error','C must be > 0.'); return; }
-      if (t < 0)  { showErr('ch-error','Time must be ≥ 0.'); return; }
-      var vc = Vs * (1 - Math.exp(-t / (R * C)));
-      document.getElementById('ch-result').value = fmtNum(vc);
-      showOk('ch-success', '✓ V_C(' + fmtNum(t) + ' s) = ' + fmtNum(vc) + ' V');
+      var Vs=getVal('ch-vs'), R=getScaled('ch-r','ch-ur'), C=getScaled('ch-c','ch-uc'), t=getScaled('ch-t','ch-ut');
+      if(Vs===null||R===null||C===null||t===null){showErr('ch-error','Please fill all four inputs.');return;}
+      if(R<=0){showErr('ch-error','R must be > 0.');return;}
+      if(C<=0){showErr('ch-error','C must be > 0.');return;}
+      if(t<0){showErr('ch-error','Time must be ≥ 0.');return;}
+      var vc=Vs*(1-Math.exp(-t/(R*C)));
+      document.getElementById('ch-result').value=fmtNum(vc);
+      showOk('ch-success','✓ V_C = '+fmtNum(vc)+' V');
     }
 
-    /* ══════════════════════════════════════
-       SUB-TOOL 2: Discharging
-    ══════════════════════════════════════ */
-    function calcDischarging() {
+    /* ── Discharging ── */
+    function calcDischarging(){
       hideMsg('dc-error'); hideMsg('dc-success');
-      var V0 = getVal('dc-v0');
-      var R  = getScaled('dc-r', 'dc-ur');
-      var C  = getScaled('dc-c', 'dc-uc');
-      var t  = getScaled('dc-t', 'dc-ut');
-      if (V0 === null || R === null || C === null || t === null) { showErr('dc-error','Please fill all four inputs.'); return; }
-      if (R <= 0) { showErr('dc-error','R must be > 0.'); return; }
-      if (C <= 0) { showErr('dc-error','C must be > 0.'); return; }
-      if (t < 0)  { showErr('dc-error','Time must be ≥ 0.'); return; }
-      var vc = V0 * Math.exp(-t / (R * C));
-      document.getElementById('dc-result').value = fmtNum(vc);
-      showOk('dc-success', '✓ V_C(' + fmtNum(t) + ' s) = ' + fmtNum(vc) + ' V');
+      var V0=getVal('dc-v0'), R=getScaled('dc-r','dc-ur'), C=getScaled('dc-c','dc-uc'), t=getScaled('dc-t','dc-ut');
+      if(V0===null||R===null||C===null||t===null){showErr('dc-error','Please fill all four inputs.');return;}
+      if(R<=0){showErr('dc-error','R must be > 0.');return;}
+      if(C<=0){showErr('dc-error','C must be > 0.');return;}
+      if(t<0){showErr('dc-error','Time must be ≥ 0.');return;}
+      var vc=V0*Math.exp(-t/(R*C));
+      document.getElementById('dc-result').value=fmtNum(vc);
+      showOk('dc-success','✓ V_C = '+fmtNum(vc)+' V');
     }
 
-    /* ══════════════════════════════════════
-       SUB-TOOL 3: Thévenin RC
-    ══════════════════════════════════════ */
-    function calcThevenin() {
+    /* ── Thévenin RC ── */
+    function calcThevenin(){
       hideMsg('th-error'); hideMsg('th-success');
-      var Vs = getVal('th-vs');
-      var R1 = getScaled('th-r1','th-ur1');
-      var R2 = getScaled('th-r2','th-ur2');
-      var C  = getScaled('th-c', 'th-uc');
-      var t  = getScaled('th-t', 'th-ut');
-      if (Vs===null||R1===null||R2===null||C===null||t===null) { showErr('th-error','Please fill all five inputs.'); return; }
-      if (R1<=0) { showErr('th-error','R1 must be > 0.'); return; }
-      if (R2<=0) { showErr('th-error','R2 must be > 0.'); return; }
-      if (C<=0)  { showErr('th-error','C must be > 0.');  return; }
-      if (t<0)   { showErr('th-error','Time must be ≥ 0.'); return; }
-      var Vth = Vs * R2 / (R1 + R2);
-      var Rth = (R1 * R2) / (R1 + R2);
-      var vc  = Vth * (1 - Math.exp(-t / (Rth * C)));
-      document.getElementById('th-vth').value = fmtNum(Vth) + ' V';
-      document.getElementById('th-rth').value = fmtNum(Rth) + ' Ω';
-      document.getElementById('th-result').value = fmtNum(vc);
-      showOk('th-success', '✓ V_th=' + fmtNum(Vth) + 'V  R_th=' + fmtNum(Rth) + 'Ω  →  V_C=' + fmtNum(vc) + 'V');
+      var Vs=getVal('th-vs'), R1=getScaled('th-r1','th-ur1'), R2=getScaled('th-r2','th-ur2'), C=getScaled('th-c','th-uc'), t=getScaled('th-t','th-ut');
+      if(Vs===null||R1===null||R2===null||C===null||t===null){showErr('th-error','Please fill all five inputs.');return;}
+      if(R1<=0){showErr('th-error','R1 must be > 0.');return;}
+      if(R2<=0){showErr('th-error','R2 must be > 0.');return;}
+      if(C<=0){showErr('th-error','C must be > 0.');return;}
+      if(t<0){showErr('th-error','Time must be ≥ 0.');return;}
+      var Vth=Vs*R2/(R1+R2), Rth=(R1*R2)/(R1+R2), vc=Vth*(1-Math.exp(-t/(Rth*C)));
+      document.getElementById('th-vth').value=fmtNum(Vth)+' V';
+      document.getElementById('th-rth').value=fmtNum(Rth)+' Ω';
+      document.getElementById('th-result').value=fmtNum(vc);
+      showOk('th-success','✓ V_th='+fmtNum(Vth)+'V  R_th='+fmtNum(Rth)+'Ω  →  V_C='+fmtNum(vc)+'V');
     }
 
-    /* ══════════════════════════════════════
-       RESET for sub-tools
-    ══════════════════════════════════════ */
-    function resetTool(prefix) {
+    /* ── Reset sub-tools ── */
+    function resetTool(prefix){
       var ids;
-      if (prefix==='ch') ids=['ch-vs','ch-r','ch-c','ch-t','ch-result'];
-      else if (prefix==='dc') ids=['dc-v0','dc-r','dc-c','dc-t','dc-result'];
+      if(prefix==='ch') ids=['ch-vs','ch-r','ch-c','ch-t','ch-result'];
+      else if(prefix==='dc') ids=['dc-v0','dc-r','dc-c','dc-t','dc-result'];
       else ids=['th-vs','th-r1','th-r2','th-c','th-t','th-vth','th-rth','th-result'];
-      ids.forEach(function(id){ var el=document.getElementById(id); if(el){ el.value=''; el.classList.remove('result-field','target-field'); }});
+      ids.forEach(function(id){var el=document.getElementById(id);if(el){el.value='';el.classList.remove('result-field','target-field');}});
       hideMsg(prefix+'-error'); hideMsg(prefix+'-success');
     }
   </script>
