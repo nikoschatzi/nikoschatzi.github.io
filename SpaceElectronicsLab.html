@@ -1,4 +1,5 @@
 
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -98,7 +99,7 @@
     .search-box input {
       flex: 1;
       height: 36px;
-      padding: 0 14px 0 0;
+      padding: 4px 14px 0 0;
       border: none;
       outline: none;
       font-family: 'Inter', sans-serif; font-size: 13px; color: #333;
@@ -218,11 +219,16 @@
 
     /* FIX 1: Unit — always a <select> dropdown for Ω / kΩ / MΩ */
     .calc-unit {
+      -webkit-appearance: auto !important;
+      -moz-appearance: auto !important;
+      appearance: auto !important;
       padding: 6px 4px;
-      border: 1.5px solid #d8d8d8; border-radius: 7px;
+      border: 1.5px solid #d8d8d8 !important; border-radius: 7px;
       font-family: 'Inter', sans-serif; font-size: 11px; color: #555;
-      background: #fff; cursor: pointer; outline: none; width: 100%;
+      background: #fff !important; cursor: pointer; outline: none; width: 100%;
       box-sizing: border-box;
+      display: block !important;
+      height: auto !important;
     }
     .calc-unit:focus { border-color: #009688; }
 
@@ -541,8 +547,8 @@
 
                 <div class="calc-label">R<sub>1</sub></div>
                 <input class="calc-input" id="f-r1" type="number" min="0" step="any" placeholder="" />
-                <!-- FIX 1: dropdown Ω / kΩ / MΩ -->
-                <select class="calc-unit" id="u-r1">
+                <!-- dropdown Ω / kΩ / MΩ -->
+                <select class="calc-unit" id="u-r1" style="-webkit-appearance:auto;appearance:auto;display:block;">
                   <option value="1">Ω</option>
                   <option value="1000" selected>kΩ</option>
                   <option value="1000000">MΩ</option>
@@ -552,8 +558,8 @@
 
                 <div class="calc-label">R<sub>2</sub></div>
                 <input class="calc-input" id="f-r2" type="number" min="0" step="any" placeholder="" />
-                <!-- FIX 1: dropdown Ω / kΩ / MΩ -->
-                <select class="calc-unit" id="u-r2">
+                <!-- dropdown Ω / kΩ / MΩ -->
+                <select class="calc-unit" id="u-r2" style="-webkit-appearance:auto;appearance:auto;display:block;">
                   <option value="1">Ω</option>
                   <option value="1000" selected>kΩ</option>
                   <option value="1000000">MΩ</option>
@@ -636,6 +642,11 @@
 
       $(".scrollspy").scrollSpy();
       $(".button-collapse").sideNav({ menuWidth: 190, edge: "left", closeOnClick: true });
+
+      // Prevent Materialize from replacing native <select> in the calculator
+      $('#u-r1, #u-r2').each(function() {
+        $(this).attr('data-skip', 'true');
+      });
     });
 
     /* ── Calculator ── */
