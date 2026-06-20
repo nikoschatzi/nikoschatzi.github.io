@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <title>RC Calculator | Nikos Electronics Lab</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-126939217-2');
+  </script>
+
+  <style>
+    body { background-color: #f8f9fa !important; background-image: none !important; }
+    main, section, .container, .flow-text { background: transparent !important; background-image: none !important; }
+    h3.page-title, .teal { background-color: #009688 !important; background-image: none !important; }
+    img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; }
+
+    .bmc-link {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 16px; margin: 6px 10px 0;
+      background: #fff9e6; border-radius: 8px;
+      border: none !important; outline: none !important;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      color: #333 !important; text-decoration: none !important;
+      transition: background 0.15s;
+    }
+    .bmc-link:hover { background: #fff3cc; }
+    .bmc-link i { font-size: 17px; color: #e6a817; }
+
+    h3.page-title { margin-top: 0 !important; padding: 26px 36px 22px !important; }
+    .blog-site-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 700; color: #fff; margin: 0 0 3px 0; line-height: 1.2; }
+    .blog-site-sub { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,255,255,0.65); margin: 0 0 2px 0; }
+    .blog-site-byline { font-family: 'Inter', sans-serif; font-size: 10px; color: rgba(255,255,255,0.50); margin: 0; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Inter', sans-serif; font-size: 13px;
+      color: #009688; text-decoration: none; font-weight: 500;
+      margin: 22px 0 8px 0; transition: gap 0.15s;
+    }
+    .back-link:hover { gap: 10px; color: #00796b; }
+
+    .calc-header { font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-weight: 700; color: #1a1a1a; margin: 14px 0 6px 0; }
+    .calc-desc { font-family: 'Inter', sans-serif; font-size: 13.5px; color: #666; line-height: 1.6; margin-bottom: 24px; }
+
+    .calc-layout { display: flex; gap: 36px; align-items: flex-start; flex-wrap: wrap; }
+    .calc-left { flex: 0 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .calc-right { flex: 1; min-width: 240px; max-width: 380px; }
+
+    .calc-formula {
+      background: #fff; border: 1px solid #e8e8e8;
+      border-left: 4px solid #009688; border-radius: 10px;
+      padding: 12px 18px; display: inline-block;
+    }
+    .calc-formula .f-label { font-size: 11px; color: #9e9e9e; font-family: 'Inter', sans-serif; margin-bottom: 5px; }
+    .calc-formula .f-eq { font-size: 14px; font-weight: 600; color: #1a1a1a; font-family: 'Source Serif 4', serif; line-height: 1.8; }
+    .calc-formula .f-eq sub, .calc-formula .f-eq sup { font-size: 10px; }
+
+    .calc-row {
+      display: grid;
+      grid-template-columns: 22px 140px 110px 80px;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .calc-divider { grid-column: 1/-1; height: 1px; background: #f0f0f0; margin: 2px 0; }
+
+    .dot-radio {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid #d8d8d8; background: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s; flex-shrink: 0;
+    }
+    .dot-radio:hover { border-color: #009688; }
+    .dot-radio.selected { border-color: #009688; background: #009688; box-shadow: 0 0 0 2px rgba(0,150,136,0.2); }
+    .dot-radio.selected::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #fff; }
+
+    .calc-label { font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; color: #333; }
+    .calc-label sub, .calc-label sup { font-size: 10px; }
+
+    .calc-input {
+      width: 100%; padding: 7px 9px;
+      border: 1.5px solid #d8d8d8; border-radius: 7px;
+      font-family: 'Inter', sans-serif; font-size: 14px; color: #333;
+      background: #fff; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .calc-input:focus { border-color: #009688; box-shadow: 0 0 0 3px rgba(0,150,136,0.1); }
+    .calc-input.result-field { border-color: #ff9800; background: #fffdf5; color: #e65100; font-weight: 600; }
+    .calc-input.target-field { border-color: #009688; background: #f0faf8; }
+
+    .calc-unit {
+      -webkit-appearance: auto !important; -moz-appearance: auto !important; appearance: auto !important;
+      display: block !important; width: 100%; padding: 7px 4px;
+      border: 1.5px solid #d8d8d8 !important; border-radius: 7px;
+      font-family: 'Inter', sans-serif; font-size: 13px; color: #555;
+      background: #fff !important; cursor: pointer; outline: none;
+      box-sizing: border-box; height: auto !important;
+    }
+    .calc-unit:focus { border-color: #009688 !important; }
+    .unit-text { font-family: 'Inter', sans-serif; font-size: 13px; color: #888; padding: 7px 0; }
+
+    .calc-btn {
+      margin-top: 14px; padding: 9px 24px;
+      background: #009688; color: #fff;
+      border: none; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.15s, transform 0.1s;
+    }
+    .calc-btn:hover { background: #00796b; }
+    .calc-btn:active { transform: scale(0.98); }
+    .calc-btn.reset { background: #e0e0e0; color: #555; margin-left: 8px; }
+    .calc-btn.reset:hover { background: #d0d0d0; }
+
+    .calc-hint { font-family: 'Inter', sans-serif; font-size: 12px; color: #9e9e9e; margin-top: 9px; }
+    .calc-hint span { color: #009688; font-weight: 600; }
+    .calc-error { display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #c62828; margin-top: 10px; background: #ffebee; border-radius: 6px; padding: 8px 14px; }
+    .calc-success { display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #2e7d32; margin-top: 10px; background: #e8f5e9; border-radius: 6px; padding: 8px 14px; }
+
+    .rc-plot-wrap { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 14px 16px; margin-top: 4px; }
+    .rc-plot-wrap canvas { display: block; width: 100%; height: auto; }
+
+    .rc-subtool { margin-top: 36px; padding-top: 28px; border-top: 2px solid #e8e8e8; }
+    .rc-subtool-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; font-weight: 700; color: #1a1a1a; margin: 0 0 6px 0; }
+    .rc-subtool-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 20px; }
+
+    @media (max-width: 992px) {
+      main { padding-left: 0; padding-top: 0; }
+      ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
+      nav { background: #fff; height: 64px; position: absolute; }
+      nav a.button-collapse, nav a.button-collapse i { color: #009688; height: 56px; line-height: 56px; }
+      h3 { padding: 20px 30px; margin-bottom: 40px; }
+      .container { margin: 0 auto; }
+      .calc-layout { flex-direction: column; }
+      .calc-right { max-width: 100%; }
+      .calc-row { grid-template-columns: 22px 120px 100px 70px; }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- ── SIDEBAR ── -->
+  <nav class="hide-on-small-only">
+    <ul class="side-nav fixed section table-of-contents">
+      <li class="logo">
+        <a id="logo-container" aria-label="Navigate to the beginning of the page" class="brand-logo grey-blue-text">
+          <img src="/assets/img/ele2.png" class="circle img-responsive profile-pic" alt="avatar">
+        </a>
+      </li>
+      <li class="bold">
+        <a href="/NikosElectronicsLab/" class="waves-effect waves-dark teal-text">
+          <i class="mdi-action-home small"></i><span>Articles</span>
+        </a>
+      </li>
+      <li class="bold">
+        <a href="/NikosElectronicsLab/voltage-divider.html" class="waves-effect waves-dark teal-text">
+          <i class="mdi-image-flash-on small"></i><span>Voltage Divider</span>
+        </a>
+      </li>
+      <li class="bold">
+        <a href="/NikosElectronicsLab/rc-calculator.html" class="waves-effect waves-dark teal-text">
+          <i class="fa fa-circle-o small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>RC Calculator</span>
+        </a>
+      </li>
+      <li class="bold">
+        <a href="https://nikoschatzi.github.io/" target="_blank" rel="noopener" class="waves-effect waves-dark teal-text">
+          <i class="fa fa-suitcase small" style="font-size:1.1rem;width:2rem;display:inline-block;text-align:center;border:none!important;box-shadow:none!important;outline:none!important;"></i><span>My Portfolio</span>
+        </a>
+      </li>
+      <li style="list-style:none;padding:0;">
+        <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
+          <i class="fa fa-coffee"></i>Buy me a coffee
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <main>
+    <section id="about" class="section scrollspy">
+      <h3 class="page-title white-text teal">
+        <p class="blog-site-title">Nikos Electronics Lab</p>
+        <p class="blog-site-sub">Blog for hardware engineers</p>
+        <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
+      </h3>
+
+      <div class="container flow-text">
+
+        <a class="back-link" href="/NikosElectronicsLab/">
+          <i class="fa fa-arrow-left"></i> Back to Articles
+        </a>
+
+        <div class="calc-header">RC Circuit Calculator</div>
+        <p class="calc-desc">Leave one variable empty and press <strong>Calculate</strong>. Fill only R and C to compute τ directly.</p>
+        <div class="calc-layout">
+          <!-- LEFT: diagram + formula + plot -->
+          <div class="calc-left">
+            <svg width="230" height="195" viewBox="0 0 230 195" xmlns="http://www.w3.org/2000/svg"
+                 style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
+              <line x1="35" y1="22" x2="35" y2="83" stroke="#333" stroke-width="2"/>
+              <line x1="35" y1="107" x2="35" y2="170" stroke="#333" stroke-width="2"/>
+              <line x1="20" y1="83" x2="50" y2="83" stroke="#333" stroke-width="2.5"/>
+              <line x1="25" y1="107" x2="45" y2="107" stroke="#333" stroke-width="1.5"/>
+              <text x="3" y="99" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
+              <line x1="35" y1="22" x2="68" y2="22" stroke="#333" stroke-width="2"/>
+              <line x1="132" y1="22" x2="190" y2="22" stroke="#333" stroke-width="2"/>
+              <polyline points="68,22 74,13 84,31 94,13 104,31 114,13 124,31 132,22"
+                        fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+              <text x="101" y="10" font-size="11" fill="#009688" font-weight="600" text-anchor="middle">R</text>
+              <line x1="35" y1="170" x2="190" y2="170" stroke="#333" stroke-width="2"/>
+              <line x1="190" y1="22" x2="190" y2="66" stroke="#333" stroke-width="2"/>
+              <line x1="190" y1="106" x2="190" y2="170" stroke="#333" stroke-width="2"/>
+              <line x1="172" y1="66" x2="208" y2="66" stroke="#009688" stroke-width="3"/>
+              <line x1="172" y1="106" x2="208" y2="106" stroke="#009688" stroke-width="3"/>
+              <text x="212" y="90" font-size="11" fill="#009688" font-weight="600">C</text>
+              <line x1="176" y1="170" x2="204" y2="170" stroke="#333" stroke-width="2"/>
+              <line x1="179" y1="176" x2="201" y2="176" stroke="#333" stroke-width="1.5"/>
+              <line x1="183" y1="182" x2="197" y2="182" stroke="#333" stroke-width="1"/>
+              <text x="44" y="148" font-size="9.5" fill="#888">τ = R·C</text>
+            </svg>
+            <div class="calc-formula">
+              <div class="f-label">Formulas</div>
+              <div class="f-eq" style="font-size:13px;">τ = R × C<br>C = τ / R &nbsp;|&nbsp; R = τ / C</div>
+            </div>
+            <div class="rc-plot-wrap">
+              <canvas id="rc-curve-canvas" width="220" height="150"></canvas>
+            </div>
+          </div>
+          <!-- RIGHT: fields -->
+          <div class="calc-right">
+            <div class="calc-row">
+              <div class="dot-radio" id="rc-dot-r" onclick="rcSelectTarget('r')" title="Solve for R"></div>
+              <div class="calc-label">R</div>
+              <input class="calc-input" id="rc-r" type="number" step="any" placeholder="" />
+              <select class="calc-unit" id="rc-ur"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select>
+            </div>
+            <div class="calc-divider"></div>
+            <div class="calc-row">
+              <div class="dot-radio" id="rc-dot-c" onclick="rcSelectTarget('c')" title="Solve for C"></div>
+              <div class="calc-label">C</div>
+              <input class="calc-input" id="rc-c" type="number" step="any" placeholder="" />
+              <select class="calc-unit" id="rc-uc"><option value="0.000000000001">pF</option><option value="0.000000001">nF</option><option value="0.000001" selected>µF</option><option value="0.001">mF</option></select>
+            </div>
+            <div class="calc-divider"></div>
+            <div class="calc-row">
+              <div class="dot-radio" id="rc-dot-tau" onclick="rcSelectTarget('tau')" title="Solve for τ"></div>
+              <div class="calc-label">τ (time const.)</div>
+              <input class="calc-input" id="rc-tau" type="number" step="any" placeholder="" />
+              <select class="calc-unit" id="rc-utau"><option value="0.000001">µs</option><option value="0.001">ms</option><option value="1" selected>s</option></select>
+            </div>
+            <div>
+              <button class="calc-btn" onclick="calcRC()">Calculate</button>
+              <button class="calc-btn reset" onclick="resetRC()">Reset</button>
+            </div>
+            <p class="calc-hint">Leave one field empty or click a <span>dot</span> to choose what to solve.</p>
+            <div class="calc-error" id="rc-error"></div>
+            <div class="calc-success" id="rc-success"></div>
+          </div>
+        </div>
+
+        <!-- SUB-TOOL 1: Charging -->
+        <div class="rc-subtool">
+          <div class="calc-layout">
+            <div class="calc-left">
+              <svg width="230" height="195" viewBox="0 0 230 195" xmlns="http://www.w3.org/2000/svg"
+                   style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
+                <line x1="35" y1="22" x2="35" y2="83" stroke="#333" stroke-width="2"/>
+                <line x1="35" y1="107" x2="35" y2="170" stroke="#333" stroke-width="2"/>
+                <line x1="20" y1="83" x2="50" y2="83" stroke="#333" stroke-width="2.5"/>
+                <line x1="25" y1="107" x2="45" y2="107" stroke="#333" stroke-width="1.5"/>
+                <text x="3" y="99" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
+                <line x1="35" y1="22" x2="68" y2="22" stroke="#333" stroke-width="2"/>
+                <line x1="132" y1="22" x2="190" y2="22" stroke="#333" stroke-width="2"/>
+                <polyline points="68,22 74,13 84,31 94,13 104,31 114,13 124,31 132,22" fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                <text x="101" y="10" font-size="11" fill="#009688" font-weight="600" text-anchor="middle">R</text>
+                <line x1="35" y1="170" x2="190" y2="170" stroke="#333" stroke-width="2"/>
+                <line x1="190" y1="22" x2="190" y2="66" stroke="#333" stroke-width="2"/>
+                <line x1="190" y1="106" x2="190" y2="170" stroke="#333" stroke-width="2"/>
+                <line x1="172" y1="66" x2="208" y2="66" stroke="#009688" stroke-width="3"/>
+                <line x1="172" y1="106" x2="208" y2="106" stroke="#009688" stroke-width="3"/>
+                <text x="212" y="90" font-size="11" fill="#009688" font-weight="600">C</text>
+                <line x1="176" y1="170" x2="204" y2="170" stroke="#333" stroke-width="2"/>
+                <line x1="179" y1="176" x2="201" y2="176" stroke="#333" stroke-width="1.5"/>
+                <line x1="183" y1="182" x2="197" y2="182" stroke="#333" stroke-width="1"/>
+              </svg>
+              <div class="calc-formula">
+                <div class="f-label">Formula</div>
+                <div class="f-eq" style="font-size:13px;">V(t) = V<sub>s</sub> · (1 − e<sup>−t/RC</sup>)</div>
+              </div>
+            </div>
+            <div class="calc-right">
+              <div class="rc-subtool-title">Charging Calculation</div>
+              <p class="rc-subtool-desc">Capacitor charging from 0 V toward V<sub>s</sub> through R.</p>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>s</sub></div><input class="calc-input" id="ch-vs" type="number" step="any" placeholder="" /><div class="unit-text">V</div></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">R</div><input class="calc-input" id="ch-r" type="number" step="any" placeholder="" /><select class="calc-unit" id="ch-ur"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">C</div><input class="calc-input" id="ch-c" type="number" step="any" placeholder="" /><select class="calc-unit" id="ch-uc"><option value="0.000000000001">pF</option><option value="0.000000001">nF</option><option value="0.000001" selected>µF</option><option value="0.001">mF</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">Time (t)</div><input class="calc-input" id="ch-t" type="number" step="any" placeholder="" /><select class="calc-unit" id="ch-ut"><option value="0.000001">µs</option><option value="0.001">ms</option><option value="1" selected>s</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>C</sub>(t)</div><input class="calc-input" id="ch-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" /><div class="unit-text">V</div></div>
+              <div><button class="calc-btn" onclick="calcCharging()">Calculate</button><button class="calc-btn reset" onclick="resetTool('ch')">Reset</button></div>
+              <div class="calc-error" id="ch-error"></div>
+              <div class="calc-success" id="ch-success"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-TOOL 2: Discharging -->
+        <div class="rc-subtool">
+          <div class="calc-layout">
+            <div class="calc-left">
+              <svg width="230" height="180" viewBox="0 0 230 180" xmlns="http://www.w3.org/2000/svg"
+                   style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
+                <line x1="30" y1="30" x2="195" y2="30" stroke="#333" stroke-width="2"/>
+                <line x1="30" y1="150" x2="195" y2="150" stroke="#333" stroke-width="2"/>
+                <line x1="30" y1="30" x2="30" y2="72" stroke="#333" stroke-width="2"/>
+                <line x1="12" y1="72" x2="48" y2="72" stroke="#009688" stroke-width="3"/>
+                <line x1="12" y1="108" x2="48" y2="108" stroke="#009688" stroke-width="3"/>
+                <line x1="30" y1="108" x2="30" y2="150" stroke="#333" stroke-width="2"/>
+                <text x="52" y="94" font-size="11" fill="#009688" font-weight="600">C</text>
+                <line x1="195" y1="30" x2="195" y2="58" stroke="#333" stroke-width="2"/>
+                <polyline points="195,58 186,65 204,74 186,83 204,92 186,101 204,110 195,117" fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                <line x1="195" y1="117" x2="195" y2="150" stroke="#333" stroke-width="2"/>
+                <text x="208" y="90" font-size="11" fill="#009688" font-weight="600">R</text>
+                <text x="52" y="68" font-size="10" fill="#888">V<tspan font-size="8" dy="2">0</tspan></text>
+                <line x1="100" y1="150" x2="125" y2="150" stroke="#333" stroke-width="2"/>
+                <line x1="103" y1="156" x2="122" y2="156" stroke="#333" stroke-width="1.5"/>
+                <line x1="107" y1="162" x2="118" y2="162" stroke="#333" stroke-width="1"/>
+              </svg>
+              <div class="calc-formula">
+                <div class="f-label">Formula</div>
+                <div class="f-eq" style="font-size:13px;">V(t) = V<sub>0</sub> · e<sup>−t/RC</sup></div>
+              </div>
+            </div>
+            <div class="calc-right">
+              <div class="rc-subtool-title">Discharging Calculation</div>
+              <p class="rc-subtool-desc">Capacitor discharging through R from initial voltage V<sub>0</sub>.</p>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>0</sub> (initial)</div><input class="calc-input" id="dc-v0" type="number" step="any" placeholder="" /><div class="unit-text">V</div></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">R</div><input class="calc-input" id="dc-r" type="number" step="any" placeholder="" /><select class="calc-unit" id="dc-ur"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">C</div><input class="calc-input" id="dc-c" type="number" step="any" placeholder="" /><select class="calc-unit" id="dc-uc"><option value="0.000000000001">pF</option><option value="0.000000001">nF</option><option value="0.000001" selected>µF</option><option value="0.001">mF</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">Time (t)</div><input class="calc-input" id="dc-t" type="number" step="any" placeholder="" /><select class="calc-unit" id="dc-ut"><option value="0.000001">µs</option><option value="0.001">ms</option><option value="1" selected>s</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>C</sub>(t)</div><input class="calc-input" id="dc-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" /><div class="unit-text">V</div></div>
+              <div><button class="calc-btn" onclick="calcDischarging()">Calculate</button><button class="calc-btn reset" onclick="resetTool('dc')">Reset</button></div>
+              <div class="calc-error" id="dc-error"></div>
+              <div class="calc-success" id="dc-success"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-TOOL 3: Thévenin RC -->
+        <div class="rc-subtool">
+          <div class="calc-layout">
+            <div class="calc-left">
+              <svg width="250" height="210" viewBox="0 0 250 210" xmlns="http://www.w3.org/2000/svg"
+                   style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
+                <line x1="30" y1="20" x2="30" y2="83" stroke="#333" stroke-width="2"/>
+                <line x1="30" y1="107" x2="30" y2="190" stroke="#333" stroke-width="2"/>
+                <line x1="15" y1="83" x2="45" y2="83" stroke="#333" stroke-width="2.5"/>
+                <line x1="20" y1="107" x2="40" y2="107" stroke="#333" stroke-width="1.5"/>
+                <text x="2" y="99" font-size="10" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
+                <line x1="30" y1="20" x2="58" y2="20" stroke="#333" stroke-width="2"/>
+                <line x1="122" y1="20" x2="220" y2="20" stroke="#333" stroke-width="2"/>
+                <polyline points="58,20 64,11 74,29 84,11 94,29 104,11 114,29 122,20" fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                <text x="91" y="8" font-size="10" fill="#009688" font-weight="600" text-anchor="middle">R<tspan font-size="7" dy="1">1</tspan></text>
+                <line x1="30" y1="190" x2="220" y2="190" stroke="#333" stroke-width="2"/>
+                <circle cx="160" cy="20" r="3.5" fill="#333"/>
+                <line x1="160" y1="20" x2="160" y2="68" stroke="#333" stroke-width="2"/>
+                <line x1="144" y1="68" x2="176" y2="68" stroke="#009688" stroke-width="3"/>
+                <line x1="144" y1="102" x2="176" y2="102" stroke="#009688" stroke-width="3"/>
+                <line x1="160" y1="102" x2="160" y2="190" stroke="#333" stroke-width="2"/>
+                <text x="180" y="90" font-size="10" fill="#009688" font-weight="600">C</text>
+                <line x1="220" y1="20" x2="220" y2="58" stroke="#333" stroke-width="2"/>
+                <polyline points="220,58 211,65 229,74 211,83 229,92 211,101 229,110 220,117" fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+                <text x="233" y="90" font-size="10" fill="#009688" font-weight="600">R<tspan font-size="7" dy="1">2</tspan></text>
+                <line x1="220" y1="117" x2="220" y2="190" stroke="#333" stroke-width="2"/>
+                <line x1="105" y1="190" x2="130" y2="190" stroke="#333" stroke-width="2"/>
+                <line x1="108" y1="196" x2="127" y2="196" stroke="#333" stroke-width="1.5"/>
+                <line x1="112" y1="202" x2="123" y2="202" stroke="#333" stroke-width="1"/>
+              </svg>
+              <div class="calc-formula">
+                <div class="f-label">Thévenin → charging</div>
+                <div class="f-eq" style="font-size:12px;">
+                  V<sub>th</sub> = V<sub>s</sub> · R<sub>2</sub>/(R<sub>1</sub>+R<sub>2</sub>)<br>
+                  R<sub>th</sub> = R<sub>1</sub> ‖ R<sub>2</sub><br>
+                  V(t) = V<sub>th</sub> · (1−e<sup>−t/R<sub>th</sub>C</sup>)
+                </div>
+              </div>
+            </div>
+            <div class="calc-right">
+              <div class="rc-subtool-title">Thévenin RC Calculation</div>
+              <p class="rc-subtool-desc">V<sub>s</sub> with R<sub>1</sub> in series, R<sub>2</sub> and C in parallel. Thévenin equivalent is computed automatically.</p>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>s</sub></div><input class="calc-input" id="th-vs" type="number" step="any" placeholder="" /><div class="unit-text">V</div></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">R<sub>1</sub></div><input class="calc-input" id="th-r1" type="number" step="any" placeholder="" /><select class="calc-unit" id="th-ur1"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">R<sub>2</sub></div><input class="calc-input" id="th-r2" type="number" step="any" placeholder="" /><select class="calc-unit" id="th-ur2"><option value="1">Ω</option><option value="1000" selected>kΩ</option><option value="1000000">MΩ</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">C</div><input class="calc-input" id="th-c" type="number" step="any" placeholder="" /><select class="calc-unit" id="th-uc"><option value="0.000000000001">pF</option><option value="0.000000001">nF</option><option value="0.000001" selected>µF</option><option value="0.001">mF</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">Time (t)</div><input class="calc-input" id="th-t" type="number" step="any" placeholder="" /><select class="calc-unit" id="th-ut"><option value="0.000001">µs</option><option value="0.001">ms</option><option value="1" selected>s</option></select></div>
+              <div class="calc-divider"></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label" style="font-size:12px;color:#888;">V<sub>th</sub></div><input class="calc-input" id="th-vth" type="text" readonly placeholder="—" style="background:#f8f8f8;font-size:12px;" /><div class="unit-text">V</div></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label" style="font-size:12px;color:#888;">R<sub>th</sub></div><input class="calc-input" id="th-rth" type="text" readonly placeholder="—" style="background:#f8f8f8;font-size:12px;" /><div class="unit-text">Ω</div></div>
+              <div class="calc-row"><div style="width:14px;"></div><div class="calc-label">V<sub>C</sub>(t)</div><input class="calc-input" id="th-result" type="text" readonly placeholder="—" style="background:#f8f8f8;color:#e65100;font-weight:600;" /><div class="unit-text">V</div></div>
+              <div><button class="calc-btn" onclick="calcThevenin()">Calculate</button><button class="calc-btn reset" onclick="resetTool('th')">Reset</button></div>
+              <div class="calc-error" id="th-error"></div>
+              <div class="calc-success" id="th-success"></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.container -->
+    </section>
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".scrollspy").scrollSpy();
+      $(".button-collapse").sideNav({menuWidth:190, edge:"left", closeOnClick:true});
+      drawRCCurve();
+    });
+
+    /* ── RC Charging Curve WITH axes (hi-DPI) ── */
+    function drawRCCurve() {
+      var canvas = document.getElementById('rc-curve-canvas');
+      if (!canvas) return;
+
+      var LOGICAL_W = 220, LOGICAL_H = 150;
+      var dpr = window.devicePixelRatio || 1;
+      canvas.width  = LOGICAL_W * dpr;
+      canvas.height = LOGICAL_H * dpr;
+      canvas.style.width  = LOGICAL_W + 'px';
+      canvas.style.height = LOGICAL_H + 'px';
+
+      var ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      var W = LOGICAL_W, H = LOGICAL_H;
+      var pad = { top: 18, right: 14, bottom: 34, left: 40 };
+      var w = W - pad.left - pad.right;
+      var h = H - pad.top - pad.bottom;
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.beginPath();
+      ctx.strokeStyle = '#ccc';
+      ctx.lineWidth = 1;
+      ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, pad.top + h);
+      ctx.moveTo(pad.left, pad.top + h); ctx.lineTo(pad.left + w, pad.top + h);
+      ctx.stroke();
+
+      ctx.font = '9px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      for (var i = 0; i <= 5; i++) {
+        var tx = pad.left + (i / 5) * w;
+        ctx.beginPath(); ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 0.8;
+        if (i > 0) { ctx.moveTo(tx, pad.top); ctx.lineTo(tx, pad.top + h); ctx.stroke(); }
+        ctx.fillStyle = '#888';
+        ctx.fillText(i + 'τ', tx, pad.top + h + 12);
+      }
+      ctx.fillStyle = '#aaa';
+      ctx.font = '9px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Time constants', pad.left + w / 2, pad.top + h + 26);
+
+      ctx.textAlign = 'right';
+      var yTicks = [[0, '0%'], [0.6321, '63%'], [1, '100%']];
+      yTicks.forEach(function(tk) {
+        var ty = pad.top + (1 - tk[0]) * h;
+        ctx.beginPath(); ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 0.8;
+        ctx.moveTo(pad.left, ty); ctx.lineTo(pad.left + w, ty); ctx.stroke();
+        ctx.fillStyle = '#888'; ctx.font = '9px Inter, sans-serif';
+        ctx.fillText(tk[1], pad.left - 3, ty + 3);
+      });
+      ctx.save();
+      ctx.translate(10, pad.top + h / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#aaa';
+      ctx.font = '9px Inter, sans-serif';
+      ctx.fillText('Voltage %', 0, 0);
+      ctx.restore();
+
+      ctx.beginPath();
+      ctx.strokeStyle = '#009688';
+      ctx.lineWidth = 2.2;
+      for (var i = 0; i <= 200; i++) {
+        var t = (i / 200) * 5;
+        var v = 1 - Math.exp(-t);
+        var px = pad.left + (t / 5) * w;
+        var py = pad.top + (1 - v) * h;
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      var x63 = pad.left + (1 / 5) * w;
+      var y63 = pad.top + (1 - 0.6321) * h;
+      ctx.beginPath(); ctx.strokeStyle = '#ff9800'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+      ctx.moveTo(x63, pad.top + h); ctx.lineTo(x63, y63);
+      ctx.moveTo(pad.left, y63); ctx.lineTo(x63, y63);
+      ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(x63, y63, 3.5, 0, 2*Math.PI);
+      ctx.fillStyle = '#ff9800'; ctx.fill();
+    }
+
+    function getVal(id) { var v = document.getElementById(id).value.trim(); return v==='' ? null : parseFloat(v); }
+    function getScaled(inputId, unitId) { var v = getVal(inputId); if (v===null) return null; return v * parseFloat(document.getElementById(unitId).value); }
+    function fmtNum(v) {
+      if (Math.abs(v) >= 0.001 && Math.abs(v) < 1e7) return parseFloat(v.toPrecision(5)).toString();
+      return parseFloat(v.toPrecision(5)).toExponential();
+    }
+    function setResult(id, value) { var el = document.getElementById(id); el.value = fmtNum(value); el.classList.remove('target-field'); el.classList.add('result-field'); }
+    function setScaledResult(inputId, unitId, valBase) { var mult = parseFloat(document.getElementById(unitId).value); setResult(inputId, valBase / mult); }
+    function showErr(errId, msg) { var el=document.getElementById(errId); el.textContent=msg; el.style.display='block'; document.getElementById(errId.replace('error','success')).style.display='none'; }
+    function showOk(okId, msg) { var el=document.getElementById(okId); el.textContent=msg; el.style.display='block'; document.getElementById(okId.replace('success','error')).style.display='none'; }
+    function hideMsg(id) { document.getElementById(id).style.display='none'; }
+
+    var rcTarget = null;
+    var RC_FIELDS = ['r','c','tau'];
+
+    function rcSelectTarget(name) {
+      rcTarget = name;
+      RC_FIELDS.forEach(function(f){
+        document.getElementById('rc-dot-'+f).classList.toggle('selected', f===name);
+        var inp=document.getElementById('rc-'+f); inp.classList.remove('result-field','target-field');
+        if(f===name) inp.classList.add('target-field');
+      });
+      hideMsg('rc-error'); hideMsg('rc-success');
+    }
+
+    function calcRC() {
+      hideMsg('rc-error'); hideMsg('rc-success');
+      RC_FIELDS.forEach(function(f){ document.getElementById('rc-'+f).classList.remove('result-field','target-field'); });
+      var R=getScaled('rc-r','rc-ur'), C=getScaled('rc-c','rc-uc'), tau=getScaled('rc-tau','rc-utau');
+      var target = rcTarget;
+      if (!target) {
+        if (R!==null && C!==null && tau===null) { setScaledResult('rc-tau','rc-utau',R*C); showOk('rc-success','✓ Computed τ from R and C.'); return; }
+        var empties=RC_FIELDS.filter(function(f){return document.getElementById('rc-'+f).value.trim()==='';});
+        if (empties.length===1){ target=empties[0]; }
+        else if (empties.length===0){showErr('rc-error','All fields filled. Clear one or click a dot.');return;}
+        else{showErr('rc-error','Leave exactly one field empty.');return;}
+      }
+      R=(target==='r')?null:getScaled('rc-r','rc-ur');
+      C=(target==='c')?null:getScaled('rc-c','rc-uc');
+      tau=(target==='tau')?null:getScaled('rc-tau','rc-utau');
+      if(R!==null&&R<=0){showErr('rc-error','R must be > 0.');return;}
+      if(C!==null&&C<=0){showErr('rc-error','C must be > 0.');return;}
+      if(tau!==null&&tau<=0){showErr('rc-error','τ must be > 0.');return;}
+      if(target==='r'){if(!C||!tau){showErr('rc-error','Fill C and τ to solve R.');return;} setScaledResult('rc-r','rc-ur',tau/C);}
+      else if(target==='c'){if(!R||!tau){showErr('rc-error','Fill R and τ to solve C.');return;} setScaledResult('rc-c','rc-uc',tau/R);}
+      else{if(!R||!C){showErr('rc-error','Fill R and C to solve τ.');return;} setScaledResult('rc-tau','rc-utau',R*C);}
+      showOk('rc-success','✓ Calculated successfully.');
+    }
+
+    function resetRC() {
+      rcTarget=null;
+      RC_FIELDS.forEach(function(f){
+        var el=document.getElementById('rc-'+f); el.value=''; el.classList.remove('result-field','target-field');
+        document.getElementById('rc-dot-'+f).classList.remove('selected');
+      });
+      hideMsg('rc-error'); hideMsg('rc-success');
+    }
+
+    function calcCharging(){
+      hideMsg('ch-error'); hideMsg('ch-success');
+      var Vs=getVal('ch-vs'), R=getScaled('ch-r','ch-ur'), C=getScaled('ch-c','ch-uc'), t=getScaled('ch-t','ch-ut');
+      if(Vs===null||R===null||C===null||t===null){showErr('ch-error','Please fill all four inputs.');return;}
+      if(R<=0){showErr('ch-error','R must be > 0.');return;}
+      if(C<=0){showErr('ch-error','C must be > 0.');return;}
+      if(t<0){showErr('ch-error','Time must be ≥ 0.');return;}
+      var vc=Vs*(1-Math.exp(-t/(R*C)));
+      document.getElementById('ch-result').value=fmtNum(vc);
+      showOk('ch-success','✓ V_C = '+fmtNum(vc)+' V');
+    }
+
+    function calcDischarging(){
+      hideMsg('dc-error'); hideMsg('dc-success');
+      var V0=getVal('dc-v0'), R=getScaled('dc-r','dc-ur'), C=getScaled('dc-c','dc-uc'), t=getScaled('dc-t','dc-ut');
+      if(V0===null||R===null||C===null||t===null){showErr('dc-error','Please fill all four inputs.');return;}
+      if(R<=0){showErr('dc-error','R must be > 0.');return;}
+      if(C<=0){showErr('dc-error','C must be > 0.');return;}
+      if(t<0){showErr('dc-error','Time must be ≥ 0.');return;}
+      var vc=V0*Math.exp(-t/(R*C));
+      document.getElementById('dc-result').value=fmtNum(vc);
+      showOk('dc-success','✓ V_C = '+fmtNum(vc)+' V');
+    }
+
+    function calcThevenin(){
+      hideMsg('th-error'); hideMsg('th-success');
+      var Vs=getVal('th-vs'), R1=getScaled('th-r1','th-ur1'), R2=getScaled('th-r2','th-ur2'), C=getScaled('th-c','th-uc'), t=getScaled('th-t','th-ut');
+      if(Vs===null||R1===null||R2===null||C===null||t===null){showErr('th-error','Please fill all five inputs.');return;}
+      if(R1<=0){showErr('th-error','R1 must be > 0.');return;}
+      if(R2<=0){showErr('th-error','R2 must be > 0.');return;}
+      if(C<=0){showErr('th-error','C must be > 0.');return;}
+      if(t<0){showErr('th-error','Time must be ≥ 0.');return;}
+      var Vth=Vs*R2/(R1+R2), Rth=(R1*R2)/(R1+R2), vc=Vth*(1-Math.exp(-t/(Rth*C)));
+      document.getElementById('th-vth').value=fmtNum(Vth)+' V';
+      document.getElementById('th-rth').value=fmtNum(Rth)+' Ω';
+      document.getElementById('th-result').value=fmtNum(vc);
+      showOk('th-success','✓ V_th='+fmtNum(Vth)+'V  R_th='+fmtNum(Rth)+'Ω  →  V_C='+fmtNum(vc)+'V');
+    }
+
+    function resetTool(prefix){
+      var ids;
+      if(prefix==='ch') ids=['ch-vs','ch-r','ch-c','ch-t','ch-result'];
+      else if(prefix==='dc') ids=['dc-v0','dc-r','dc-c','dc-t','dc-result'];
+      else ids=['th-vs','th-r1','th-r2','th-c','th-t','th-vth','th-rth','th-result'];
+      ids.forEach(function(id){var el=document.getElementById(id);if(el){el.value='';el.classList.remove('result-field','target-field');}});
+      hideMsg(prefix+'-error'); hideMsg(prefix+'-success');
+    }
+  </script>
+</body>
+</html>
