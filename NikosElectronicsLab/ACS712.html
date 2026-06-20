@@ -80,9 +80,12 @@
     .info-box { background: #e8f5f3; border-left: 4px solid #009688; border-radius: 8px; padding: 14px 18px; margin: 24px 0; font-size: 14px; color: #333; }
     .info-box strong { color: #009688; }
 
+    .warn-box { background: #fff8e1; border-left: 4px solid #f9a825; border-radius: 8px; padding: 14px 18px; margin: 24px 0; font-size: 14px; color: #333; }
+    .warn-box strong { color: #e65100; }
+
     .kv { display: inline-block; background: #fff; border: 1px solid #e0e0e0; border-radius: 5px; padding: 2px 8px; font-family: 'Courier New', monospace; font-size: 13px; color: #009688; font-weight: 600; }
 
-    /* ── Data table ── */
+    /* ── Pin table ── */
     .data-table-wrap { overflow-x: auto; margin: 24px 0; }
     .data-table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 14px; }
     .data-table th { background: #009688; color: #fff; padding: 10px 16px; text-align: left; font-weight: 600; font-size: 13px; }
@@ -91,7 +94,7 @@
     .data-table td { padding: 9px 16px; border-bottom: 1px solid #f0f0f0; color: #444; }
     .data-table tr:last-child td { border-bottom: none; }
     .data-table tr:nth-child(even) td { background: #f8f9fa; }
-    .data-table td:first-child { font-weight: 600; color: #009688; font-family: 'Courier New', monospace; }
+    .data-table td:first-child { font-weight: 700; color: #009688; font-family: 'Courier New', monospace; }
 
     /* ── Formula block ── */
     .formula-block { background: #fff; border: 1px solid #e8e8e8; border-left: 4px solid #009688; border-radius: 8px; padding: 14px 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 14px; color: #1a1a1a; line-height: 1.8; }
@@ -99,10 +102,11 @@
     /* ── Figures ── */
     .fig-wrap { margin: 28px 0; }
     .fig-wrap img { border-radius: 10px; border: 1px solid #e8e8e8; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .fig-wrap img.img-small { max-width: 340px; }
     .fig-caption { font-family: 'Inter', sans-serif; font-size: 12.5px; color: #888; text-align: center; margin-top: 10px; font-style: italic; }
 
     /* ── Canvas plot ── */
-    .plot-wrap { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 20px 20px 14px; margin: 28px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+    .plot-wrap { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 20px 20px 14px; margin: 28px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); overflow: hidden; }
     .plot-wrap canvas { display: block; max-width: 100%; }
 
     /* ── Versions grid ── */
@@ -114,6 +118,25 @@
     .version-card .v-sens  { font-family: 'Inter', sans-serif; font-size: 13px; color: #666; }
     .version-card .v-badge { display: inline-block; margin-top: 8px; background: #009688; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
 
+    /* ── Pin diagram ── */
+    .pin-diagram { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; margin: 20px 0 28px 0; }
+    .pin-svg-wrap { flex: 0 0 auto; }
+    .pin-table-wrap { flex: 1; min-width: 240px; }
+
+    /* ── Calibration steps ── */
+    .cal-steps { counter-reset: cal; margin: 20px 0; }
+    .cal-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
+    .cal-num {
+      flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%;
+      background: #009688; color: #fff;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .cal-text { font-family: 'Inter', sans-serif; font-size: 14.5px; color: #333; line-height: 1.7; }
+    .cal-text strong { color: #009688; }
+    .cal-text code { background: #f4f4f4; border: 1px solid #e0e0e0; border-radius: 4px; padding: 1px 6px; font-size: 13px; color: #333; }
+
     @media (max-width: 992px) {
       main { padding-left: 0; padding-top: 0; }
       ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
@@ -122,6 +145,7 @@
       h3 { padding: 20px 30px; margin-bottom: 40px; }
       .container { margin: 0 auto; }
       .versions-grid { grid-template-columns: 1fr; }
+      .pin-diagram { flex-direction: column; }
     }
   </style>
 </head>
@@ -129,50 +153,39 @@
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- ── SIDEBAR — same as blog.html ── -->
+  <!-- ── SIDEBAR ── -->
   <nav class="hide-on-small-only">
     <ul class="side-nav fixed section table-of-contents">
-
       <li class="logo">
         <a id="logo-container" class="brand-logo grey-blue-text">
           <img src="/assets/img/ele2.png" class="circle img-responsive profile-pic" alt="avatar">
         </a>
       </li>
-
-      <!-- Articles → back to blog index, same tab -->
       <li class="bold">
-        <a href="/NikosElectronicsLab/blog.html" class="waves-effect waves-dark teal-text">
+        <a href="/NikosElectronicsLab/" class="waves-effect waves-dark teal-text">
           <i class="mdi-action-home small"></i><span>Articles</span>
         </a>
       </li>
-
-      <!-- Voltage Divider → blog with hash, JS picks it up -->
       <li class="bold">
-        <a href="/NikosElectronicsLab/blog.html#voltage-divider" class="waves-effect waves-dark teal-text">
+        <a href="/NikosElectronicsLab/#voltage-divider" class="waves-effect waves-dark teal-text">
           <i class="mdi-image-flash-on small"></i><span>Voltage Divider</span>
         </a>
       </li>
-
-      <!-- RC Calculator -->
       <li class="bold">
-        <a href="/NikosElectronicsLab/blog.html#rc-calculator" class="waves-effect waves-dark teal-text">
+        <a href="/NikosElectronicsLab/#rc-calculator" class="waves-effect waves-dark teal-text">
           <i class="fa fa-circle-o small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>RC Calculator</span>
         </a>
       </li>
-
-      <!-- My Portfolio — new tab -->
       <li class="bold">
         <a href="https://nikoschatzi.github.io/" target="_blank" rel="noopener" class="waves-effect waves-dark teal-text">
           <i class="fa fa-suitcase small" style="font-size:1.1rem;width:2rem;display:inline-block;text-align:center;"></i><span>My Portfolio</span>
         </a>
       </li>
-
       <li style="list-style:none;padding:0;">
         <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
           <i class="fa fa-coffee"></i>Buy me a coffee
         </a>
       </li>
-
     </ul>
   </nav>
 
@@ -188,12 +201,12 @@
       <div class="container flow-text">
         <div class="article-wrap">
 
-          <a class="back-link" href="/NikosElectronicsLab/blog.html">
+          <a class="back-link" href="/NikosElectronicsLab/">
             <i class="fa fa-arrow-left"></i> Back to Articles
           </a>
 
           <div class="article-meta">02 Apr 2026 &nbsp;·&nbsp; 8 min read</div>
-          <h1 class="article-title">ACS712 Current Sensor — Characterisation and Experimental Validation</h1>
+          <h1 class="article-title">ACS712 Current Sensor — Pinout, Calibration &amp; Experimental Validation</h1>
 
           <div class="article-tags">
             <span class="tag-pill tag-components">Components</span>
@@ -204,7 +217,120 @@
 
           <div class="article-body">
 
-            <h2>Overview</h2>
+            <p>
+              This article covers the <strong>ACS712 Hall-effect current sensor</strong> in two parts:
+              a quick hardware reference (pinout and wiring) so you can get it connected in minutes,
+              followed by a calibration procedure and experimental validation against datasheet values.
+            </p>
+
+            <h2>Pinout &amp; Wiring</h2>
+            <p>
+              The ACS712 breakout module exposes <strong>4 pins</strong>. Wire it as shown below —
+              the current path (IP+ / IP−) goes in series with your load, and the signal pin goes
+              to your ADC input.
+            </p>
+
+            <!-- Pin diagram -->
+            <div class="pin-diagram">
+              <div class="pin-svg-wrap">
+                <svg width="210" height="200" viewBox="0 0 210 200" xmlns="http://www.w3.org/2000/svg"
+                     style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
+                  <!-- IC body -->
+                  <rect x="60" y="50" width="90" height="110" rx="8" fill="#e8f5f3" stroke="#009688" stroke-width="2"/>
+                  <text x="105" y="96" font-size="11" font-weight="700" fill="#009688" text-anchor="middle">ACS712</text>
+                  <text x="105" y="112" font-size="9" fill="#666" text-anchor="middle">Hall-effect</text>
+                  <text x="105" y="125" font-size="9" fill="#666" text-anchor="middle">current sensor</text>
+
+                  <!-- Left pins: IP+, IP- -->
+                  <line x1="10" y1="75" x2="60" y2="75" stroke="#e64a19" stroke-width="2.5"/>
+                  <text x="8" y="71" font-size="10" font-weight="700" fill="#e64a19" text-anchor="start">IP+</text>
+                  <text x="8" y="84" font-size="9" fill="#888" text-anchor="start">Current IN</text>
+
+                  <line x1="10" y1="135" x2="60" y2="135" stroke="#e64a19" stroke-width="2.5"/>
+                  <text x="8" y="131" font-size="10" font-weight="700" fill="#e64a19" text-anchor="start">IP−</text>
+                  <text x="8" y="144" font-size="9" fill="#888" text-anchor="start">Current OUT</text>
+
+                  <!-- Right pins: VCC, GND, VIOUT -->
+                  <line x1="150" y1="70" x2="200" y2="70" stroke="#1976d2" stroke-width="2.5"/>
+                  <text x="202" y="67" font-size="10" font-weight="700" fill="#1976d2">VCC</text>
+                  <text x="202" y="78" font-size="9" fill="#888">+5 V</text>
+
+                  <line x1="150" y1="105" x2="200" y2="105" stroke="#009688" stroke-width="2.5"/>
+                  <text x="202" y="102" font-size="10" font-weight="700" fill="#009688">OUT</text>
+                  <text x="202" y="113" font-size="9" fill="#888">Signal → ADC</text>
+
+                  <line x1="150" y1="140" x2="200" y2="140" stroke="#555" stroke-width="2.5"/>
+                  <text x="202" y="137" font-size="10" font-weight="700" fill="#555">GND</text>
+                  <text x="202" y="148" font-size="9" fill="#888">0 V</text>
+
+                  <!-- Dot markers on IC edge -->
+                  <circle cx="60" cy="75"  r="4" fill="#e64a19"/>
+                  <circle cx="60" cy="135" r="4" fill="#e64a19"/>
+                  <circle cx="150" cy="70"  r="4" fill="#1976d2"/>
+                  <circle cx="150" cy="105" r="4" fill="#009688"/>
+                  <circle cx="150" cy="140" r="4" fill="#555"/>
+                </svg>
+              </div>
+              <div class="pin-table-wrap">
+                <div class="data-table-wrap" style="margin:0;">
+                  <table class="data-table">
+                    <thead>
+                      <tr><th>Pin</th><th>Connect to</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>IP+</td><td>Current source (+)</td><td>Series with load — current flows in</td></tr>
+                      <tr><td>IP−</td><td>Load / return</td><td>Current flows out to load</td></tr>
+                      <tr><td>VCC</td><td>+5 V supply</td><td>Decoupling cap (100 nF) close to pin</td></tr>
+                      <tr><td>OUT</td><td>MCU ADC input</td><td>2.5 V at 0 A; ±185 mV/A (05B)</td></tr>
+                      <tr><td>GND</td><td>System ground</td><td>Common with MCU GND</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="warn-box">
+              <strong>⚠ Isolation note:</strong> IP+ / IP− and the signal side (VCC / OUT / GND) are galvanically isolated inside the IC. Keep PCB traces for the power path away from the signal path for best noise performance.
+            </div>
+
+            <h2>Calibration Procedure</h2>
+            <p>
+              The ACS712 outputs a DC voltage centred at <span class="kv">2.5 V</span> at zero current.
+              Individual units have a small offset from this nominal — calibrating it out is the single most
+              important step for accurate readings.
+            </p>
+
+            <div class="cal-steps">
+              <div class="cal-step">
+                <div class="cal-num">1</div>
+                <div class="cal-text"><strong>Power up with no load.</strong> Ensure zero current flows through IP+ / IP−. The sensor must be at operating temperature (allow ~1 minute warm-up).</div>
+              </div>
+              <div class="cal-step">
+                <div class="cal-num">2</div>
+                <div class="cal-text"><strong>Sample the zero-current offset.</strong> Read the ADC output and average over at least 100 samples to suppress noise. Store this as <code>V_offset</code>.</div>
+              </div>
+              <div class="cal-step">
+                <div class="cal-num">3</div>
+                <div class="cal-text"><strong>Apply the correction in firmware.</strong> For every subsequent reading: <code>I = (V_out − V_offset) / sensitivity</code>, where sensitivity = 185 mV/A for the 05B variant.</div>
+              </div>
+              <div class="cal-step">
+                <div class="cal-num">4</div>
+                <div class="cal-text"><strong>Verify with a known current.</strong> Pass a known DC current (e.g. from a bench power supply in constant-current mode) and confirm the firmware reading matches. Adjust <code>sensitivity</code> if needed — it can vary ±1.5% unit to unit.</div>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <strong>Firmware template:</strong>
+              <br><br>
+              <code style="font-size:13px;line-height:2;">
+                float V_offset = averageADC(100) * ADC_VREF / ADC_STEPS;<br>
+                // ... later in loop:<br>
+                float V_out = analogRead(SENSOR_PIN) * ADC_VREF / ADC_STEPS;<br>
+                float current_A = (V_out − V_offset) / 0.185f;
+              </code>
+            </div>
+
+            <h2>Overview &amp; Operating Principle</h2>
             <p>
               The ACS712 is an integrated Hall-effect current sensor used in motor drive setups to measure winding current.
               It is attractive for embedded applications due to its low cost, good accuracy, and adequate sensitivity.
@@ -212,14 +338,14 @@
               field produces a transverse voltage proportional to the current.
             </p>
 
-            <!-- Fig 1: acs1.png -->
+            <!-- Fig 1: acs1.jpg — smaller -->
             <div class="fig-wrap">
-              <img src="/assets/img/acs1.jpg" alt="ACS712 current sensor module" />
+              <img src="/assets/img/acs1.jpg" alt="ACS712 current sensor module" class="img-small" />
               <div class="fig-caption">Fig. 1. ACS712 current sensor module.</div>
             </div>
 
             <h2>Available Variants</h2>
-            <p>Three variants of the ACS712 cover different current ranges:</p>
+            <p>Three variants cover different current ranges:</p>
 
             <div class="versions-grid">
               <div class="version-card selected">
@@ -275,7 +401,7 @@
               <li style="margin-bottom:8px;"><strong>Ch2</strong> — voltage across the power resistor (used to derive actual current via Ohm's law)</li>
             </ul>
 
-            <!-- Fig 3: acs3.png -->
+            <!-- Fig 3: acs3.jpg -->
             <div class="fig-wrap">
               <img src="/assets/img/acs3.jpg" alt="Test circuit wiring diagram" />
               <div class="fig-caption">Fig. 3. Test circuit — ACS712 in series with power resistor, dual-channel oscilloscope measurement.</div>
@@ -322,9 +448,9 @@
               </table>
             </div>
 
-            <!-- Fig 4: Canvas plot (professional recreation of the MATLAB figure) -->
+            <!-- Fig 4: Hi-res canvas plot using devicePixelRatio -->
             <div class="plot-wrap">
-              <canvas id="acs-plot" width="640" height="380"></canvas>
+              <canvas id="acs-plot"></canvas>
               <div class="fig-caption" style="margin-top:14px;">Fig. 4. ACS712 output voltage vs. measured current — datasheet values vs. experimental results.</div>
             </div>
 
@@ -339,7 +465,7 @@
               <strong>Offset correction:</strong> A fixed offset of ~10 mV should be subtracted from ACS712
               readings. In firmware, this is handled by sampling the output at zero current during initialisation
               and subtracting it from subsequent measurements — a standard calibration routine for Hall-effect
-              current sensors.
+              current sensors (see Calibration Procedure above).
             </div>
 
             <p>
@@ -365,9 +491,20 @@
     function drawACSPlot() {
       var canvas = document.getElementById('acs-plot');
       if (!canvas) return;
+
+      /* ── Hi-DPI / retina fix ── */
+      var LOGICAL_W = 640, LOGICAL_H = 380;
+      var dpr = window.devicePixelRatio || 1;
+      canvas.width  = LOGICAL_W * dpr;
+      canvas.height = LOGICAL_H * dpr;
+      canvas.style.width  = LOGICAL_W + 'px';
+      canvas.style.height = LOGICAL_H + 'px';
+
       var ctx = canvas.getContext('2d');
-      var W = canvas.width, H = canvas.height;
-      var pad = { top: 30, right: 40, bottom: 60, left: 70 };
+      ctx.scale(dpr, dpr);          /* draw at logical pixels; browser scales up crisp */
+
+      var W = LOGICAL_W, H = LOGICAL_H;
+      var pad = { top: 30, right: 44, bottom: 62, left: 72 };
       var w = W - pad.left - pad.right;
       var h = H - pad.top - pad.bottom;
 
@@ -376,100 +513,100 @@
       ctx.fillRect(0, 0, W, H);
 
       /* Data */
-      var measured   = [[0,2.49],[0.22,2.53],[0.53,2.59],[0.76,2.63],[1.00,2.68],[1.25,2.72],[1.50,2.77],[1.74,2.81],[1.85,2.83]];
-      var xMin=0, xMax=2, yMin=2.45, yMax=2.86;
+      var measured = [[0,2.49],[0.22,2.53],[0.53,2.59],[0.76,2.63],[1.00,2.68],[1.25,2.72],[1.50,2.77],[1.74,2.81],[1.85,2.83]];
+      var xMin = 0, xMax = 2, yMin = 2.45, yMax = 2.86;
 
-      function px(x) { return pad.left + (x - xMin)/(xMax - xMin) * w; }
-      function py(y) { return pad.top  + (yMax - y)/(yMax - yMin) * h; }
+      function px(x) { return pad.left + (x - xMin) / (xMax - xMin) * w; }
+      function py(y) { return pad.top  + (yMax - y) / (yMax - yMin) * h; }
 
-      /* Grid & axes */
+      /* Grid */
       ctx.strokeStyle = '#e8e8e8'; ctx.lineWidth = 1;
-      var xTicks=[0,0.5,1,1.5,2];
-      xTicks.forEach(function(x){
-        ctx.beginPath(); ctx.moveTo(px(x), pad.top); ctx.lineTo(px(x), pad.top+h); ctx.stroke();
+      [0, 0.5, 1, 1.5, 2].forEach(function(x) {
+        ctx.beginPath(); ctx.moveTo(px(x), pad.top); ctx.lineTo(px(x), pad.top + h); ctx.stroke();
       });
-      var yTicks=[2.45,2.50,2.55,2.60,2.65,2.70,2.75,2.80,2.85];
-      yTicks.forEach(function(y){
-        ctx.beginPath(); ctx.moveTo(pad.left, py(y)); ctx.lineTo(pad.left+w, py(y)); ctx.stroke();
+      [2.45, 2.50, 2.55, 2.60, 2.65, 2.70, 2.75, 2.80, 2.85].forEach(function(y) {
+        ctx.beginPath(); ctx.moveTo(pad.left, py(y)); ctx.lineTo(pad.left + w, py(y)); ctx.stroke();
       });
 
       /* Axes */
       ctx.strokeStyle = '#999'; ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, pad.top+h);
-      ctx.moveTo(pad.left, pad.top+h); ctx.lineTo(pad.left+w, pad.top+h);
+      ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, pad.top + h);
+      ctx.moveTo(pad.left, pad.top + h); ctx.lineTo(pad.left + w, pad.top + h);
       ctx.stroke();
 
       /* Tick labels */
       ctx.fillStyle = '#555'; ctx.font = '13px Inter, sans-serif'; ctx.textAlign = 'center';
-      xTicks.forEach(function(x){ ctx.fillText(x.toFixed(1), px(x), pad.top+h+20); });
+      [0, 0.5, 1, 1.5, 2].forEach(function(x) {
+        ctx.fillText(x.toFixed(1), px(x), pad.top + h + 20);
+      });
       ctx.textAlign = 'right';
-      yTicks.forEach(function(y){ ctx.fillText(y.toFixed(2), pad.left-8, py(y)+4); });
+      [2.45, 2.50, 2.55, 2.60, 2.65, 2.70, 2.75, 2.80, 2.85].forEach(function(y) {
+        ctx.fillText(y.toFixed(2), pad.left - 8, py(y) + 4);
+      });
 
       /* Axis labels */
       ctx.fillStyle = '#333'; ctx.font = '14px Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText('Current (A)', pad.left + w/2, H - 10);
+      ctx.fillText('Current (A)', pad.left + w / 2, H - 10);
       ctx.save();
-      ctx.translate(16, pad.top + h/2);
-      ctx.rotate(-Math.PI/2);
+      ctx.translate(16, pad.top + h / 2);
+      ctx.rotate(-Math.PI / 2);
       ctx.fillText('Voltage (V)', 0, 0);
       ctx.restore();
 
       /* Datasheet line: V = 2.5 + 0.185 * I */
       ctx.beginPath();
       ctx.strokeStyle = '#1976d2'; ctx.lineWidth = 2.5;
-      ctx.moveTo(px(xMin), py(2.5 + 0.185*xMin));
-      ctx.lineTo(px(xMax), py(2.5 + 0.185*xMax));
+      ctx.moveTo(px(xMin), py(2.5 + 0.185 * xMin));
+      ctx.lineTo(px(xMax), py(2.5 + 0.185 * xMax));
       ctx.stroke();
 
-      /* Experimental line (connect measured points) */
+      /* Experimental line */
       ctx.beginPath();
       ctx.strokeStyle = '#e64a19'; ctx.lineWidth = 2.5;
-      measured.forEach(function(pt, i){
-        if(i===0) ctx.moveTo(px(pt[0]), py(pt[1]));
-        else       ctx.lineTo(px(pt[0]), py(pt[1]));
+      measured.forEach(function(pt, i) {
+        if (i === 0) ctx.moveTo(px(pt[0]), py(pt[1]));
+        else         ctx.lineTo(px(pt[0]), py(pt[1]));
       });
       ctx.stroke();
 
       /* Measured point dots */
-      measured.forEach(function(pt){
+      measured.forEach(function(pt) {
         ctx.beginPath();
-        ctx.arc(px(pt[0]), py(pt[1]), 4, 0, 2*Math.PI);
+        ctx.arc(px(pt[0]), py(pt[1]), 4.5, 0, 2 * Math.PI);
         ctx.fillStyle = '#e64a19'; ctx.fill();
         ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
       });
 
       /* Legend */
-      var lx = pad.left + w - 220, ly = pad.top + h - 60;
+      var lx = pad.left + w - 222, ly = pad.top + h - 62;
       ctx.fillStyle = 'rgba(255,255,255,0.95)';
       ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1;
       ctx.beginPath();
-      roundRect(ctx, lx-10, ly-14, 220, 54, 7);
+      roundRect(ctx, lx - 10, ly - 14, 222, 56, 7);
       ctx.fill(); ctx.stroke();
 
-      /* Legend — datasheet */
       ctx.strokeStyle = '#1976d2'; ctx.lineWidth = 2.5;
-      ctx.beginPath(); ctx.moveTo(lx, ly+4); ctx.lineTo(lx+32, ly+4); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(lx, ly + 4); ctx.lineTo(lx + 32, ly + 4); ctx.stroke();
       ctx.fillStyle = '#333'; ctx.font = '13px Inter, sans-serif'; ctx.textAlign = 'left';
-      ctx.fillText('Datasheet values', lx+40, ly+8);
+      ctx.fillText('Datasheet values', lx + 40, ly + 8);
 
-      /* Legend — experimental */
       ctx.strokeStyle = '#e64a19'; ctx.lineWidth = 2.5;
-      ctx.beginPath(); ctx.moveTo(lx, ly+28); ctx.lineTo(lx+32, ly+28); ctx.stroke();
-      ctx.beginPath(); ctx.arc(lx+16, ly+28, 4, 0, 2*Math.PI);
+      ctx.beginPath(); ctx.moveTo(lx, ly + 29); ctx.lineTo(lx + 32, ly + 29); ctx.stroke();
+      ctx.beginPath(); ctx.arc(lx + 16, ly + 29, 4.5, 0, 2 * Math.PI);
       ctx.fillStyle = '#e64a19'; ctx.fill();
-      ctx.strokeStyle = '#fff'; ctx.lineWidth=1.5; ctx.stroke();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
       ctx.fillStyle = '#333'; ctx.font = '13px Inter, sans-serif';
-      ctx.fillText('Experimental results', lx+40, ly+32);
+      ctx.fillText('Experimental results', lx + 40, ly + 33);
     }
 
     function roundRect(ctx, x, y, w, h, r) {
       ctx.beginPath();
-      ctx.moveTo(x+r, y);
-      ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
-      ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
-      ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
-      ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y);
       ctx.closePath();
     }
   </script>
