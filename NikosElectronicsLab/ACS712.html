@@ -1,1 +1,485 @@
-tt
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <title>ACS712 Current Sensor | Space Electronics Lab</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-126939217-2');
+  </script>
+
+  <style>
+    body { background-color: #f8f9fa !important; background-image: none !important; }
+    main, section, .container, .flow-text { background: transparent !important; background-image: none !important; }
+    h3.page-title, .teal { background-color: #009688 !important; background-image: none !important; }
+    img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    /* ── Buy Me a Coffee ── */
+    .bmc-link {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 16px; margin: 6px 10px 0;
+      background: #fff9e6; border-radius: 8px;
+      border: none !important; outline: none !important;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      color: #333 !important; text-decoration: none !important;
+      transition: background 0.15s;
+    }
+    .bmc-link:hover { background: #fff3cc; }
+    .bmc-link i { font-size: 17px; color: #e6a817; }
+
+    /* ── Teal header ── */
+    h3.page-title { margin-top: 0 !important; padding: 26px 36px 22px !important; }
+    .blog-site-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 24px; font-weight: 700; color: #fff;
+      margin: 0 0 3px 0; line-height: 1.2;
+    }
+    .blog-site-sub {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      color: rgba(255,255,255,0.65); margin: 0 0 2px 0;
+    }
+    .blog-site-byline {
+      font-family: 'Inter', sans-serif; font-size: 10px;
+      color: rgba(255,255,255,0.50); margin: 0;
+    }
+
+    /* ── Article layout ── */
+    .article-wrap {
+      max-width: 720px;
+      padding: 32px 0 60px 0;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Inter', sans-serif; font-size: 13px;
+      color: #009688; text-decoration: none; font-weight: 500;
+      margin-bottom: 28px;
+      transition: gap 0.15s;
+    }
+    .back-link:hover { gap: 10px; color: #00796b; }
+
+    /* Article meta */
+    .article-meta {
+      font-family: 'Inter', sans-serif; font-size: 12px;
+      color: #9e9e9e; font-weight: 500; letter-spacing: 0.3px;
+      margin-bottom: 10px;
+    }
+
+    /* Article title */
+    .article-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 30px; font-weight: 700; color: #1a1a1a;
+      line-height: 1.25; margin: 0 0 16px 0;
+    }
+
+    /* Tags */
+    .article-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+    .tag-pill { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
+    .tag-components { background: #f3e5f5; color: #6a1b9a; }
+    .tag-testing    { background: #fafafa; color: #424242; border: 1px solid #e0e0e0; }
+    .tag-hardware   { background: #e3f2fd; color: #1565c0; }
+
+    /* Divider below tags */
+    .article-divider {
+      height: 1px; background: #e8e8e8; margin-bottom: 32px;
+    }
+
+    /* Body text */
+    .article-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; color: #333; line-height: 1.8;
+    }
+
+    .article-body p { margin-bottom: 20px; }
+
+    /* Section headings */
+    .article-body h2 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 22px; font-weight: 700; color: #1a1a1a;
+      margin: 36px 0 12px 0; line-height: 1.3;
+    }
+
+    .article-body h3 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 18px; font-weight: 600; color: #1a1a1a;
+      margin: 28px 0 10px 0;
+    }
+
+    /* Highlighted info box */
+    .info-box {
+      background: #e8f5f3; border-left: 4px solid #009688;
+      border-radius: 8px; padding: 14px 18px;
+      margin: 24px 0; font-size: 14px; color: #333;
+    }
+    .info-box strong { color: #009688; }
+
+    /* Key value highlight */
+    .kv {
+      display: inline-block;
+      background: #fff; border: 1px solid #e0e0e0;
+      border-radius: 5px; padding: 2px 8px;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 13px; color: #009688; font-weight: 600;
+    }
+
+    /* Data table */
+    .data-table-wrap {
+      overflow-x: auto; margin: 24px 0;
+    }
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      font-family: 'Inter', sans-serif; font-size: 14px;
+    }
+    .data-table th {
+      background: #009688; color: #fff;
+      padding: 10px 16px; text-align: left;
+      font-weight: 600; font-size: 13px;
+    }
+    .data-table th:first-child { border-radius: 8px 0 0 0; }
+    .data-table th:last-child  { border-radius: 0 8px 0 0; }
+    .data-table td {
+      padding: 9px 16px; border-bottom: 1px solid #f0f0f0;
+      color: #444;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #f8f9fa; }
+    .data-table td:first-child { font-weight: 600; color: #009688; font-family: 'JetBrains Mono', monospace; }
+
+    /* Formula block */
+    .formula-block {
+      background: #fff; border: 1px solid #e8e8e8;
+      border-left: 4px solid #009688; border-radius: 8px;
+      padding: 14px 20px; margin: 20px 0;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 14px; color: #1a1a1a; line-height: 1.8;
+    }
+
+    /* Figure caption */
+    .fig-placeholder {
+      background: #fff; border: 1px dashed #ccc; border-radius: 8px;
+      padding: 30px 20px; text-align: center; margin: 20px 0;
+      color: #bdbdbd; font-family: 'Inter', sans-serif; font-size: 13px;
+    }
+    .fig-placeholder i { display: block; font-size: 28px; margin-bottom: 8px; }
+    .fig-caption {
+      font-family: 'Inter', sans-serif; font-size: 12.5px;
+      color: #888; text-align: center; margin-top: -12px;
+      margin-bottom: 20px; font-style: italic;
+    }
+
+    /* Versions comparison cards */
+    .versions-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      margin: 20px 0;
+    }
+    .version-card {
+      background: #fff; border: 1px solid #e8e8e8; border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .version-card.selected { border-color: #009688; background: #f0faf9; }
+    .version-card .v-title {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+      color: #009688; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;
+    }
+    .version-card .v-range {
+      font-family: 'Source Serif 4', serif; font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px;
+    }
+    .version-card .v-sens {
+      font-family: 'Inter', sans-serif; font-size: 13px; color: #666;
+    }
+    .version-card .v-badge {
+      display: inline-block; margin-top: 8px;
+      background: #009688; color: #fff; font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 4px; text-transform: uppercase;
+    }
+
+    @media (max-width: 992px) {
+      main { padding-left: 0; padding-top: 0; }
+      ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
+      nav { background: #fff; height: 64px; position: absolute; }
+      nav a.button-collapse, nav a.button-collapse i { color: #009688; height: 56px; line-height: 56px; }
+      h3 { padding: 20px 30px; margin-bottom: 40px; }
+      .container { margin: 0 auto; }
+      .versions-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- ── SIDEBAR — identical to blog.html ── -->
+  <nav class="hide-on-small-only">
+    <ul class="side-nav fixed section table-of-contents">
+
+      <li class="logo">
+        <a id="logo-container" aria-label="Navigate to the beginning of the page" class="brand-logo grey-blue-text">
+          <img src="/assets/img/ele2.png" class="circle img-responsive profile-pic" alt="avatar">
+        </a>
+      </li>
+
+      <!-- Articles → back to blog, same tab -->
+      <li class="bold">
+        <a href="/blog.html" class="waves-effect waves-dark teal-text">
+          <i class="mdi-action-home small"></i><span>Articles</span>
+        </a>
+      </li>
+
+      <li class="bold">
+        <a href="/blog.html#calc" class="waves-effect waves-dark teal-text" onclick="sessionStorage.setItem('panel','calc-panel')">
+          <i class="mdi-image-flash-on small"></i><span>Voltage Divider</span>
+        </a>
+      </li>
+
+      <li class="bold">
+        <a href="/blog.html#rc" class="waves-effect waves-dark teal-text" onclick="sessionStorage.setItem('panel','rc-panel')">
+          <i class="fa fa-circle-o small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>RC Calculator</span>
+        </a>
+      </li>
+
+      <li class="bold">
+        <a href="https://nikoschatzi.github.io/" target="_blank" rel="noopener" class="waves-effect waves-dark teal-text">
+          <i class="fa fa-suitcase small" style="font-size:1.1rem;width:2rem;display:inline-block;text-align:center;border:none!important;box-shadow:none!important;"></i><span>My Portfolio</span>
+        </a>
+      </li>
+
+      <li style="list-style:none;padding:0;">
+        <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
+          <i class="fa fa-coffee"></i>Buy me a coffee
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <main>
+    <section id="about" class="section scrollspy">
+
+      <h3 class="page-title white-text teal">
+        <p class="blog-site-title">Space Electronics Lab</p>
+        <p class="blog-site-sub">Blog for hardware engineers</p>
+        <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
+      </h3>
+
+      <div class="container flow-text">
+        <div class="article-wrap">
+
+          <!-- Back -->
+          <a class="back-link" href="/blog.html">
+            <i class="fa fa-arrow-left"></i> Back to Articles
+          </a>
+
+          <!-- Meta -->
+          <div class="article-meta">02 Apr 2026 &nbsp;·&nbsp; 8 min read</div>
+
+          <!-- Title -->
+          <h1 class="article-title">ACS712 Current Sensor — Characterisation and Experimental Validation</h1>
+
+          <!-- Tags -->
+          <div class="article-tags">
+            <span class="tag-pill tag-components">Components</span>
+            <span class="tag-pill tag-hardware">Hardware</span>
+            <span class="tag-pill tag-testing">Testing</span>
+          </div>
+
+          <div class="article-divider"></div>
+
+          <!-- Body -->
+          <div class="article-body">
+
+            <h2>Overview</h2>
+            <p>
+              The ACS712 is an integrated Hall-effect current sensor used in motor drive setups to measure winding current.
+              It is an attractive choice for embedded applications due to its low cost, reasonable accuracy, and adequate sensitivity.
+              Current measurement is based on the <strong>Hall effect</strong>: a current-carrying conductor placed in a magnetic field
+              produces a transverse voltage proportional to the current magnitude.
+            </p>
+
+            <h2>Available Versions</h2>
+            <p>Three variants of the ACS712 are available, each optimised for a different current range:</p>
+
+            <div class="versions-grid">
+              <div class="version-card selected">
+                <div class="v-title">ACS712-05B</div>
+                <div class="v-range">±5 A</div>
+                <div class="v-sens">Sensitivity: 185 mV/A</div>
+                <div class="v-badge">Selected</div>
+              </div>
+              <div class="version-card">
+                <div class="v-title">ACS712-20A</div>
+                <div class="v-range">±20 A</div>
+                <div class="v-sens">Sensitivity: 100 mV/A</div>
+              </div>
+              <div class="version-card">
+                <div class="v-title">ACS712-30A</div>
+                <div class="v-range">±30 A</div>
+                <div class="v-sens">Sensitivity: 66 mV/A</div>
+              </div>
+            </div>
+
+            <p>
+              The <strong>±5 A variant</strong> (ACS712-05B) was selected because it covers the full operating current range
+              of the motor under test and offers the highest sensitivity among the three — a desirable property for
+              accurate closed-loop control. Operating temperature range is <span class="kv">−40 °C to +85 °C</span>.
+            </p>
+
+            <h2>Output Characteristic</h2>
+            <p>The sensor output is a ratiometric DC voltage centred at <span class="kv">2.5 V</span> at zero current:</p>
+
+            <div class="formula-block">
+              V<sub>out</sub> = 2.5 V + (185 mV/A) × I
+            </div>
+
+            <div class="info-box">
+              <strong>Key behaviour:</strong> Output increases by 185 mV per ampere for positive current, and decreases by 185 mV per ampere for negative current.
+              At I = 0 A, V<sub>out</sub> = 2.5 V.
+            </div>
+
+            <!-- Fig 1 placeholder -->
+            <div class="fig-placeholder">
+              <i class="fa fa-image"></i>
+              Fig. 1 — ACS712 sensor module
+            </div>
+            <div class="fig-caption">Fig. 1. ACS712 current sensor.</div>
+
+            <h2>Experimental Validation</h2>
+            <p>
+              To verify the datasheet transfer function, measurements were taken using a <strong>wirewound power resistor</strong>
+              (measured resistance: <span class="kv">3.3 Ω</span>, rated power: <span class="kv">15 W</span>) and a dual-channel oscilloscope.
+            </p>
+
+            <!-- Fig 2 placeholder -->
+            <div class="fig-placeholder">
+              <i class="fa fa-image"></i>
+              Fig. 2 — Wirewound power resistor (15 W, 3.3 Ω)
+            </div>
+            <div class="fig-caption">Fig. 2. Wirewound resistor used as the test load.</div>
+
+            <p>The test circuit connected the ACS712 in series with the power resistor:</p>
+            <ul style="margin-bottom:20px; padding-left:20px;">
+              <li style="margin-bottom:8px;"><strong>Ch1</strong> — oscilloscope channel measuring the ACS712 output voltage</li>
+              <li style="margin-bottom:8px;"><strong>Ch2</strong> — oscilloscope channel measuring the voltage across the power resistor</li>
+            </ul>
+
+            <!-- Fig 3 placeholder -->
+            <div class="fig-placeholder">
+              <i class="fa fa-image"></i>
+              Fig. 3 — Test circuit schematic
+            </div>
+            <div class="fig-caption">Fig. 3. Wiring for comparing experimental measurements with datasheet values.</div>
+
+            <p>
+              The actual current through the resistor is derived from Ch2 via Ohm's law. For example, if Ch2 reads
+              <span class="kv">2.7 V</span> across the 3.3 Ω resistor:
+            </p>
+
+            <div class="formula-block">
+              I = V / R = 2.7 V / 3.3 Ω ≈ 0.818 A
+            </div>
+
+            <h3>Maximum Current Constraint</h3>
+            <p>
+              To protect the resistor from exceeding its 15 W power rating, the maximum allowable current was calculated:
+            </p>
+            <div class="formula-block">
+              I<sub>max</sub> = √(P<sub>max</sub> / R) = √(15 / 3.3) ≈ 2.13 A
+            </div>
+
+            <p>
+              A conservative operating limit of <span class="kv">1.85 A</span> was chosen, keeping a safe margin below the
+              thermal limit. At this current the dissipated power is:
+            </p>
+            <div class="formula-block">
+              P = I² × R = 1.85² × 3.3 ≈ 11.3 W
+            </div>
+
+            <h2>Results</h2>
+            <p>
+              The table below compares the measured ACS712 output against the current derived from the oscilloscope Ch2 reading:
+            </p>
+
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Current (A)</th>
+                    <th>ACS712 Output (V)</th>
+                    <th>Datasheet Expected (V)</th>
+                    <th>Offset (mV)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>0.00</td><td>2.49</td><td>2.500</td><td>−10</td></tr>
+                  <tr><td>0.22</td><td>2.53</td><td>2.541</td><td>−11</td></tr>
+                  <tr><td>0.53</td><td>2.59</td><td>2.598</td><td>−8</td></tr>
+                  <tr><td>0.76</td><td>2.63</td><td>2.641</td><td>−11</td></tr>
+                  <tr><td>1.00</td><td>2.68</td><td>2.685</td><td>−5</td></tr>
+                  <tr><td>1.25</td><td>2.72</td><td>2.731</td><td>−11</td></tr>
+                  <tr><td>1.50</td><td>2.77</td><td>2.778</td><td>−8</td></tr>
+                  <tr><td>1.74</td><td>2.81</td><td>2.822</td><td>−12</td></tr>
+                  <tr><td>1.85</td><td>2.83</td><td>2.842</td><td>−12</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Fig 4 placeholder -->
+            <div class="fig-placeholder">
+              <i class="fa fa-image"></i>
+              Fig. 4 — Measured vs. datasheet output
+            </div>
+            <div class="fig-caption">Fig. 4. Comparison of datasheet values and experimental results for the ACS712 sensor.</div>
+
+            <h2>Discussion</h2>
+            <p>
+              As shown in the figure above, the experimental results closely follow the datasheet transfer function.
+              However, a consistent <strong>negative offset of approximately −10 mV</strong> is observed across all measurement points.
+              This is attributed to a unit-level offset of the specific ACS712 module used in the experiment.
+            </p>
+
+            <div class="info-box">
+              <strong>Offset correction:</strong> A fixed offset of ~10 mV should be subtracted from all ACS712 readings
+              when using this particular unit. In software this can be handled by calibrating the zero-current output voltage
+              at startup and subtracting it from subsequent measurements.
+            </div>
+
+            <p>
+              Despite this small offset, the linearity and sensitivity of the sensor are in excellent agreement with the
+              datasheet, confirming the ACS712-05B as a suitable current sense element for this motor drive application.
+            </p>
+
+          </div><!-- /.article-body -->
+        </div><!-- /.article-wrap -->
+      </div><!-- /.container -->
+    </section>
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".scrollspy").scrollSpy();
+      $(".button-collapse").sideNav({ menuWidth: 190, edge: "left", closeOnClick: true });
+    });
+  </script>
+</body>
+</html>
