@@ -729,14 +729,16 @@ function showPanel(id, e) {
 
 /* ── Open correct panel if arriving from article page via hash ── */
 (function(){
-  var h = window.location.hash;
-  if (h === '#voltage-divider') {
-    panels.forEach(function(p){ document.getElementById(p).style.display='none'; });
-    document.getElementById('calc-panel').style.display='block';
-  } else if (h === '#rc-calculator') {
-    panels.forEach(function(p){ document.getElementById(p).style.display='none'; });
-    document.getElementById('rc-panel').style.display='block';
-    setTimeout(drawRCCurve, 100);
+  var params = new URLSearchParams(window.location.search);
+var panel = params.get('panel');
+if (panel === 'voltage-divider') {
+  panels.forEach(function(p){ document.getElementById(p).style.display='none'; });
+  document.getElementById('calc-panel').style.display='block';
+} else if (panel === 'rc-calculator') {
+  panels.forEach(function(p){ document.getElementById(p).style.display='none'; });
+  document.getElementById('rc-panel').style.display='block';
+  setTimeout(drawRCCurve, 100);
+}
   }
 })();
 
