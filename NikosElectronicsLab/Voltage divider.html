@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <title>Voltage Divider Calculator | Nikos Electronics Lab</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-126939217-2');
+  </script>
+
+  <style>
+    body { background-color: #f8f9fa !important; background-image: none !important; }
+    main, section, .container, .flow-text { background: transparent !important; background-image: none !important; }
+    h3.page-title, .teal { background-color: #009688 !important; background-image: none !important; }
+    img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; }
+
+    .bmc-link {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 16px; margin: 6px 10px 0;
+      background: #fff9e6; border-radius: 8px;
+      border: none !important; outline: none !important;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      color: #333 !important; text-decoration: none !important;
+      transition: background 0.15s;
+    }
+    .bmc-link:hover { background: #fff3cc; }
+    .bmc-link i { font-size: 17px; color: #e6a817; }
+
+    h3.page-title { margin-top: 0 !important; padding: 26px 36px 22px !important; }
+    .blog-site-title { font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 700; color: #fff; margin: 0 0 3px 0; line-height: 1.2; }
+    .blog-site-sub { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,255,255,0.65); margin: 0 0 2px 0; }
+    .blog-site-byline { font-family: 'Inter', sans-serif; font-size: 10px; color: rgba(255,255,255,0.50); margin: 0; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Inter', sans-serif; font-size: 13px;
+      color: #009688; text-decoration: none; font-weight: 500;
+      margin: 22px 0 8px 0; transition: gap 0.15s;
+    }
+    .back-link:hover { gap: 10px; color: #00796b; }
+
+    .calc-header { font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-weight: 700; color: #1a1a1a; margin: 14px 0 6px 0; }
+    .calc-desc { font-family: 'Inter', sans-serif; font-size: 13.5px; color: #666; line-height: 1.6; margin-bottom: 24px; }
+
+    .calc-layout { display: flex; gap: 36px; align-items: flex-start; flex-wrap: wrap; }
+    .calc-left { flex: 0 0 auto; display: flex; flex-direction: column; gap: 16px; }
+    .calc-right { flex: 1; min-width: 240px; max-width: 380px; }
+
+    .calc-formula {
+      background: #fff; border: 1px solid #e8e8e8;
+      border-left: 4px solid #009688; border-radius: 10px;
+      padding: 12px 18px; display: inline-block;
+    }
+    .calc-formula .f-label { font-size: 11px; color: #9e9e9e; font-family: 'Inter', sans-serif; margin-bottom: 5px; }
+    .calc-formula .f-eq { font-size: 14px; font-weight: 600; color: #1a1a1a; font-family: 'Source Serif 4', serif; line-height: 1.8; }
+    .calc-formula .f-eq sub, .calc-formula .f-eq sup { font-size: 10px; }
+
+    .calc-row {
+      display: grid;
+      grid-template-columns: 22px 140px 110px 80px;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .calc-divider { grid-column: 1/-1; height: 1px; background: #f0f0f0; margin: 2px 0; }
+
+    .dot-radio {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid #d8d8d8; background: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s; flex-shrink: 0;
+    }
+    .dot-radio:hover { border-color: #009688; }
+    .dot-radio.selected { border-color: #009688; background: #009688; box-shadow: 0 0 0 2px rgba(0,150,136,0.2); }
+    .dot-radio.selected::after { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #fff; }
+
+    .calc-label { font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; color: #333; }
+    .calc-label sub, .calc-label sup { font-size: 10px; }
+
+    .calc-input {
+      width: 100%; padding: 7px 9px;
+      border: 1.5px solid #d8d8d8; border-radius: 7px;
+      font-family: 'Inter', sans-serif; font-size: 14px; color: #333;
+      background: #fff; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .calc-input:focus { border-color: #009688; box-shadow: 0 0 0 3px rgba(0,150,136,0.1); }
+    .calc-input.result-field { border-color: #ff9800; background: #fffdf5; color: #e65100; font-weight: 600; }
+    .calc-input.target-field { border-color: #009688; background: #f0faf8; }
+
+    .calc-unit {
+      -webkit-appearance: auto !important; -moz-appearance: auto !important; appearance: auto !important;
+      display: block !important; width: 100%; padding: 7px 4px;
+      border: 1.5px solid #d8d8d8 !important; border-radius: 7px;
+      font-family: 'Inter', sans-serif; font-size: 13px; color: #555;
+      background: #fff !important; cursor: pointer; outline: none;
+      box-sizing: border-box; height: auto !important;
+    }
+    .calc-unit:focus { border-color: #009688 !important; }
+    .unit-text { font-family: 'Inter', sans-serif; font-size: 13px; color: #888; padding: 7px 0; }
+
+    .calc-btn {
+      margin-top: 14px; padding: 9px 24px;
+      background: #009688; color: #fff;
+      border: none; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: background 0.15s, transform 0.1s;
+    }
+    .calc-btn:hover { background: #00796b; }
+    .calc-btn:active { transform: scale(0.98); }
+    .calc-btn.reset { background: #e0e0e0; color: #555; margin-left: 8px; }
+    .calc-btn.reset:hover { background: #d0d0d0; }
+
+    .calc-hint { font-family: 'Inter', sans-serif; font-size: 12px; color: #9e9e9e; margin-top: 9px; }
+    .calc-hint span { color: #009688; font-weight: 600; }
+    .calc-error { display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #c62828; margin-top: 10px; background: #ffebee; border-radius: 6px; padding: 8px 14px; }
+    .calc-success { display: none; font-family: 'Inter', sans-serif; font-size: 13px; color: #2e7d32; margin-top: 10px; background: #e8f5e9; border-radius: 6px; padding: 8px 14px; }
+
+    @media (max-width: 992px) {
+      main { padding-left: 0; padding-top: 0; }
+      ul.side-nav a { line-height: 100%; padding: 0; width: 100%; }
+      nav { background: #fff; height: 64px; position: absolute; }
+      nav a.button-collapse, nav a.button-collapse i { color: #009688; height: 56px; line-height: 56px; }
+      h3 { padding: 20px 30px; margin-bottom: 40px; }
+      .container { margin: 0 auto; }
+      .calc-layout { flex-direction: column; }
+      .calc-right { max-width: 100%; }
+      .calc-row { grid-template-columns: 22px 120px 100px 70px; }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- ── SIDEBAR ── -->
+  <nav class="hide-on-small-only">
+    <ul class="side-nav fixed section table-of-contents">
+      <li class="logo">
+        <a id="logo-container" aria-label="Navigate to the beginning of the page" class="brand-logo grey-blue-text">
+          <img src="/assets/img/ele2.png" class="circle img-responsive profile-pic" alt="avatar">
+        </a>
+      </li>
+      <li class="bold">
+        <a href="/NikosElectronicsLab/" class="waves-effect waves-dark teal-text">
+          <i class="mdi-action-home small"></i><span>Articles</span>
+        </a>
+      </li>
+      <li class="bold">
+        <a href="/NikosElectronicsLab/voltage-divider.html" class="waves-effect waves-dark teal-text">
+          <i class="mdi-image-flash-on small"></i><span>Voltage Divider</span>
+        </a>
+      </li>
+      <li class="bold">
+        <a href="/NikosElectronicsLab/rc-calculator.html" class="waves-effect waves-dark teal-text">
+          <i class="fa fa-circle-o small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>RC Calculator</span>
+        </a>
+      </li>
+      <li class="bold">
+        <a href="https://nikoschatzi.github.io/" target="_blank" rel="noopener" class="waves-effect waves-dark teal-text">
+          <i class="fa fa-suitcase small" style="font-size:1.1rem;width:2rem;display:inline-block;text-align:center;border:none!important;box-shadow:none!important;outline:none!important;"></i><span>My Portfolio</span>
+        </a>
+      </li>
+      <li style="list-style:none;padding:0;">
+        <a class="bmc-link" href="https://buymeacoffee.com/nikolaoschatzipapas" target="_blank" rel="noopener">
+          <i class="fa fa-coffee"></i>Buy me a coffee
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <main>
+    <section id="about" class="section scrollspy">
+      <h3 class="page-title white-text teal">
+        <p class="blog-site-title">Nikos Electronics Lab</p>
+        <p class="blog-site-sub">Blog for hardware engineers</p>
+        <p class="blog-site-byline">by Nikolaos Chatzipapas</p>
+      </h3>
+
+      <div class="container flow-text">
+
+        <a class="back-link" href="/NikosElectronicsLab/">
+          <i class="fa fa-arrow-left"></i> Back to Articles
+        </a>
+
+        <div class="calc-header">Voltage Divider Calculator</div>
+        <p class="calc-desc">Fill in three values and leave one empty, then press <strong>Calculate</strong>. The empty field is solved automatically — or click a dot to choose explicitly.</p>
+        <div class="calc-layout">
+          <!-- LEFT: diagram + formula -->
+          <div class="calc-left">
+            <svg width="200" height="255" viewBox="0 0 200 255" xmlns="http://www.w3.org/2000/svg"
+                 style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
+              <line x1="38" y1="28" x2="38" y2="105" stroke="#333" stroke-width="2"/>
+              <line x1="38" y1="131" x2="38" y2="228" stroke="#333" stroke-width="2"/>
+              <line x1="22" y1="105" x2="54" y2="105" stroke="#333" stroke-width="2.5"/>
+              <line x1="27" y1="131" x2="49" y2="131" stroke="#333" stroke-width="1.5"/>
+              <text x="6" y="122" font-size="11" fill="#555">V<tspan font-size="8" dy="2">s</tspan></text>
+              <line x1="38" y1="28" x2="138" y2="28" stroke="#333" stroke-width="2"/>
+              <line x1="38" y1="228" x2="138" y2="228" stroke="#333" stroke-width="2"/>
+              <line x1="138" y1="28" x2="138" y2="65" stroke="#333" stroke-width="2"/>
+              <polyline points="138,65 130,73 146,82 130,91 146,100 130,109 146,118 138,126"
+                        fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+              <text x="151" y="98" font-size="11" fill="#009688" font-weight="600">R<tspan font-size="8" dy="2">1</tspan></text>
+              <line x1="138" y1="126" x2="138" y2="134" stroke="#333" stroke-width="2"/>
+              <circle cx="138" cy="134" r="4" fill="#ff9800"/>
+              <line x1="138" y1="134" x2="192" y2="134" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+              <text x="148" y="126" font-size="10" fill="#ff9800" font-weight="600">V<tspan font-size="7" dy="2">out</tspan></text>
+              <line x1="138" y1="134" x2="138" y2="142" stroke="#333" stroke-width="2"/>
+              <polyline points="138,142 130,150 146,159 130,168 146,177 130,186 146,195 138,202"
+                        fill="none" stroke="#009688" stroke-width="2.5" stroke-linejoin="round"/>
+              <text x="151" y="174" font-size="11" fill="#009688" font-weight="600">R<tspan font-size="8" dy="2">2</tspan></text>
+              <line x1="138" y1="202" x2="138" y2="228" stroke="#333" stroke-width="2"/>
+              <line x1="124" y1="228" x2="152" y2="228" stroke="#333" stroke-width="2"/>
+              <line x1="127" y1="234" x2="149" y2="234" stroke="#333" stroke-width="1.5"/>
+              <line x1="131" y1="240" x2="145" y2="240" stroke="#333" stroke-width="1"/>
+            </svg>
+            <div class="calc-formula">
+              <div class="f-label">Formula</div>
+              <div class="f-eq">V<sub>out</sub> = V<sub>s</sub> × R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</div>
+            </div>
+          </div>
+          <!-- RIGHT: fields -->
+          <div class="calc-right">
+            <div class="calc-row">
+              <div class="dot-radio" id="vd-dot-vs" onclick="vdSelectTarget('vs')" title="Solve for Vs"></div>
+              <div class="calc-label">Source (V<sub>s</sub>)</div>
+              <input class="calc-input" id="vd-vs" type="number" step="any" placeholder="" />
+              <div class="unit-text">V</div>
+            </div>
+            <div class="calc-divider"></div>
+            <div class="calc-row">
+              <div class="dot-radio" id="vd-dot-r1" onclick="vdSelectTarget('r1')" title="Solve for R1"></div>
+              <div class="calc-label">R<sub>1</sub></div>
+              <input class="calc-input" id="vd-r1" type="number" step="any" placeholder="" />
+              <select class="calc-unit" id="vd-ur1">
+                <option value="1">Ω</option>
+                <option value="1000" selected>kΩ</option>
+                <option value="1000000">MΩ</option>
+              </select>
+            </div>
+            <div class="calc-divider"></div>
+            <div class="calc-row">
+              <div class="dot-radio" id="vd-dot-r2" onclick="vdSelectTarget('r2')" title="Solve for R2"></div>
+              <div class="calc-label">R<sub>2</sub></div>
+              <input class="calc-input" id="vd-r2" type="number" step="any" placeholder="" />
+              <select class="calc-unit" id="vd-ur2">
+                <option value="1">Ω</option>
+                <option value="1000" selected>kΩ</option>
+                <option value="1000000">MΩ</option>
+              </select>
+            </div>
+            <div class="calc-divider"></div>
+            <div class="calc-row">
+              <div class="dot-radio" id="vd-dot-vout" onclick="vdSelectTarget('vout')" title="Solve for Vout"></div>
+              <div class="calc-label">Output (V<sub>out</sub>)</div>
+              <input class="calc-input" id="vd-vout" type="number" step="any" placeholder="" />
+              <div class="unit-text">V</div>
+            </div>
+            <div>
+              <button class="calc-btn" onclick="calcVD()">Calculate</button>
+              <button class="calc-btn reset" onclick="resetVD()">Reset</button>
+            </div>
+            <p class="calc-hint">Leave one field empty — the <span>dot</span> lights up automatically when solved.</p>
+            <div class="calc-error" id="vd-error"></div>
+            <div class="calc-success" id="vd-success"></div>
+          </div>
+        </div>
+
+      </div><!-- /.container -->
+    </section>
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".scrollspy").scrollSpy();
+      $(".button-collapse").sideNav({menuWidth:190, edge:"left", closeOnClick:true});
+    });
+
+    function getVal(id) { var v = document.getElementById(id).value.trim(); return v==='' ? null : parseFloat(v); }
+    function getScaled(inputId, unitId) { var v = getVal(inputId); if (v===null) return null; return v * parseFloat(document.getElementById(unitId).value); }
+    function fmtNum(v) {
+      if (Math.abs(v) >= 0.001 && Math.abs(v) < 1e7) return parseFloat(v.toPrecision(5)).toString();
+      return parseFloat(v.toPrecision(5)).toExponential();
+    }
+    function setResult(id, value) { var el = document.getElementById(id); el.value = fmtNum(value); el.classList.remove('target-field'); el.classList.add('result-field'); }
+    function setScaledResult(inputId, unitId, valBase) { var mult = parseFloat(document.getElementById(unitId).value); setResult(inputId, valBase / mult); }
+    function showErr(errId, msg) { var el=document.getElementById(errId); el.textContent=msg; el.style.display='block'; document.getElementById(errId.replace('error','success')).style.display='none'; }
+    function showOk(okId, msg) { var el=document.getElementById(okId); el.textContent=msg; el.style.display='block'; document.getElementById(okId.replace('success','error')).style.display='none'; }
+    function hideMsg(id) { document.getElementById(id).style.display='none'; }
+
+    var vdTarget = null;
+    var VD_FIELDS = ['vs','r1','r2','vout'];
+
+    function vdSelectTarget(name) {
+      vdTarget = name;
+      VD_FIELDS.forEach(function(f) {
+        document.getElementById('vd-dot-'+f).classList.toggle('selected', f===name);
+        var inp = document.getElementById('vd-'+f);
+        inp.classList.remove('result-field','target-field');
+        if (f===name) inp.classList.add('target-field');
+      });
+      hideMsg('vd-error'); hideMsg('vd-success');
+    }
+
+    function calcVD() {
+      hideMsg('vd-error'); hideMsg('vd-success');
+      VD_FIELDS.forEach(function(f){ document.getElementById('vd-'+f).classList.remove('result-field','target-field'); });
+
+      var target = vdTarget;
+      if (!target) {
+        var empties = VD_FIELDS.filter(function(f){ return document.getElementById('vd-'+f).value.trim()===''; });
+        if (empties.length===1) {
+          target = empties[0];
+          vdSelectTarget(target);
+          document.getElementById('vd-'+target).classList.remove('target-field');
+        } else if (empties.length===0) { showErr('vd-error','All fields are filled. Clear one or click a dot.'); return; }
+        else { showErr('vd-error','Leave exactly one field empty.'); return; }
+      }
+
+      var Vs   = (target==='vs')   ? null : getVal('vd-vs');
+      var R1   = (target==='r1')   ? null : getScaled('vd-r1','vd-ur1');
+      var R2   = (target==='r2')   ? null : getScaled('vd-r2','vd-ur2');
+      var Vout = (target==='vout') ? null : getVal('vd-vout');
+
+      if ([Vs,R1,R2,Vout].filter(function(v){return v===null;}).length>1){ showErr('vd-error','Please fill in all fields except the one to solve.'); return; }
+
+      if (target==='vs') {
+        if (R2<=0){showErr('vd-error','R2 must be > 0.');return;}
+        setResult('vd-vs', Vout*(R1+R2)/R2);
+      } else if (target==='r1') {
+        if (Vs<=Vout){showErr('vd-error','Vs must be greater than Vout.');return;}
+        if (Vout===0){showErr('vd-error','Vout cannot be 0 when solving R1.');return;}
+        setScaledResult('vd-r1','vd-ur1', R2*(Vs-Vout)/Vout);
+      } else if (target==='r2') {
+        if (Vs<=Vout){showErr('vd-error','Vs must be greater than Vout.');return;}
+        setScaledResult('vd-r2','vd-ur2', R1*Vout/(Vs-Vout));
+      } else {
+        if ((R1+R2)===0){showErr('vd-error','R1+R2 cannot be zero.');return;}
+        setResult('vd-vout', Vs*R2/(R1+R2));
+      }
+      showOk('vd-success','✓ Calculated successfully.');
+    }
+
+    function resetVD() {
+      vdTarget = null;
+      VD_FIELDS.forEach(function(f){
+        var el=document.getElementById('vd-'+f); el.value=''; el.classList.remove('result-field','target-field');
+        document.getElementById('vd-dot-'+f).classList.remove('selected');
+      });
+      hideMsg('vd-error'); hideMsg('vd-success');
+    }
+  </script>
+</body>
+</html>
