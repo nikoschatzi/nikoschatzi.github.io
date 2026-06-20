@@ -49,7 +49,6 @@
     .blog-site-sub { font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,255,255,0.65); margin: 0 0 2px 0; }
     .blog-site-byline { font-family: 'Inter', sans-serif; font-size: 10px; color: rgba(255,255,255,0.50); margin: 0; }
 
-    /* ── Article layout ── */
     .article-wrap { max-width: 720px; padding: 32px 0 60px 0; }
 
     .back-link {
@@ -85,7 +84,6 @@
 
     .kv { display: inline-block; background: #fff; border: 1px solid #e0e0e0; border-radius: 5px; padding: 2px 8px; font-family: 'Courier New', monospace; font-size: 13px; color: #009688; font-weight: 600; }
 
-    /* ── Pin table ── */
     .data-table-wrap { overflow-x: auto; margin: 24px 0; }
     .data-table { width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 14px; }
     .data-table th { background: #009688; color: #fff; padding: 10px 16px; text-align: left; font-weight: 600; font-size: 13px; }
@@ -96,20 +94,16 @@
     .data-table tr:nth-child(even) td { background: #f8f9fa; }
     .data-table td:first-child { font-weight: 700; color: #009688; font-family: 'Courier New', monospace; }
 
-    /* ── Formula block ── */
     .formula-block { background: #fff; border: 1px solid #e8e8e8; border-left: 4px solid #009688; border-radius: 8px; padding: 14px 20px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 14px; color: #1a1a1a; line-height: 1.8; }
 
-    /* ── Figures ── */
     .fig-wrap { margin: 28px 0; }
     .fig-wrap img { border-radius: 10px; border: 1px solid #e8e8e8; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
     .fig-wrap img.img-small { max-width: 340px; }
     .fig-caption { font-family: 'Inter', sans-serif; font-size: 12.5px; color: #888; text-align: center; margin-top: 10px; font-style: italic; }
 
-    /* ── Canvas plot ── */
     .plot-wrap { background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; padding: 20px 20px 14px; margin: 28px 0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); overflow: hidden; }
     .plot-wrap canvas { display: block; max-width: 100%; }
 
-    /* ── Versions grid ── */
     .versions-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 20px 0; }
     .version-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 10px; padding: 14px 16px; }
     .version-card.selected { border-color: #009688; background: #f0faf9; }
@@ -118,12 +112,10 @@
     .version-card .v-sens  { font-family: 'Inter', sans-serif; font-size: 13px; color: #666; }
     .version-card .v-badge { display: inline-block; margin-top: 8px; background: #009688; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
 
-    /* ── Pin diagram ── */
     .pin-diagram { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; margin: 20px 0 28px 0; }
     .pin-svg-wrap { flex: 0 0 auto; }
     .pin-table-wrap { flex: 1; min-width: 240px; }
 
-    /* ── Calibration steps ── */
     .cal-steps { counter-reset: cal; margin: 20px 0; }
     .cal-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 18px; }
     .cal-num {
@@ -162,17 +154,17 @@
         </a>
       </li>
       <li class="bold">
-        <a href="/NikosElectronicsLab" class="waves-effect waves-dark teal-text">
+        <a href="/NikosElectronicsLab/" class="waves-effect waves-dark teal-text">
           <i class="mdi-action-home small"></i><span>Articles</span>
         </a>
       </li>
       <li class="bold">
-        <a href="/NikosElectronicsLab/?panel=voltage-divider" class="waves-effect waves-dark teal-text">
+        <a href="/NikosElectronicsLab/voltage-divider.html" class="waves-effect waves-dark teal-text">
           <i class="mdi-image-flash-on small"></i><span>Voltage Divider</span>
         </a>
       </li>
       <li class="bold">
-        <a href="/NikosElectronicsLab/?panel=rc-calculator" class="waves-effect waves-dark teal-text">
+        <a href="/NikosElectronicsLab/rc-calculator.html" class="waves-effect waves-dark teal-text">
           <i class="fa fa-circle-o small" style="font-size:1.3rem;width:2rem;display:inline-block;text-align:center;"></i><span>RC Calculator</span>
         </a>
       </li>
@@ -201,7 +193,7 @@
       <div class="container flow-text">
         <div class="article-wrap">
 
-          <a class="back-link" href="/NikosElectronicsLab">
+          <a class="back-link" href="/NikosElectronicsLab/">
             <i class="fa fa-arrow-left"></i> Back to Articles
           </a>
 
@@ -235,13 +227,11 @@
               <div class="pin-svg-wrap">
                 <svg width="210" height="200" viewBox="0 0 210 200" xmlns="http://www.w3.org/2000/svg"
                      style="font-family:'Inter',sans-serif;background:#fff;border:1px solid #e8e8e8;border-radius:12px;">
-                  <!-- IC body -->
                   <rect x="60" y="50" width="90" height="110" rx="8" fill="#e8f5f3" stroke="#009688" stroke-width="2"/>
                   <text x="105" y="96" font-size="11" font-weight="700" fill="#009688" text-anchor="middle">ACS712</text>
                   <text x="105" y="112" font-size="9" fill="#666" text-anchor="middle">Hall-effect</text>
                   <text x="105" y="125" font-size="9" fill="#666" text-anchor="middle">current sensor</text>
 
-                  <!-- Left pins: IP+, IP- -->
                   <line x1="10" y1="75" x2="60" y2="75" stroke="#e64a19" stroke-width="2.5"/>
                   <text x="8" y="71" font-size="10" font-weight="700" fill="#e64a19" text-anchor="start">IP+</text>
                   <text x="8" y="84" font-size="9" fill="#888" text-anchor="start">Current IN</text>
@@ -250,7 +240,6 @@
                   <text x="8" y="131" font-size="10" font-weight="700" fill="#e64a19" text-anchor="start">IP−</text>
                   <text x="8" y="144" font-size="9" fill="#888" text-anchor="start">Current OUT</text>
 
-                  <!-- Right pins: VCC, GND, VIOUT -->
                   <line x1="150" y1="70" x2="200" y2="70" stroke="#1976d2" stroke-width="2.5"/>
                   <text x="202" y="67" font-size="10" font-weight="700" fill="#1976d2">VCC</text>
                   <text x="202" y="78" font-size="9" fill="#888">+5 V</text>
@@ -263,7 +252,6 @@
                   <text x="202" y="137" font-size="10" font-weight="700" fill="#555">GND</text>
                   <text x="202" y="148" font-size="9" fill="#888">0 V</text>
 
-                  <!-- Dot markers on IC edge -->
                   <circle cx="60" cy="75"  r="4" fill="#e64a19"/>
                   <circle cx="60" cy="135" r="4" fill="#e64a19"/>
                   <circle cx="150" cy="70"  r="4" fill="#1976d2"/>
@@ -338,7 +326,7 @@
               field produces a transverse voltage proportional to the current.
             </p>
 
-            <!-- Fig 1: acs1.jpg — smaller -->
+            <!-- Fig 1: smaller -->
             <div class="fig-wrap">
               <img src="/assets/img/acs1.jpg" alt="ACS712 current sensor module" class="img-small" />
               <div class="fig-caption">Fig. 1. ACS712 current sensor module.</div>
@@ -389,7 +377,7 @@
               rated: <span class="kv">15 W</span>) and a dual-channel oscilloscope.
             </p>
 
-            <!-- Fig 2: acs2.jpg -->
+            <!-- Fig 2 -->
             <div class="fig-wrap">
               <img src="/assets/img/acs2.jpg" alt="Wirewound power resistor 15W 3.3 ohm" />
               <div class="fig-caption">Fig. 2. Wirewound resistor (15 W, 3.3 Ω) used as test load.</div>
@@ -401,7 +389,7 @@
               <li style="margin-bottom:8px;"><strong>Ch2</strong> — voltage across the power resistor (used to derive actual current via Ohm's law)</li>
             </ul>
 
-            <!-- Fig 3: acs3.jpg -->
+            <!-- Fig 3 -->
             <div class="fig-wrap">
               <img src="/assets/img/acs3.jpg" alt="Test circuit wiring diagram" />
               <div class="fig-caption">Fig. 3. Test circuit — ACS712 in series with power resistor, dual-channel oscilloscope measurement.</div>
@@ -492,7 +480,6 @@
       var canvas = document.getElementById('acs-plot');
       if (!canvas) return;
 
-      /* ── Hi-DPI / retina fix ── */
       var LOGICAL_W = 640, LOGICAL_H = 380;
       var dpr = window.devicePixelRatio || 1;
       canvas.width  = LOGICAL_W * dpr;
@@ -501,7 +488,7 @@
       canvas.style.height = LOGICAL_H + 'px';
 
       var ctx = canvas.getContext('2d');
-      ctx.scale(dpr, dpr);          /* draw at logical pixels; browser scales up crisp */
+      ctx.scale(dpr, dpr);
 
       var W = LOGICAL_W, H = LOGICAL_H;
       var pad = { top: 30, right: 44, bottom: 62, left: 72 };
@@ -512,14 +499,12 @@
       ctx.fillStyle = '#fff';
       ctx.fillRect(0, 0, W, H);
 
-      /* Data */
       var measured = [[0,2.49],[0.22,2.53],[0.53,2.59],[0.76,2.63],[1.00,2.68],[1.25,2.72],[1.50,2.77],[1.74,2.81],[1.85,2.83]];
       var xMin = 0, xMax = 2, yMin = 2.45, yMax = 2.86;
 
       function px(x) { return pad.left + (x - xMin) / (xMax - xMin) * w; }
       function py(y) { return pad.top  + (yMax - y) / (yMax - yMin) * h; }
 
-      /* Grid */
       ctx.strokeStyle = '#e8e8e8'; ctx.lineWidth = 1;
       [0, 0.5, 1, 1.5, 2].forEach(function(x) {
         ctx.beginPath(); ctx.moveTo(px(x), pad.top); ctx.lineTo(px(x), pad.top + h); ctx.stroke();
@@ -528,14 +513,12 @@
         ctx.beginPath(); ctx.moveTo(pad.left, py(y)); ctx.lineTo(pad.left + w, py(y)); ctx.stroke();
       });
 
-      /* Axes */
       ctx.strokeStyle = '#999'; ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, pad.top + h);
       ctx.moveTo(pad.left, pad.top + h); ctx.lineTo(pad.left + w, pad.top + h);
       ctx.stroke();
 
-      /* Tick labels */
       ctx.fillStyle = '#555'; ctx.font = '13px Inter, sans-serif'; ctx.textAlign = 'center';
       [0, 0.5, 1, 1.5, 2].forEach(function(x) {
         ctx.fillText(x.toFixed(1), px(x), pad.top + h + 20);
@@ -545,7 +528,6 @@
         ctx.fillText(y.toFixed(2), pad.left - 8, py(y) + 4);
       });
 
-      /* Axis labels */
       ctx.fillStyle = '#333'; ctx.font = '14px Inter, sans-serif'; ctx.textAlign = 'center';
       ctx.fillText('Current (A)', pad.left + w / 2, H - 10);
       ctx.save();
@@ -554,14 +536,12 @@
       ctx.fillText('Voltage (V)', 0, 0);
       ctx.restore();
 
-      /* Datasheet line: V = 2.5 + 0.185 * I */
       ctx.beginPath();
       ctx.strokeStyle = '#1976d2'; ctx.lineWidth = 2.5;
       ctx.moveTo(px(xMin), py(2.5 + 0.185 * xMin));
       ctx.lineTo(px(xMax), py(2.5 + 0.185 * xMax));
       ctx.stroke();
 
-      /* Experimental line */
       ctx.beginPath();
       ctx.strokeStyle = '#e64a19'; ctx.lineWidth = 2.5;
       measured.forEach(function(pt, i) {
@@ -570,7 +550,6 @@
       });
       ctx.stroke();
 
-      /* Measured point dots */
       measured.forEach(function(pt) {
         ctx.beginPath();
         ctx.arc(px(pt[0]), py(pt[1]), 4.5, 0, 2 * Math.PI);
@@ -578,7 +557,6 @@
         ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5; ctx.stroke();
       });
 
-      /* Legend */
       var lx = pad.left + w - 222, ly = pad.top + h - 62;
       ctx.fillStyle = 'rgba(255,255,255,0.95)';
       ctx.strokeStyle = '#ddd'; ctx.lineWidth = 1;
