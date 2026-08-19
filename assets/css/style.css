@@ -5,10 +5,6 @@
   width: auto;
   height: auto;
   overflow: hidden;
-  /* display: inline-block; */
-  
-  
-  /* background-size: cover;  */
   margin: -31px; 
   margin-left:-7px;
   border: 6px solid rgba(11, 61, 98, 0.4); 
@@ -21,9 +17,7 @@
 }
 
 .tracker {
-  /* visibility: hidden; */
   position: fixed;
-  /* margin-inline-end: auto;  */
   bottom: 0; 
   right: 0;
 }
@@ -33,7 +27,6 @@
   margin: 0 auto;
   width: auto;
   text-align: inherit;
-  /* padding: 10px; */
 }
 
 .icon-btn {
@@ -131,38 +124,16 @@
 }
 /* main body */
 
-/* body-color */
-
 body {
   color: #333;
   font-size: 18px;
 }
-
-/* body {
-  color: black;
-  font-size: 18px;
-} */
-
-/* main a -- links */
-
-/* a {
-  color: #009688;
-} */
 
 a {
   color: #0B3D62;
 }
 
 /* main blockqoute */
-
-/* blockquote {
-  border-left: 5px solid #795548;
-  color: #795548;
-  font-size: 125%;
-  font-weight: 400;
-  margin: 20px 0;
-  padding-left: 1.5rem;
-} */
 
 blockquote {
   border-left: 5px solid #795548;
@@ -190,12 +161,6 @@ nav {
   height: 0;
 }
 
-/* nav {
-  background: rgb(149, 126, 212);
-  box-shadow: none;
-  height: 0;
-} */
-
 nav i {
   padding: 0 15px;
   position: relative;
@@ -203,11 +168,6 @@ nav i {
 }
 
 /* main */
-
-/* main {
-  background: url(../../assets/img/bg.png) repeat;
-  padding-left: 190px;
-} */
 
 main {
   background: #F5F7FA;
@@ -237,14 +197,6 @@ ul.side-nav li {
   padding: 0;
 }
 
-/* ul.side-nav.fixed a {
-  box-sizing: content-box;
-  color: rgb(48, 122, 207);
-  display: block;
-  line-height: 100%;
-  padding: 10px 0 12px;
-} */
-
 ul.side-nav.fixed a {
   box-sizing: content-box;
   color: #0B3D62;
@@ -257,14 +209,6 @@ ul.table-of-contents li.logo a.active, ul.table-of-contents li.logo a:hover {
   border: none;
   font-weight: 200;
 }
-
-/* ul.side-nav.fixed li.logo {
-  background-color: #fafafa;
-  border-bottom: 1px solid #ddd;
-  box-sizing: content-box;
-  min-height: 90px;
-  padding: 30px 30px 40px;
-} */
 
 ul.side-nav.fixed li.logo {
   background-color: #fafafa;
@@ -304,12 +248,20 @@ li.logo span {
   width: 95%;
 }
 
+/* ============================================
+   SECTION TITLES (EXPERIENCE, EDUCATION, etc.)
+   Previously a solid filled color bar via h3.teal.
+   Now: clean uppercase text + short accent underline.
+   ============================================ */
+
 h3 {
-  font-weight: 200;
-  margin-bottom: 60px;
+  font-weight: 300;
+  margin-bottom: 40px;
   margin-top: 0;
-  padding: 30px 40px;
+  padding: 30px 40px 20px;
   text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
 }
 
 .section {
@@ -322,15 +274,16 @@ h3 {
   height: 100vh;
 }
 
-/* Original */
-
-/* #intro.section {
-  background: url(../../assets/img/white-ai-wallpaper.jpg) no-repeat top center/cover;
-  position: relative;
-} */
+/* ============================================
+   HERO / INTRO SECTION
+   Subtle dot-grid + soft gradient instead of flat
+   white, and instead of the old tiled square image.
+   ============================================ */
 
 #intro.section {
-  background: transparent;
+  background:
+    radial-gradient(circle, rgba(27, 79, 114, 0.07) 1px, transparent 1.5px) 0 0 / 24px 24px,
+    linear-gradient(160deg, #FBFCFD 0%, #EEF2F6 100%);
   position: relative;
 }
 
@@ -342,18 +295,9 @@ h3 {
   top: 0;
 }
 
-/* #intro.section .container *:not(span) {
-  font-weight: 300;
-  line-height: 150%;
-  padding: 0 30px;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-} */
-
 #intro.section .container *:not(span) {
   font-weight: 300;
-  /* font-weight: 400; */
   line-height: 150%;
-  /* padding: 0 0px; */
 }
 
 #intro.section .underline {
@@ -361,7 +305,7 @@ h3 {
 }
 
 #intro.section .teal {
-  padding: 0 10px;
+  padding: 2px 14px;
 }
 
 .overlay {
@@ -374,8 +318,6 @@ h3 {
 }
 
 .waves-effect.waves-blue .waves-ripple {
-  /* The alpha value allows the text and background color
-   of the button to still show through. */
   background-color: rgba(33, 150, 243, 0.2);
 }
 
@@ -488,38 +430,6 @@ h3 {
   max-height: 60px;
 }
 
-.card-action span {
-  font-size: 85%;
-  color: #666;
-}
-
-.card ul {
-  margin-bottom: 0;
-}
-
-.card ul li {
-  line-height: 200%;
-  list-style-type: disc;
-  margin-left: 24px;
-}
-
-.card ul li li {
-  color: #666;
-  font-size: 13px;
-}
-
-.card .card-title {
-  font-size: 24px;
-}
-
-.card .card-content .card-title {
-  line-height: 2.5rem;
-}
-
-.card i.right {
-  margin-left: 10px;
-}
-
 a.hoverline {
   border-bottom: 3px solid transparent !important;
   padding: 3px 3px 0 3px;
@@ -527,12 +437,6 @@ a.hoverline {
   -moz-transition: 0.25s all;
   -webkit-transition: 0.25s all;
 }
-
-/* main a.hoverline */
-
-/* a.hoverline:hover {
-  border-bottom: 3px solid #24305e !important;
-} */
 
 a.hoverline:hover {
   border-bottom: 3px solid #0B3D62 !important;
@@ -551,9 +455,9 @@ a.hoverline:hover {
 #skills .col {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center-aligns content */
-  text-align: center; /* Ensures text is centered below the image */
-  margin-bottom: 15px; /* Adds spacing between rows */
+  align-items: center;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 #skills .col img.responsive-img {
@@ -567,7 +471,7 @@ a.hoverline:hover {
 
 @media (max-width: 600px) {
   #skills .col {
-    text-align: center; /* Centers text below image */
+    text-align: center;
   }
 }
 
@@ -597,20 +501,8 @@ a.hoverline:hover {
   padding-bottom: 10px;
 }
 
-.card.large .card-image {
-  height: 230px;
-}
-
-.card.large .card-content {
-  height: auto;
-}
-
 .card.medium .card-image {
   height: 240px;
-}
-
-.card-action a.btn-floating {
-  margin-bottom: 0;
 }
 
 #contact a:not(.btn-floating) {
@@ -641,39 +533,42 @@ small {
   text-align: center;
 }
 
-.fa-external-link:before {
-  left: 3px;
-  position: relative;
-  top: 2px;
-}
-
-small {
-  display: none;
-}
-
-.grey-text {
-  color: #666 !important;
-}
-
-/* main .teal-text */
+/* ============================================
+   TEAL / NAME HIGHLIGHT + SECTION TITLE COLORS
+   .teal is used in two places:
+     1) the highlighted span around your name (hero)
+     2) as the class on h3 section titles
+   Split their look here so the name gets a soft
+   tinted pill and the titles get clean text + underline.
+   ============================================ */
 
 .teal-text {
-  color: #0B3D62 !important;
+  color: #1B4F72 !important;
 }
 
-/* .teal-text {
-  color: #0b5e86 !important;
-} */
-
-/* .teal */
-
+/* Default .teal (name highlight): soft tinted background, no more solid block */
 .teal {
-  background-color: #1B4F72 !important;
+  background-color: rgba(27, 79, 114, 0.09) !important;
+  color: #1B4F72 !important;
+  border-radius: 6px;
 }
 
-/* .teal {
-  background-color: #00695c !important;
-} */
+/* Section titles (h3.teal): strip the bar, go text + underline instead */
+h3.teal {
+  background-color: transparent !important;
+  color: #1B4F72 !important;
+  border-radius: 0;
+}
+
+h3.teal::after {
+  content: "";
+  position: absolute;
+  left: 40px;
+  bottom: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #1B4F72;
+}
 
 @media (min-width: 1200px) {
   #education .container {
@@ -724,6 +619,9 @@ small {
   h3 {
     padding: 20px 30px;
     margin-bottom: 40px;
+  }
+  h3.teal::after {
+    left: 30px;
   }
   .container {
     margin: 0 auto;
@@ -782,12 +680,12 @@ small {
     line-height: 24px;
   }
 
-    #education span.card-title {
+  #education span.card-title {
     text-align: center;
     display: block;
   }
 
-   #education span.card-title a {
+  #education span.card-title a {
     margin: 0;
   }
 
