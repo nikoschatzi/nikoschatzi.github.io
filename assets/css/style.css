@@ -92,40 +92,42 @@
 .readme {
   position: relative;
   padding: 11px 35px;
-  background: #fff;
-  color: #0B3D62;
-  border: 2px solid #fff;
+  background: #0B3D62;
+  color: #fff;
+  border: 2px solid #0B3D62;
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 1px;
   display: inline-block;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  transition: 0.2s all;
 }
 
-/* .readme:hover{
-  color: white;
-  background-color: #0B3D62;
-} */
+.readme:hover{
+  background-color: #082B47;
+  border-color: #082B47;
+}
 
 .contactme {
   position: relative;
   padding: 11px 35px;
   background: none;
-  color: #fff;
-  border: 2px solid #fff;
+  color: #0B3D62;
+  border: 2px solid #0B3D62;
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 1px;
   display: inline-block;
   margin-top: 1.5em;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  transition: 0.2s all;
 }
 
 .contactme:hover{
-  color: #0B3D62;
-  background-color: white;
+  color: #fff;
+  background-color: #0B3D62;
 }
 /* main body */
 
@@ -208,7 +210,7 @@ nav i {
 } */
 
 main {
-  background: url(../../assets/img/bg.png) repeat;
+  background: #F5F7FA;
   padding-left: 190px;
 }
 
@@ -328,12 +330,12 @@ h3 {
 } */
 
 #intro.section {
-  background: #1B4F72 repeat;
+  background: transparent;
   position: relative;
 }
 
 #intro.section .container {
-  color: white;
+  color: #1B2733;
   font-weight: 200;
   left: 0;
   position: absolute;
@@ -352,7 +354,6 @@ h3 {
   /* font-weight: 400; */
   line-height: 150%;
   /* padding: 0 0px; */
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 #intro.section .underline {
@@ -364,7 +365,7 @@ h3 {
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: transparent;
   height: 100%;
   left: 0;
   position: absolute;
@@ -380,6 +381,14 @@ h3 {
 
 .card {
   margin-bottom: 60px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .card .role {
