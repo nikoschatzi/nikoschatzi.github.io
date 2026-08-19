@@ -170,7 +170,7 @@ nav i {
 /* main */
 
 main {
-  background: #F7F5F1;
+  background: #FAFAF8;
   padding-left: 190px;
 }
 
@@ -282,8 +282,8 @@ h3 {
 
 #intro.section {
   background:
-    radial-gradient(circle, rgba(27, 79, 114, 0.13) 1px, transparent 1.5px) 0 0 / 24px 24px,
-    linear-gradient(160deg, #F5F8FA 0%, #E4EAF0 100%);
+    radial-gradient(circle, rgba(27, 79, 114, 0.10) 1px, transparent 1.5px) 0 0 / 24px 24px,
+    linear-gradient(160deg, #F8FAFB 0%, #E9EDF2 100%);
   position: relative;
 }
 
