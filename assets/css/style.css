@@ -170,7 +170,7 @@ nav i {
 /* main */
 
 main {
-  background: #F5F7FA;
+  background: #F7F5F1;
   padding-left: 190px;
 }
 
@@ -282,8 +282,8 @@ h3 {
 
 #intro.section {
   background:
-    radial-gradient(circle, rgba(27, 79, 114, 0.07) 1px, transparent 1.5px) 0 0 / 24px 24px,
-    linear-gradient(160deg, #FBFCFD 0%, #EEF2F6 100%);
+    radial-gradient(circle, rgba(27, 79, 114, 0.13) 1px, transparent 1.5px) 0 0 / 24px 24px,
+    linear-gradient(160deg, #F5F8FA 0%, #E4EAF0 100%);
   position: relative;
 }
 
@@ -553,21 +553,15 @@ small {
   border-radius: 6px;
 }
 
-/* Section titles (h3.teal): strip the bar, go text + underline instead */
+/* Section titles (h3.teal): soft tinted pill, echoing the name highlight,
+   instead of the old solid full-width bar or the underline version */
 h3.teal {
-  background-color: transparent !important;
+  background-color: rgba(27, 79, 114, 0.10) !important;
   color: #1B4F72 !important;
-  border-radius: 0;
-}
-
-h3.teal::after {
-  content: "";
-  position: absolute;
-  left: 40px;
-  bottom: 0;
-  width: 60px;
-  height: 3px;
-  background-color: #1B4F72;
+  display: inline-block;
+  padding: 10px 28px;
+  margin: 20px 0 40px 40px;
+  border-radius: 8px;
 }
 
 @media (min-width: 1200px) {
@@ -620,8 +614,8 @@ h3.teal::after {
     padding: 20px 30px;
     margin-bottom: 40px;
   }
-  h3.teal::after {
-    left: 30px;
+  h3.teal {
+    margin-left: 30px;
   }
   .container {
     margin: 0 auto;
