@@ -170,7 +170,7 @@ nav i {
 /* main */
 
 main {
-  background: #FBFBFA;
+  background: #FAFAF8;
   padding-left: 190px;
 }
 
@@ -561,7 +561,7 @@ h3.teal {
   color: #1B4F72 !important;
   display: inline-block;
   padding: 10px 28px;
-  margin: 20px 0 30px 0;
+  margin: 20px 0 40px 40px;
   border-radius: 8px;
 }
 
@@ -614,6 +614,9 @@ h3.teal {
   h3 {
     padding: 20px 30px;
     margin-bottom: 40px;
+  }
+  h3.teal {
+    margin-left: 30px;
   }
   .container {
     margin: 0 auto;
