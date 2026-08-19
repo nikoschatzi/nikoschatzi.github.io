@@ -328,7 +328,7 @@ h3 {
 } */
 
 #intro.section {
-  background: #0B3D62 repeat;
+  background: #1B4F72 repeat;
   position: relative;
 }
 
@@ -364,7 +364,7 @@ h3 {
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
   height: 100%;
   left: 0;
   position: absolute;
@@ -659,7 +659,7 @@ small {
 /* .teal */
 
 .teal {
-  background-color: #0B3D62 !important;
+  background-color: #1B4F72 !important;
 }
 
 /* .teal {
