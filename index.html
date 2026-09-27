@@ -467,7 +467,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               
             <br>
 
-            <li>Directed the WorldFIP communication card, the most critical card in cryogenic crates, from design through prototyping to 400-unit production. Implemented a Wishbone FSM in VHDL for FPGA-to-FPGA data exchange.</li>
+            <li>Directed the WorldFIP communication card redesign, the most critical card in cryogenic crates, from design through prototyping to 400-unit production. Implemented a Wishbone FSM in VHDL for FPGA-to-FPGA data exchange.</li>
             <li>Designed a low-cost, transistor-based analog PCB, using only transistors, resistors, diodes, and capacitors — across 1,300 units in the CERN accelerator, replacing an FPGA-based solution and eliminating a 20% power-on failure rate. Saved over 100,000 CHF.</li>
             <li>Led the design of radiation-tolerant electronics for High-Luminosity LHC upgrade projects, including new digital I/O cards for cryogenic valve control, with 100 units delivered for deployment in radiated areas.</li>
             <li>Owned two radiation campaigns at CHARM, using an automated MATLAB tester to characterize radiation impact across transistors, MOSFETs, operational amplifiers, and voltage regulators — plus one gamma-ray campaign for materials testing.</li>
@@ -671,10 +671,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <img alt="music streaming app" src="/assets/img/NANOFIPNEW.png" style="height: 100%; width: 100%" class="activator" />
               </div>
               <div class="card-content">
-                <span class="card-title activator teal-text hoverline">NanoFIP comm card<i
+                <span class="card-title activator teal-text hoverline">New communication card<i
                     class="mdi-navigation-more-vert right"></i></span>
                 <p>
-                  <strong>CERN:</strong> New HL-LHC nanoFIP communication card, working as WorldFIP slave.
+                  <strong>CERN:</strong> Directed the redesign of the WorldFIP slave card around the new NanoFIP FMC, taking it into 400-unit production.
                 </p>
               </div>
               <div class="card-reveal">
@@ -683,10 +683,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <span class="card-title grey-text"><small>Accomplishments</small><i
                     class="mdi-navigation-close right"></i></span>
                 <ul>
-                  <li>Wishbone communication is used to interface with nanoFIP FMC.</li>
-                  <li>VHDL implementation of Finite State Machine for collecting data from peripheral Crate cards and sending data via 
-                  wishbone interface to nanoFIP FMC.</li>
-                  <li>Sniffing WorldFIP data during testing.</li>
+                  <li>Owned the hardware design and FPGA development of both the Motherboard and Daughterboard.</li>
+                  <li>Implemented the FSM to read peripheral card data and transfer it to the NanoFIP FMC over Wishbone.</li>
+                  <li>Resolved an 8-byte WorldFIP payload overflow by routing excess data to the Daughterboard over I2C.</li>
                   
                 </ul>
                 <div class="card-action">
