@@ -188,13 +188,22 @@
     <section id="about" class="section scrollspy">
       <h3 class="page-title white-text teal">New Communication Card</h3>
       <div class="container flow-text">
-        <!-- <blockquote>
-        </blockquote> -->        
+
         <p>
 
-        The cryogenics crate houses several types of electronics required for system operation, including peripheral cards that collect measurements from temperature sensors, power cards that supply the crate electronics, and communication cards that exchange data between the peripheral cards and the WorldFIP network. <br> <br>
+        <h5 class="teal-text">System Architecture</h5>
 
-        More than 1000 communication cards are currently deployed, primarily across the Large Hadron Collider (LHC). Each communication card acts as a <b>WorldFIP node</b> and consists of a motherboard, daughterboard, and a <b>NanoFIP FPGA Mezzanine Card (FMC)</b>. The motherboard collects data from the peripheral cards on the left side of the crate, while the daughterboard handles the cards on the right side. Each board contains an FPGA responsible for processing and transferring the corresponding peripheral-card data.
+        The cryogenics crate houses several types of electronics required for system operation,
+        including peripheral cards that collect measurements from temperature sensors, power cards
+        that supply the crate electronics, and communication cards that exchange data between the
+        peripheral cards and the WorldFIP network. <br> <br>
+
+        More than 1000 communication cards are currently deployed, primarily across the Large Hadron
+        Collider (LHC). Each communication card acts as a <b>WorldFIP node</b> and consists of a
+        motherboard, daughterboard, and a <b>NanoFIP FPGA Mezzanine Card (FMC)</b>. The motherboard
+        collects data from the peripheral cards on the left side of the crate, while the daughterboard
+        handles the cards on the right side. Each board contains an FPGA responsible for processing
+        and transferring the corresponding peripheral-card data.
 
           <center>
         <figure>
@@ -203,14 +212,23 @@
         </figure>
         </center>
 
-        The NanoFIP FMC provides the WorldFIP slave interface for the communication card, replacing the obsolete MicroFIP module previously used in the design. The original MicroFIP module consisted of a MicroFIP ASIC, Field Drive, and Isolation Transformer. <br> <br>
+        The NanoFIP FMC provides the WorldFIP slave interface for the communication card, replacing
+        the obsolete MicroFIP module previously used in the design. The original MicroFIP module
+        consisted of a MicroFIP ASIC, Field Drive, and Isolation Transformer. <br> <br>
 
-        The MicroFIP ASIC was phased out by Alstom, the company responsible for its production. To address this, CERN developed an in-house solution: the <b>NanoFIP FPGA Mezzanine Card (FMC)</b>. The NanoFIP FMC uses an Actel ProASIC3 FPGA to reproduce the required subset of the original MicroFIP functionality, together with the Field Drive and Isolation Transformer. <br> <br>
+        The MicroFIP ASIC was phased out by Alstom, the company responsible for its production.
+        To address this, CERN developed an in-house solution: the <b>NanoFIP FPGA Mezzanine Card
+        (FMC)</b>. The NanoFIP FMC uses an Actel ProASIC3 FPGA to reproduce the required subset of
+        the original MicroFIP functionality, together with the Field Drive and Isolation Transformer. <br> <br>
 
-        The FPGA on the communication card communicates with the NanoFIP FMC through the <b>Wishbone interface</b>, providing the data path between the peripheral crate cards and the WorldFIP network. <br> <br>
+        The FPGA on the communication card communicates with the NanoFIP FMC through the
+        <b>Wishbone interface</b>, providing the data path between the peripheral crate cards
+        and the WorldFIP network. <br> <br>
 
-        Given that CERN's cryogenics group must support the WorldFIP communication network throughout the HL-LHC operational lifetime, at least until 2035, a new communication-card design based on the NanoFIP FMC was required for future deployments.
-          
+        Given that CERN's cryogenics group must support the WorldFIP communication network throughout
+        the HL-LHC operational lifetime, at least until 2035, a new communication-card design based
+        on the NanoFIP FMC was required for future deployments.
+
            <center>
         <figure>
         <img src="/assets/img/motivation.png" style="max-width:800px;width:100%" class="center" />
@@ -218,7 +236,11 @@
         </figure>
         </center>
 
-        I owned the hardware and FPGA development of the new motherboard and daughterboard, taking the design through development, validation, and into production. <br> <br>
+
+        <h5 class="teal-text">Hardware Design</h5>
+
+        I owned the hardware and FPGA development of the new motherboard and daughterboard, taking
+        the design through development, validation, and into production. <br> <br>
           
           <center>
         <figure>
@@ -233,14 +255,17 @@
         <figcaption>Daughterboard.</figcaption>
         </figure>
         </center>
-         
-        <center>
 
-        The FPGA data path was engineered around a VHDL state machine that reads data from the peripheral crate cards and transfers it to the NanoFIP FMC over Wishbone: <br> <br>
+
+        <h5 class="teal-text">FPGA & Wishbone Interface</h5>
+
+        The FPGA data path was engineered around a VHDL state machine that reads data from the
+        peripheral crate cards and transfers it to the NanoFIP FMC over Wishbone: <br> <br>
 
         <b>Peripheral crate cards → FPGA → Wishbone → NanoFIP FMC → WorldFIP</b> <br> <br>
 
-        The FSM controls the required read and write operations, providing the hardware interface between the peripheral-card data and the WorldFIP communication layer. <br> <br>
+        The FSM controls the required read and write operations, providing the hardware interface
+        between the peripheral-card data and the WorldFIP communication layer. <br> <br>
 
           <center>
         <figure>
@@ -248,29 +273,50 @@
         <figcaption>NanoFIP communication card.</figcaption>
         </figure>
         </center>
-         
-        <center>
 
-        A key challenge emerged from the new architecture: the <b>120-byte WorldFIP payload limit per node</b>. The motherboard handled more peripheral channels than the daughterboard, causing its WorldFIP payload to exceed the available allocation by <b>8 bytes</b>. <br> <br>
 
-        This limitation <b>did not exist in the previous design</b>. I resolved it by implementing a dedicated <b>I2C link between the motherboard and daughterboard FPGAs</b>. The motherboard FPGA transfers the excess 8 bytes to the daughterboard, where spare WorldFIP payload capacity was available. <br> <br>
+        <h5 class="teal-text">WorldFIP Payload Constraint</h5>
 
-        This allowed the complete dataset to be transmitted within the WorldFIP payload limit without changing the existing crate architecture or network allocation. <br> <br>
+        A key challenge emerged from the new architecture: the <b>120-byte WorldFIP payload limit
+        per node</b>. The motherboard handled more peripheral channels than the daughterboard,
+        causing its WorldFIP payload to exceed the available allocation by <b>8 bytes</b>. <br> <br>
 
-          <body>
-          
+        This limitation <b>did not exist in the previous design</b>. I resolved it by implementing
+        a dedicated <b>I2C link between the motherboard and daughterboard FPGAs</b>. The motherboard
+        FPGA transfers the excess 8 bytes to the daughterboard, where spare WorldFIP payload
+        capacity was available. <br> <br>
+
+        This allowed the complete dataset to be transmitted within the WorldFIP payload limit
+        without changing the existing crate architecture or network allocation. <br> <br>
+
+
+          <center>
           <img src="/assets/img/nanofip.gif" alt="Motherboard testing" style="width:380px;height:300px;">
-            <figcaption>Motherboard testing.</figcaption>
-          
-          </body>
-          
-        </center>
+          <figcaption>Motherboard testing.</figcaption>
+          </center>
 
-        The design was validated at both FPGA and system level. Oscilloscope measurements were used to verify the physical Wishbone signals, including signal integrity, clock quality, and setup/hold timing. FPGA integrated logic-analysis tools were used to inspect the internal state-machine operation and data transfers. <br> <br>
 
-        The complete communication card was then tested in a cryogenic test crate with the relevant peripheral cards. A dedicated Front-End Computer (FEC) software utility monitored the real-time read/write buffers, allowing the complete communication path to be exercised under operational traffic and verifying reliable data transfer. <br> <br>
+        <h5 class="teal-text">Validation & Qualification</h5>
 
-        Following successful prototype validation, the communication card passed the <b>CHARM 2024 radiation campaign</b> and progressed into production, with <b>400 units</b> produced for CERN's cryogenic control infrastructure.
+        The design was validated at both FPGA and system level. Oscilloscope measurements were used
+        to verify the physical Wishbone signals, including signal integrity, clock quality, and
+        setup/hold timing. FPGA integrated logic-analysis tools were used to inspect the internal
+        state-machine operation and data transfers. <br> <br>
+
+        The complete communication card was then tested in a cryogenic test crate with the relevant
+        peripheral cards. A dedicated Front-End Computer (FEC) software utility monitored the
+        real-time read/write buffers, allowing the complete communication path to be exercised under
+        operational traffic and verifying reliable data transfer. <br> <br>
+
+        Following successful prototype validation, the communication card passed the
+        <b>CHARM 2024 radiation campaign</b> and progressed into production, with
+        <b>400 units</b> produced for CERN's cryogenic control infrastructure.
+
+
+        <h5 class="teal-text">Production</h5>
+
+        The new communication card provides a long-term replacement for the obsolete MicroFIP-based
+        hardware while maintaining compatibility with the existing WorldFIP infrastructure.
 
         </p>
           
