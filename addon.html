@@ -189,42 +189,133 @@
     <section id="about" class="section scrollspy">
       <h3 class="page-title white-text teal">WorldFIP Add-on PCB</h3>
       <div class="container flow-text">
-        <!-- <blockquote>
-        </blockquote> -->        
+
         <p>
 
-          Communication cards are responsible for collecting data from peripheral cards in cryogenics crates and transmitting it through the WorldFIP network. 
-          More than 1,000 communication cards are installed, primarily within the Large Hadron Collider (LHC). These cards were designed approximately 20 years ago, utilizing non-reprogrammable FPGAs, which restricts the ability to modify or update their functionality. 
-          The cost to replace these cards with new designs exceeds 1 million CHF. Consequently, any operational issues must be addressed by adding supplementary electronics to the existing cards, as reprogramming the FPGAs is not feasible.
-          <br>
-          <br>
+          <h5 class="teal-text">System Context</h5>
 
-          While cryogenic electronics are generally reliable, some non-critical issues have been observed. During the annual Year End Technical Stops (YETS) tests at CERN, approximately 20% of the communication cards fail to power on correctly. 
-          In such instances, manual interventions and local resets are required to restore functionality.
-          Additionally, rare corruption errors have occurred in the past. A few years ago in order to address these, an FPGA based add-on PCB was designed and installed in fewer than 100 communication cards. Due to the high cost of this solution, it was implemented only in the most critical cards. The total cost of installing this add-on across all communication cards would exceed 100,000 CHF, 
-          rendering it an impractical solution for widespread deployment.
+          More than 1,300 communication cards are deployed across CERN cryogenic systems, primarily
+          in the Large Hadron Collider (LHC). These cards collect data from peripheral electronics
+          and transmit it through the WorldFIP network. <br> <br>
 
-          A new add-on PCB was designed in December 2023, incorporating only transistors, capacitors, diodes, and resistors. This new design significantly reduces production costs, with a total expenditure of 23,000 CHF, if employed to all existing communication cards.
-          Due to its low production cost and reliable design, this add-on PCB now provides a viable solution for installation across all communication cards. 
-        <center>
-        <figure>
-        <img src="/assets/img/addon1.png" style="max-width:800px;width:100%" class="center" />
-        <figcaption>Low cost PCB.</figcaption>
-        </figure>
-        </center>
+          The cards were designed approximately 20 years ago and use <b>non-reprogrammable FPGAs</b>,
+          making firmware modifications impossible. Replacing the existing communication cards would
+          cost more than <b>1 million CHF</b>, so reliability improvements had to be implemented
+          through additional electronics while preserving the installed hardware.
 
-         During YETS 2023, prototype PCBs were integrated into 19 communication cards, with all units operating as expected. A large-scale production run, involving over 1,300 PCBs, is scheduled for the coming months. The installation of these PCBs across all communication cards will be carried out during the next planned technical stop. Comprehensive laboratory tests, 
-         including temperature tests, have been conducted to ensure the reliability and performance of the new design.
+
+          <h5 class="teal-text">Intermittent Power-On Failures</h5>
+
+          During annual maintenance tests, approximately <b>20% of communication cards failed to
+          initialize correctly</b> after power cycling, requiring local resets and manual technical
+          interventions in the accelerator tunnel. Rare communication corruptions were also
+          occasionally observed during operation. <br> <br>
+
+          An FPGA-based add-on had previously been developed and installed on fewer than 100
+          critical cards. However, extending this solution to the entire installed base would cost
+          more than <b>100,000 CHF</b>, making it impractical for large-scale deployment. <br> <br>
+
+          Both the earlier FPGA-based add-on and the solution described here are called
+          <b>add-ons</b> because they are installed directly on top of the existing communication
+          card, connecting through the card's existing header pins together with two dedicated
+          cables. Only minor rework of the existing card is required, allowing either solution to be
+          deployed without redesigning the legacy hardware.
+
+
+          <h5 class="teal-text">Root Cause Analysis</h5>
+
+          I led the investigation in the laboratory, reproducing the failure using a cryogenic crate
+          and performing repeated power-off/power-on cycles while monitoring the power rails and
+          communication signals. <br> <br>
+
+          The communication card combines a <b>3.3 V FPGA</b> with a <b>5 V MicroFIP communication
+          module</b>, which implements the WorldFIP protocol. During startup, the FPGA transmits
+          initialization data to the MicroFIP module. <br> <br>
+
+          I discovered that the time difference between the availability of the 3.3 V and 5 V
+          supplies varied between power cycles. Depending on this timing difference, the FPGA could
+          begin transmitting initialization data before the MicroFIP module was ready, causing part
+          of the initialization sequence to be lost. <br> <br>
+
+          This intermittent startup race condition explained the observed power-on failures and the
+          rare communication corruptions.
+
+
+          <h5 class="teal-text">Engineering Approach & Solution</h5>
+
+          Based on the root-cause analysis, I designed a new low-cost add-on PCB with two functions.
+          <br> <br>
+
+          First, it synchronizes the startup sequence, ensuring the required voltage levels are
+          available with the correct timing before initialization data is exchanged between the FPGA
+          and MicroFIP module. <br> <br>
+
+          Second, it provides <b>remote reset functionality</b> for communication cards where remote
+          reset was not previously available. An analog pulse-detection circuit monitors the expected
+          signal activity and generates a reset command when the pulse sequence stops. <br> <br>
+
+          Instead of using an FPGA, the circuit relies entirely on <b>transistors, capacitors,
+          resistors, and diodes</b>. <br> <br>
+
+          I designed and simulated the circuit using <b>MATLAB/Simulink</b>, performing worst-case
+          calculations to ensure reliable operation under component tolerances and radiation-induced
+          degradation. Radiation exposure reduces transistor gain over the product's lifetime: for
+          the radiation levels involved, a transistor with a nominal gain of 200–300 could degrade to
+          a worst-case gain of roughly 100 over the card's operational lifetime. To provide
+          substantial margin beyond this worst case, I designed the transistor stages assuming a gain
+          of only <b>20</b>. <br> <br>
+
+          I then completed the PCB design and built prototype units for laboratory validation.
+
           <center>
-        <figure>
-        <img src="/assets/img/addon2.png" style="max-width:800px;width:100%" class="center" />
-        <figcaption>Temperature tests.</figcaption>
-        </figure>
-        </center>
+          <figure>
+          <img src="/assets/img/addon1.png" style="max-width:800px;width:100%" class="center" />
+          <figcaption>Low cost PCB.</figcaption>
+          </figure>
+          </center>
 
-               </p>
-          
-        
+
+          <h5 class="teal-text">Validation, Qualification & Deployment</h5>
+
+          I led the complete validation and qualification process, including laboratory, temperature,
+          and radiation testing. These tests verified both the electrical functionality and
+          reliability of the design under the expected operating conditions.
+
+          <center>
+          <figure>
+          <img src="/assets/img/addon2.png" style="max-width:800px;width:100%" class="center" />
+          <figcaption>Temperature tests.</figcaption>
+          </figure>
+          </center>
+
+          Following successful laboratory and environmental testing, I supervised the installation of
+          <b>19 prototype PCBs on communication cards in the accelerator</b>, where they were
+          monitored for approximately one year of operation. <br> <br>
+
+          After successful field validation, I led the transition to full production. This included
+          component selection and procurement, coordination with the PCB manufacturer, production and
+          assembly planning, and managing the technical preparation required for large-scale
+          deployment. <br> <br>
+
+          I also supervised a junior engineer and an intern supporting laboratory testing and PCB
+          assembly, while retaining responsibility for the technical direction, validation, and
+          overall development of the project.
+
+
+          <h5 class="teal-text">Impact</h5>
+
+          The discrete analog solution made large-scale deployment economically practical, costing a
+          fraction of the previous FPGA-based approach, while addressing both the intermittent
+          startup failures and the remote-reset limitation of the legacy cards. <br> <br>
+
+          The solution also reduced the need for manual resets in the accelerator tunnel during
+          annual maintenance tests, removing an intervention colleagues had previously carried out
+          every year. The new remote-reset capability further allows affected cards to be reset
+          remotely during operation, reducing the need for colleagues to access the accelerator for
+          local interventions.
+
+        </p>
+
       </div>
     </section> 
 
@@ -251,4 +342,3 @@
 </body>
 
 </html>
-
