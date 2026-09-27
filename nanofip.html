@@ -238,7 +238,7 @@
           More than 1000 communication cards are currently deployed, primarily across the Large Hadron
           Collider (LHC). Each communication card acts as a <b>WorldFIP node</b> and consists of a
           motherboard and daughterboard, with each board connected to its own
-          <b>NanoFIP FPGA Mezzanine Card (FMC)</b>. The motherboard collects data from the peripheral
+          <b>FPGA Mezzanine Card (FMC)</b>. The motherboard collects data from the peripheral
           cards on the left side of the crate, while the daughterboard handles the cards on the right
           side. Each board contains an FPGA responsible for processing and transferring its
           corresponding peripheral-card data.
@@ -252,18 +252,17 @@
             </figure>
           </center>
 
-          The NanoFIP FMC provides the interface between each communication-card FPGA and the
-          <b>WorldFIP network</b>, allowing the communication card to operate as a node on the network.
-          It replaces the obsolete MicroFIP module previously used in the design. <br> <br>
+          The communication-card FPGA interfaces with the <b>WorldFIP network</b> through the
+          NanoFIP FMC, which provides the required WorldFIP node functionality and replaces the
+          obsolete MicroFIP module used in the previous design. Each FPGA communicates with its
+          corresponding FMC through the <b>Wishbone interface</b>, forming the data path from the
+          peripheral crate cards to the WorldFIP network. <br> <br>
 
-          The FPGA on each board communicates with its corresponding NanoFIP FMC through the
-          <b>Wishbone interface</b>, providing the data path from the peripheral crate cards to the
-          WorldFIP network. <br> <br>
-
-          With additional cryogenic crates required for future LHC infrastructure, and the MicroFIP
-          and NanoFIP solutions not being one-to-one replacements, a new communication-card
-          architecture was required to support future deployments and maintain compatibility with
-          the existing WorldFIP infrastructure.
+          As additional cryogenic crates were required for future LHC infrastructure, the existing
+          MicroFIP-based design could not simply be reproduced: the obsolete MicroFIP and the new
+          NanoFIP solutions were not one-to-one replacements. This required a new communication-card
+          architecture based on the NanoFIP FMC while maintaining compatibility with the existing
+          WorldFIP infrastructure.
 
           <center>
             <figure>
