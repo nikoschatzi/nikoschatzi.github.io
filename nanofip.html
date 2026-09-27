@@ -1,303 +1,418 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
-  <!-- End Google Tag Manager -->
+    <title>New Communication Card</title>
 
-  <!-- Materialize - Compiled and minified CSS-->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
-  <!-- Font Awesome Icon - CSS-->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <!-- Custom Styles-->
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <title>Nikolaos Chatzipapas | Electronics Engineer</title>
+    <meta name="description" content="New WorldFIP communication card based on CERN's NanoFIP FMC for cryogenic control infrastructure.">
+    <meta name="author" content="Nikolaos Chatzipapas">
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    gtag('config', 'UA-126939217-2');
-  </script>
-
-  <!-- Open Graph-->
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Nikolaos Chatzipapas | Electronics Engineer" />
-  <meta property="og:description" content="Electronics Engineer" />
-  <meta property="og:url" content="https://nikoschatzi.github.io/" />
-  <meta property="og:site_name" content="Nikolaos Chatzipapas | Electronics Engineer" />
-  <meta property="article:publisher" content="https://nikoschatzi.github.io/" />
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@nikos_chatzipapas" />
-  <meta name="twitter:title" content="Electronics Engineer | Embedded AI Passionate | Hardware Enthusiast" />
-  <meta name="twitter:description" content="Electronics Engineer" />
-  <meta name="author" content="Nikolaos Chatzipapas" />
-  <meta name="description" content="Electronics Engineer" />
-  <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicon/apple-icon-57x57.png" />
-  <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicon/apple-icon-60x60.png" />
-  <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-icon-72x72.png" />
-  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon/apple-icon-76x76.png" />
-  <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-icon-114x114.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicon/apple-icon-120x120.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-icon-144x144.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-icon-180x180.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/android-icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon/favicon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png" />
-  <link rel="manifest" href="/assets/img/favicon/manifest.json" />
-  <meta name="msapplication-TileColor" content="#ffffff" />
-  <meta name="msapplication-TileImage" content="/assets/img/favicon/ms-icon-144x144.png" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="robots" content="index, follow" />
-  <!-- Google Site Verification for indexing -->
-  <meta name="google-site-verification" content="_qxK8tePiU2fhnwlwnJ7pkDFnj1k2EiKq_cYGy1Cb84" />
-
-  <style>
-    /* Fix for images overflowing */
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto; /* Center the image */
-    }
-
-    @media (max-width: 992px) {
-  main {
-    padding-left: 0px;
-    padding-top: 0px;
-  }
-  ul.side-nav a {
-    line-height: 100%;
-    padding: 0;
-    width: 100%;
-  }
-  nav {
-    background: #fff;
-    height: 64px;
-    position: absolute;
-  }
-  nav a.button-collapse, nav a.button-collapse i {
-    color: #009688;
-    height: 56px;
-    line-height: 56px;
-  }
-  h3 {
-    padding: 20px 30px;
-    margin-bottom: 40px;
-  }
-  .container {
-    margin: 0 auto;
-  }
-  nav.hide-on-large.only.trigger {
-    display: block;
-    position: fixed;
-    top: 0;
-    z-index: 2;
-  }
-  .name-title {
-    display: block;
-    height: 100%;
-    padding-top: 0px;
-    text-align: center;
-    width: 100%;
-    position: absolute;
-  }
-  .name-title>span, .name-title>a {
-    position: relative;
-    line-height: 20px;
-  }
-  .name-title a {
-    font-size: 22px;
-    display: block;
-  }
-  .name-title span {
-    display: block;
-    font-size: 14px;
-  }
-  h3, .container {
-    position: relative;
-    top: 0px;
-  }
-  section#intro {
-    margin-bottom: -64px;
-  }
-  .card .role {
-    position: relative;
-    right: initial;
-    top: initial;
-  }
-}
-
-  </style>
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  
-  <!-- Navigation Menu-->
-  <!-- Nav class 1 -->
-  <nav class="hide-on-small-only">
-    <ul class="side-nav fixed section table-of-contents">
 
-        <!-- Navigation Menu-->
-        <!-- Nav class 1 -->
-        <nav class="hide-on-small-only">
-          <ul class="side-nav fixed section table-of-contents">
+    <!-- Navigation -->
+    <nav class="hide-on-small-only">
+        <ul class="side-nav fixed section table-of-contents">
+            <li class="logo">
+                <a id="logo-container" href="../index.html" class="brand-logo grey-text text-darken-4">
+                    <img src="../assets/img/profile.jpg" class="circle img-responsive profile-pic">
+                </a>
+            </li>
 
-      <li class="logo">
-        <a id="logo-container" aria-label="Navigate to the beginning of the page"
-          class="brand-logo grey-blue-text">
-          <img src="/assets/img/passport-new.jpg" class="circle img-responsive profile-pic" alt="avatar">
+            <li class="bold">
+                <a href="#background" class="waves-effect waves-dark">Background</a>
+            </li>
+
+            <li class="bold">
+                <a href="#architecture" class="waves-effect waves-dark">Architecture</a>
+            </li>
+
+            <li class="bold">
+                <a href="#fpga" class="waves-effect waves-dark">FPGA & Wishbone</a>
+            </li>
+
+            <li class="bold">
+                <a href="#payload" class="waves-effect waves-dark">Payload Constraint</a>
+            </li>
+
+            <li class="bold">
+                <a href="#validation" class="waves-effect waves-dark">Validation</a>
+            </li>
+
+            <li class="bold">
+                <a href="#production" class="waves-effect waves-dark">Production</a>
+            </li>
+        </ul>
+    </nav>
+
+    <nav class="hide-on-large-only">
+        <ul id="slide-out" class="side-nav">
+            <li class="bold">
+                <a href="#background" class="waves-effect waves-dark">Background</a>
+            </li>
+
+            <li class="bold">
+                <a href="#architecture" class="waves-effect waves-dark">Architecture</a>
+            </li>
+
+            <li class="bold">
+                <a href="#fpga" class="waves-effect waves-dark">FPGA & Wishbone</a>
+            </li>
+
+            <li class="bold">
+                <a href="#payload" class="waves-effect waves-dark">Payload Constraint</a>
+            </li>
+
+            <li class="bold">
+                <a href="#validation" class="waves-effect waves-dark">Validation</a>
+            </li>
+
+            <li class="bold">
+                <a href="#production" class="waves-effect waves-dark">Production</a>
+            </li>
+        </ul>
+
+        <a href="#" data-activates="slide-out" class="button-collapse">
+            <i class="mdi-navigation-menu"></i>
         </a>
-      </li>
+    </nav>
 
-      <li class="bold">
-        <a  style="pointer-events: none; cursor: default; class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-trending-up small"></i><span><b>Projects</b></span></a>
-      </li>
+    <main>
 
-    </ul>
-  </nav>
-      
+        <!-- Header -->
+        <section id="intro" class="section scrollspy full-height">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m12 l12">
 
-    </ul>
-  </nav>
+                        <h3 class="teal-text text-darken-2">
+                            New Communication Card
+                        </h3>
 
-  <!-- Main Content-->
-  <main>
+                        <h5>
+                            Directed the redesign of the WorldFIP slave card around the new NanoFIP FMC, into 400-unit production.
+                        </h5>
 
-    <section id="about" class="section scrollspy">
-      <h3 class="page-title white-text teal">NanoFIP communication card</h3>
-      <div class="container flow-text">
-        <!-- <blockquote>
-        </blockquote> -->        
-        <p>
+                        <ul>
+                            <li>Owned hardware and FPGA development of both Motherboard and Daughterboard.</li>
+                            <li>Engineered a VHDL FSM for peripheral data transfer to NanoFIP FMC over Wishbone.</li>
+                            <li>Resolved 8-byte WorldFIP payload overflow via I2C to the Daughterboard.</li>
+                        </ul>
 
-        The cryogenics crate is designed to house different type of cards essential for cryogenic system operations. 
-          These include peripheral cards such as cards that collect data from temperature sensors, power cards which power all crate cards, 
-          and communication cards that enable seamless data exchange between peripheral cards and the WorldFIP network. <br> <br>
-
-Currently, over 1000 communication cards are installed, with most deployed in the Large Hadron Collider (LHC). 
-          Each cryogenics communication card comprises two PCBs: a motherboard, which collects data from all peripheral cards positioned
-          on the left side of the communication card, and a daughterboard, responsible for collecting and transmitting data to the cards on the right side.
-
-          <center>
-        <figure>
-        <img src="/assets/img/lhc_architecture.png" style="max-width:800px;width:100%" class="center" />
-        <figcaption>LHC architecture.</figcaption>
-        </figure>
-        </center>
-
-          Each communication card features an FPGA (Field-Programmable Gate Array) responsible for collecting data from various peripheral cards. 
-          These data are then transmitted to the MicroFIP module, a dedicated PCB acting as the "Agent" (or slave) interface card for the WorldFIP network. <br> <br>
-          The MicroFIP module is composed of three main components: <br>
-          •	MicroFIP ASIC: Custom-designed chip that manages WorldFIP protocol communication. <br>
-          •	Field Drive: Module which handles signal transmission to and from the WorldFIP network, ensuring compatibility with network signal transmission. <br>
-          •	Isolation Transformer: Transformer which provides electrical isolation to protect components and maintain signal integrity. <br> <br>
-
-MicroFIP ASIC was phased out by Alstom, the company responsible for its production. To address this, CERN developed an in-house solution: the NanoFIP FPGA Mezzanine Card (FMC). 
-          This new FMC replaces the MicroFIP ASIC with the NanoFIP, an Actel ProASIC3 FPGA that reproduces a subset of the original MicroFIP's functionalities. 
-   <br>    <br>   Like its predecessor, the NanoFIP FMC contains: <br>
-
-          •	NanoFIP: Actel ProASIC3 FPGA manages WorldFIP protocol communication. <br>
-          •	Field Drive. <br>
-          •	Isolation Transformer. <br> <br>
-
-          The Wishbone protocol is used for communication between the NanoFIP and the FPGA on the communication card.
-
-Given that CERN's cryogenics group must support the WorldFIP communication network until the end of the HL-LHC's operational life - at least up to 2035, 
-          additional communication cards are required in the coming years. 
-          
-           <center>
-        <figure>
-        <img src="/assets/img/motivation.png" style="max-width:800px;width:100%" class="center" />
-        <figcaption>Project motivation.</figcaption>
-        </figure>
-        </center>
-
-          To meet this demand, a new communication card based on the NanoFIP FMC was designed, developed and successfully passed latest CHARM 2024 radiation campaign. 
-
-          <center>
-        <figure>
-        <img src="/assets/img/Mother.png" style="max-width:480px;width:100%" class="center" />
-        <figcaption>Mother board.</figcaption>
-        </figure>
-        </center>
-
-          <center>
-        <figure>
-        <img src="/assets/img/Daugter.png" style="max-width:480px;width:100%" class="center" />
-        <figcaption>Daughter board.</figcaption>
-        </figure>
-        </center>
-         
-        <center>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
-          <center>
-        <figure>
-        <img src="/assets/img/NANOFIPNEW.png" style="max-width:480px;width:100%" class="center" />
-        <figcaption>NanoFIP communication card.</figcaption>
-        </figure>
-        </center>
-         
-        <center>
+        <!-- Background -->
+        <section id="background" class="section scrollspy">
+            <div class="container">
 
-          <body>
-          
-          <img src="/assets/img/nanofip.gif" alt="Computer man" style="width:380px;height:300px;">
-            <figcaption>Mother board testing.</figcaption>
-          
-          </body>
-          
-        </center>
+                <h4 class="teal-text text-darken-2">Background</h4>
 
-        </p>
-          
-        
-      </div>
-    </section> 
+                <p>
+                    CERN's cryogenic control infrastructure relies on WorldFIP communication cards
+                    to exchange monitoring and control data with peripheral electronics distributed
+                    throughout the cryogenic crates.
+                </p>
 
-  </main>
+                <p>
+                    More than <b>1,000 communication cards</b> are already deployed across the LHC,
+                    with approximately <b>300 additional crates</b> required for future infrastructure
+                    upgrades. The existing design relied on the MicroFIP ASIC, which became obsolete,
+                    requiring a new communication platform.
+                </p>
+
+                <p>
+                    I led the redesign around CERN's <b>NanoFIP FMC</b>, developing the new communication
+                    card from hardware design through FPGA development, validation, and production.
+                </p>
+
+                <figure>
+                    <img src="../assets/img/motivation.png" class="responsive-img">
+                    <figcaption class="center-align">
+                        Motivation for the new communication card
+                    </figcaption>
+                </figure>
+
+            </div>
+        </section>
 
 
-  <!-- jQuery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- Architecture -->
+        <section id="architecture" class="section scrollspy">
+            <div class="container">
 
-  <!-- Materialize - Compiled and minified JavaScript-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-  <script>
-    // Materialize - Initializers
-    $(document).ready(function () {
-      $(".scrollspy").scrollSpy()
-      // Initialize collapse button
-      $(".button-collapse").sideNav({
-        menuWidth: 190, // Default is 240
-        edge: "left", // Choose the horizontal origin
-        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      })
-    })
-  </script>
+                <h4 class="teal-text text-darken-2">Communication Card Architecture</h4>
+
+                <p>
+                    Each communication card operates as a <b>WorldFIP node</b> and consists of a
+                    Motherboard and Daughterboard. Each board contains an <b>FPGA</b> and a
+                    <b>NanoFIP FMC</b>, providing the processing and WorldFIP communication
+                    interfaces required by the node.
+                </p>
+
+                <p>
+                    The FPGAs handle the exchange of data with the peripheral crate cards,
+                    while the NanoFIP FMC provides the interface to the WorldFIP network.
+                    This architecture allows the new card to integrate into the existing
+                    cryogenic control infrastructure while replacing the obsolete MicroFIP-based design.
+                </p>
+
+                <figure>
+                    <img src="../assets/img/lhc_architecture.png" class="responsive-img">
+                    <figcaption class="center-align">
+                        LHC cryogenic control architecture
+                    </figcaption>
+                </figure>
+
+
+                <h5 class="teal-text text-darken-2">Motherboard & Daughterboard</h5>
+
+                <p>
+                    The <b>Motherboard</b> interfaces with the peripheral cards on one side of the
+                    cryogenic crate, while the <b>Daughterboard</b> handles the remaining peripheral
+                    cards on the other side. Each FPGA collects and processes the data from its
+                    corresponding crate cards.
+                </p>
+
+                <figure>
+                    <img src="../assets/img/Mother.png" class="responsive-img">
+                    <figcaption class="center-align">
+                        Motherboard
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="../assets/img/Daugter.png" class="responsive-img">
+                    <figcaption class="center-align">
+                        Daughterboard
+                    </figcaption>
+                </figure>
+
+
+                <h5 class="teal-text text-darken-2">NanoFIP FMC</h5>
+
+                <p>
+                    The NanoFIP FMC replaces the obsolete MicroFIP module and provides the
+                    WorldFIP slave functionality required by the communication card.
+                    The FPGA communicates with the NanoFIP FMC through the Wishbone interface.
+                </p>
+
+                <figure>
+                    <img src="../assets/img/NANOFIPNEW.png" class="responsive-img">
+                    <figcaption class="center-align">
+                        NanoFIP FMC
+                    </figcaption>
+                </figure>
+
+            </div>
+        </section>
+
+
+        <!-- FPGA -->
+        <section id="fpga" class="section scrollspy">
+            <div class="container">
+
+                <h4 class="teal-text text-darken-2">FPGA & Wishbone Interface</h4>
+
+                <p>
+                    The FPGA is responsible for collecting data from the peripheral crate cards
+                    and transferring it to the NanoFIP FMC for transmission over WorldFIP.
+                </p>
+
+                <p>
+                    I engineered the VHDL state machine responsible for this data path,
+                    controlling the transfer between the peripheral-card interface and the
+                    NanoFIP FMC through Wishbone.
+                </p>
+
+                <p class="center-align">
+                    <b>
+                        Peripheral crate cards → FPGA → Wishbone → NanoFIP FMC → WorldFIP
+                    </b>
+                </p>
+
+                <p>
+                    The FSM manages the required read and write operations, providing the
+                    hardware interface between the peripheral-card data and the WorldFIP
+                    communication layer.
+                </p>
+
+                <figure>
+                    <img src="../assets/img/nanofip.gif" class="responsive-img">
+                    <figcaption class="center-align">
+                        NanoFIP communication interface
+                    </figcaption>
+                </figure>
+
+            </div>
+        </section>
+
+
+        <!-- Payload Constraint -->
+        <section id="payload" class="section scrollspy">
+            <div class="container">
+
+                <h4 class="teal-text text-darken-2">
+                    Solving the 120-Byte WorldFIP Payload Constraint
+                </h4>
+
+                <p>
+                    A key constraint was the <b>120-byte WorldFIP payload limit per node</b>.
+                    Due to the crate architecture, the Motherboard handled more peripheral
+                    channels than the Daughterboard, causing its data payload to exceed the
+                    available WorldFIP allocation by <b>8 bytes</b>.
+                </p>
+
+                <p>
+                    <b>This limitation did not exist in the previous design.</b> It emerged from
+                    the new communication-card architecture and had to be resolved without
+                    changing the existing WorldFIP infrastructure.
+                </p>
+
+                <p>
+                    I implemented a dedicated <b>I2C link between the Motherboard and
+                    Daughterboard FPGAs</b>. The Motherboard FPGA transfers the excess 8 bytes
+                    to the Daughterboard, which has available payload capacity.
+                </p>
+
+                <p>
+                    This allowed the complete dataset to be transmitted within the WorldFIP
+                    payload limits while preserving the existing crate architecture and
+                    network allocation.
+                </p>
+
+                <figure>
+                    <img src="../assets/img/Mother.png" class="responsive-img">
+                    <figcaption class="center-align">
+                        Motherboard data path
+                    </figcaption>
+                </figure>
+
+            </div>
+        </section>
+
+
+        <!-- Validation -->
+        <section id="validation" class="section scrollspy">
+            <div class="container">
+
+                <h4 class="teal-text text-darken-2">Prototype & Validation</h4>
+
+                <p>
+                    I validated the design at multiple levels, from individual interfaces
+                    and FPGA logic to the complete communication chain in a cryogenic test crate.
+                </p>
+
+
+                <h5 class="teal-text text-darken-2">Signal Integrity & Timing</h5>
+
+                <p>
+                    I used oscilloscope measurements to verify the physical Wishbone signals,
+                    including signal integrity, clock quality, and setup/hold timing.
+                </p>
+
+                <p>
+                    FPGA integrated logic-analysis tools were used to inspect internal
+                    state-machine operation and verify the expected data transfers.
+                </p>
+
+                <figure>
+                    <img src="../assets/img/Mother.png" class="responsive-img">
+                    <figcaption class="center-align">
+                        Motherboard testing
+                    </figcaption>
+                </figure>
+
+
+                <h5 class="teal-text text-darken-2">System-Level Testing</h5>
+
+                <p>
+                    The complete communication card was installed in a cryogenic test crate
+                    together with the relevant peripheral cards.
+                </p>
+
+                <p>
+                    A dedicated software utility running on the <b>Front-End Computer (FEC)</b>
+                    monitored the real-time read/write buffers, allowing the complete data path
+                    to be exercised under operational traffic and verifying reliable packet transfer.
+                </p>
+
+
+                <h5 class="teal-text text-darken-2">Radiation Qualification</h5>
+
+                <p>
+                    The final hardware was subjected to the <b>CHARM 2024 radiation campaign</b>
+                    to evaluate its behaviour in the expected radiation environment.
+                </p>
+
+                <p>
+                    The successful campaign provided the radiation qualification required
+                    for deployment in the target CERN infrastructure.
+                </p>
+
+            </div>
+        </section>
+
+
+        <!-- Production -->
+        <section id="production" class="section scrollspy">
+            <div class="container">
+
+                <h4 class="teal-text text-darken-2">Production</h4>
+
+                <p>
+                    Following prototype validation and qualification, the redesigned
+                    communication card progressed into production, with <b>400 units</b>
+                    produced for CERN's cryogenic control infrastructure.
+                </p>
+
+                <p>
+                    The design provides a long-term replacement for the obsolete
+                    MicroFIP-based hardware while maintaining compatibility with the
+                    existing WorldFIP infrastructure.
+                </p>
+
+                <h5 class="teal-text text-darken-2">Engineering Summary</h5>
+
+                <ul>
+                    <li><b>Hardware:</b> Motherboard, Daughterboard, FPGA interfaces, NanoFIP FMC</li>
+                    <li><b>FPGA:</b> VHDL, state machines, Wishbone, I2C</li>
+                    <li><b>Network:</b> WorldFIP, 120-byte payload constraint</li>
+                    <li><b>Validation:</b> Oscilloscope, FPGA logic analyzer, system-level test crate, FEC monitoring</li>
+                    <li><b>Qualification:</b> CHARM 2024 radiation campaign</li>
+                    <li><b>Production:</b> 400 units</li>
+                </ul>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.scrollspy').scrollSpy();
+            $('.button-collapse').sideNav();
+        });
+    </script>
+
 </body>
 
 </html>
-
