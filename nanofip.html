@@ -237,7 +237,7 @@
         </center>
 
 
-        <h5 class="teal-text">Hardware Design</h5>
+        <h5 class="teal-text">Hardware & FPGA Design</h5>
 
         I owned the hardware and FPGA development of the new motherboard and daughterboard, taking
         the design through development, validation, and into production. <br> <br>
@@ -257,8 +257,6 @@
         </center>
 
 
-        <h5 class="teal-text">FPGA & Wishbone Interface</h5>
-
         The FPGA data path was engineered around a VHDL state machine that reads data from the
         peripheral crate cards and transfers it to the NanoFIP FMC over Wishbone: <br> <br>
 
@@ -275,7 +273,7 @@
         </center>
 
 
-        <h5 class="teal-text">WorldFIP Payload Constraint</h5>
+        <h5 class="teal-text">Solving the 120-Byte WorldFIP Payload Constraint</h5>
 
         A key challenge emerged from the new architecture: the <b>120-byte WorldFIP payload limit
         per node</b>. The motherboard handled more peripheral channels than the daughterboard,
@@ -292,7 +290,7 @@
 
           <center>
           <img src="/assets/img/nanofip.gif" alt="Motherboard testing" style="width:380px;height:300px;">
-          <figcaption>Motherboard testing.</figcaption>
+            <figcaption>Motherboard testing.</figcaption>
           </center>
 
 
@@ -308,9 +306,10 @@
         real-time read/write buffers, allowing the complete communication path to be exercised under
         operational traffic and verifying reliable data transfer. <br> <br>
 
-        Following successful prototype validation, the communication card passed the
-        <b>CHARM 2024 radiation campaign</b> and progressed into production, with
-        <b>400 units</b> produced for CERN's cryogenic control infrastructure.
+        The final hardware was subjected to the <b>CHARM 2024 radiation campaign</b> to evaluate
+        its behaviour in the expected radiation environment. Following successful validation and
+        qualification, the communication card progressed into production, with <b>400 units</b>
+        produced for CERN's cryogenic control infrastructure.
 
 
         <h5 class="teal-text">Production</h5>
