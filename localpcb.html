@@ -194,50 +194,86 @@
   <main>
 
     <section id="about" class="section scrollspy">
-      <h3 class="page-title white-text teal">Rad-hard local electronics</h3>
+      <h3 class="page-title white-text teal">Rad-hard Local Electronics</h3>
       <div class="container flow-text">
-        <!-- <blockquote>
-        </blockquote> -->        
+
         <p>
 
-     As part of the HL-LHC upgrade, piezo valve actuators may be installed in areas exposed to radiation levels above 50 kGy. The commercial actuators integrate ICs and microcontrollers in their onboard electronics, which fail at doses far below 50 kGy, so the original design cannot survive where it is needed. Rather than hardening the existing electronics, I designed a custom CERN PCB to replace them. It reproduces the actuator functionality using only relays, resistors, capacitors, and diodes, with no ICs or microcontrollers, the components that limit radiation tolerance.
+          <h5 class="teal-text">Radiation Challenge</h5>
 
-          <p>
-          
-        <center>
-        <figure>
-        <img src="/assets/img/local0.png" class="responsive-img" style="max-width:800px;width:100%"/>
-        <figcaption>Need for local PCB.</figcaption>
-        </figure>
-        </center>
+          As part of the HL-LHC upgrade, piezo valve actuators may be installed in areas exposed to
+          radiation levels exceeding <b>50 kGy</b>. <br> <br>
 
-            </p>
+          The actuators were originally equipped with integrated industrial electronics containing ICs
+          and microcontrollers. These components are susceptible to radiation-induced failures at doses
+          significantly below the expected environmental exposure, making the original electronics
+          unsuitable for operation in highly radiated areas. <br> <br>
 
-          Each actuator was carefully disassembled to remove the original electronics and install the CERN PCB in its place. The modified actuators were then tested against their original specifications to confirm that the replacement preserved full functionality, and the validated actuators went into radiation testing so the complete assembly could be evaluated under high-dose conditions.
+          To address this limitation, a custom CERN PCB was developed to replace the original
+          electronics while maintaining the actuator functionality. The design was based on a simplified
+          architecture using only <b>relays, resistors, capacitors, and diodes</b>, avoiding the
+          radiation-sensitive integrated components.
 
-        <center>
-        <figure>
-        <img src="/assets/img/local1.png" style="max-width:800px;width:100%" class="responsive-img" />
-        <figcaption>Valve disassembly.</figcaption>
-        </figure>
-        </center>
-
-         Radiation tolerance is not only an electronics problem. In a passive test, a piezo valve actuator was exposed to 56 kGy, and afterwards the original black holding case had become brittle. This showed that the mechanical parts needed the same attention as the electronics, so I engineered a replacement holding case, 3D printed in Accura 25 and ULTEM to improve durability under radiation.
-
-        <center>
-        <figure>
-        <img src="/assets/img/local2.png" style="max-width:800px;width:100%" class="responsive-img" />
-        <figcaption>CERN electronics & 3D printed cases.</figcaption>
-        </figure>
-        </center>
+          <center>
+            <figure>
+              <img src="/assets/img/local0.png"
+                style="max-width:800px;width:100%"
+                class="center" />
+              <figcaption>Need for local PCB.</figcaption>
+            </figure>
+          </center>
 
 
+          <h5 class="teal-text">Electronics Replacement &amp; Validation</h5>
+
+          The original valve electronics had to be carefully removed from the actuators before installing
+          the CERN PCB. The replacement electronics were designed to reproduce the required actuator
+          functionality while eliminating the integrated components that limited the radiation tolerance
+          of the original design. <br> <br>
+
+          Following the modification, the actuators were tested to verify that the replacement
+          electronics preserved the required operating specifications.
+
+          <center>
+            <figure>
+              <img src="/assets/img/local1.png"
+                style="max-width:800px;width:100%"
+                class="center" />
+              <figcaption>Valve disassembly.</figcaption>
+            </figure>
+          </center>
+
+          The modified actuators were subsequently used as part of radiation testing to evaluate the
+          behaviour of the complete assembly under high-radiation conditions.
+
+
+          <h5 class="teal-text">Radiation Effects on Mechanical Components</h5>
+
+          The radiation environment also affects the mechanical materials surrounding the electronics.
+          In a passive radiation test, a piezo valve actuator was exposed to <b>56 kGy</b> to evaluate
+          the effects of radiation on its materials. <br> <br>
+
+          Following irradiation, the original black holding case became <b>brittle</b>. This demonstrated
+          that radiation tolerance was not limited to the electronic components and that the mechanical
+          parts of the actuator also required consideration. <br> <br>
+
+          The holding case was therefore redesigned and 3D printed using <b>Accura25</b> and
+          <b>ULTEM</b> materials. Further radiation testing was planned to evaluate the long-term
+          performance of the redesigned cases and the complete actuator assembly.
+
+          <center>
+            <figure>
+              <img src="/assets/img/local2.png"
+                style="max-width:800px;width:100%"
+                class="center" />
+              <figcaption>CERN electronics &amp; 3D printed cases.</figcaption>
+            </figure>
+          </center>
 
         </p>
-          
-        
+
       </div>
-    </section> 
+    </section>
 
   </main>
 
